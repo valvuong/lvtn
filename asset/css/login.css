@@ -1,0 +1,76 @@
+.active{
+	background-color: rgba(226, 226, 226, 0.8);
+}
+#mask-login{
+	display:none;
+	width:100%;
+	height:100%;
+	position:fixed;
+	left:0;
+	top:0;
+	z-index:99;
+	opacity:0.8;
+	background-color:white;
+}
+#login-page{
+	display:none;
+	position:fixed;
+	margin:auto;
+    background:url('../image/login-background.png');
+    width:422px;
+    height:280px;
+	z-index:999;
+	left:450px;
+	top:100px;
+}
+#login-page #cancelButton-login{
+	position:relative;
+	left:365px;
+	top:50px;
+}
+#login-error{
+	position:relative;
+	top:70px;
+	height:20px;
+	padding-left:30px;
+	color:white;
+	font-weight:bold;
+	font-size:13pt;
+}
+#form-login-page{
+	width:380px;
+	height:200px;
+	padding-top:70px;
+	margin:auto;
+	color:white;
+}
+#form-login-page>label{
+	width:100px;
+	float:left;
+	text-align:right;
+	margin-right:10px;
+	padding-top:10px;
+}
+
+#username-input,#password-input{
+	width:150px;
+	height:20px;
+	margin-top:10px;
+	
+}
+#form-login-page #sign-button{
+	width:70px;
+	height:30px;
+	border-radius:10px 10px 10px 10px;
+	border-color:#df2121;
+	background-color:white;
+	color:#df2121;
+	font-size:12pt;
+}
+#form-login-page>a{
+	float:right;
+	padding-right:30px;
+	padding-top:5px;
+	padding-left:100px;
+	color:white;
+}

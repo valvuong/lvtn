@@ -1,0 +1,39 @@
+
+#accept{
+	float:right;
+	width:400px;
+	height:108px;
+	position:relative;
+	display:none;
+}
+#accept li{
+	list-style-type: none;
+	display:inline-block;
+	margin:80px 0px 0 5px;
+}
+#accept #accept-name{
+	wodth:100px;
+}
+#accept li img{
+	margin-right:5px;
+}
+#UserNavi{
+    float:right;
+    width: 270px;
+    height: 108px;
+	position:relative;
+}
+#UserNavi> li{
+    list-style-type: none;
+    display: inline-block;
+    margin:80px 0 0 5px;
+}
+.NaviIcon{
+    width: 15px;
+    height: 15px;
+}
+.Navi{
+    text-decoration:none;
+	color:black;
+}
+
