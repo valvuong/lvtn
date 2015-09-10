@@ -22,7 +22,7 @@
     <script type="text/javascript" src="<?php echo asset_url()?>js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
     <script type="text/javascript" src="<?php echo asset_url()?>bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo asset_url()?>js/bootstrap-select.js"></script>
-<!--    <script type="text/javascript" src="--><?php //echo asset_url(); ?><!--js/function.js"></script>-->
+    <script type="text/javascript" src="<?php echo asset_url()?>js/function.js"></script>
 <!--    <script type="text/javascript" src="--><?php //echo asset_url(); ?><!--js/time.js"></script>-->
     <script type="text/javascript" src="<?php echo asset_url()?>js/search-filter.js"></script>
 
@@ -36,13 +36,13 @@
     </script>
 </head>
 <body class="container">
-    <a href="#" id="gotop"><img src="<?php echo asset_url() ?>image/top.png"></a>
+    <a href="#" id="gotop" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-chevron-up"></span></a>
     <?php $this->load->view('layout/header'); ?>
 
     <nav>
         <div id="cssmenu">
             <ul>
-                <li class="">
+                <li>
                     <a href="<?=site_url('welcome') ?>">Trang Chủ</a>
                 </li>
                 <li class="drop-down-menu last">

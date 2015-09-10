@@ -64,10 +64,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'lvtn',
+	'hostname' => 'us-cdbr-iron-east-02.cleardb.net',
+	'username' => 'ba915461c51172',
+	'password' => 'd5e0f8f4',
+	'database' => 'ad_99e5b1a15875f57',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

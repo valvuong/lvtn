@@ -1,13 +1,13 @@
 $(function() {
     getWard();
-    reload();
+//    reload();
     loadImg();
-    bigView();
+//    bigView();
     goTop();
-    delCook();
+//    delCook();
     datepicker();
-    priceEvent();
-    prePay();
+//    priceEvent();
+//    prePay();
 });
 
 function submitPost() {
@@ -135,14 +135,15 @@ function bigView() {
 }
 
 function goTop() {
+	var top = $('#gotop');
     $(window).scroll(function(){
         if($(this).scrollTop() != 0) {
-            $('#gotop').fadeIn();
+            $(top).fadeIn();
         } else {
-            $('#gotop').fadeOut();
+            $(top).fadeOut();
         }
     });
-    $('#gotop').click(function(e){
+    $(top).click(function(e){
         $('body,html').animate({scrollTop: 0}, 500);
         e.preventDefault();
     });
