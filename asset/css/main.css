@@ -3,7 +3,7 @@
   padding: 0;
 }
 html {
-  background-image: linear-gradient(#ecf2f4, #848888);
+  background-image: url('../image/bg1.jpg');
   background-repeat: no-repeat;
 }
 body {
@@ -16,7 +16,7 @@ ul {
   padding: 0;
 }
 .body-content {
-  position: relative;
+  display: inline-block;
   min-height: 700px;
   margin-bottom: 10px;
   margin-left: 10px;

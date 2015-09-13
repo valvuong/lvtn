@@ -1,51 +1,59 @@
-<div id="Footer">
-    <!--begin topfooter-->
-    <div id="topfooter">
-        <ul id="lefttopf">
-            <li>
-                <a class="implink" href="#">Giới thiệu</a>
-            </li>
-            <li>
-                <a class="implink" href="#">Trụ sở chính</a>
-            </li>
-            <li>
-                <a class="implink" href="#">Liên hệ</a>
-            </li>
-            <li>
-                <a class="implink" href="#">Cookie</a>
-            </li>
-            <li>
-                <a class="implink" href="#">Điều khoản</a>
-            </li>
-            <li id="timer">
-                <p id="timer-hour"></p>
-                <p id="timer-minutes"></p>
-                <p id="timer-second"></p>
-            </li>
-            <li id="select-field">
-                <select>
-                    <option value="vn">Vietnamese</option>
-                    <option value="en">English</option>
-                </select>
-            </li>
-        </ul>
-    </div><!--end topfooter -->
+<footer class="footer-distributed">
 
-    <!--begin botfooter -->
-    <div id="botfooter">
-        <ul>
-            <li id="leftbotf">
-                <br><br>
-                <h4> CÔNG TY CỔ PHẦN XXX</h4>
-                <p>Trụ sở chính: 268 Lý Thường Kiệt, P.xx, Quận 10, Tp.HCM<br>
-                    ĐT: (08).3925.xxxx - 1900.xxxx (Ext:250) - Fax: 08.392xxxxx<br>
-                    Giấy chứng nhận ĐKKD số : 050472xxxxx do Sở KH&ĐT TP.HCM cấp ngày xx/xx/1995.<br>
-                    Website: www.xxx.com.vn - Email: lienhe@xxx.com.vn</p>
-            </li>
-            <li id="rightbotf">
-                <img id="botlogo" alt="logo" src="<?php echo asset_url(); ?>image/logo.png"/>
-                <p>Copyright © xxx.com.vn 2011.</p>
-            </li>
-        </ul>
+    <div class="footer-left">
+
+        <h3>Company<span>logo</span></h3>
+
+        <p class="footer-links">
+            <a href="#">Home</a>
+            ·
+            <a href="#">Pricing</a>
+            ·
+            <a href="#">About</a>
+            ·
+            <a href="#">Faq</a>
+            ·
+            <a href="#">Contact</a>
+        </p>
+
+        <p class="footer-company-name">Company Name &copy; 2015</p>
     </div>
-</div>
+
+    <div class="footer-center">
+
+        <div>
+            <i class="fa fa-map-marker"></i>
+            <p><span>21 Revolution Street</span> Paris, France</p>
+        </div>
+
+        <div>
+            <i class="fa fa-phone"></i>
+            <p>+1 555 123456</p>
+        </div>
+
+        <div>
+            <i class="fa fa-envelope"></i>
+            <p><a href="mailto:support@company.com">support@company.com</a></p>
+        </div>
+
+    </div>
+
+    <div class="footer-right">
+
+        <p class="footer-company-about">
+            <span>About the company</span>
+            Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+        </p>
+
+        <div class="footer-icons">
+
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-github"></i></a>
+
+        </div>
+
+    </div>
+
+</footer>

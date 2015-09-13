@@ -11,12 +11,15 @@
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>js/jquery-ui-1.11.4.custom/jquery-ui.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>js/jquery-ui-1.11.4.custom/jquery-ui.theme.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>js/jquery-ui-1.11.4.custom/jquery-ui.structure.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/main.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/One.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/footer.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/search.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/menu.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/bootstrap-select.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/pagination.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="<?php echo asset_url()?>js/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="<?php echo asset_url()?>js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
@@ -36,7 +39,7 @@
     </script>
 </head>
 <body class="container">
-    <a href="#" id="gotop" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-chevron-up"></span></a>
+    <a href="#" id="gotop" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-chevron-up"></span></a>
     <?php $this->load->view('layout/header'); ?>
 
     <nav>
@@ -46,7 +49,7 @@
                     <a href="<?=site_url('welcome') ?>">Trang Chủ</a>
                 </li>
                 <li class="drop-down-menu last">
-                    <a href="javascript:void(0)">Chuyên mục</a>
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Chuyên mục</a>
                     <ul>
                         <?php $query = $this->mcategory->getAll() ?>
                         <?php foreach ($query as $row): ?>
