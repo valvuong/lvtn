@@ -87,3 +87,14 @@ define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 define('LAYOUT','layout/layout');
 define('POSTS_PER_PAGE',10);
+
+define('MODEL_CATEGORY','chuyenmuc');
+define('MODEL_DISTRICT','quan');
+define('MODEL_POST','bantin');
+define('MODEL_USER','user');
+define('MODEL_WARD','phuong');
+define('MODEL_POST_PRICE','chiphi');
+define('MODEL_POST_CONTACT','thongtinlienlac');
+define('MODEL_POST_UPLOAD','hinh');
+
+define('ACTION_POST_UPLOAD','upload_image');

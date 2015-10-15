@@ -2,10 +2,13 @@
 <a class="news" href="<?=site_url(array('post','index',$row['id']))?>">
     <img src="<?=asset_url()?>image/house.png">
     <div id="middle">
-        <h5><?php echo mb_strtoupper($row['tieude'],'utf8') ?></h5>
-        <p><span style="font-weight: bold">Giá phòng:</span> <?php echo number_format($row['giaphong']*1000000); ?> VNĐ | <span style="font-weight: bold">Diện tích:</span> <?php echo $row['dientich']; ?> m<sup>2</sup> </p>
+        <h4><?php echo mb_strtoupper($row['tieude'],'utf8') ?></h4>
         <p>
-            <span style="font-weight: bold">Ngày đăng:</span>
+            <span class="font-bold">Giá phòng:</span> <?php echo number_format($row['giaphong']*1000000); ?> VNĐ |
+            <span class="font-bold">Diện tích:</span> <?php echo $row['dientich']; ?> m<sup>2</sup>
+        </p>
+        <p>
+            <span class="font-bold">Ngày đăng:</span>
             <span>
             <?php
             $date = strtotime($row['ngaydang']);
@@ -13,7 +16,7 @@
             echo $formatDate;
             ?>
             </span> |
-            <span style="font-weight: bold">Ngày hêt hạn:</span>
+            <span class="font-bold">Ngày hêt hạn:</span>
             <span>
             <?php
             $date = strtotime($row['hethan']);
@@ -21,28 +24,15 @@
             echo $formatDate;
             ?>
             </span> |
-            <span style="font-weight: bold">Còn lại:</span>
+            <span class="font-bold">Còn lại:</span>
             <?php
-            $expried =  intval(date('d',strtotime($row['hethan']))) - intval(date('d',strtotime($row['ngaydang'])));
+            $now = time();
+            $expried =  floor((strtotime($row['hethan']) - $now)/86400)+1;
             if($expried > 0) echo $expried.' ngày';
-            else echo 'Hôm nay';
             ?>
         </p>
-    </div>
-    <div id="last">
-        <p>
-            <?php
-            $_quan = explode(' ', $row['ten']);
-            $n = count($_quan);
-            if($n > 2) $i = 1;
-            else $i = 0;
-            $quan = '';
-            while($i < $n) {
-                $quan .= $_quan[$i].' ';
-                $i++;
-            }
-            echo trim($quan);
-            ?>
+        <p class="font-bold text-center" style="color: #ff5252">
+            <?=$row['tenquan']?>
         </p>
     </div>
 </a>

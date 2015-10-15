@@ -7,62 +7,63 @@
     <meta content="application/javascript">
     <title><?php echo isset($title) ? $title : 'Hỗ trợ sinh viên'; ?></title>
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>bootstrap-select/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/style.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>js/jquery-ui-1.11.4.custom/jquery-ui.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>js/jquery-ui-1.11.4.custom/jquery-ui.theme.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>js/jquery-ui-1.11.4.custom/jquery-ui.structure.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/main.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/One.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/footer.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/search.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/menu.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/bootstrap-select.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/pagination.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/header.css">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Cookie">
 
     <script type="text/javascript" src="<?php echo asset_url()?>js/jquery-2.1.3.min.js"></script>
-    <script type="text/javascript" src="<?php echo asset_url()?>js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
     <script type="text/javascript" src="<?php echo asset_url()?>bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="<?php echo asset_url()?>js/bootstrap-select.js"></script>
-    <script type="text/javascript" src="<?php echo asset_url()?>js/function.js"></script>
-<!--    <script type="text/javascript" src="--><?php //echo asset_url(); ?><!--js/time.js"></script>-->
+    <script type="text/javascript" src="<?php echo asset_url()?>bootstrap-select/bootstrap-select.js"></script>
+    <script type="text/javascript" src="<?php echo asset_url()?>js/main.js"></script>
     <script type="text/javascript" src="<?php echo asset_url()?>js/search-filter.js"></script>
 
     <link rel="icon" type="image/png" href="<?php echo asset_url(); ?>image/icon.png">
-    <script>
-        $(function(){
-            $('.selectpicker').selectpicker({
-                size: 6
-            });
-        })
-    </script>
+
 </head>
-<body class="container">
-    <a href="#" id="gotop" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-chevron-up"></span></a>
-    <?php $this->load->view('layout/header'); ?>
+<body>
+    <a href="#" id="gotop" class="fbtn"><span class="icon glyphicon glyphicon-chevron-up"></span></a>
 
     <nav>
         <div id="cssmenu">
             <ul>
-                <li>
-                    <a href="<?=site_url('welcome') ?>">Trang Chủ</a>
-                </li>
-                <li class="drop-down-menu last">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Chuyên mục</a>
+                <li><a href="<?=site_url('') ?>">Trang Chủ</a></li>
+                <li class="drop-down-menu">
+                    <a href="javascript:void(0)" class="click-dropdown">Chuyên Mục</a>
                     <ul>
-                        <?php $query = $this->mcategory->getAll() ?>
+                        <?php $query = $this->mcategory->get_all() ?>
                         <?php foreach ($query as $row): ?>
-                            <li><a href="<?php echo site_url(array('post','showPostsByCategory',$row['id'])) ?>"><?=$row['ten']?></a></li>
+                            <li>
+                                <a href="<?php echo site_url('loai-'.$row['id']) ?>">
+                                    <?=$row['ten']?>
+                                </a>
+                            </li>
                         <?php endforeach ?>
+                    </ul>
+                </li>
+                <li><a href="<?=site_url()?>">Chợ</a></li>
+                <li class="float-right task">
+                    <a href="javascript:void(0)" class="click-dropdown"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+                    <ul>
+                        <li><a href="<?=site_url('buon-ban')?>">Buôn Bán</a></li>
+                        <li><a href="<?=site_url('dang-tin')?>">Đăng Tin</a></li>
+                        <li><a href="<?=site_url('dang-ki')?>">Đăng Kí</a></li>
+                        <li><a href="<?=site_url('dang-nhap')?>">Đăng Nhập</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="body-content">
-        <?php if(!isset($left)): ?>
+    <?php $this->load->view('layout/header'); ?>
+
+    <div class="body-content container">
+        <?php if(!isset($left_hidden)): ?>
             <div id="left">
                 <div class="panel-primary">
                     <div class="panel-heading">
@@ -76,7 +77,7 @@
                             </div>
                             <div class="panel-body">
                                 <ul>
-                                    <?php $query = $this->mcategory->getAll() ?>
+                                    <?php $query = $this->mcategory->get_all() ?>
                                     <?php foreach($query as $row): ?>
                                         <li><label><input type="checkbox" name="category[]" value="<?=$row['id']?>"><?=$row['ten']?></label></li>
                                     <?php endforeach ?>
@@ -118,53 +119,13 @@
                             </div>
                             <div class="panel-body">
                                 <ul>
-                                    <?php $query = $this->mdistrict->getAll() ?>
+                                    <?php $query = $this->mdistrict->get_all() ?>
                                     <?php foreach($query as $row): ?>
-                                        <li><label><input type="checkbox" name="category[]" value="<?=$row['id']?>"><?=$row['ten']?></label></li>
+                                        <li><label><input type="checkbox" name="category[]" value="<?=$row['idQ']?>"><?=$row['tenquan']?></label></li>
                                     <?php endforeach ?>
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        <?php endif ?>
-
-        <?php if(!isset($right)): ?>
-            <div id="right">
-                <div class="right">
-                    <p>Tìm Kiếm</p>
-                    <div class="search">
-                        <form id="search" onsubmit="index.php" method="GET">
-                            <select class="selectpicker" name="district" data-width="100%">
-                                <option value="0" selected>Chọn Quận</option>
-                                <?php $query = $this->mdistrict->getAll() ?>
-                                <?php foreach($query as $row): ?>
-                                    <option value="<?=$row['id']?>"><?=$row['ten']?></option>
-                                <?php endforeach ?>
-                            </select>
-                            <select class="selectpicker" name="area" data-width="100%">
-                                <option value="0" selected>Chọn diện tích</option>
-                                <option value="30"><30 m2</option>
-                                <option value="3050">30 - 50 m2</option>
-                                <option value="5080">50 - 80 m2</option>
-                                <option value="80100">80 - 100 m2</option>
-                                <option value="100150">100 - 150 m2</option>
-                                <option value="150200">150 - 200 m2</option>
-                                <option value="200250">200 - 250 m2</option>
-                                <option value="250">> 250 m2</option>
-                            </select>
-                            <select class="selectpicker" name="price" data-width="100%">
-                                <option value="0" selected>Chọn giá</option>
-                                <option value="1"> < 1 tr </option>
-                                <option value="13"> 1 - 3 tr </option>
-                                <option value="35"> 3 - 5 tr </option>
-                                <option value="57"> 5 - 7 tr </option>
-                                <option value="710"> 7 - 10 tr </option>
-                                <option value="10"> > 10 tr </option>
-                            </select>
-                            <input class="btn btn-primary" type="submit" name="mod" value="Search">
-                        </form>
                     </div>
                 </div>
             </div>

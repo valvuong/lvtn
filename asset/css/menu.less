@@ -1,13 +1,19 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:700);
 @import "global";
-@menu-background: #f96e5b;
+@menu-background: #4C86AF;
 @nav-height: 45px;
+@menu-width: 90%;
 nav {
   background: @menu-background;
-  margin-bottom: 10px;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
+
 #cssmenu {
-  width: @content-width;
+  width: @menu-width;
   margin: 0 auto;
   ul {
     list-style: none;
@@ -37,14 +43,13 @@ nav {
         font-family: 'Open Sans', sans-serif;
         font-weight: 700;
         text-transform: uppercase;
-        font-size: 14px;
+        font-size: 12px;
         position: relative;
         -webkit-transition: color .25s;
         -moz-transition: color .25s;
         -ms-transition: color .25s;
         -o-transition: color .25s;
         transition: color .25s;
-//        height: @nav-height;
         &:hover {
           color: #333333;
           &:before {
@@ -129,12 +134,6 @@ nav {
             clear: both;
           }
         }
-        &:hover {
-          > ul {
-            max-height: 1000px;
-            -webkit-transform: perspective(400px) rotate3d(0,0,0,0deg);
-          }
-        }
       }
       @media screen {
         @media (max-width: 768px) {
@@ -157,4 +156,43 @@ nav {
 }
 #cssmenu.align-right li:first-child a:after {
   display: none;
+}
+
+.task {
+  position: relative;
+  z-index: 100;
+  a {
+    &:after {
+      display: none !important;
+    }
+  }
+  &:after {
+    display: none;
+  }
+  ul {
+    top: 0;
+    right: 0;
+    position: absolute;
+    background: @menu-background;
+    max-height: 0;
+    overflow: hidden;
+    -webkit-transition: 350ms ease-in-out;
+    -moz-transition: 350ms ease-in-out;
+    -o-transition: 350ms ease-in-out;
+    transition: 350ms ease-out;
+    li {
+      clear: both;
+      width: 125px;
+    }
+  }
+}
+
+.open-task {
+  max-height: 1000px !important;
+  right: 100% !important;
+}
+
+.open-ul {
+  max-height: 1000px !important;
+  -webkit-transform: perspective(400px) rotate3d(0,0,0,0deg) !important;
 }

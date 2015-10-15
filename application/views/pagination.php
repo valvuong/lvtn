@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/pagination.css">
 <?php
 $num_pages = ceil($num_rows/POSTS_PER_PAGE);
 $current_page = $pagination[2];
@@ -37,7 +38,7 @@ if($num_pages > 5) {
         <?php for($i=$start;$i<=$nums;$i++): ?>
             <?php $pagination[2] = $i ?>
             <?php if($i == $current_page) { ?>
-                <li class="active"><a href="<?=site_url($pagination)?>"><?=$i?></a></li>
+                <li class="active"><a><?=$i?></a></li>
             <?php } else { ?>
                 <li><a href="<?=site_url($pagination)?>"><?=$i?></a></li>
             <?php } ?>

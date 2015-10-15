@@ -52,3 +52,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['dang-tin'] = 'post/form';
+$route['dang-ki'] = '';
+$route['dang-nhap'] = '';
+$route['contact'] = 'welcome/contact';
+$route['about'] = 'welcome/about';
+$route['loai-(:num)'] = 'post/show_by_category/1/$1';
+$route['loai-(:num)-(:num)'] = 'post/show_by_category/$1/$2)';
+$route['(:num)'] = 'welcome/index/$1)';
+$route['buon-ban'] = 'market/create';

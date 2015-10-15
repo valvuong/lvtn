@@ -6,9 +6,9 @@ class Mcategory extends CI_Model {
         parent::__construct();
     }
 
-    public function getAll() {
+    public function get_all() {
         $this->db->select('*');
-        $this->db->from('chuyenmuc');
+        $this->db->from(MODEL_CATEGORY);
         $query = $this->db->get();
         return $query->result_array();
     }
