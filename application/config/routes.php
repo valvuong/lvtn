@@ -58,7 +58,10 @@ $route['dang-ki'] = '';
 $route['dang-nhap'] = '';
 $route['contact'] = 'welcome/contact';
 $route['about'] = 'welcome/about';
+
 $route['loai-(:num)'] = 'post/show_by_category/1/$1';
 $route['loai-(:num)-(:num)'] = 'post/show_by_category/$1/$2)';
 $route['(:num)'] = 'welcome/index/$1)';
+
 $route['buon-ban'] = 'market/create';
+$route['tin-vat'] = 'market/get_all';

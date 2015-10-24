@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: adminm
- * Date: 8/31/2015
- * Time: 10:14 PM
- */
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Category extends CI_Controller {
 

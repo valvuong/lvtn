@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Post extends CI_Controller {
 
@@ -23,7 +24,7 @@ class Post extends CI_Controller {
         $rules = array(
             array(
                 'field' => 'title',
-                'rules' => 'required|min_length[5]'
+                'rules' => 'required'
             ),
             array(
                 'field' => 'area',

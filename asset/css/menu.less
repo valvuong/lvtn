@@ -12,7 +12,7 @@ nav {
   left: 0;
 }
 
-#cssmenu {
+.cssmenu {
   width: @menu-width;
   margin: 0 auto;
   ul {
@@ -150,11 +150,11 @@ nav {
     text-align: center;
   }
 }
-#cssmenu.align-right li.last > a:after,
-#cssmenu.align-right li:last-child > a:after {
+.cssmenu.align-right li.last > a:after,
+.cssmenu.align-right li:last-child > a:after {
   display: block;
 }
-#cssmenu.align-right li:first-child a:after {
+.cssmenu.align-right li:first-child a:after {
   display: none;
 }
 
@@ -171,15 +171,17 @@ nav {
   }
   ul {
     top: 0;
-    right: 0;
+    right: 100%;
     position: absolute;
     background: @menu-background;
-    max-height: 0;
+    max-height: 1000px;
     overflow: hidden;
-    -webkit-transition: 350ms ease-in-out;
-    -moz-transition: 350ms ease-in-out;
-    -o-transition: 350ms ease-in-out;
-    transition: 350ms ease-out;
+    max-width: 0;
+    @transition-height: max-width 350ms ease-out;
+    -webkit-transition: @transition-height;
+    -moz-transition: @transition-height;
+    -o-transition: @transition-height;
+    transition: @transition-height;
     li {
       clear: both;
       width: 125px;
@@ -188,8 +190,7 @@ nav {
 }
 
 .open-task {
-  max-height: 1000px !important;
-  right: 100% !important;
+  max-width: 300px !important;
 }
 
 .open-ul {

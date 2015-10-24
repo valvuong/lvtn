@@ -66,7 +66,7 @@
             <?php $i = 0 ?>
             <?php foreach($content['tenhinh'] as $image): ?>
                 <div class="item <?php if($i==0) echo 'active'; ?>">
-                    <img src="<?=asset_url()?>uploads/<?=$image['tenhinh']?>">
+                    <img src="<?=uploads_url()?>post/<?=$image['tenhinh']?>">
                 </div>
                 <?php $i++ ?>
             <?php endforeach ?>

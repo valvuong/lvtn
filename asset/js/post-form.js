@@ -6,6 +6,7 @@ $(function(){
     prePay();
     datepicker();
     selectepicker();
+    submit();
 });
 
 function datepicker() {
@@ -60,22 +61,23 @@ function showWard(code) {
 
 function loadImg() {
     $("#upload-file").change(function(){
-        $('#preview').empty();
         readURL(this);
     });
 }
 
 function readURL(input) {
     if (input.files && input.files[0]) {
+        var selector = '#preview';
         var n = input.files.length;
         n = n > 8 ? 8:n;
+        $(selector).empty();
         for(i = 0; i < n; i++) {
             var ext = input.files[i].name.split('.').pop();
             var size = input.files[i].size;
             if(size < 1000000 && (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    $('#preview').append('<img src="' + e.target.result + '">');
+                    $(selector).append('<img src="' + e.target.result + '">');
                 }
                 reader.readAsDataURL(input.files[i]);
             }
@@ -84,12 +86,9 @@ function readURL(input) {
 }
 
 function editor() {
-    $('#content_post').wysihtml5({
-        toolbar: {
-            "link": false,
-            "image": false
-        }
-    });
+    CKEDITOR.replace("content_post");
+    CKEDITOR.config.removePlugins = 'image';
+    CKEDITOR.config.height = '400px';
 }
 
 function priceEvent() {
@@ -99,10 +98,37 @@ function priceEvent() {
         if (!isNaN(price) && price != 0) {
             formatPrice = price * 1000000;
             $('#pri').text(formatNumber(formatPrice));
-            $('#priceEx').show();
+            //$('#priceEx').show();
         } else {
             $('#pri').text('');
-            $('#priceEx').hide();
+            //$('#priceEx').hide();
+        }
+    });
+}
+
+function checkUpload() {
+    var selector = "#upload-file";
+    if(!$(selector).val()) {
+        return false;
+    }
+    return true;
+}
+
+function submit() {
+    $('input[type=submit]').click(function() {
+        if(checkUpload()) {
+            $('form').submit();
+            return true;
+        } else {
+            var tooltipSelector = $('#upload-label');
+            tooltipSelector.tooltip({
+                title: 'Hãy tải hình lên',
+                placement: 'top'
+            });
+            tooltipSelector.tooltip('show');
+            $(window).scrollTop(tooltipSelector.offset().top-150);
+            setTimeout(function(){tooltipSelector.tooltip('hide')},2000)
+            return false;
         }
     });
 }

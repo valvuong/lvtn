@@ -5,25 +5,6 @@
 .home img {
   width: 30px;
 }
-.tooltip {
-  position: absolute;
-  left: 278px;
-  top: 0;
-  border: 0 none;
-  margin-left: 2px;
-  display: none;
-  z-index: 100;
-}
-.tooltip_content {
-  border: solid 1px #6698ff;
-  border-radius: 3px 3px 3px 3px;
-  display: inline-block;
-  background: #6698ff;
-  padding: 7px 10px;
-  margin: 0 0 0 18px;
-  color: white;
-  font-size: 13px;
-}
 .error {
   color: red;
   font-size: 13px;
@@ -31,10 +12,6 @@
 }
 .errorSub {
   display: none;
-}
-#preview img {
-  width: 100px;
-  height: 100px;
 }
 .sort {
   background: #4664C1;
@@ -59,24 +36,4 @@
 }
 #priceEx label {
   display: block;
-}
-.bgcontent {
-  background-color: #d7dfdd;
-  padding: 7px;
-}
-.warning {
-  color: red;
-  font-size: 10px;
-  margin: 4px !important;
-  width: 300px;
-  display: inline-block;
-}
-.tienich {
-  margin-top: 20px;
-  font-size: 23px;
-  color: #1A22E6;
-}
-.tienich + ul {
-  list-style-type: circle;
-  margin-left: 30px;
 }
