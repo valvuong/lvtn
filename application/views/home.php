@@ -1,5 +1,8 @@
+<div class="list-header">
+    <span class="glyphicon glyphicon-list-alt"></span>
+</div>
 <?php foreach($content as $row): ?>
-<a class="post" href="<?=site_url(array('post','index',$row['id']))?>">
+<a class="post" href="<?=site_url('tin-'.$row['id'])?>">
     <div class="thumbnail">
         <img src="<?=uploads_url()?>post/<?=$row['tenhinh']?>">
     </div>

@@ -87,7 +87,7 @@ ul {
 
 #content {
   @content-padding: 10px;
-  width: 100 - @left-width - @right-width;
+  //width: 100 - @left-width - @right-width;
   padding-left: @content-padding;
   padding-right: @content-padding;
   float: left;
@@ -124,7 +124,7 @@ ul {
 }
 
 .post {
-  display: inline-block;
+  display: block;
   margin-bottom: 10px;
   border-radius: 4px;
   background: #f5f5f5;
@@ -221,5 +221,15 @@ ul {
     transform: translateY(-50%);
     left: 10px;
     color: #ffffff;
+  }
+}
+
+.list-header {
+  background: #27AE60;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  .glyphicon {
+    color: #ffffff;
+    font-size: 20px;
   }
 }

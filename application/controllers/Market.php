@@ -20,6 +20,8 @@ class Market extends CI_Controller {
     public function get_all($page = 1) {
         $data['view'] = 'market/list';
         $data['content']['content'] = $this->mmarket->get_all($page);
+        $data['content']['pagination'] = array('market','get_all',$page);
+        $data['content']['num_rows'] = $this->mmarket->get_all_rows();
         $data['header_message'] = $this->header_message;
         $this->load->view(LAYOUT, $data);
     }

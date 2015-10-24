@@ -58,6 +58,12 @@ class Mmarket extends CI_Model {
         }
     }
 
+    public function get_all_rows() {
+        $query = $this->db->query('SELECT COUNT(*) as total FROM '.MODEL_MARKET.' WHERE hethan >= NOW()');
+        $result = $query->row_array();
+        return $result['total'];
+    }
+
     public function get_all($page = 1) {
         $this->db->select(MODEL_MARKET.'.*');
         $this->db->from(MODEL_MARKET);
