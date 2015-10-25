@@ -8,8 +8,8 @@ class Welcome extends CI_Controller {
         parent::__construct();
         $this->load->helper(array('url'));
         $this->load->model(array('mdistrict','mpost'));
+		
     }
-
 	public function index($page=1)
 	{
         $data['view'] = 'home';
@@ -30,5 +30,5 @@ class Welcome extends CI_Controller {
         $data['content']['content'] = '';
         $this->load->view(LAYOUT, $data);
     }
-
+	
 }

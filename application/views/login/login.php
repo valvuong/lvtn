@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta content="IE=edge" http-equiv="X-UA-Compatible">
-	<meta content="initial-scale=1.0, width=device-width" name="viewport">
-
 	<!-- css -->
 	<link href="<?php echo asset_url()?>css/base.min.css" rel="stylesheet">
 
 	<!-- css for this project -->
 	<link href="<?php echo asset_url()?>css/project.min.css" rel="stylesheet">
-</head>
+
 <?php
 $required = '<span style="color: red">*</span>';
 $form_group = 'form-group';
@@ -22,7 +15,7 @@ $title_error = form_error('title');
 $email_error = form_error('email');
 $area_error = form_error('area');
 ?>
-<body class="avoid-fout page-brand">
+<div class="avoid-fout page-brand">
 	<div class="content">
 		<div class="container">
 			<div class="row">
@@ -48,7 +41,7 @@ $area_error = form_error('area');
 												<img alt="Login" src="<?php echo asset_url()?>image/avatar-001.jpg">
 											</span>
 										</p>
-							<?php echo form_open_multipart('login') ?>
+							<?php echo form_open_multipart('user/login') ?>
 											<div class="form-group form-group-label">
 												<div class="row">
 													<div class="col-md-10 col-md-push-1">		
@@ -134,5 +127,4 @@ $area_error = form_error('area');
 
 	<!-- js for this project -->
 	<script src="<?php echo asset_url()?>js/project.min.js"></script>
-</body>
-</html>
+</div>

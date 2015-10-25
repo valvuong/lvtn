@@ -50,6 +50,7 @@
                     </ul>
                 </li>
                 <li><a href="<?=site_url()?>">Chợ</a></li>
+				
                 <li class="float-right task">
                     <a href="javascript:void(0)" class="click-dropdown"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
                     <ul>
@@ -59,6 +60,7 @@
                         <li><a href="<?=site_url('dang-nhap')?>">Đăng Nhập</a></li>
                     </ul>
                 </li>
+				<?php $this->load->view('user');?>
             </ul>
         </div>
     </nav>

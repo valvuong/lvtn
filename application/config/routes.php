@@ -54,8 +54,9 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['dang-tin'] = 'post/form';
-$route['dang-ki'] = 'register';
-$route['dang-nhap'] = 'login';
+$route['dang-ki'] = 'user/register';
+$route['dang-nhap'] = 'user/login';
+$route['logout'] = 'user/logout';
 $route['contact'] = 'welcome/contact';
 $route['about'] = 'welcome/about';
 $route['loai-(:num)'] = 'post/show_by_category/1/$1';
