@@ -154,7 +154,7 @@ class User extends CI_Controller {
 		);
 		$this->form_validation->set_rules($rules);
 		if($this->input->post('update')) {
-			echo 'aaaa';
+	
             if($this->form_validation->run()) {
                 $info = array(
 						'id' => $id,
