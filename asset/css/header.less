@@ -1,9 +1,9 @@
 @import "global";
 
 header.header {
-  @header-height: 150px;
+  @header-height: 250px;
   height: @header-height;
-  background: url("../image/9.jpg");
+  background: #3e50b4;
   margin: 0 auto;
   .logo {
     height: @header-height;
@@ -12,9 +12,16 @@ header.header {
   .head {
     margin: 0 auto;
     width: @content-width;
-    h2 {
-      display: inline-block;
-      float: right;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    .message {
+      font-family: 'Lucida Console', 'Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono', monospace;
+      color: #f0f0f0;
+      margin: 0;
+      text-align: center;
+      font-style: oblique;
+      font-weight: bold;
     }
   }
 }

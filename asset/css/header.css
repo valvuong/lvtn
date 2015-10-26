@@ -1,34 +1,24 @@
 header.header {
-  height: 150px;
-  background: url("../image/9.jpg");
+  height: 250px;
+  background: #3e50b4;
+  margin: 0 auto;
 }
 header.header .logo {
-  height: 150px;
+  height: 250px;
   float: left;
 }
 header.header .head {
   margin: 0 auto;
   width: 80%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
-header.header .head h2 {
-  display: inline-block;
-  float: right;
-}
-.some-act {
-  float: right;
-  margin-top: 7px;
-}
-.some-act li {
-  float: left;
-}
-.some-act a {
-  color: #F8F6F6;
-  text-decoration: none;
-  display: inline-block;
-  font-weight: bold;
-  width: 85px;
+header.header .head .message {
+  font-family: 'Lucida Console', 'Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono', monospace;
+  color: #f0f0f0;
+  margin: 0;
   text-align: center;
-}
-.some-act a:hover {
-  opacity: 0.6;
+  font-style: oblique;
+  font-weight: bold;
 }

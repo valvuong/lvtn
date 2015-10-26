@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends CI_Controller {
 
@@ -8,8 +9,10 @@ class User extends CI_Controller {
         $this->load->helper(array('url','form'));
         $this->load->model(array('mdistrict','mcategory','muser'));
 		$this->load->library('form_validation');
-		$this->form_validation->set_error_delimiters('<div class="error">','</div>');  
-		
+		$this->form_validation->set_error_delimiters('<div class="error">','</div>'); 
+		if($this->session->userdata('logged_in')!=TRUE) {
+				$this->session->set_userdata('last_page', current_url());
+		}
     }
 
     public function index() {
@@ -47,7 +50,8 @@ class User extends CI_Controller {
                 $info = array(
                         'username' => $this->input->post('register-username'),
 						'email'    => $this->input->post('register-email'),
-                        'password' => $this->input->post('register-password')
+                        'password' => $this->input->post('register-password'),
+						'role'	   => 'ROLE_USER'
 					);
 			
 				$id = $this->muser->create_user($info);
@@ -92,20 +96,18 @@ class User extends CI_Controller {
 			foreach($result as $row)
 			{
 				$sess_array = array(
-				'role' => $row->role,
-				'username' => $row->username
-			);
+					'role' => $row->role,
+					'username' => $row->username,
+					'id' => $row->id
+				);
 			$this->session->set_userdata('logged_in', $sess_array);
-			redirect('welcome','refresh');
+			redirect($this->session->userdata('last_page'));
 			 
 			}
 		}
 		else
 		{
-			
 			$data['content']['login_fail']= true;
-			$this->load->view(LAYOUT, $data);
-			
 		}
 		}
 		$this->load->view(LAYOUT, $data);	
@@ -116,4 +118,57 @@ class User extends CI_Controller {
 		session_destroy();
 		redirect('welcome', 'refresh');
 	}
+	
+	function update_profile($id)
+	{
+		$data['view'] = 'login/profile';
+		$data['left_hidden'] = true;
+		$data['right_hidden'] = true;
+		$data['content']['info']=$this->muser->get_profile($id);	
+		
+		$rules = array(
+            array(
+                'field' => 'profile-password',
+                'rules' => 'trim|required|min_length[5]'
+            ),
+			array(
+                'field' => 'profile-repassword',
+                'rules' => 'trim|required|min_length[5]|matches[profile-password]'
+            ),
+			array(
+                'field' => 'profile-name',
+                'rules' => 'trim|required'
+            ),
+			array(
+                'field' => 'profile-sex',
+                'rules' => 'trim|required'
+            ),
+			array(
+                'field' => 'profile-address',
+                'rules' => 'trim|required'
+            ),
+			array(
+                'field' => 'profile-phone',
+                'rules' => 'trim|required|numeric'
+            ),
+		);
+		$this->form_validation->set_rules($rules);
+		if($this->input->post('update')) {
+			echo 'aaaa';
+            if($this->form_validation->run()) {
+                $info = array(
+						'id' => $id,
+                        'password' => $this->input->post('profile-password'),
+						'name' => $this->input->post('profile-name'),
+						'sex' => $this->input->post('profile-sex'),
+						'address' => $this->input->post('profile-address'),
+						'phone' => $this->input->post('profile-phone'),
+					);
+				
+				$this->muser->update_user($info);
+				$data['view'] = 'register/success';
+			}
+			}
+		$this->load->view(LAYOUT, $data);
+    }
 }

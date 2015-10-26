@@ -10,30 +10,31 @@
 	
 	
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo bootstrap_url()?>css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>bootstrap-select/bootstrap-select.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/style.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/main.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/footer.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/search.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/menu.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/header.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo css_url()?>style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo css_url()?>main.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo css_url()?>footer.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo css_url()?>search.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo css_url()?>menu.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo css_url()?>header.css">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Cookie">
 
-    <script type="text/javascript" src="<?php echo asset_url()?>js/jquery-2.1.3.min.js"></script>
-    <script type="text/javascript" src="<?php echo asset_url()?>bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?php echo js_url()?>jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="<?php echo bootstrap_url()?>js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo asset_url()?>bootstrap-select/bootstrap-select.js"></script>
-    <script type="text/javascript" src="<?php echo asset_url()?>js/main.js"></script>
-    <script type="text/javascript" src="<?php echo asset_url()?>js/search-filter.js"></script>
+    <script type="text/javascript" src="<?php echo js_url()?>main.js"></script>
+    <script type="text/javascript" src="<?php echo js_url()?>search-filter.js"></script>
 
-    <link rel="icon" type="image/png" href="<?php echo asset_url(); ?>image/icon.png">
+    <link rel="icon" type="image/png" href="<?php echo image_url() ?>icon.png">
 
 </head>
 <body>
     <a href="#" id="gotop" class="fbtn"><span class="icon glyphicon glyphicon-chevron-up"></span></a>
 
     <nav>
-        <div id="cssmenu">
+        <div class="cssmenu">
             <ul>
                 <li><a href="<?=site_url('') ?>">Trang Chủ</a></li>
                 <li class="drop-down-menu">
@@ -49,23 +50,36 @@
                         <?php endforeach ?>
                     </ul>
                 </li>
+
                 <li><a href="<?=site_url()?>">Chợ</a></li>
 				
+
+                <li><a href="<?=site_url('tin-vat')?>">Rao Vặt</a></li>
+
                 <li class="float-right task">
                     <a href="javascript:void(0)" class="click-dropdown"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
                     <ul>
-                        <li><a href="<?=site_url('buon-ban')?>">Buôn Bán</a></li>
+                        <li><a href="<?=site_url('buon-ban')?>">Rao Vặt</a></li>
                         <li><a href="<?=site_url('dang-tin')?>">Đăng Tin</a></li>
                         <li><a href="<?=site_url('dang-ki')?>">Đăng Kí</a></li>
                         <li><a href="<?=site_url('dang-nhap')?>">Đăng Nhập</a></li>
                     </ul>
                 </li>
+				
+                <li class="float-right search-main">
+                    <form>
+                        <input type="text" name="search" placeholder="Nhập Từ Khóa">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </form>
+                </li>
+				
 				<?php $this->load->view('user');?>
+				
             </ul>
         </div>
     </nav>
 
-    <?php $this->load->view('layout/header'); ?>
+    <?php $this->load->view('layout/header') ?>
 
     <div class="body-content container">
         <?php if(!isset($left_hidden)): ?>

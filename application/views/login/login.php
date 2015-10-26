@@ -29,9 +29,9 @@ $area_error = form_error('area');
 											<?php 
 											
 											if($login_fail==true): ?>
-											<h1 class="card-heading">Invalid Username or Password</h1>
+											<h1 class="card-heading">Sai tên hoặc mật khẩu</h1>
 											
-											<?php else: ?> <h1 class="card-heading">Login</h1>
+											<?php else: ?> <h1 class="card-heading">Đăng nhập</h1>
 											<?php endif ?>
 										</div>
 									</div>
@@ -57,7 +57,7 @@ $area_error = form_error('area');
 															);
 															echo form_input($data);
 															?>
-														<label class="floating-label" for= "<?=$field_name?>"> Username</label>
+														<label class="floating-label" for= "<?=$field_name?>"> Tài khoản</label>
 													</div>
 												</div>
 											</div>
@@ -78,7 +78,7 @@ $area_error = form_error('area');
 															);
 															echo form_input($data);
 															?>
-														<label class="floating-label" for="login-password">Password</label>
+														<label class="floating-label" for="login-password">Mật khẩu</label>
 														
 													</div>
 												</div>
@@ -87,7 +87,7 @@ $area_error = form_error('area');
 												<div class="row">
 													<div class="col-md-10 col-md-push-1">
 														<div class="submit">
-															<input type="submit" value="Sign In" name="submit" class="btn btn-block ">
+															<input type="submit" value="Đăng nhập" name="submit" class="btn btn-block ">
 														</div>
 														
 													</div>
@@ -98,7 +98,7 @@ $area_error = form_error('area');
 													<div class="col-md-10 col-md-push-1">
 														<div class="checkbox checkbox-adv">
 															<label for="login-remember">
-																<input class="access-hide" id="login-remember" name="login-remember" type="checkbox">Stay signed in
+																<input class="access-hide" id="login-remember" name="login-remember" type="checkbox">Duy trì đăng nhập
 																<span class="circle"></span><span class="circle-check"></span><span class="circle-icon icon"></span>
 															</label>
 														</div>
@@ -112,8 +112,10 @@ $area_error = form_error('area');
 						</div>
 						<div class="clearfix">
 							
-							<p class="margin-no-top pull-left"><a class="btn btn-flat btn-blue waves-attach" href="javascript:void(0)">Need help???</a></p>
-							<p class="margin-no-top pull-right"><a class="btn btn-flat btn-blue waves-attach" href="javascript:void(0)">Create an account</a></p>
+							<p class="margin-no-top pull-left"><a class="btn btn-flat btn-blue waves-attach" href="javascript:void(0)">Hỗ trợ</a></p>
+							<p class="margin-no-top pull-right"><a class="btn btn-flat btn-blue waves-attach" href="<?=site_url('dang-ki')?>">Đăng kí</a></p>
+							<?php echo $this->session->userdata('last_page');
+									echo current_url(); echo site_url('dang-nhap');?>
 						</div>
 					</section>
 				</div>

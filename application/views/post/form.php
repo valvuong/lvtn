@@ -1,9 +1,8 @@
-<link rel="stylesheet" type="text/css" href="<?php echo asset_url() ?>text-editor/bootstrap3-wysihtml5.min.css">
-<script type="text/javascript" src="<?php echo asset_url() ?>text-editor/bootstrap3-wysihtml5.all.min.js"></script>
-<script type="text/javascript" src="<?php echo asset_url() ?>tinymce/tinymce.min.js"></script>
+<script src="<?php echo asset_url() ?>ckeditor/ckeditor.js"></script>
+
 <script type="text/javascript" src="<?php echo asset_url() ?>js/post-form.js"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo asset_url() ?>css/main-form.css">
-<link rel="stylesheet" type="text/css" href="<?php echo asset_url() ?>css/post-form.css">
+<link rel="stylesheet" type="text/css" href="<?php echo css_url() ?>main-form.css">
+<link rel="stylesheet" type="text/css" href="<?php echo css_url() ?>post-form.css">
 
 <?php
 $required = '<span style="color: red">*</span>';
@@ -37,18 +36,11 @@ $area_error = form_error('area');
             );
             echo form_input($data);
             ?>
-            <div id="name_tooltip" class="tooltip" style="left: 430px">
-                <div id="name_tooltip_triangle" class="triangle">&nbsp;</div>
-                <span></span>
-                <div class="tooltip_content" style="width: 160px">
-                    <span id="tooltip_content">Ví dụ: <span style="color: red">Cho thuê nhà trọ ở quận 12</span> hoặc <span style="color: red">Tìm Nam /Nữ ở ghép 500k/người, Q.Tân Phú</span></span>
-                </div>
-            </div>
         </div>
 
         <div class=<?=$form_group?>>
             <?php $field_name = 'district' ?>
-            <?php echo form_label('Quận', '', array('class' => $label_class.' '.$stage_1)) ?>
+            <?php echo form_label('Quận'.$required, '', array('class' => $label_class.' '.$stage_1)) ?>
             <select id=<?=$field_name?> name=<?=$field_name?> onchange="showWard(this.value)" class="selectpicker" data-width="150px">
                 <?php $query = $this->mdistrict->get_all() ?>
                 <?php foreach($query as $row): ?>
@@ -60,13 +52,13 @@ $area_error = form_error('area');
 
         <div class=<?=$form_group?>>
             <?php $field_name = 'ward' ?>
-            <?php echo form_label('Phường', '', array('class' => $label_class.' '.$stage_1)) ?>
+            <?php echo form_label('Phường'.$required, '', array('class' => $label_class.' '.$stage_1)) ?>
             <select id=<?=$field_name?> name=<?=$field_name?> class="selectpicker"></select>
         </div>
 
         <div class=<?=$form_group?>>
             <?php $field_name = 'category' ?>
-            <?php echo form_label('Chuyên Mục', '', array('class'=>$label_class.' '.$stage_1)) ?>
+            <?php echo form_label('Chuyên Mục'.$required, '', array('class'=>$label_class.' '.$stage_1)) ?>
             <select name=<?=$field_name?> class="selectpicker">
                 <?php $query = $this->mcategory->get_all() ?>
                 <?php foreach($query as $row): ?>
@@ -181,8 +173,8 @@ $area_error = form_error('area');
             <script type="text/javascript" src="<?php echo asset_url() ?>datepicker/js/bootstrap-material-datetimepicker.js"></script>
 <!--            <script type="text/javascript" src="--><?php //echo asset_url() ?><!--bootstrap-material-design/material.min.js"></script>-->
 
-            <?php echo form_label('Ngày Hết Hạn'.$required.':', '', array('class'=>$label_class.' '.$stage_1)) ?>
             <?php
+            echo form_label('Ngày Hết Hạn'.$required.':', '', array('class'=>$label_class.' '.$stage_1));
             $field_name = 'expired_date';
             $data = array(
                 'id' => $field_name,
@@ -194,17 +186,11 @@ $area_error = form_error('area');
             );
             echo form_input($data);
             ?>
-            <div id="name_tooltip" class="tooltip" style="left: 125px">
-                <div id="name_tooltip_triangle" class="triangle">&nbsp;</div>
-                <div class="tooltip_content" style="width: 300px">
-                    <span id="tooltip_content">Nếu để trống thì mặc định là 1 tháng. Hãy điền đúng định dạng: DD-MM-YYYY. VD: <?php echo date('d-m-Y'); ?></span>
-                </div>
-            </div>
         </div>
 
         <div class=<?=$form_group?>>
-            <?php echo form_label('Nội Dung'.$required.':', 'info', array('class'=>$label_class)) ?>
             <?php
+            echo form_label('Nội Dung'.$required.':', 'info', array('class'=>$label_class));
             $field_name = 'content_post';
             $data = array(
                 'id' => $field_name,
@@ -212,29 +198,25 @@ $area_error = form_error('area');
                 'class' => "form-control",
                 'minlength' => "30",
                 'maxlength' => "3000",
-                'cols' => "65",
-                'rows' => "10",
-                'placeholder' => "Điền nội dung thông tin chi tiết về nhà trọ bạn muốn cho thuê. Tối thiểu 30 kí tự, tối đa 3000 kí tự.",
-                'value' => set_value($field_name)
             );
             echo form_textarea($data);
             ?>
-
-            <div id="name_tooltip" class="tooltip" style="left: 450px;">
-                <div id="name_tooltip_triangle" class="triangle" style="">&nbsp;</div>
-                <span></span>
-                <div class="tooltip_content" style="width: 145px;border: none;text-align: justify;background: #E6DFB2;color: rgb(20, 19, 19);text-align: justify">
-                    <span id="tooltip_content">Ví dụ: Nhà có vị trí thuận lợi, gần công viên, gần trường học, diện tích 15m<sup>2</sup>, ở riêng với chủ nhà, có chỗ để xe, an ninh...</span>
-                </div>
-            </div>
         </div>
 
-        <div class=<?=$form_group?>>
+        <div class="<?=$form_group?>">
             <?php echo form_label('Hình ảnh'.$required.':', '', array('class'=>$label_class)) ?>
 
-            <div class=<?=$form_group?>>
-                <?php echo form_label('<span class="glyphicon glyphicon-upload"></span>Tải hình lên','upload-file', array('class'=>'upload-file')) ?>
+            <div class="<?=$form_group?> upload-warning">
                 <?php
+                echo form_label(
+                    '<span class="glyphicon glyphicon-upload"></span>Tải hình lên',
+                    'upload-file',
+                    array(
+                        'class'=>'upload-file',
+                        'id' => 'upload-label',
+                        'data-toggle' => "tooltip"
+                    )
+                );
                 $data = array(
                     'id' => 'upload-file',
                     'name' => 'upload_file[]',

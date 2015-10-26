@@ -8,16 +8,18 @@ $(function() {
 
 function menuTask() {
     var firstLiHeight = $('nav ul li:first-child').height();
-    //var firstLiWidth = $('nav ul li:first-child').width();
     var nav = 'nav ul li.task > a';
     var navPadding = $(nav).css('padding-top');
     $(nav).height(parseInt(firstLiHeight)-2*parseInt(navPadding)+'px');
-    //$(nav).css({"box-sizing": "border-box"});
 }
 
 function header() {
     var navheight = $('nav').height();
-    $('header.header').css({"margin-top": navheight+"px"});
+    var bodyWidth = $('.body-content').outerWidth();
+    $('header.header').css({
+        "margin-top": navheight+"px",
+        "width": bodyWidth+"px"
+    });
 }
 
 function clickDropdown() {

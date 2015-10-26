@@ -12,12 +12,14 @@ class Mpost extends CI_Model {
         return $result['total'];
     }
 
-    public function get_all($page) {
+    public function get_all($page = 1) {
         $this->db->select(MODEL_POST.'.*');
         $this->db->select(MODEL_DISTRICT.'.tenquan');
+        $this->db->select(MODEL_POST_UPLOAD.'.tenhinh');
         $this->db->from(MODEL_POST);
         $this->db->where("hethan >=", date('Y-m-d'));
-        $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.quan','left');
+        $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.quan', 'left');
+        $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.id', 'left');
         $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
         $query = $this->db->get();
         return $query->result_array();
@@ -60,10 +62,12 @@ class Mpost extends CI_Model {
     public function get_by_category($idC, $page) {
         $this->db->select(MODEL_POST.'.*');
         $this->db->select(MODEL_DISTRICT.'.tenquan');
+        $this->db->select(MODEL_POST_UPLOAD.'.tenhinh');
         $this->db->from(MODEL_POST);
-        $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.quan', 'left');
         $this->db->where('chuyenmuc', $idC);
         $this->db->where('hethan >=', date('Y-m-d'));
+        $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.quan', 'left');
+        $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.id', 'left');
         $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
         $query = $this->db->get();
         return $query->result_array();
@@ -110,7 +114,7 @@ class Mpost extends CI_Model {
     }
 
     private function upload($files, $id) {
-        $config['upload_path'] = 'asset/uploads';
+        $config['upload_path'] = 'asset/uploads/post';
         $config['allowed_types'] = 'gif|jpg|jpeg|png';
         $config['max_size']	= '1024';
         $this->load->library('upload');
