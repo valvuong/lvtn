@@ -72,9 +72,6 @@
                         <span class="glyphicon glyphicon-search"></span>
                     </form>
                 </li>
-				
-				<?php $this->load->view('user');?>
-				
             </ul>
         </div>
     </nav>
