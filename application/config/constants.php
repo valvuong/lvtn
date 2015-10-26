@@ -99,9 +99,9 @@ define('MODEL_POST_PRICE', 'chiphi');
 define('MODEL_POST_CONTACT', 'thongtinlienlac');
 define('MODEL_POST_UPLOAD', 'hinh');
 
-define('MODEL_MARKET', 'cho');
-define('MODEL_MARKET_UPLOAD', 'cho_hinh');
-define('MODEL_MARKET_CATEGORY', 'cho_loai');
+define('MODEL_MARKET', 'raovat');
+define('MODEL_MARKET_UPLOAD', 'raovat_hinh');
+define('MODEL_MARKET_CATEGORY', 'raovat_loai');
 
 define('ACTION_POST_UPLOAD', 'upload_image');
 define('ACTION_MARKET_UPLOAD', 'upload_image');

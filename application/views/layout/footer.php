@@ -29,7 +29,7 @@
 
         <div>
             <i class="fa fa-envelope"></i>
-            <p><a href="mailto:support@company.com">support@company.com</a></p>
+            <p>support@company.com</p>
         </div>
 
     </div>

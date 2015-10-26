@@ -1,9 +1,6 @@
-<?php
-// var_dump($content);
-// echo date('Y-m-d H:i:s');
-?>
+
 <?php foreach($content as $row): ?>
-    <a class="post" href="<?=site_url(array('market','index',$row['id']))?>">
+    <a class="post" href="<?=site_url($row['id'].'-tin-vat')?>">
         <div class="thumbnail">
             <?php if(empty($row['tenhinh'])): ?>
                 <img src="<?=uploads_url()?>tmp/camera.png">

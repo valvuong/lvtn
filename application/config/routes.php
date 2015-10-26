@@ -66,3 +66,4 @@ $route['tin-(:num)'] = 'post/index/$1';
 
 $route['buon-ban'] = 'market/create';
 $route['tin-vat'] = 'market/get_all';
+$route['(:num)-tin-vat'] = 'market/index/$1';

@@ -48,7 +48,8 @@ $stage_2 = 'stage-2';
             'placeholder' => 'VD: 2.5',
             'class' => $input_class,
             'style' => 'display: inline-block;width: 150px',
-            'step' => '0.1',
+            'pattern' => '[0-9]+([\.|,][0-9]+)?',
+            'step' => '0.01',
             'min' => '0',
             'value' => set_value($field_name)
         );
@@ -66,6 +67,34 @@ $stage_2 = 'stage-2';
             <option value="0">Mới</option>
             <option value="1">Đã Sử Dụng</option>
         </select>
+    </div>
+
+    <div class=<?=$form_group?>>
+        <?php
+        $field_name = 'ad-phone';
+        echo form_label('Số Điện Thoại'.$required.':', $field_name, array('class'=>$label_class));
+        $data = array(
+            'id' => $field_name,
+            'name' => $field_name,
+            'class' => $input_class,
+            'value' => set_value($field_name)
+        );
+        echo form_input($data);
+        ?>
+    </div>
+
+    <div class=<?=$form_group?>>
+        <?php
+        $field_name = 'ad-contact-name';
+        echo form_label('Tên Liên Hệ'.$required.':', $field_name, array('class'=>$label_class));
+        $data = array(
+            'id' => $field_name,
+            'name' => $field_name,
+            'class' => $input_class,
+            'value' => set_value($field_name)
+        );
+        echo form_input($data);
+        ?>
     </div>
 
     <div class=<?=$form_group?>>

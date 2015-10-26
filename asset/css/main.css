@@ -211,6 +211,7 @@ ul {
   color: #ffffff;
   font-size: 23px;
 }
+.clear,
 .clear-row {
   clear: both;
 }
