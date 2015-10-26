@@ -9,11 +9,11 @@
     <div id="middle">
         <h4><?php echo mb_strtoupper($row['tieude'],'utf8') ?></h4>
         <p>
-            <span class="font-bold">Giá phòng:</span> <?php echo number_format($row['giaphong']*1000000); ?> VNĐ |
-            <span class="font-bold">Diện tích:</span> <?php echo $row['dientich']; ?> m<sup>2</sup>
+            <span class="font-bold">Giá Phòng:</span> <?php echo number_format($row['giaphong']*1000000); ?> VNĐ |
+            <span class="font-bold">Diện Tích:</span> <?php echo $row['dientich']; ?> m<sup>2</sup>
         </p>
         <p>
-            <span class="font-bold">Ngày đăng:</span>
+            <span class="font-bold">Ngày Đăng:</span>
             <span>
             <?php
             $date = strtotime($row['ngaydang']);
@@ -21,7 +21,7 @@
             echo $formatDate;
             ?>
             </span> |
-            <span class="font-bold">Ngày hêt hạn:</span>
+            <span class="font-bold">Ngày Hêt Hạn:</span>
             <span>
             <?php
             $date = strtotime($row['hethan']);
@@ -29,7 +29,7 @@
             echo $formatDate;
             ?>
             </span> |
-            <span class="font-bold">Còn lại:</span>
+            <span class="font-bold">Còn Lại:</span>
             <?php
             $now = time();
             $expried =  floor((strtotime($row['hethan']) - $now)/86400)+1;

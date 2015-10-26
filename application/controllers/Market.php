@@ -41,6 +41,10 @@ class Market extends CI_Controller {
             array(
                 'field' => 'ad-content',
                 'rules' => 'required'
+            ),
+            array(
+                'field' => 'ad-price',
+                'rules' => 'required'
             )
         );
         $this->form_validation->set_rules($rules);

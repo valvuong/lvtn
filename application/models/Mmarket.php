@@ -59,15 +59,18 @@ class Mmarket extends CI_Model {
     }
 
     public function get_all_rows() {
-        $query = $this->db->query('SELECT COUNT(*) as total FROM '.MODEL_MARKET.' WHERE hethan >= NOW()');
+        $query = $this->db->query('SELECT COUNT(*) as total FROM '.MODEL_MARKET);
         $result = $query->row_array();
         return $result['total'];
     }
 
     public function get_all($page = 1) {
-        $this->db->select(MODEL_MARKET.'.*');
+        $this->db->select(MODEL_MARKET.'.id,'.MODEL_MARKET.'.tieude,'.MODEL_MARKET.'.giaca,'.MODEL_MARKET.'.ngaydang');
+        $this->db->select(MODEL_MARKET_UPLOAD.'.tenhinh');
         $this->db->from(MODEL_MARKET);
+        $this->db->join(MODEL_MARKET_UPLOAD, MODEL_MARKET_UPLOAD.'.idCho = '.MODEL_MARKET.'.id', 'left');
         $this->db->limit(ADS_PER_PAGE, ADS_PER_PAGE*($page-1));
+        $this->db->group_by(MODEL_MARKET.'.id');
         $query = $this->db->get();
         return $query->result_array();
     }
