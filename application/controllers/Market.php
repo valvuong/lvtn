@@ -59,7 +59,7 @@ class Market extends CI_Controller {
                         'noidung' => $this->input->post('ad-content'),
                         'giaca' => $this->input->post('ad-price'),
                         'tinhtrang' => $this->input->post('ad-status'),
-                        'ngaydang' => date('Y-m-d')
+                        'ngaydang' => date('Y-m-d H:i:s')
                     )
                 );
                 if(isset($_FILES['market_upload']) && !empty($_FILES['market_upload']['name'][0])) {

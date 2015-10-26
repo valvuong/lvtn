@@ -1,3 +1,7 @@
+<?php
+// var_dump($content);
+// echo date('Y-m-d H:i:s');
+?>
 <?php foreach($content as $row): ?>
     <a class="post" href="<?=site_url(array('market','index',$row['id']))?>">
         <div class="thumbnail">
@@ -21,9 +25,7 @@
             </p>
             <p>
                 <span class="font-bold">Giá Cả:</span>
-                <span>
-                <?php echo number_format($row['giaca']*1000000); ?> VNĐ
-                </span>
+                <span><?php echo number_format($row['giaca']*1000000); ?> VNĐ</span>
             </p>
         </div>
         <div class="clear-row"></div>

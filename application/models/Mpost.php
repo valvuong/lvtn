@@ -134,7 +134,7 @@ class Mpost extends CI_Model {
                 $this->upload->initialize($config);
 
                 $data['idBantin'] = $id;
-                $data['tenhinh'] = $file_name;
+                $data['tenhinh'] = $file_name.'.'.end(explode('.', $file['name'][$key]));
                 $this->db->insert(MODEL_POST_UPLOAD, $data);
 
                 $this->upload->do_upload($field_name);
