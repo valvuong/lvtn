@@ -54,8 +54,14 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['dang-tin'] = 'post/form';
+<<<<<<< HEAD
 $route['dang-ki'] = 'register';
 $route['dang-nhap'] = 'login';
+=======
+$route['dang-ki'] = 'user/register';
+$route['dang-nhap'] = 'user/login';
+$route['logout'] = 'user/logout';
+>>>>>>> 1c6f3b9600c6280858a57ba5173b98af1318a752
 $route['contact'] = 'welcome/contact';
 $route['about'] = 'welcome/about';
 
