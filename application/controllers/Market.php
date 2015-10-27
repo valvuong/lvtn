@@ -39,23 +39,23 @@ class Market extends CI_Controller {
         $rules = array(
             array(
                 'field' => 'ad-title',
-                'rules' => 'required'
+                'rules' => 'trim|required'
             ),
             array(
                 'field' => 'ad-content',
-                'rules' => 'required'
+                'rules' => 'trim|required'
             ),
             array(
                 'field' => 'ad-price',
-                'rules' => 'required'
+                'rules' => 'trim|required'
             ),
             array(
                 'field' => 'ad-phone',
-                'rules' => 'required'
+                'rules' => 'trim|required'
             ),
             array(
                 'field' => 'ad-contact-name',
-                'rules' => 'required'
+                'rules' => 'trim|required'
             )
         );
         $this->form_validation->set_rules($rules);
