@@ -6,10 +6,9 @@
     <meta content="text/html">
     <meta content="application/javascript">
     <title><?php echo isset($title) ? $title : 'Hỗ trợ sinh viên'; ?></title>
-	
-	
-	
+
     <link rel="stylesheet" type="text/css" href="<?php echo bootstrap_url()?>css/bootstrap.min.css">
+
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>bootstrap-select/bootstrap-select.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo css_url()?>style.css">
@@ -49,12 +48,7 @@
                         <?php endforeach ?>
                     </ul>
                 </li>
-
-                <li><a href="<?=site_url()?>">Chợ</a></li>
-				
-
                 <li><a href="<?=site_url('tin-vat')?>">Rao Vặt</a></li>
-
                 <li class="float-right task">
                     <a href="javascript:void(0)" class="click-dropdown"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
                     <ul>
@@ -64,21 +58,17 @@
                         <li><a href="<?=site_url('dang-nhap')?>">Đăng Nhập</a></li>
                     </ul>
                 </li>
-				
                 <li class="float-right search-main">
                     <form>
                         <input type="text" name="search" placeholder="Nhập Từ Khóa">
                         <span class="glyphicon glyphicon-search"></span>
                     </form>
                 </li>
-				
-				<?php $this->load->view('user');?>
-				
             </ul>
         </div>
     </nav>
 
-    <?php $this->load->view('layout/header') ?>
+    <?php $this->load->view('layout/header'); ?>
 
     <div class="body-content container">
         <?php if(!isset($left_hidden)): ?>

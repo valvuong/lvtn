@@ -116,6 +116,7 @@ ul {
 .post div.thumbnail {
   display: inline-block;
   margin: 0;
+  float: left;
 }
 .post:hover {
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -129,6 +130,7 @@ ul {
 .post #middle {
   display: inline-block;
   width: 450px;
+  padding: 5px 10px;
 }
 .post #middle h4 {
   font-size: 13px;
@@ -207,5 +209,9 @@ ul {
 }
 .list-header .glyphicon {
   color: #ffffff;
-  font-size: 20px;
+  font-size: 23px;
+}
+.clear,
+.clear-row {
+  clear: both;
 }

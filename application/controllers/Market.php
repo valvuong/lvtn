@@ -12,9 +12,12 @@ class Market extends CI_Controller {
     }
 
     public function index($id) {
-        $data['view'] = 'market/view';
-        $data['content']['content'] = $this->mmarket->get_one($id);
+        $f = $this->mmarket->get_one($id);
+        $data['view'] = 'market/index';
+        $data['content']['content'] = $f;
         $data['left_hidden'] = true;
+        $data['title'] = $f['tieude'];
+        $this->load->view(LAYOUT, $data);
     }
 
     public function get_all($page = 1) {
@@ -36,11 +39,23 @@ class Market extends CI_Controller {
         $rules = array(
             array(
                 'field' => 'ad-title',
-                'rules' => 'required'
+                'rules' => 'trim|required'
             ),
             array(
                 'field' => 'ad-content',
-                'rules' => 'required'
+                'rules' => 'trim|required'
+            ),
+            array(
+                'field' => 'ad-price',
+                'rules' => 'trim|required'
+            ),
+            array(
+                'field' => 'ad-phone',
+                'rules' => 'trim|required'
+            ),
+            array(
+                'field' => 'ad-contact-name',
+                'rules' => 'trim|required'
             )
         );
         $this->form_validation->set_rules($rules);
@@ -55,14 +70,16 @@ class Market extends CI_Controller {
                         'noidung' => $this->input->post('ad-content'),
                         'giaca' => $this->input->post('ad-price'),
                         'tinhtrang' => $this->input->post('ad-status'),
-                        'ngaydang' => date('Y-m-d')
+                        'sodienthoai' => $this->input->post('ad-phone'),
+                        'tenlienhe' => $this->input->post('ad-contact-name'),
+                        'ngaydang' => date('Y-m-d H:i:s')
                     )
                 );
                 if(isset($_FILES['market_upload']) && !empty($_FILES['market_upload']['name'][0])) {
                     $info[ACTION_MARKET_UPLOAD] = $_FILES;
                 }
                 $id = $this->mmarket->create($info);
-//                redirect('market/index/'.$id,'refresh');
+               redirect($id.'-tin-vat','refresh');
             }
         }
         $this->load->view(LAYOUT, $data);

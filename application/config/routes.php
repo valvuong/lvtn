@@ -54,6 +54,8 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['dang-tin'] = 'post/form';
+$route['dang-ki'] = 'register';
+$route['dang-nhap'] = 'login';
 $route['dang-ki'] = 'user/register';
 $route['dang-nhap'] = 'user/login';
 $route['logout'] = 'user/logout';
@@ -67,3 +69,4 @@ $route['tin-(:num)'] = 'post/index/$1';
 
 $route['buon-ban'] = 'market/create';
 $route['tin-vat'] = 'market/get_all';
+$route['(:num)-tin-vat'] = 'market/index/$1';

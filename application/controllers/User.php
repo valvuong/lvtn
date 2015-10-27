@@ -10,7 +10,7 @@ class User extends CI_Controller {
         $this->load->model(array('mdistrict','muser'));
 		$this->load->library(array('form_validation','user_agent'));
 		$this->form_validation->set_error_delimiters('<div class="error">','</div>'); 
-		$previous_page = $this->agent->referrer();
+		
     }
 
     public function index() {
@@ -82,7 +82,6 @@ class User extends CI_Controller {
 		$data['content']['login_fail']= false;
 		$data['left_hidden'] = true;
 		$data['right_hidden'] = true;
-
 		if($this->input->post('submit')) {
 			$info = array(
 					'username' => $this->input->post('login-username'),
@@ -99,14 +98,13 @@ class User extends CI_Controller {
 						'id' => $row->id
 					);
 				$this->session->set_userdata('logged_in', $sess_array);
-				
-				redirect($previous_page);
+				redirect('welcome');
 				}
 			}
 				else{
 					$data['content']['login_fail']= true;
 				}
-			}
+			}		
 		$this->load->view(LAYOUT, $data);	
 	}
 	function logout()
@@ -151,6 +149,7 @@ class User extends CI_Controller {
 		);
 		$this->form_validation->set_rules($rules);
 		if($this->input->post('update')) {
+
             if($this->form_validation->run()) {
                 $info = array(
 						'id' => $id,

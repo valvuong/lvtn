@@ -21,6 +21,8 @@ class Mpost extends CI_Model {
         $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.quan', 'left');
         $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.id', 'left');
         $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
+        $this->db->group_by(MODEL_POST.'.id');
+        $this->db->order_by(MODEL_POST.'.id', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -69,6 +71,7 @@ class Mpost extends CI_Model {
         $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.quan', 'left');
         $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.id', 'left');
         $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
+        $this->db->group_by(MODEL_POST.'.id');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -132,7 +135,10 @@ class Mpost extends CI_Model {
                 $this->upload->initialize($config);
 
                 $data['idBantin'] = $id;
-                $data['tenhinh'] = $file_name;
+                $fname = $file['name'][$key];
+                $fname = explode('.', $fname);
+                $extension = end($fname);
+                $data['tenhinh'] = $file_name.'.'.$extension;
                 $this->db->insert(MODEL_POST_UPLOAD, $data);
 
                 $this->upload->do_upload($field_name);

@@ -15,10 +15,16 @@ class Mmarket extends CI_Model {
     public function get_one($id) {
         $this->db->select('*');
         $this->db->from(MODEL_MARKET);
-        $this->db->where('idCho',$id);
+        $this->db->where('id',$id);
         $query = $this->db->get();
         $result = $query->result_array();
-        return $result;
+
+        $this->db->select('tenhinh');
+        $this->db->from(MODEL_MARKET_UPLOAD);
+        $this->db->where('idCho', $id);
+        $query = $this->db->get();
+        $result[0]['tenhinh'] = $query->result_array();
+        return $result[0];
     }
 
     public function create($data) {
@@ -50,7 +56,10 @@ class Mmarket extends CI_Model {
                 $this->upload->initialize($config);
 
                 $data['idCho'] = $id;
-                $data['tenhinh'] = $file_name;
+                $fname = $file['name'][$key];
+                $fname = explode('.', $fname);
+                $extension = end($fname);
+                $data['tenhinh'] = $file_name.'.'.$extension;
                 $this->db->insert(MODEL_MARKET_UPLOAD, $data);
 
                 $this->upload->do_upload($field_name);
@@ -59,15 +68,19 @@ class Mmarket extends CI_Model {
     }
 
     public function get_all_rows() {
-        $query = $this->db->query('SELECT COUNT(*) as total FROM '.MODEL_MARKET.' WHERE hethan >= NOW()');
+        $query = $this->db->query('SELECT COUNT(*) as total FROM '.MODEL_MARKET);
         $result = $query->row_array();
         return $result['total'];
     }
 
     public function get_all($page = 1) {
-        $this->db->select(MODEL_MARKET.'.*');
+        $this->db->select(MODEL_MARKET.'.id,'.MODEL_MARKET.'.tieude,'.MODEL_MARKET.'.giaca,'.MODEL_MARKET.'.ngaydang');
+        $this->db->select(MODEL_MARKET_UPLOAD.'.tenhinh');
         $this->db->from(MODEL_MARKET);
+        $this->db->join(MODEL_MARKET_UPLOAD, MODEL_MARKET_UPLOAD.'.idCho = '.MODEL_MARKET.'.id', 'left');
         $this->db->limit(ADS_PER_PAGE, ADS_PER_PAGE*($page-1));
+        $this->db->group_by(MODEL_MARKET.'.id');
+        $this->db->order_by(MODEL_MARKET.'.id','DESC');
         $query = $this->db->get();
         return $query->result_array();
     }

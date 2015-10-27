@@ -10,9 +10,11 @@ class Post extends CI_Controller {
     }
 
     public function index($id) {
+        $f = $this->mpost->get_one($id);
         $data['view'] = 'post/index';
-        $data['content']['content'] = $this->mpost->get_one($id);
+        $data['content']['content'] = $f;
         $data['left_hidden'] = true;
+        $data['title'] = $f['tieude'];
         $this->load->view(LAYOUT, $data);
     }
 

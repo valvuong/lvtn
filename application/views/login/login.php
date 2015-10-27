@@ -77,6 +77,7 @@ $area_error = form_error('area');
 															echo form_input($data);
 															?>
 														<label class="floating-label" for="login-password">Mật khẩu</label>
+
 														
 													</div>
 												</div>
@@ -110,11 +111,11 @@ $area_error = form_error('area');
 						</div>
 						<div class="clearfix">
 							
+
 							<p class="margin-no-top pull-left"><a class="btn btn-flat btn-blue waves-attach" href="javascript:void(0)">Hỗ trợ</a></p>
 							<p class="margin-no-top pull-right"><a class="btn btn-flat btn-blue waves-attach" href="<?=site_url('dang-ki')?>">Đăng kí</a></p>
 						</div>
 					</section>
-						<?php echo $this->agent->referrer() ?>
 				</div>
 			</div>
 		</div>
