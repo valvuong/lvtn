@@ -7,11 +7,7 @@ class Welcome extends CI_Controller {
     {
         parent::__construct();
         $this->load->helper(array('url'));
-        $this->load->model(array('mdistrict','mpost'));
-		if($this->session->userdata('logged_in')!=TRUE) {
-				$this->session->set_userdata('last_page', current_url());
-		}
-		
+        $this->load->model(array('mdistrict','mpost'));	
     }
 	public function index($page=1)
 	{

@@ -7,12 +7,10 @@ class User extends CI_Controller {
         parent::__construct();
         $this->load->database();
         $this->load->helper(array('url','form'));
-        $this->load->model(array('mdistrict','mcategory','muser'));
-		$this->load->library('form_validation');
+        $this->load->model(array('mdistrict','muser'));
+		$this->load->library(array('form_validation','user_agent'));
 		$this->form_validation->set_error_delimiters('<div class="error">','</div>'); 
-		if($this->session->userdata('logged_in')!=TRUE) {
-				$this->session->set_userdata('last_page', current_url());
-		}
+		$previous_page = $this->agent->referrer();
     }
 
     public function index() {
@@ -86,30 +84,29 @@ class User extends CI_Controller {
 		$data['right_hidden'] = true;
 
 		if($this->input->post('submit')) {
-                $info = array(
-                        'username' => $this->input->post('login-username'),
-                        'password' => $this->input->post('login-password')
-					);
-		$result = $this->muser->check_login($info);
-		if($result) {
-			$sess_array = array();
-			foreach($result as $row)
-			{
-				$sess_array = array(
-					'role' => $row->role,
-					'username' => $row->username,
-					'id' => $row->id
+			$info = array(
+					'username' => $this->input->post('login-username'),
+					'password' => $this->input->post('login-password')
 				);
-			$this->session->set_userdata('logged_in', $sess_array);
-			redirect($this->session->userdata('last_page'));
-			 
+			$result = $this->muser->check_login($info);
+			if($result) {
+				$sess_array = array();
+				foreach($result as $row)
+				{
+					$sess_array = array(
+						'role' => $row->role,
+						'username' => $row->username,
+						'id' => $row->id
+					);
+				$this->session->set_userdata('logged_in', $sess_array);
+				
+				redirect($previous_page);
+				}
 			}
-		}
-		else
-		{
-			$data['content']['login_fail']= true;
-		}
-		}
+				else{
+					$data['content']['login_fail']= true;
+				}
+			}
 		$this->load->view(LAYOUT, $data);	
 	}
 	function logout()
@@ -154,7 +151,6 @@ class User extends CI_Controller {
 		);
 		$this->form_validation->set_rules($rules);
 		if($this->input->post('update')) {
-			echo 'aaaa';
             if($this->form_validation->run()) {
                 $info = array(
 						'id' => $id,
@@ -166,6 +162,7 @@ class User extends CI_Controller {
 					);
 				
 				$this->muser->update_user($info);
+				
 				$data['view'] = 'register/success';
 			}
 			}

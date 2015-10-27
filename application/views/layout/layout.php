@@ -9,7 +9,6 @@
 	
 	
 	
-    <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo bootstrap_url()?>css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>bootstrap-select/bootstrap-select.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>font-awesome/css/font-awesome.min.css">

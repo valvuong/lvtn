@@ -9,8 +9,6 @@ $required = '<span style="color: red">*</span>';
 $form_group = 'form-group';
 $input_class = 'form-control';
 $label_class = 'form-label';
-$stage_1 = 'stage-1';
-$stage_2 = 'stage-2';
 $title_error = form_error('title');
 $email_error = form_error('email');
 $area_error = form_error('area');
@@ -114,19 +112,15 @@ $area_error = form_error('area');
 							
 							<p class="margin-no-top pull-left"><a class="btn btn-flat btn-blue waves-attach" href="javascript:void(0)">Hỗ trợ</a></p>
 							<p class="margin-no-top pull-right"><a class="btn btn-flat btn-blue waves-attach" href="<?=site_url('dang-ki')?>">Đăng kí</a></p>
-							<?php echo $this->session->userdata('last_page');
-									echo current_url(); echo site_url('dang-nhap');?>
 						</div>
 					</section>
+						<?php echo $this->agent->referrer() ?>
 				</div>
 			</div>
 		</div>
 	</div>
 	<?php echo form_close(); ?>
 	<!-- js -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="<?php echo asset_url()?>js/base.min.js"></script>
-
-	<!-- js for this project -->
 	<script src="<?php echo asset_url()?>js/project.min.js"></script>
 </div>

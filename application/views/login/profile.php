@@ -6,16 +6,12 @@
 </style>  
 	<!-- css -->
 	<link href="<?php echo asset_url()?>css/base.min.css" rel="stylesheet">
-
-	<!-- css for this project -->
 	<link href="<?php echo asset_url()?>css/project.min.css" rel="stylesheet">
 <?php
 $required = '<span style="color: red">*</span>';
 $form_group = 'form-group';
 $input_class = 'form-control';
 $label_class = 'form-label';
-$stage_1 = 'stage-1';
-$stage_2 = 'stage-2';
 $title_error = form_error('title');
 $email_error = form_error('email');
 $area_error = form_error('area');
@@ -212,7 +208,6 @@ $area_error = form_error('area');
 												</div>
 											</div>
 								<?php endforeach ?>			
-								
 									</div>
 								</div>
 							</div>
@@ -225,10 +220,6 @@ $area_error = form_error('area');
 	</div>
 	<?php echo form_close(); ?>
 	<!-- js -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="<?php echo asset_url()?>js/base.min.js"></script>
-
-	<!-- js for this project -->
-	<script src="<?php echo asset_url()?>js/project.min.js"></script>
-	
+	<script src="<?php echo asset_url()?>js/project.min.js"></script>	
 </div>
