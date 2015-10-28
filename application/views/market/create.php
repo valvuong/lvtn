@@ -27,49 +27,6 @@ $stage_2 = 'stage-2';
     </div>
 
     <div class=<?=$form_group?>>
-        <?php $field_name = 'ad-category' ?>
-        <?php echo form_label('Danh Mục'.$required, '', array('class'=>$label_class.' '.$stage_1)) ?>
-        <select name=<?=$field_name?> class="selectpicker">
-            <?php $query = $this->mmarket->get_cate() ?>
-            <?php foreach($query as $row): ?>
-                <option value="<?=$row['id']?>"><?=$row['tenloai']?></option>
-            <?php endforeach; ?>
-        </select>
-    </div>
-
-    <div class=<?=$form_group?>>
-        <?php
-        $field_name = 'ad-price';
-        echo form_label('Giá Cả'.$required, $field_name, array('class'=>$label_class.' '.$stage_1));
-        $data = array(
-            'type' => 'number',
-            'name' => $field_name,
-            'id '=> $field_name,
-            'placeholder' => 'VD: 2.5',
-            'class' => $input_class,
-            'style' => 'display: inline-block;width: 150px',
-            'pattern' => '[0-9]+([\.|,][0-9]+)?',
-            'step' => '0.01',
-            'min' => '0',
-            'value' => set_value($field_name)
-        );
-        echo form_input($data);
-        ?>
-        <span id="pri"></span> VNĐ
-    </div>
-
-    <div class=<?=$form_group?>>
-        <?php
-        $field_name = 'ad-status';
-        echo form_label('Tình Trạng'.$required, '', array('class'=>$label_class.' '.$stage_1));
-        ?>
-        <select name=<?=$field_name?> class="selectpicker">
-            <option value="0">Mới</option>
-            <option value="1">Đã Sử Dụng</option>
-        </select>
-    </div>
-
-    <div class=<?=$form_group?>>
         <?php
         $field_name = 'ad-phone';
         echo form_label('Số Điện Thoại'.$required.':', $field_name, array('class'=>$label_class));
@@ -95,6 +52,64 @@ $stage_2 = 'stage-2';
         );
         echo form_input($data);
         ?>
+    </div>
+
+    <div class=<?=$form_group?>>
+        <?php $field_name = 'ad-district' ?>
+        <?php echo form_label('Quận'.$required, '', array('class'=>$label_class.' '.$stage_1)) ?>
+        <select name=<?=$field_name?> class="selectpicker">
+            <?php $query = $this->mmarket->get_cate() ?>
+            <?php foreach($query as $row): ?>
+                <option value="<?=$row['id']?>"><?=$row['tenloai']?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+
+    <div class=<?=$form_group?>>
+        <?php $field_name = 'ad-category' ?>
+        <?php echo form_label('Danh Mục'.$required, '', array('class'=>$label_class.' '.$stage_1)) ?>
+        <select name=<?=$field_name?> class="selectpicker">
+            <?php $query = $this->mdistrict->get_all() ?>
+            <?php foreach($query as $row): ?>
+                <option value="<?=$row['idQ']?>"><?=$row['tenquan']?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+
+    <div class=<?=$form_group?>>
+        <?php
+        $field_name = 'ad-status';
+        echo form_label('Tình Trạng'.$required, '', array('class'=>$label_class.' '.$stage_1));
+        ?>
+        <label class="radio">
+            <input id="radio1" value="0" type="radio" name="<?=$field_name?>" checked>
+            <span class="outer"><span class="inner"></span></span>Mới
+        </label>
+        <label class="radio">
+            <input id="radio1" value="1" type="radio" name="<?=$field_name?>">
+            <span class="outer"><span class="inner"></span></span>Đã Sử Dụng
+        </label>
+    </div>
+
+    <div class=<?=$form_group?>>
+        <?php
+        $field_name = 'ad-price';
+        echo form_label('Giá Cả'.$required, $field_name, array('class'=>$label_class.' '.$stage_1));
+        $data = array(
+            'type' => 'number',
+            'name' => $field_name,
+            'id '=> $field_name,
+            'placeholder' => 'VD: 2.5',
+            'class' => $input_class,
+            'style' => 'display: inline-block;width: 150px',
+            'pattern' => '[0-9]+([\.|,][0-9]+)?',
+            'step' => '0.01',
+            'min' => '0',
+            'value' => set_value($field_name)
+        );
+        echo form_input($data);
+        ?>
+        <span id="pri"></span> VNĐ
     </div>
 
     <div class=<?=$form_group?>>

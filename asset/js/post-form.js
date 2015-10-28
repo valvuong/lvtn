@@ -6,7 +6,7 @@ $(function(){
     prePay();
     datepicker();
     selectepicker();
-    submit();
+    fsubmit();
 });
 
 function datepicker() {
@@ -114,7 +114,7 @@ function checkUpload() {
     return true;
 }
 
-function submit() {
+function fsubmit() {
     $('input[type=submit]').click(function() {
         if(checkUpload()) {
             $('form').submit();

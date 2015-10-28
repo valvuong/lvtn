@@ -1,6 +1,8 @@
-
+<div class="list-header market-header">
+    <span class="glyphicon glyphicon-list-alt"></span>
+</div>
 <?php foreach($content as $row): ?>
-    <a class="post" href="<?=site_url($row['id'].'-tin-vat')?>">
+    <a class="post ads" href="<?=site_url($row['id'].'-tin-vat')?>">
         <div class="thumbnail">
             <?php if(empty($row['tenhinh'])): ?>
                 <img src="<?=uploads_url()?>tmp/camera.png">

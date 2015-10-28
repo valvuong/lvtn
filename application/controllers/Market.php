@@ -21,9 +21,12 @@ class Market extends CI_Controller {
     }
 
     public function get_all($page = 1) {
+        $class_name = $this->router->fetch_class();
+        $method_name = $this->router->fetch_method();
         $data['view'] = 'market/list';
         $data['content']['content'] = $this->mmarket->get_all($page);
-        $data['content']['pagination'] = array('market','get_all',$page);
+        $data['content']['pagination'] = array($class_name, $method_name, $page);
+        $data['content']['items_per_page'] = ADS_PER_PAGE;
         $data['content']['num_rows'] = $this->mmarket->get_all_rows();
         $data['header_message'] = $this->header_message;
         $this->load->view(LAYOUT, $data);
@@ -67,6 +70,7 @@ class Market extends CI_Controller {
                         'idUser' => 45,
                         'tieude' => $this->input->post('ad-title'),
                         'loai' => $this->input->post('ad-category'),
+                        'quan' => $this->input->post('ad-district'),
                         'noidung' => $this->input->post('ad-content'),
                         'giaca' => $this->input->post('ad-price'),
                         'tinhtrang' => $this->input->post('ad-status'),
@@ -82,6 +86,18 @@ class Market extends CI_Controller {
                redirect($id.'-tin-vat','refresh');
             }
         }
+        $this->load->view(LAYOUT, $data);
+    }
+
+    public function get_by_category($cate_id, $page = 1) {
+        $class_name = $this->router->fetch_class();
+        $method_name = $this->router->fetch_method();
+        $data['view'] = 'market/list';
+        $data['content']['content'] = $this->mmarket->get_all($page);
+        $data['content']['pagination'] = array($class_name, $method_name, $cate_id, $page);
+        $data['content']['items_per_page'] = ADS_PER_PAGE;
+        $data['content']['num_rows'] = $this->mmarket->get_cate_rows($cate_id);
+        $data['header_message'] = $this->header_message;
         $this->load->view(LAYOUT, $data);
     }
 }

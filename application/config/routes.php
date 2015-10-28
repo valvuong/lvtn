@@ -70,3 +70,5 @@ $route['tin-(:num)'] = 'post/index/$1';
 $route['buon-ban'] = 'market/create';
 $route['tin-vat'] = 'market/get_all';
 $route['(:num)-tin-vat'] = 'market/index/$1';
+$route['rao-vat-(:num)'] = 'market/get_by_category/$1';
+$route['(:num)-rao-vat-(:num)'] = 'market/get_by_category/$1/$2';

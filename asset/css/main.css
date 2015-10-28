@@ -113,6 +113,9 @@ ul {
   padding: 5px 5px;
   color: #000;
 }
+.post.ads {
+  border-color: #4caf50;
+}
 .post div.thumbnail {
   display: inline-block;
   margin: 0;
@@ -206,6 +209,9 @@ ul {
   background: #27AE60;
   margin-bottom: 10px;
   padding: 5px 10px;
+}
+.list-header.market-header {
+  background: #f55549;
 }
 .list-header .glyphicon {
   color: #ffffff;

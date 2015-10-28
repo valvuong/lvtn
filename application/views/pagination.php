@@ -32,7 +32,7 @@ if($num_pages > 5) {
     $start = 1;
 }
 ?>
-<?php if($num_rows > POSTS_PER_PAGE): ?>
+<?php if($num_rows > $items_per_page): ?>
     <ul class="pagination pagination-lg">
         <li<?php echo ($pagination[2] == 1)?' class="disabled"':''?>><a href="<?=site_url($previous_page)?>">&laquo;</a></li>
         <?php for($i=$start;$i<=$nums;$i++): ?>

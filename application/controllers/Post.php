@@ -114,9 +114,12 @@ class Post extends CI_Controller {
     }
 
     public function show_by_category($page=1, $idC) {
+        $class_name = $this->router->fetch_class();
+        $method_name = $this->router->fetch_method();
         $data['view'] = 'home';
         $data['content']['content'] = $this->mpost->get_by_category($idC, $page);
-        $data['content']['pagination'] = array('post','show_by_category',$page, $idC);
+        $data['content']['pagination'] = array($class_name, $method_name, $page, $idC);
+        $data['content']['items_per_page'] = POSTS_PER_PAGE;
         $data['content']['num_rows'] = $this->mpost->get_category_rows($idC);
         $this->load->view(LAYOUT, $data);
     }

@@ -86,7 +86,7 @@ define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 define('LAYOUT','layout/layout');
-define('POSTS_PER_PAGE', 10);
+define('POSTS_PER_PAGE', 5);
 define('ADS_PER_PAGE', 10);
 
 define('MODEL_CATEGORY', 'chuyenmuc');

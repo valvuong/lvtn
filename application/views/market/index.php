@@ -7,7 +7,7 @@ $status = array(0=>'Mới', 1=>'Đã Sử Dụng');
 <h3 class="ad-title"><?php echo mb_strtoupper($content['tieude'],'utf8'); ?></h3>
 <div class="ad-contact">
     <div class="sub">
-        <p><strong>Tên Người Liên Hệ:</strong><span><?=$content['tenlienhe']?></span></p>
+        <p><strong>Tên Liên Hệ:</strong><span><?=$content['tenlienhe']?></span></p>
         <div class="clear"></div>
         <p><strong>Số Điện Thoại:</strong><span><?=$content['sodienthoai']?></span></p>
         <div class="clear"></div>
@@ -16,6 +16,10 @@ $status = array(0=>'Mới', 1=>'Đã Sử Dụng');
         <p><strong>Tình Trạng:</strong><span><?=$status[$content['tinhtrang']]?></span></p>
         <div class="clear"></div>
         <p><strong>Ngày Đăng:</strong><span><?=date('H:i d/m/Y',strtotime($content['ngaydang']))?></span></p>
+        <div class="clear"></div>
+        <p><strong>Quận:</strong><span><?=$content['tenquan']?></span></p>
+        <div class="clear"></div>
+        <p><strong>Loại:</strong><span><a href="<?php echo site_url('rao-vat-'.$content['loai']) ?>"><?=$content['tenloai']?></a></span></p>
         <div class="clear"></div>
     </div>
 </div>
