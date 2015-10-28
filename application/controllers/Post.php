@@ -108,7 +108,7 @@ class Post extends CI_Controller {
     }
 
     public function show_by_district($page=1, $idD) {
-        $data['view'] = '';
+        $data['view'] = 'home';
         $data['content']['content'] = $this->mpost->get_by_district($idD, $page);
         $this->load->view(LAYOUT, $data);
     }
