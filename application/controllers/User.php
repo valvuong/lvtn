@@ -18,6 +18,7 @@ class User extends CI_Controller {
     }
 	public function register() {
         $data['view'] = 'register/register';
+		$data['title'] = 'Đăng kí tài khoản';
 		$data['content']='';
 		$data['left_hidden'] = true;
 		$data['right_hidden'] = true;
@@ -79,6 +80,7 @@ class User extends CI_Controller {
 	
 	public function login() {
         $data['view'] = 'login/login';
+		$data['title'] = 'Đăng nhập';
 		$data['content']['login_fail']= false;
 		$data['left_hidden'] = true;
 		$data['right_hidden'] = true;
@@ -117,6 +119,7 @@ class User extends CI_Controller {
 	function update_profile($id)
 	{
 		$data['view'] = 'login/profile';
+		$data['title'] = 'Cập nhật thông tin tài khoản';
 		$data['left_hidden'] = true;
 		$data['right_hidden'] = true;
 		$data['content']['info']=$this->muser->get_profile($id);	
