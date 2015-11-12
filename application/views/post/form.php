@@ -1,3 +1,7 @@
+<!-- //////////gmap///////////////-->
+<head><?php echo $map['js'];?></head>
+<!-- //////////gmap///////////////-->
+
 <script src="<?php echo asset_url() ?>ckeditor/ckeditor.js"></script>
 
 <script type="text/javascript" src="<?php echo asset_url() ?>js/post-form.js"></script>
@@ -230,6 +234,35 @@ $area_error = form_error('area');
         </div>
 
         <div class=<?=$form_group?> id="preview"></div>
+	<!-- //////////gmap///////////////-->
+		<div class=<?=$form_group?>>
+            <?php
+            $field_name = 'lat';
+            echo form_label('Vĩ độ'.$required.':', $field_name, array('class'=>$label_class));
+            $data= array(
+                'id' => $field_name,
+                'name' => $field_name,
+                'class' => $input_class,
+            );
+            echo form_input($data);
+            ?>
+        </div>
+		<div class=<?=$form_group?>>
+            <?php
+            $field_name = 'lng';
+            echo form_label('Kinh độ'.$required.':', $field_name, array('class'=>$label_class));
+            $data= array(
+                'id' => $field_name,
+                'name' => $field_name,
+                'class' => $input_class,
+            );
+            echo form_input($data);
+            ?>
+        </div>
+		<div><?php echo $map['html'];?></div>
+	
+	
+	<!-- //////////gmap///////////////-->
     </fieldset>
 
     <fieldset>
@@ -305,8 +338,8 @@ $area_error = form_error('area');
             ?>
 
             <div id="name_tooltip" class="tooltip" style="display: none">
-                <div id="name_tooltip_triangle" class="triangle">&nbsp;</div>
-                <div class="tooltip_content" style="width: 210px">
+                <div id="name_tooltip_triangle" class="triangle">&nbsp;aaa</div>
+                <div class="tooltip_content" style="width: 210px">bbb
                     <span id="tooltip_content">Ví dụ: <span style="color: red">example@abc.com</span></span>
                 </div>
             </div>

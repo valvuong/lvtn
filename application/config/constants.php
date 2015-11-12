@@ -89,15 +89,15 @@ define('LAYOUT','layout/layout');
 define('POSTS_PER_PAGE', 5);
 define('ADS_PER_PAGE', 10);
 
-define('MODEL_CATEGORY', 'chuyenmuc');
+define('MODEL_CATEGORY', 'phong_chuyenmuc');
 define('MODEL_DISTRICT', 'quan');
 define('MODEL_USER', 'user');
 define('MODEL_WARD', 'phuong');
 
-define('MODEL_POST', 'bantin');
-define('MODEL_POST_PRICE', 'chiphi');
-define('MODEL_POST_CONTACT', 'thongtinlienlac');
-define('MODEL_POST_UPLOAD', 'hinh');
+define('MODEL_POST', 'phong_bantin');
+define('MODEL_POST_PRICE', 'phong_chiphi');
+define('MODEL_POST_CONTACT', 'phong_thongtinlienlac');
+define('MODEL_POST_UPLOAD', 'phong_hinh');
 
 define('MODEL_MARKET', 'raovat');
 define('MODEL_MARKET_UPLOAD', 'raovat_hinh');

@@ -22,7 +22,6 @@ class Muser extends CI_Model {
 			return false;
 		}
 	}
-	
 	public function check_username($username) {
 		$this->db->select('username');
 		$this->db->from(MODEL_USER);
@@ -68,7 +67,7 @@ class Muser extends CI_Model {
 		$this->db->select('address');
 		$this->db->select('phone');
 		$this->db->from(MODEL_USER);
-		$this->db->where('id',$id);
+		$this->db->where('idUser',$id);
 		$query = $this->db->get();
 		return $query->result_array();
 	}
@@ -78,4 +77,20 @@ class Muser extends CI_Model {
 		$this->db->where('id',$id);
 		$this->db->update('user',$data);
     }
+	
+	public function save_captcha($data){
+		$query = $this->db->insert_string('captcha', $data);
+		$this->db->query($query);
+	}
+	
+	public function del_old_captcha($expiration){
+		$this->db->where('captcha_time < ', $expiration)->delete('captcha');
+	}
+	
+	public function check_captcha($binds){
+		$sql = 'SELECT COUNT(*) AS count FROM captcha WHERE word = ? AND ip_address = ? AND captcha_time > ?';
+		$query = $this->db->query($sql, $binds);
+		return $query->row();
+	}
+	
 }

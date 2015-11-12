@@ -9,6 +9,7 @@ class User extends CI_Controller {
         $this->load->helper(array('url','form'));
         $this->load->model(array('mdistrict','muser'));
 		$this->load->library(array('form_validation','user_agent'));
+		$this->load->library('googlemaps');
 		$this->form_validation->set_error_delimiters('<div class="error">','</div>'); 
 		
     }
@@ -19,9 +20,42 @@ class User extends CI_Controller {
 	public function register() {
         $data['view'] = 'register/register';
 		$data['title'] = 'Đăng kí tài khoản';
-		$data['content']='';
+		
 		$data['left_hidden'] = true;
 		$data['right_hidden'] = true;
+		/////////////////
+		
+		$this->load->helper('captcha');
+			$vals = array(
+				'word'          => '',
+				'img_path'      => './asset/captcha/',
+				'img_url'       => asset_url().'captcha',
+				
+				'img_width'     => '200',
+				'img_height'    => 40,
+				'expiration'    => 7200,
+				'word_length'   => 8,
+				'font_size'     => 40,
+				'img_id'        => 'Imageid',
+				'pool'          => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+
+				// White background and border, black text and red grid
+				'colors'        => array(
+						'background' => array(255, 255, 255),
+						'border' => array(255, 255, 255),
+						'text' => array(0, 0, 0),
+						'grid' => array(255, 40, 40)
+				)
+		);
+		$cap = create_captcha($vals);
+		$data['content']['cap']= $cap;
+		$data_captcha = array(
+        'captcha_time'  => $cap['time'],
+        'ip_address'    => $this->input->ip_address(),
+        'word'          => $cap['word']
+		);
+		$this->muser->save_captcha($data_captcha);
+		////////////////////
 		
 		
 		$rules = array(
@@ -40,11 +74,14 @@ class User extends CI_Controller {
 			array(
                 'field' => 'register-email',
                 'rules' => 'trim|required|valid_email|callback_check_email'
+            ),
+			array(
+                'field' => 'captcha',
+                'rules' => 'trim|required|callback_check_captcha'
             )
 		);
 		$this->form_validation->set_rules($rules);
 		if($this->input->post('register')) {
-		
             if($this->form_validation->run()) {
                 $info = array(
                         'username' => $this->input->post('register-username'),
@@ -56,7 +93,7 @@ class User extends CI_Controller {
 				$id = $this->muser->create_user($info);
 				$data['view'] = 'register/success';
 			}
-			}
+		}
 		$this->load->view(LAYOUT, $data);
     }
 	
@@ -78,7 +115,25 @@ class User extends CI_Controller {
 		}
 	}
 	
+	public function check_captcha($captcha){
+		// First, delete old captchas
+		$expiration = time() - 7200; // Two hour limit
+		$this->muser->del_old_captcha($expiration);
+		// Then see if a captcha exists:
+		$binds = array($captcha, $this->input->ip_address(), $expiration);
+		$result = $this->muser->check_captcha($binds);
+		if($result->count == 0){
+			$this->form_validation->set_message('check_captcha', 'Nhập lại mã bảo vệ');
+			return false;
+		}
+		else 
+			return true;
+	}
+			
 	public function login() {
+		
+		
+
         $data['view'] = 'login/login';
 		$data['title'] = 'Đăng nhập';
 		$data['content']['login_fail']= false;
@@ -89,6 +144,8 @@ class User extends CI_Controller {
 					'username' => $this->input->post('login-username'),
 					'password' => $this->input->post('login-password')
 				);
+				
+			
 			$result = $this->muser->check_login($info);
 			if($result) {
 				$sess_array = array();

@@ -99,7 +99,32 @@ class Post extends CI_Controller {
                 redirect('post/index/'.$id,'refresh');
             }
         }
-
+		///////////gmap///////////////
+		$this->load->library('googlemaps');
+		$config['center'] = 'auto';
+		$config['onclick'] = '
+				if (markers_map) {
+					for (i in markers_map) {
+						markers_map[i].setMap(null);
+					}
+					markers_map.length = 0;
+				}
+				var marker = new google.maps.Marker({
+					map:       map,
+					position:  event.latLng
+				}); 
+				markers_map.push(marker);
+				var lat = event.latLng.lat();
+				var lng = event.latLng.lng();
+				$(\'#lat\').val(lat);
+				$(\'#lng\').val(lng);
+				';
+		
+		$config['zoom'] = 'auto';
+		$this->googlemaps->initialize($config);
+		
+		$data['map'] = $this->googlemaps->create_map();
+		//////////////////gmap///////////////
         $this->load->view(LAYOUT, $data);
     }
 
