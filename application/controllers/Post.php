@@ -108,7 +108,10 @@ class Post extends CI_Controller {
     }
 
     public function join() {
-        
+        $data['view'] = 'post/join';
+        $data['content']['content'] = '';
+        $data['left_hidden'] = true;
+        $this->load->view(LAYOUT, $data);
     }
 
     public function show_by_district($page=1, $idD) {

@@ -93,7 +93,7 @@ define('MODEL_DISTRICT', 'quan');
 define('MODEL_USER', 'user');
 define('MODEL_WARD', 'phuong');
 
-define('MODEL_POST', 'phong');
+define('MODEL_POST', 'phong_bantin');
 define('MODEL_POST_CATEGORY', 'phong_chuyenmuc');
 define('MODEL_POST_PRICE', 'phong_chiphi');
 define('MODEL_POST_CONTACT', 'phong_thongtinlienlac');
