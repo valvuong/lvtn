@@ -18,8 +18,8 @@ class Post extends CI_Controller {
         $this->load->view(LAYOUT, $data);
     }
 
-    public function form() {
-        $data['view'] = 'post/form';
+    public function rent_room() {
+        $data['view'] = 'post/rent_room';
         $data['content']['content'] = '';
         $data['left_hidden'] = true;
         $this->load->library('form_validation');
@@ -75,7 +75,7 @@ class Post extends CI_Controller {
                         'tieude' => $this->input->post('title'),
                         'quan' => $this->input->post('district'),
                         'phuong' => $this->input->post('ward'),
-                        'chuyenmuc' => $this->input->post('category'),
+                        'chuyenmuc' => 1,
                         'giaphong' => $this->input->post('price'),
                         'dientich' => $this->input->post('area'),
                         'noidung' => $this->input->post('content_post'),
@@ -105,6 +105,10 @@ class Post extends CI_Controller {
 
     public function match_date($date) {
         return (bool)preg_match('/^(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-[0-9]{4}$/', $date);
+    }
+
+    public function join() {
+        
     }
 
     public function show_by_district($page=1, $idD) {

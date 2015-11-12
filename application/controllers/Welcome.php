@@ -9,7 +9,7 @@ class Welcome extends CI_Controller {
         $this->load->helper(array('url'));
         $this->load->model(array('mdistrict','mpost'));	
     }
-    
+
 	public function index($page=1)
 	{
         $class_name = $this->router->fetch_class();
@@ -37,10 +37,7 @@ class Welcome extends CI_Controller {
         $this->load->view(LAYOUT, $data);
     }
 
-    public function create_post($id = null) {
-        if ($id != null) {
-            // redirect('','refresh');
-        }
+    public function create_post() {
         $data['view'] = 'post/create_post';
         $data['content']['content'] = '';
         $data['left_hidden'] = true;
