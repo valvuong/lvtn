@@ -39,10 +39,9 @@ function getWard() {
 }
 
 function showWard(code) {
-    var url = $('#url_ajax').val();
     $.ajax({
         type: "POST",
-        url: url,
+        url: 'ajax/get_ward',
         data: {q: code},
         dataType: "json",
         success: function(data) {
@@ -72,7 +71,7 @@ function readURL(input) {
         n = n > 8 ? 8:n;
         $(selector).empty();
         for(i = 0; i < n; i++) {
-            var ext = input.files[i].name.split('.').pop();
+            var ext = input.files[i].name.split('.').pop().toLowerCase();
             var size = input.files[i].size;
             if(size < 1000000 && (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) {
                 var reader = new FileReader();

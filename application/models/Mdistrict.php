@@ -2,6 +2,9 @@
 
 class Mdistrict extends CI_Model {
 
+    private $idQ = 'idQ';
+    private $tenquan = 'tenquan';
+
     public function __construct() {
         parent::__construct();
     }
@@ -9,7 +12,7 @@ class Mdistrict extends CI_Model {
     public function get_all() {
         $this->db->select('*');
         $this->db->from(MODEL_DISTRICT);
-        $this->db->order_by('tenquan DESC');
+        $this->db->order_by($this->tenquan, 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }

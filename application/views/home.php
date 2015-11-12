@@ -1,5 +1,13 @@
 <div class="list-header">
     <span class="glyphicon glyphicon-list-alt"></span>
+    <div class="form-group sort">
+      <select class="form-control" id="post-sort">
+        <option value="0">Sắp Xếp</option>
+        <option value="1">Mới Nhất</option>
+        <option value="2">Giá Rẻ</option>
+        <option value="3">Diện Tích Nhỏ</option>
+      </select>
+    </div>
 </div>
 <?php foreach($content as $row): ?>
 <a class="post" href="<?=site_url('tin-'.$row['id'])?>">

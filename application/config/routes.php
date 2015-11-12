@@ -53,9 +53,15 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['dang-tin'] = 'post/form';
-$route['dang-ki'] = 'register';
-$route['dang-nhap'] = 'login';
+$route['dang-tin'] = 'welcome/create_post';
+require_once( BASEPATH .'database/DB.php' );
+$db =& DB();
+$query = $db->get( 'phong_chuyenmuc' );
+$result = $query->result_array();
+foreach( $result as $row ) {
+    $route[ 'dang-tin-'.$row['url_name'] ] = $row['link'];
+}
+
 $route['dang-ki'] = 'user/register';
 $route['dang-nhap'] = 'user/login';
 $route['logout'] = 'user/logout';
@@ -69,6 +75,7 @@ $route['tin-(:num)'] = 'post/index/$1';
 
 $route['buon-ban'] = 'market/create';
 $route['tin-vat'] = 'market/get_all';
+$route['tin-vat-(:num)'] = 'market/get_all/$1';
 $route['(:num)-tin-vat'] = 'market/index/$1';
 $route['rao-vat-(:num)'] = 'market/get_by_category/$1';
 $route['(:num)-rao-vat-(:num)'] = 'market/get_by_category/$1/$2';

@@ -96,7 +96,7 @@ class Post extends CI_Controller {
                     ACTION_POST_UPLOAD => $_FILES
                 );
                 $id = $this->mpost->create($info);
-                redirect('post/index/'.$id,'refresh');
+                redirect('tin-'.$id,'refresh');
             }
         }
 
@@ -121,6 +121,7 @@ class Post extends CI_Controller {
         $data['content']['pagination'] = array($class_name, $method_name, $page, $idC);
         $data['content']['items_per_page'] = POSTS_PER_PAGE;
         $data['content']['num_rows'] = $this->mpost->get_category_rows($idC);
+        $data['content']['url_alias'] = 'tin-vat-';
         $this->load->view(LAYOUT, $data);
     }
 }

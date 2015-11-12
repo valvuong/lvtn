@@ -116,6 +116,9 @@ ul {
 .post.ads {
   border-color: #4caf50;
 }
+.post.ads #middle p {
+  margin-bottom: 5px;
+}
 .post div.thumbnail {
   display: inline-block;
   margin: 0;
@@ -213,9 +216,24 @@ ul {
 .list-header.market-header {
   background: #f55549;
 }
+.list-header.market-header .glyphicon {
+  display: none;
+}
 .list-header .glyphicon {
   color: #ffffff;
   font-size: 23px;
+}
+.list-header .sort {
+  display: inline-block;
+  margin: 0;
+  float: right;
+}
+.list-header .sort select {
+  width: 150px;
+  display: inline-block;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 28px;
 }
 .clear,
 .clear-row {

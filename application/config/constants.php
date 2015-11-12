@@ -87,17 +87,17 @@ define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 define('LAYOUT','layout/layout');
 define('POSTS_PER_PAGE', 5);
-define('ADS_PER_PAGE', 10);
+define('ADS_PER_PAGE', 5);
 
-define('MODEL_CATEGORY', 'chuyenmuc');
 define('MODEL_DISTRICT', 'quan');
 define('MODEL_USER', 'user');
 define('MODEL_WARD', 'phuong');
 
-define('MODEL_POST', 'bantin');
-define('MODEL_POST_PRICE', 'chiphi');
-define('MODEL_POST_CONTACT', 'thongtinlienlac');
-define('MODEL_POST_UPLOAD', 'hinh');
+define('MODEL_POST', 'phong');
+define('MODEL_POST_CATEGORY', 'phong_chuyenmuc');
+define('MODEL_POST_PRICE', 'phong_chiphi');
+define('MODEL_POST_CONTACT', 'phong_thongtinlienlac');
+define('MODEL_POST_UPLOAD', 'phong_hinh');
 
 define('MODEL_MARKET', 'raovat');
 define('MODEL_MARKET_UPLOAD', 'raovat_hinh');
@@ -105,3 +105,5 @@ define('MODEL_MARKET_CATEGORY', 'raovat_loai');
 
 define('ACTION_POST_UPLOAD', 'upload_image');
 define('ACTION_MARKET_UPLOAD', 'upload_image');
+
+define('MODEL_CATEGORY', MODEL_POST_CATEGORY);

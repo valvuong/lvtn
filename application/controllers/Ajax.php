@@ -17,4 +17,8 @@ class Ajax extends CI_Controller {
         }
         exit(json_encode($result));
     }
+
+    public function post_sort($value) {
+
+    }
 }
