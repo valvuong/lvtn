@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>css/pagination.css">
 <?php
-$num_pages = ceil($num_rows/POSTS_PER_PAGE);
+$num_pages = ceil($num_rows/$items_per_page);
 $current_page = $pagination[2];
 $next_page = $pagination;
 $next_page[2]++;
@@ -34,15 +34,15 @@ if($num_pages > 5) {
 ?>
 <?php if($num_rows > $items_per_page): ?>
     <ul class="pagination pagination-lg">
-        <li<?php echo ($pagination[2] == 1)?' class="disabled"':''?>><a href="<?=site_url($previous_page)?>">&laquo;</a></li>
+        <li<?php echo ($pagination[2] == 1)?' class="disabled"':''?>><a href="<?=site_url($url_alias.$previous_page[2])?>">&laquo;</a></li>
         <?php for($i=$start;$i<=$nums;$i++): ?>
             <?php $pagination[2] = $i ?>
             <?php if($i == $current_page) { ?>
                 <li class="active"><a><?=$i?></a></li>
             <?php } else { ?>
-                <li><a href="<?=site_url($pagination)?>"><?=$i?></a></li>
+                <li><a href="<?=site_url($url_alias.$pagination[2])?>"><?=$i?></a></li>
             <?php } ?>
         <?php endfor ?>
-        <li<?php echo ($current_page == $num_pages)?' class="disabled"':''?>><a href="<?=site_url($next_page)?>">&raquo;</a></li>
+        <li<?php echo ($current_page == $num_pages)?' class="disabled"':''?>><a href="<?=site_url($url_alias.$next_page[2])?>">&raquo;</a></li>
     </ul>
 <?php endif ?>

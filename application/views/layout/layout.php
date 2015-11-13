@@ -87,7 +87,7 @@
                                 <ul>
                                     <?php $query = $this->mcategory->get_all() ?>
                                     <?php foreach($query as $row): ?>
-                                        <li><label><input type="radio" name="category[]" value="<?=$row['id']?>"><?=$row['ten']?></label></li>
+                                        <li><label><input type="radio" name="category" value="<?=$row['id']?>"><?=$row['ten']?></label></li>
                                     <?php endforeach ?>
                                 </ul>
                             </div>
@@ -101,7 +101,7 @@
                                 <ul>
                                     <?php $query = $this->db->get('dientich') ?>
                                     <?php foreach($query->result_array() as $row): ?>
-                                        <li><label><input type="radio" name="category[]" value="<?=$row['value']?>"><?=$row['text']?></label></li>
+                                        <li><label><input type="radio" name="area" value="<?=$row['value']?>"><?=$row['text']?></label></li>
                                     <?php endforeach ?>
                                 </ul>
                             </div>
@@ -115,7 +115,7 @@
                                 <ul>
                                     <?php $query = $this->db->get('giaphong') ?>
                                     <?php foreach($query->result_array() as $row): ?>
-                                        <li><label><input type="radio" name="category[]" value="<?=$row['value']?>"><?=$row['text']?></label></li>
+                                        <li><label><input type="radio" name="price" value="<?=$row['value']?>"><?=$row['text']?></label></li>
                                     <?php endforeach ?>
                                 </ul>
                             </div>
@@ -129,7 +129,7 @@
                                 <ul>
                                     <?php $query = $this->mdistrict->get_all() ?>
                                     <?php foreach($query as $row): ?>
-                                        <li><label><input type="radio" name="category[]" value="<?=$row['idQ']?>"><?=$row['tenquan']?></label></li>
+                                        <li><label><input type="radio" name="district" value="<?=$row['idQ']?>"><?=$row['tenquan']?></label></li>
                                     <?php endforeach ?>
                                 </ul>
                             </div>
@@ -152,12 +152,15 @@
     $(document).ready(function () {
         $("input[type='radio']").change( function() {
             var val = $(this).val();
+            var name = $(this).attr('name');
             if($(this).is(':checked')) {
                 
                 $.ajax({
                     type    : "POST",
                     url     : "http://localhost:7777/htdocs/LVTN3/lvtn/lvtn/filter/filter",
-                    data    : {val:val},
+                    data    : { val:    val,
+                                name:   name
+                                },
                     success: function(json){                        
                         try{        
                            // var result = jQuery.parseJSON(json);
@@ -171,7 +174,7 @@
                         alert('Error while request..');
                     }
                     });
-                alert(val);
+                alert($(this).val());
             }
             else {
                 alert('fuck you');

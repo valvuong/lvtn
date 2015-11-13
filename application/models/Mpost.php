@@ -2,12 +2,23 @@
 
 class Mpost extends CI_Model {
 
+    private $id = 'id';
+    private $tieude = 'tieude';
+    private $quan = 'quan';
+    private $phuong = 'phuong';
+    private $chuyenmuc = 'chuyenmuc';
+    private $giaphong = 'giaphong';
+    private $dientich = 'dientich';
+    private $noidung = 'noidung';
+    private $ngaydang= 'ngaydang';
+    private $hethan = 'hethan';
+
     public function __construct() {
         parent::__construct();
     }
 
     public function get_all_rows() {
-        $query = $this->db->query('SELECT COUNT(*) as total FROM '.MODEL_POST.' WHERE hethan >= NOW()');
+        $query = $this->db->query('SELECT COUNT(*) as total FROM '.MODEL_POST.' WHERE '.$this->hethan.' >= NOW()');
         $result = $query->row_array();
         return $result['total'];
     }
@@ -17,12 +28,12 @@ class Mpost extends CI_Model {
         $this->db->select(MODEL_DISTRICT.'.tenquan');
         $this->db->select(MODEL_POST_UPLOAD.'.tenhinh');
         $this->db->from(MODEL_POST);
-        $this->db->where("hethan >=", date('Y-m-d'));
+        $this->db->where($this->hethan." >=", date('Y-m-d'));
         $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.quan', 'left');
         $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.id', 'left');
         $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
-        $this->db->group_by(MODEL_POST.'.id');
-        $this->db->order_by(MODEL_POST.'.id', 'DESC');
+        $this->db->group_by(MODEL_POST.'.'.$this->id);
+        $this->db->order_by(MODEL_POST.'.'.$this->id, 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -30,8 +41,8 @@ class Mpost extends CI_Model {
     private function get_field_rows($id, $field_name) {
         $this->db->select('*');
         $this->db->from(MODEL_POST);
-        $this->db->where($field_name,$id);
-        $this->db->where("hethan >=", date('Y-m-d'));
+        $this->db->where($field_name, $id);
+        $this->db->where($this->hethan." >=", date('Y-m-d'));
         $query = $this->db->get();
         return $query->num_rows();
     }
@@ -39,25 +50,25 @@ class Mpost extends CI_Model {
     private function get_by_field($id, $field_name, $page) {
         $this->db->select('*');
         $this->db->from(MODEL_POST);
-        $this->db->where($field_name,$id);
-        $this->db->where("hethan >=", date('Y-m-d'));
+        $this->db->where($field_name, $id);
+        $this->db->where($this->hethan." >=", date('Y-m-d'));
         $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
         $query = $this->db->get();
         return $query->result_array();
     }
 
     public function get_district_rows($idD) {
-        $result = $this->get_field_rows($idD, 'quan');
+        $result = $this->get_field_rows($idD, $this->quan);
         return $result;
     }
 
     public function get_by_district($idD, $page) {
-        $result = $this->get_by_field($idD, 'quan', $page);
+        $result = $this->get_by_field($idD, $this->quan, $page);
         return $result;
     }
 
     public function get_category_rows($idC) {
-        $result = $this->get_field_rows($idC, 'chuyenmuc');
+        $result = $this->get_field_rows($idC, $this->chuyenmuc);
         return $result;
     }
 
@@ -66,24 +77,24 @@ class Mpost extends CI_Model {
         $this->db->select(MODEL_DISTRICT.'.tenquan');
         $this->db->select(MODEL_POST_UPLOAD.'.tenhinh');
         $this->db->from(MODEL_POST);
-        $this->db->where('chuyenmuc', $idC);
-        $this->db->where('hethan >=', date('Y-m-d'));
+        $this->db->where(MODEL_POST.'.'.$this->chuyenmuc, $idC);
+        $this->db->where(MODEL_POST.'.'.$this->hethan.' >=', date('Y-m-d'));
         $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.quan', 'left');
         $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.id', 'left');
         $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
-        $this->db->group_by(MODEL_POST.'.id');
+        $this->db->group_by(MODEL_POST.'.'.$this->id);
         $query = $this->db->get();
         return $query->result_array();
     }
 
     public function get_one($id) {
-        $this->db->select('tieude,chuyenmuc,giaphong,dientich,noidung,ngaydang,hethan');
+        $this->db->select('*');
         $this->db->select(MODEL_DISTRICT.'.tenquan');
         $this->db->select(MODEL_WARD.'.tenphuong');
         $this->db->select(MODEL_POST_PRICE.'.tiendien,'.MODEL_POST_PRICE.'.tiennuoc,'.MODEL_POST_PRICE.'.datcoc');
         $this->db->select(MODEL_POST_CONTACT.'.hoten,'.MODEL_POST_CONTACT.'.sodienthoai,'.MODEL_POST_CONTACT.'.diachi,'.MODEL_POST_CONTACT.'.email');
         $this->db->from(MODEL_POST);
-        $this->db->where('id', $id);
+        $this->db->where(MODEL_POST.'.'.$this->id, $id);
         $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.quan');
         $this->db->join(MODEL_WARD, MODEL_WARD.'.idP = '.MODEL_POST.'.phuong');
         $this->db->join(MODEL_POST_PRICE, MODEL_POST_PRICE.'.idBantin = '.$id, 'left');

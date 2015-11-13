@@ -1,5 +1,16 @@
 <div class="list-header market-header">
     <span class="glyphicon glyphicon-list-alt"></span>
+    <div class="btn-group">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Loại <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <?php $query = $this->mmarket_category->get_all() ?>
+        <?php foreach ($query as $row): ?>
+            <li><a href="<?=site_url($row['id'].'-rao-vat-1')?>"><?=$row['tenloai']?></a></li>
+        <?php endforeach; ?>
+      </ul>
+    </div>
 </div>
 <?php foreach($content as $row): ?>
     <a class="post ads" href="<?=site_url($row['id'].'-tin-vat')?>">
@@ -25,6 +36,10 @@
             <p>
                 <span class="font-bold">Giá Cả:</span>
                 <span><?php echo number_format($row['giaca']*1000000); ?> VNĐ</span>
+            </p>
+            <p>
+                <span class="font-bold">Loại:</span>
+                <span><?php echo $row['tenloai']; ?></span>
             </p>
         </div>
         <div class="clear-row"></div>

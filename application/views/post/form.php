@@ -60,7 +60,7 @@ $area_error = form_error('area');
             <select id=<?=$field_name?> name=<?=$field_name?> class="selectpicker"></select>
         </div>
 
-        <div class=<?=$form_group?>>
+        <!-- <div class=<?=$form_group?>>
             <?php $field_name = 'category' ?>
             <?php echo form_label('Chuyên Mục'.$required, '', array('class'=>$label_class.' '.$stage_1)) ?>
             <select name=<?=$field_name?> class="selectpicker">
@@ -69,7 +69,7 @@ $area_error = form_error('area');
                     <option value="<?=$row['id']?>"><?=$row['ten']?></option>
                 <?php endforeach; ?>
             </select>
-        </div>
+        </div> -->
 
         <div class=<?=$form_group?>>
             <?php
@@ -109,7 +109,7 @@ $area_error = form_error('area');
             );
             echo form_input($data);
             ?>
-            <span id="pri"></span> VNĐ
+            <span id="pri"></span> VNĐ/tháng
         </div>
 
         <div class=<?=$form_group?>>

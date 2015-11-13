@@ -126,6 +126,11 @@ ul {
 .post {
   &.ads {
     border-color: #4caf50;
+    #middle {
+      p {
+        margin-bottom: 5px;
+      }
+    }
   }
   display: block;
   margin-bottom: 10px;
@@ -232,6 +237,9 @@ ul {
 .list-header {
   &.market-header {
     background: #f55549;
+    .glyphicon {
+      display: none;
+    }
   }
   background: #27AE60;
   margin-bottom: 10px;
@@ -239,6 +247,18 @@ ul {
   .glyphicon {
     color: #ffffff;
     font-size: 23px;
+  }
+  .sort {
+    display: inline-block;
+    margin: 0;
+    float: right;
+    select {
+      width: 150px;
+      display: inline-block;
+      padding-top: 0;
+      padding-bottom: 0;
+      height: 28px;
+    }
   }
 }
 

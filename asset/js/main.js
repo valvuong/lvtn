@@ -4,6 +4,7 @@ $(function() {
     clickDropdown();
     clickTask();
     header();
+    listSort();
 });
 
 function menuTask() {
@@ -69,5 +70,22 @@ function goTop() {
     $(top).click(function(e){
         $('body,html').animate({scrollTop: 0}, 500);
         e.preventDefault();
+    });
+}
+
+function listSort() {
+    var selector = $('#post-sort');
+    selector.on('change', function(){
+        var value = $(this).val();
+        $.ajax({
+            type: "GET",
+            url: "ajax/post_sort",
+            data: {sort: value},
+            dataType: "json",
+            success: function(data) {
+            },
+            error: function() {
+            }
+        });
     });
 }
