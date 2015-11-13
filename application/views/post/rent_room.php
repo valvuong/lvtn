@@ -14,6 +14,8 @@ $stage_2 = 'stage-2';
 $title_error = form_error('title');
 $email_error = form_error('email');
 $area_error = form_error('area');
+$text_right = 'text-right';
+$float_left = 'float-left';
 ?>
 <h2 class="dt">ĐĂNG TIN PHÒNG TRỌ</h2>
 <?php echo form_open_multipart('post/form', array('id'=>'post-form')) ?>
@@ -22,7 +24,7 @@ $area_error = form_error('area');
     <fieldset>
         <legend style="width: 235px">THÔNG TIN BÀI ĐĂNG</legend>
 
-        <div class=<?=$form_group?>>
+        <div class="<?=$form_group?>">
             <?php
             $field_name = 'title';
             echo form_label('Tiêu Đề'.$required.':', $field_name, array('class'=>$label_class));
@@ -38,7 +40,7 @@ $area_error = form_error('area');
             ?>
         </div>
 
-        <div class=<?=$form_group?>>
+        <div class="<?=$form_group?>">
             <?php $field_name = 'district' ?>
             <?php echo form_label('Quận'.$required, '', array('class' => $label_class.' '.$stage_1)) ?>
             <select id=<?=$field_name?> name=<?=$field_name?> onchange="showWard(this.value)" class="selectpicker" data-width="150px">
@@ -50,24 +52,24 @@ $area_error = form_error('area');
             </select>
         </div>
 
-        <div class=<?=$form_group?>>
+        <div class="<?=$form_group?>">
             <?php $field_name = 'ward' ?>
             <?php echo form_label('Phường'.$required, '', array('class' => $label_class.' '.$stage_1)) ?>
             <select id=<?=$field_name?> name=<?=$field_name?> class="selectpicker"></select>
         </div>
 
-        <!-- <div class=<?=$form_group?>>
-            <?php $field_name = 'category' ?>
-            <?php echo form_label('Chuyên Mục'.$required, '', array('class'=>$label_class.' '.$stage_1)) ?>
+        <!-- <div class="<?=$form_group?>">
+            <?php // $field_name = 'category' ?>
+            <?php // echo form_label('Chuyên Mục'.$required, '', array('class'=>$label_class.' '.$stage_1)) ?>
             <select name=<?=$field_name?> class="selectpicker">
-                <?php $query = $this->mcategory->get_all() ?>
-                <?php foreach($query as $row): ?>
+                <?php // $query = $this->mcategory->get_all() ?>
+                <?php // foreach($query as $row): ?>
                     <option value="<?=$row['id']?>"><?=$row['ten']?></option>
-                <?php endforeach; ?>
+                <?php //endforeach; ?>
             </select>
         </div> -->
 
-        <div class=<?=$form_group?>>
+        <div class="<?=$form_group?>">
             <?php
             $field_name = 'area';
             echo form_label('Diện Tích'.$required, $field_name, array('class'=>$label_class.' '.$stage_1));
@@ -87,7 +89,7 @@ $area_error = form_error('area');
             <span>m<sup>2</sup></span>
         </div>
 
-        <div class=<?=$form_group?>>
+        <div class="<?=$form_group?>">
             <?php
             $field_name = 'price';
             echo form_label('Giá Phòng'.$required, $field_name, array('class'=>$label_class.' '.$stage_1));
@@ -108,9 +110,9 @@ $area_error = form_error('area');
             <span id="pri"></span> VNĐ/tháng
         </div>
 
-        <div class=<?=$form_group?>>
+        <div class="<?=$form_group?>">
             <?php echo form_label('', '', array('class' => $stage_1)) ?>
-            <div class=<?=$stage_2?>>
+            <div class="<?=$stage_2?>">
                 <?php
                 $normal_label = 'normal-label';
                 $checkbox_class = 'checkbox-primary';
@@ -123,7 +125,6 @@ $area_error = form_error('area');
                         'id' => $field_name,
                         'name' => $field_name,
                         'class' => $checkbox_class,
-                        'value' => $field_name,
                         'checked' => set_checkbox($field_name,$field_name)
                     );
                     echo form_checkbox($data);
@@ -137,7 +138,6 @@ $area_error = form_error('area');
                         'id' => $field_name,
                         'name' => $field_name,
                         'class' => $checkbox_class,
-                        'value' => $field_name,
                         'checked' => set_checkbox($field_name,$field_name)
                     );
                     echo form_checkbox($data);
@@ -151,7 +151,6 @@ $area_error = form_error('area');
                         'id' => $field_name,
                         'name' => $field_name,
                         'class' => $checkbox_class,
-                        'value' => $field_name,
                         'checked' => set_checkbox($field_name,$field_name)
                     );
                     echo form_checkbox($data);
@@ -162,7 +161,7 @@ $area_error = form_error('area');
             </div>
         </div>
 
-        <div class=<?=$form_group?>>
+        <div class="<?=$form_group?>">
 <!--            <link rel="stylesheet" href="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/css/material.min.css" />-->
             <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -171,7 +170,6 @@ $area_error = form_error('area');
             <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>datepicker/css/bootstrap-material-datetimepicker.css">
             <script type="text/javascript" src="<?php echo asset_url() ?>datepicker/js/moment.min.js"></script>
             <script type="text/javascript" src="<?php echo asset_url() ?>datepicker/js/bootstrap-material-datetimepicker.js"></script>
-<!--            <script type="text/javascript" src="--><?php //echo asset_url() ?><!--bootstrap-material-design/material.min.js"></script>-->
 
             <?php
             echo form_label('Ngày Hết Hạn'.$required.':', '', array('class'=>$label_class.' '.$stage_1));
@@ -188,7 +186,7 @@ $area_error = form_error('area');
             ?>
         </div>
 
-        <div class=<?=$form_group?>>
+        <div class="<?=$form_group?>">
             <?php
             echo form_label('Nội Dung'.$required.':', 'info', array('class'=>$label_class));
             $field_name = 'content_post';
@@ -229,13 +227,147 @@ $area_error = form_error('area');
             </div>
         </div>
 
-        <div class=<?=$form_group?> id="preview"></div>
+        <div class="<?=$form_group?>" id="preview"></div>
     </fieldset>
 
     <fieldset>
-        <legend>THÔNG TIN LIÊN HỆ</legend>
+        <legend style="width: 230px">THÔNG TIN BỔ SUNG</legend>
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">An Ninh</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'security';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $input_class,
+                    'value' => set_value($field_name)
+                );
+                echo form_input($data);
+                ?>
+            </div>
+        </div>
 
-        <div class=<?=$form_group?>>
+        <div class="clear"></div>
+
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Cho Phép Nấu Nướng</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'cook';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $checkbox_class,
+                    'checked' => set_checkbox($field_name, $field_name)
+                );
+                echo form_checkbox($data);
+                echo form_label('', $field_name, array('class' => $label_checkbox_primary));
+                ?>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Ở Chung Với Chủ</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'with-host';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $checkbox_class,
+                    'checked' => set_checkbox($field_name, $field_name)
+                );
+                echo form_checkbox($data);
+                echo form_label('', $field_name, array('class' => $label_checkbox_primary));
+                ?>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Giờ Giấc</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'cook';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $input_class,
+                    'value' => set_value($field_name)
+                );
+                echo form_input($data);
+                ?>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Nhà Vệ Sinh Riêng</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'wc';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $checkbox_class,
+                    'checked' => set_checkbox($field_name, $field_name)
+                );
+                echo form_checkbox($data);
+                echo form_label('', $field_name, array('class' => $label_checkbox_primary));
+                ?>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Xe Buýt</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'bus';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $checkbox_class,
+                    'checked' => set_checkbox($field_name, $field_name)
+                );
+                echo form_checkbox($data);
+                echo form_label('', $field_name, array('class' => $label_checkbox_primary));
+                ?>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Có Ban Công</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'balcony';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $checkbox_class,
+                    'checked' => set_checkbox($field_name, $field_name)
+                );
+                echo form_checkbox($data);
+                echo form_label('', $field_name, array('class' => $label_checkbox_primary));
+                ?>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+    </fieldset>
+
+    <fieldset>
+        <legend style="width: 215px">THÔNG TIN LIÊN HỆ</legend>
+
+        <div class="<?=$form_group?>">
             <?php
             $field_name = 'name_contact';
             echo form_label('Tên Người Liên Hệ'.$required.':',$field_name,array('class'=>$label_class));
@@ -251,15 +383,15 @@ $area_error = form_error('area');
             ?>
         </div>
 
-        <div class=<?=$form_group?>>
+        <div class="<?=$form_group?>">
             <?php
             $field_name = 'phone';
             echo form_label('Số Điện Thoại'.$required.':',$field_name,array('class'=>$label_class));
             $data = array(
                 'id' => $field_name,
+                'class' => $input_class,
                 'name' => $field_name,
                 'placeholder' => '',
-                'class' => $input_class,
                 'maxlength'=>'20',
                 'value' => set_value($field_name)
             );
@@ -274,13 +406,13 @@ $area_error = form_error('area');
             </div>
         </div>
 
-        <div class=<?=$form_group?>>
+        <div class="<?=$form_group?>">
             <?php
             $field_name = 'address';
             echo form_label('Địa Chỉ'.$required.':',$field_name,array('class'=>$label_class));
             $data = array(
-                'name'=>$field_name,
-                'id'=>$field_name,
+                'name' => $field_name,
+                'id' => $field_name,
                 'placeholder' => 'VD: 232/3 Lý Thường Kiệt, P.15, Q.10',
                 'class' => $input_class,
                 'value' => set_value($field_name)
@@ -289,16 +421,16 @@ $area_error = form_error('area');
             ?>
         </div>
 
-        <div class=<?=$form_group?>>
+        <div class="<?=$form_group?>">
             <?php
             $field_name = 'email';
             echo form_label('Email:',$field_name,array('class'=>$label_class));
             $data = array(
-                'name'=>$field_name,
-                'id'=>$field_name,
+                'name' => $field_name,
+                'id' => $field_name,
                 'placeholder' => 'example@abc.com',
                 'class' => $input_class,
-                'maxlength'=>'30',
+                'maxlength' => '30',
                 'value' => set_value($field_name)
             );
             echo form_input($data);
@@ -313,7 +445,7 @@ $area_error = form_error('area');
         </div>
     </fieldset>
 
-    <div class=<?=$form_group?>>
+    <div class="<?=$form_group?>">
         <div class="submit">
             <input type="submit" value="Đăng tin" name="submit" class="btn btn-primary btn-lg">
         </div>

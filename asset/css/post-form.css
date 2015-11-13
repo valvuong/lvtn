@@ -18,7 +18,6 @@ fieldset {
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 fieldset legend {
-  width: 215px;
   background: #1F497D;
   color: #fff;
   padding: 5px 10px ;
@@ -68,8 +67,7 @@ button.dtp-btn-ok:hover {
 input.checkbox-primary {
   position: absolute;
   left: 0;
-  opacity: 0;
-  z-index: 1;
+  display: none;
 }
 .label-checkbox-primary {
   margin-left: 25px;
@@ -99,7 +97,6 @@ input.checkbox-primary:checked + .label-checkbox-primary:before {
   display: inline-block;
   position: absolute;
   left: 0;
-  top: 0;
   padding-left: 3px;
   padding-top: 1px;
   font-size: 13px;
@@ -113,7 +110,4 @@ input.checkbox-primary:checked + .label-checkbox-primary:after {
 .row {
   margin: 0;
   position: relative;
-}
-.row * {
-  float: left;
 }

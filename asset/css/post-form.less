@@ -22,7 +22,6 @@ fieldset {
   margin-bottom: 20px;
   box-shadow: 0 8px 17px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);
   legend {
-    width: 215px;
     background: #1F497D;
     color: #fff;
     padding: 5px 10px ;
@@ -69,19 +68,22 @@ fieldset {
   font-weight: bold;
 }
 
-.btn.btn-flat:not(.btn-link), .btn-default.btn-flat:not(.btn-link) {
+.btn.btn-flat:not(.btn-link), 
+.btn-default.btn-flat:not(.btn-link) {
   color: rgba(0,0,0,.84);
 }
 
-button.dtp-btn-cancel:hover, button.dtp-btn-ok:hover {
+button.dtp-btn-cancel:hover, 
+button.dtp-btn-ok:hover {
   background: rgba(0,0,0,.2);;
 }
 
 input.checkbox-primary {
   position: absolute;
   left: 0;
-  opacity: 0;
-  z-index: 1;
+  // opacity: 0;
+  // z-index: 1;
+  display: none;
 }
 
 .label-checkbox-primary {
@@ -111,7 +113,6 @@ input.checkbox-primary {
     display: inline-block;
     position: absolute;
     left: 0;
-    top: 0;
     padding-left: 3px;
     padding-top: 1px;
     font-size: 13px;
@@ -127,7 +128,4 @@ input.checkbox-primary {
 .row {
   margin: 0;
   position: relative;
-  * {
-    float: left;
-  }
 }
