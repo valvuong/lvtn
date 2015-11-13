@@ -125,7 +125,6 @@ $float_left = 'float-left';
                         'id' => $field_name,
                         'name' => $field_name,
                         'class' => $checkbox_class,
-                        'value' => $field_name,
                         'checked' => set_checkbox($field_name,$field_name)
                     );
                     echo form_checkbox($data);
@@ -139,7 +138,6 @@ $float_left = 'float-left';
                         'id' => $field_name,
                         'name' => $field_name,
                         'class' => $checkbox_class,
-                        'value' => $field_name,
                         'checked' => set_checkbox($field_name,$field_name)
                     );
                     echo form_checkbox($data);
@@ -153,13 +151,12 @@ $float_left = 'float-left';
                         'id' => $field_name,
                         'name' => $field_name,
                         'class' => $checkbox_class,
-                        'value' => $field_name,
                         'checked' => set_checkbox($field_name,$field_name)
                     );
                     echo form_checkbox($data);
                     echo form_label('Đặt cọc trước', $field_name, array('class'=>$label_checkbox_primary));
                     ?>
-                    <input value=<?=set_value('mon_re')?> class=<?=$input_class?> id="mon_re" name="mon_re" type="number" min="1" disabled style="height: 32px;padding-right: 5px;width: 60px;margin: 0 10px;display: inline-block"><span>tháng</span>
+                    <input value=<?=set_value('mon_re')?> class=<?=$input_class?> id="mon_re" name="mon_re" type="number" min="1" disabled style="height: 32px;padding-left: 12px;padding-right: 5px;width: 60px;margin: 0 10px;display: inline-block"><span>tháng</span>
                 </div>
             </div>
         </div>
@@ -254,6 +251,24 @@ $float_left = 'float-left';
         <div class="clear"></div>
 
         <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Giờ Giấc</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'cook';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $input_class,
+                    'value' => set_value($field_name)
+                );
+                echo form_input($data);
+                ?>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="<?=$form_group?>">
             <div class="<?=$stage_1.' '.$text_right ?>">Cho Phép Nấu Nướng</div>
             <div class="<?=$stage_2 ?>">
                 <?php
@@ -285,24 +300,6 @@ $float_left = 'float-left';
                 );
                 echo form_checkbox($data);
                 echo form_label('', $field_name, array('class' => $label_checkbox_primary));
-                ?>
-            </div>
-        </div>
-
-        <div class="clear"></div>
-
-        <div class="<?=$form_group?>">
-            <div class="<?=$stage_1.' '.$text_right ?>">Giờ Giấc</div>
-            <div class="<?=$stage_2 ?>">
-                <?php
-                $field_name = 'cook';
-                $data = array(
-                    'id' => $field_name,
-                    'name' => $field_name,
-                    'class' => $input_class,
-                    'value' => set_value($field_name)
-                );
-                echo form_input($data);
                 ?>
             </div>
         </div>
