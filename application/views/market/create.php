@@ -12,7 +12,7 @@ $stage_2 = 'stage-2';
 ?>
 <h2 class="dt">ĐĂNG TIN RAO VẶT</h2>
 <?php echo form_open_multipart('market/create', array('id'=>'market-form')) ?>
-    <div class=<?=$form_group?>>
+    <div class="<?=$form_group?>">
         <?php
         $field_name = 'ad-title';
         echo form_label('Tiêu Đề'.$required.':', $field_name, array('class'=>$label_class));
@@ -26,7 +26,7 @@ $stage_2 = 'stage-2';
         ?>
     </div>
 
-    <div class=<?=$form_group?>>
+    <div class="<?=$form_group?>">
         <?php
         $field_name = 'ad-phone';
         echo form_label('Số Điện Thoại'.$required.':', $field_name, array('class'=>$label_class));
@@ -40,7 +40,7 @@ $stage_2 = 'stage-2';
         ?>
     </div>
 
-    <div class=<?=$form_group?>>
+    <div class="<?=$form_group?>">
         <?php
         $field_name = 'ad-contact-name';
         echo form_label('Tên Liên Hệ'.$required.':', $field_name, array('class'=>$label_class));
@@ -54,7 +54,7 @@ $stage_2 = 'stage-2';
         ?>
     </div>
 
-    <div class=<?=$form_group?>>
+    <div class="<?=$form_group?>">
         <?php $field_name = 'ad-district' ?>
         <?php echo form_label('Quận'.$required, '', array('class'=>$label_class.' '.$stage_1)) ?>
         <select name=<?=$field_name?> class="selectpicker">
@@ -65,7 +65,7 @@ $stage_2 = 'stage-2';
         </select>
     </div>
 
-    <div class=<?=$form_group?>>
+    <div class="<?=$form_group?>">
         <?php $field_name = 'ad-category' ?>
         <?php echo form_label('Danh Mục'.$required, '', array('class'=>$label_class.' '.$stage_1)) ?>
         <select name=<?=$field_name?> class="selectpicker">
@@ -76,7 +76,7 @@ $stage_2 = 'stage-2';
         </select>
     </div>
 
-    <div class=<?=$form_group?>>
+    <div class="<?=$form_group?>">
         <?php
         $field_name = 'ad-status';
         echo form_label('Tình Trạng'.$required, '', array('class'=>$label_class.' '.$stage_1));
@@ -91,7 +91,7 @@ $stage_2 = 'stage-2';
         </label>
     </div>
 
-    <div class=<?=$form_group?>>
+    <div class="<?=$form_group?>">
         <?php
         $field_name = 'ad-price';
         echo form_label('Giá Cả'.$required, $field_name, array('class'=>$label_class.' '.$stage_1));
@@ -112,7 +112,7 @@ $stage_2 = 'stage-2';
         <span id="pri"></span> VNĐ
     </div>
 
-    <div class=<?=$form_group?>>
+    <div class="<?=$form_group?>">
         <?php
         $field_name = 'ad-content';
         echo form_label('Nội Dung'.$required.':', $field_name, array('class'=>$label_class));
@@ -125,7 +125,7 @@ $stage_2 = 'stage-2';
         ?>
     </div>
 
-    <div class=<?=$form_group?>>
+    <div class="<?=$form_group?>">
         <?php echo form_label('Hình Ảnh Đại Diện:', '', array('class'=>$label_class)) ?>
 
         <div class="row upload">
@@ -143,9 +143,9 @@ $stage_2 = 'stage-2';
         </div>
     </div>
 
-    <div class=<?=$form_group?> id="preview"></div>
+    <div class="<?=$form_group?>" id="preview"></div>
 
-    <div class=<?=$form_group?>>
+    <div class="<?=$form_group?>">
         <div class="submit">
             <input type="submit" value="Đăng Tin" name="submit" class="btn btn-primary btn-lg">
         </div>

@@ -18,11 +18,7 @@ class Post extends CI_Controller {
         $this->load->view(LAYOUT, $data);
     }
 
-    public function rent_room() {
-        $data['view'] = 'post/rent_room';
-        $data['content']['content'] = '';
-        $data['left_hidden'] = true;
-        $this->load->library('form_validation');
+    private function set_form_rules() {
         $rules = array(
             array(
                 'field' => 'title',
@@ -65,6 +61,84 @@ class Post extends CI_Controller {
                 'rules' => 'is_natural'
             )
         );
+        return $rules;
+    }
+
+    public function rent_room() {
+        $data['view'] = 'post/rent_room';
+        $data['content']['content'] = '';
+        $data['left_hidden'] = true;
+        $this->load->library('form_validation');
+        $main_rules = $this->set_form_rules();
+        $rent_room_rules = array(
+        );
+
+        $rules = array_merge($main_rules, $rent_room_rules);
+
+        $this->form_validation->set_rules($rules);
+
+        if($this->input->post('submit')) {
+            if($this->form_validation->run()) {
+                $info = array(
+                    MODEL_POST => array(
+                        'tieude' => $this->input->post('title'),
+                        'quan' => $this->input->post('district'),
+                        'phuong' => $this->input->post('ward'),
+                        'chuyenmuc' => 2,
+                        'giaphong' => $this->input->post('price'),
+                        'dientich' => $this->input->post('area'),
+                        'noidung' => $this->input->post('content_post'),
+                        'ngaydang' => date('Y-m-d'),
+                        'hethan' => date('Y-m-d',strtotime($this->input->post('expired_date')))
+                    ),
+                    MODEL_POST_PRICE => array(
+                        'tiendien' => $this->input->post('e_price')===NULL ? 0:1,
+                        'tiennuoc' => $this->input->post('w_price')===NULL ? 0:1,
+                        'datcoc'   => $this->input->post('pre_pay')===NULL ? 0:$this->input->post('mon_re')
+                    ),
+                    MODEL_POST_CONTACT => array(
+                        'hoten' => $this->input->post('name_contact'),
+                        'sodienthoai' => $this->input->post('phone'),
+                        'diachi' => $this->input->post('address'),
+                        'email' => $this->input->post('email')
+                    ),
+                    ACTION_POST_UPLOAD => $_FILES,
+                    MODEL_POST_RENTROOM => array(
+                        'anninh' => $this->input->post('security'),
+                        'naunuong' => $this->input->post('cook')===NULL ? 0:1,
+                        'chungchu' => $this->input->post('with-host')===NULL ? 0:1,
+                        // 'nam'
+                        // 'nu'
+                        'giogiac' => $this->input->post('time-off'),
+                        'nhavesinh' => $this->input->post('wc')===NULL ? 0:1,
+                        'xebuyt' => $this->input->post('bus')===NULL ? 0:1,
+                        // 'khoangcach'
+                        // 'giatui'
+                        'bancong' => $this->input->post('balcony')===NULL ? 0:1
+                    )
+                );
+                $id = $this->mpost->create($info);
+                redirect('tin-'.$id,'refresh');
+            }
+        }
+
+        $this->load->view(LAYOUT, $data);
+    }
+
+    public function match_date($date) {
+        return (bool)preg_match('/^(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-[0-9]{4}$/', $date);
+    }
+
+    public function join() {
+        $data['view'] = 'post/join';
+        $data['content']['content'] = '';
+        $data['left_hidden'] = true;
+        $this->load->library('form_validation');
+        $main_rules = $this->set_form_rules();
+        $rent_room_rules = array(
+        );
+
+        $rules = array_merge($main_rules, $rent_room_rules);
 
         $this->form_validation->set_rules($rules);
 
@@ -93,24 +167,25 @@ class Post extends CI_Controller {
                         'diachi' => $this->input->post('address'),
                         'email' => $this->input->post('email')
                     ),
-                    ACTION_POST_UPLOAD => $_FILES
+                    ACTION_POST_UPLOAD => $_FILES,
+                    MODEL_POST_RENTROOM => array(
+                        'anninh' => $this->input->post('security'),
+                        'naunuong' => $this->input->post('cook')===NULL ? 0:1,
+                        'chungchu' => $this->input->post('with-host')===NULL ? 0:1,
+                        // 'nam'
+                        // 'nu'
+                        // 'giogiac'
+                        'nhavesinh' => $this->input->post('wc')===NULL ? 0:1,
+                        'xebuyt' => $this->input->post('bus')===NULL ? 0:1,
+                        // 'khoangcach'
+                        // 'giatui'
+                        'bancong' => $this->input->post('balcony')===NULL ? 0:1
+                    )
                 );
                 $id = $this->mpost->create($info);
                 redirect('tin-'.$id,'refresh');
             }
         }
-
-        $this->load->view(LAYOUT, $data);
-    }
-
-    public function match_date($date) {
-        return (bool)preg_match('/^(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-[0-9]{4}$/', $date);
-    }
-
-    public function join() {
-        $data['view'] = 'post/join';
-        $data['content']['content'] = '';
-        $data['left_hidden'] = true;
         $this->load->view(LAYOUT, $data);
     }
 

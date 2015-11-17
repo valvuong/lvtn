@@ -232,6 +232,9 @@ $float_left = 'float-left';
 
     <fieldset>
         <legend style="width: 230px">THÔNG TIN BỔ SUNG</legend>
+        <?php
+        $bigger = 'bigger';
+        ?>
         <div class="<?=$form_group?>">
             <div class="<?=$stage_1.' '.$text_right ?>">An Ninh</div>
             <div class="<?=$stage_2 ?>">
@@ -241,14 +244,13 @@ $float_left = 'float-left';
                     'id' => $field_name,
                     'name' => $field_name,
                     'class' => $input_class,
-                    'value' => set_value($field_name)
+                    'value' => set_value($field_name),
+                    'placeholder' => 'VD: gần đồn công an, hoặc gần đồn dân phòng'
                 );
                 echo form_input($data);
                 ?>
             </div>
         </div>
-
-        <div class="clear"></div>
 
         <div class="<?=$form_group?>">
             <div class="<?=$stage_1.' '.$text_right ?>">Giờ Giấc</div>
@@ -259,14 +261,30 @@ $float_left = 'float-left';
                     'id' => $field_name,
                     'name' => $field_name,
                     'class' => $input_class,
-                    'value' => set_value($field_name)
+                    'value' => set_value($field_name),
+                    'placeholder' => ''
                 );
                 echo form_input($data);
                 ?>
             </div>
         </div>
 
-        <div class="clear"></div>
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Chỉ Cho</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'gender-only';
+                ?>
+                <label class="radio">
+                    <input id="radio1" value="0" type="radio" name="<?=$field_name?>">
+                    <span class="outer"><span class="inner"></span></span>Nam Ở
+                </label>
+                <label class="radio">
+                    <input id="radio1" value="1" type="radio" name="<?=$field_name?>">
+                    <span class="outer"><span class="inner"></span></span>Nữ Ở
+                </label>
+            </div>
+        </div>
 
         <div class="<?=$form_group?>">
             <div class="<?=$stage_1.' '.$text_right ?>">Cho Phép Nấu Nướng</div>
@@ -280,12 +298,10 @@ $float_left = 'float-left';
                     'checked' => set_checkbox($field_name, $field_name)
                 );
                 echo form_checkbox($data);
-                echo form_label('', $field_name, array('class' => $label_checkbox_primary));
+                echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
                 ?>
             </div>
         </div>
-
-        <div class="clear"></div>
 
         <div class="<?=$form_group?>">
             <div class="<?=$stage_1.' '.$text_right ?>">Ở Chung Với Chủ</div>
@@ -299,12 +315,10 @@ $float_left = 'float-left';
                     'checked' => set_checkbox($field_name, $field_name)
                 );
                 echo form_checkbox($data);
-                echo form_label('', $field_name, array('class' => $label_checkbox_primary));
+                echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
                 ?>
             </div>
         </div>
-
-        <div class="clear"></div>
 
         <div class="<?=$form_group?>">
             <div class="<?=$stage_1.' '.$text_right ?>">Nhà Vệ Sinh Riêng</div>
@@ -318,12 +332,10 @@ $float_left = 'float-left';
                     'checked' => set_checkbox($field_name, $field_name)
                 );
                 echo form_checkbox($data);
-                echo form_label('', $field_name, array('class' => $label_checkbox_primary));
+                echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
                 ?>
             </div>
         </div>
-
-        <div class="clear"></div>
 
         <div class="<?=$form_group?>">
             <div class="<?=$stage_1.' '.$text_right ?>">Xe Buýt</div>
@@ -337,12 +349,10 @@ $float_left = 'float-left';
                     'checked' => set_checkbox($field_name, $field_name)
                 );
                 echo form_checkbox($data);
-                echo form_label('', $field_name, array('class' => $label_checkbox_primary));
+                echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
                 ?>
             </div>
         </div>
-
-        <div class="clear"></div>
 
         <div class="<?=$form_group?>">
             <div class="<?=$stage_1.' '.$text_right ?>">Có Ban Công</div>
@@ -356,12 +366,10 @@ $float_left = 'float-left';
                     'checked' => set_checkbox($field_name, $field_name)
                 );
                 echo form_checkbox($data);
-                echo form_label('', $field_name, array('class' => $label_checkbox_primary));
+                echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
                 ?>
             </div>
         </div>
-
-        <div class="clear"></div>
     </fieldset>
 
     <fieldset>
@@ -402,7 +410,7 @@ $float_left = 'float-left';
                 <div class="tooltip_content" style="width: 270px">
                     <span id="tooltip_content">Điền đầy đủ mã vũng nếu là số điện thoại cố định.</span>
                 </div>
-                <div class="clear"></div>
+
             </div>
         </div>
 
