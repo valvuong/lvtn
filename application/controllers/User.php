@@ -111,7 +111,7 @@ class User extends CI_Controller {
 	{
 		$this->session->unset_userdata('logged_in');
 		session_destroy();
-		redirect('welcome', 'refresh');
+		redirect('', 'refresh');
 	}
 	
 	function update_profile($id)

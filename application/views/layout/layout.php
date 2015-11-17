@@ -54,8 +54,13 @@
                     <ul>
                         <li><a href="<?=site_url('buon-ban')?>">Rao Vặt</a></li>
                         <li><a href="<?=site_url('dang-tin')?>">Đăng Tin</a></li>
-                        <li><a href="<?=site_url('dang-ki')?>">Đăng Kí</a></li>
-                        <li><a href="<?=site_url('dang-nhap')?>">Đăng Nhập</a></li>
+                        <?php if(!$this->session->userdata('logged_in')): ?>
+                            <li><a href="<?=site_url('dang-ki')?>">Đăng Kí</a></li>
+                            <li><a href="<?=site_url('dang-nhap')?>">Đăng Nhập</a></li>
+                        <?php else: ?>
+                            <li><a href="<?=site_url('dang-xuat')?>">Đăng Xuất</a></li>
+                            <li><a href="<?=site_url('tai-khoan')?>">Tài Khoản</a></li>
+                        <?php endif; ?>
                     </ul>
                 </li>
                 <li class="float-right search-main">
