@@ -8,7 +8,7 @@ class Muser extends CI_Model {
 	public function check_login($data) {
 		$this->db->select('username');
 		$this->db->select('role');
-		$this->db->select('id');
+		$this->db->select('idUser');
 		$this->db->from(MODEL_USER);
 		$this->db->where('username',$data['username']);
 		$this->db->where('password',$data['password']);

@@ -16,91 +16,81 @@ class Mfilter extends CI_Model {
         parent::__construct();
     }
 
-    private function get_field_rows($id, $field_name) {
-        $this->db->select('*');
-        $this->db->from(MODEL_POST);
-        $this->db->where($field_name, $id);
-        $this->db->where($this->hethan." >=", date('Y-m-d'));
-        $query = $this->db->get();
-        return $query->num_rows();
-    }
 /// filter by category ////
-    public function get_category_rows($idC) {
-        $result = $this->get_field_rows($idC, $this->chuyenmuc);
-        return $result;
-    }
-
-    public function get_by_category($idC, $page) {
-        $this->db->select(MODEL_POST.'.*');
-        $this->db->select(MODEL_DISTRICT.'.tenquan');
-        $this->db->select(MODEL_POST_UPLOAD.'.tenhinh');
-        $this->db->from(MODEL_POST);
-        $this->db->where(MODEL_POST.'.'.$this->chuyenmuc, $idC);
-        $this->db->where(MODEL_POST.'.'.$this->hethan.' >=', date('Y-m-d'));
-        $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.quan', 'left');
-        $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.id', 'left');
-        $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
-        $this->db->group_by(MODEL_POST.'.'.$this->id);
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-//// filter by area ////
-    public function get_area_rows() {
+    public function get_filter_rows($category, $area, $price, $district) {
+        if ($area < 10000) {
+            $min_area = $area / 100;
+            $max_area = $area % 100;
+        }
+        else if ($area > 10000) {
+            $min_area = $area / 1000;
+            $max_area = $area % 1000;
+        }
+        if ($price < 100) {
+            $min_price = $price / 10;
+            $max_price = $price % 10;
+        }
+        else if ($price > 100) {
+            $min_price = $price / 100;
+            $max_price = $price % 100;
+        }
         $this->db->select('*');
         $this->db->from(MODEL_POST);
+        if ($category != '') {
+            $this->db->where($this->chuyenmuc, $category);
+        }
+        if ($area != '') {
+            $this->db->where($this->dientich.' >=', $min_area);
+            $this->db->where($this->dientich.' <=', $max_area);
+        }
+        if ($price != '') {
+            $this->db->where($this->giaphong.' >=', $min_price);
+            $this->db->where($this->giaphong.' <=', $max_price);
+        }   
+        if ($district != '') {
+            $this->db->where($this->quan, $district);
+        }
         $this->db->where($this->hethan." >=", date('Y-m-d'));
         $query = $this->db->get();
         return $query->num_rows();
     }
 
-    public function get_by_area($idA, $page) {
-    	if ($idA < 10000) {
-    		$minA = $idA / 100;
-    		$maxA = $idA % 100;
-    	}
-    	else if ($idA > 10000) {
-    		$minA = $idA / 1000;
-    		$maxA = $idA % 1000;
-    	}
+    public function get_filter_content($category, $area, $price, $district, $page) {
+        if ($area < 10000) {
+            $min_area = $area / 100;
+            $max_area = $area % 100;
+        }
+        else if ($area > 10000) {
+            $min_area = $area / 1000;
+            $max_area = $area % 1000;
+        }
+        if ($price < 100) {
+            $min_price = $price / 10;
+            $max_price = $price % 10;
+        }
+        else if ($price > 100) {
+            $min_price = $price / 100;
+            $max_price = $price % 100;
+        }
         $this->db->select(MODEL_POST.'.*');
         $this->db->select(MODEL_DISTRICT.'.tenquan');
         $this->db->select(MODEL_POST_UPLOAD.'.tenhinh');
         $this->db->from(MODEL_POST);
-        $this->db->where(MODEL_POST.'.'.$this->dientich.' >=', $minA);
-        $this->db->where(MODEL_POST.'.'.$this->dientich.' <=', $maxA);
-        $this->db->where(MODEL_POST.'.'.$this->hethan.' >=', date('Y-m-d'));
-        $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.quan', 'left');
-        $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.id', 'left');
-        $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
-        $this->db->group_by(MODEL_POST.'.'.$this->id);
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-//// filter by price ////
-    public function get_area_rows() {
-        $this->db->select('*');
-        $this->db->from(MODEL_POST);
+        if ($category != '') {
+            $this->db->where($this->chuyenmuc, $category);
+        }
+        if ($area != '') {
+            $this->db->where($this->dientich.' >=', $min_area);
+            $this->db->where($this->dientich.' <=', $max_area);
+        }
+        if ($price != '') {
+            $this->db->where($this->giaphong.' >=', $min_price);
+            $this->db->where($this->giaphong.' <=', $max_price);
+        }   
+        if ($district != '') {
+            $this->db->where($this->quan, $district);
+        }
         $this->db->where($this->hethan." >=", date('Y-m-d'));
-        $query = $this->db->get();
-        return $query->num_rows();
-    }
-
-    public function get_by_area($idA, $page) {
-    	if ($idA < 10000) {
-    		$minA = $idA / 100;
-    		$maxA = $idA % 100;
-    	}
-    	else if ($idA > 10000) {
-    		$minA = $idA / 1000;
-    		$maxA = $idA % 1000;
-    	}
-        $this->db->select(MODEL_POST.'.*');
-        $this->db->select(MODEL_DISTRICT.'.tenquan');
-        $this->db->select(MODEL_POST_UPLOAD.'.tenhinh');
-        $this->db->from(MODEL_POST);
-        $this->db->where(MODEL_POST.'.'.$this->dientich.' >=', $minA);
-        $this->db->where(MODEL_POST.'.'.$this->dientich.' <=', $maxA);
-        $this->db->where(MODEL_POST.'.'.$this->hethan.' >=', date('Y-m-d'));
         $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.quan', 'left');
         $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.id', 'left');
         $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
@@ -108,5 +98,4 @@ class Mfilter extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
-    
  }

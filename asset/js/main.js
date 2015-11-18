@@ -6,7 +6,6 @@ $(function() {
     header();
     listSort();
 });
-
 function menuTask() {
     var firstLiHeight = $('nav ul li:first-child').height();
     var nav = 'nav ul li.task > a';

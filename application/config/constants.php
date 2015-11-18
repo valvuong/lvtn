@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 /*
 |--------------------------------------------------------------------------
 | File and Directory Modes
@@ -18,7 +17,6 @@ define('FILE_READ_MODE', 0644);
 define('FILE_WRITE_MODE', 0666);
 define('DIR_READ_MODE', 0755);
 define('DIR_WRITE_MODE', 0755);
-
 /*
 |--------------------------------------------------------------------------
 | File Stream Modes
@@ -27,7 +25,6 @@ define('DIR_WRITE_MODE', 0755);
 | These modes are used when working with fopen()/popen()
 |
 */
-
 define('FOPEN_READ', 'rb');
 define('FOPEN_READ_WRITE', 'r+b');
 define('FOPEN_WRITE_CREATE_DESTRUCTIVE', 'wb'); // truncates existing file data, use with care
@@ -36,7 +33,6 @@ define('FOPEN_WRITE_CREATE', 'ab');
 define('FOPEN_READ_WRITE_CREATE', 'a+b');
 define('FOPEN_WRITE_CREATE_STRICT', 'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT', 'x+b');
-
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace
@@ -48,7 +44,6 @@ define('FOPEN_READ_WRITE_CREATE_STRICT', 'x+b');
 |
 */
 define('SHOW_DEBUG_BACKTRACE', TRUE);
-
 /*
 |--------------------------------------------------------------------------
 | Exit Status Codes
@@ -84,27 +79,20 @@ define('EXIT_USER_INPUT', 7); // invalid user input
 define('EXIT_DATABASE', 8); // database error
 define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
-
 define('LAYOUT','layout/layout');
 define('POSTS_PER_PAGE', 5);
 define('ADS_PER_PAGE', 5);
-
-define('MODEL_CATEGORY', 'phong_chuyenmuc');
 define('MODEL_DISTRICT', 'quan');
 define('MODEL_USER', 'user');
 define('MODEL_WARD', 'phuong');
-
-
 define('MODEL_POST', 'phong_bantin');
 define('MODEL_POST_CATEGORY', 'phong_chuyenmuc');
 define('MODEL_POST_PRICE', 'phong_chiphi');
 define('MODEL_POST_CONTACT', 'phong_thongtinlienlac');
 define('MODEL_POST_UPLOAD', 'phong_hinh');
-
 define('MODEL_MARKET', 'raovat');
 define('MODEL_MARKET_UPLOAD', 'raovat_hinh');
 define('MODEL_MARKET_CATEGORY', 'raovat_loai');
-
 define('ACTION_POST_UPLOAD', 'upload_image');
 define('ACTION_MARKET_UPLOAD', 'upload_image');
-
+define('MODEL_CATEGORY', MODEL_POST_CATEGORY);

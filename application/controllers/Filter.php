@@ -6,64 +6,35 @@ class Filter extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->database();
-        $this->load->helper(array('url','form'));
-        $this->load->model(array('mdistrict','muser','mfilter','mpost'));
+        $this->load->helper('url');
+        $this->load->model('mfilter');
     }
 
-    public function filter() {
-         $val = $this->input->get_post('val');
-         $name = $this->input->get_post('name');
-        $html = $this->build_filter_html_area(1,$val);
+    public function filter($page=1) {
+        $data = $this->input->get_post('data');
+        if (!isset($data['category']))
+            $category = '';
+        else $category = $data['category'];
+        if (!isset($data['area']))
+            $area = '';
+        else $area = $data['area'];
+        if (!isset($data['price']))
+            $price = '';
+        else $price = $data['price'];
+        if (!isset($data['district']))
+            $district = '';
+        else $district = $data['district'];
+        $html = $this->build_filter_html($page,$category, $area, $price, $district);
         echo $html;
     }
 
-    public function build_filter_html_category($page=1, $idC){
+    public function build_filter_html($page=1, $category, $area, $price, $district){
         $class_name = $this->router->fetch_class();
         $method_name = $this->router->fetch_method();
-        $data['content'] = $this->mfilter->get_by_category($idC, $page);
-        $data['pagination'] = array($class_name, $method_name, $page, $idC);
-        $data['items_per_page'] = POSTS_PER_PAGE;
-        $data['num_rows'] = $this->mfilter->get_category_rows($idC);
-        $data['url_alias'] = '';
-        $html = $this->load->view("home", $data, TRUE);
+        $data['content'] = $this->mfilter->get_filter_content($category, $area, $price, $district, $page);
+        $data['page'] = $page + 1;
+        $html = $this->load->view("filter", $data, TRUE);
         return $html;
-        
-    }
-    public function build_filter_html_area($page=1, $idA){
-        $class_name = $this->router->fetch_class();
-        $method_name = $this->router->fetch_method();
-        $data['content'] = $this->mfilter->get_by_area($idA, $page);
-        $data['pagination'] = array($class_name, $method_name, $page, $idA);
-        $data['items_per_page'] = POSTS_PER_PAGE;
-        $data['num_rows'] = $this->mfilter->get_area_rows();
-        $data['url_alias'] = '';
-        $html = $this->load->view("home", $data, TRUE);
-        return $html;
-        
-    }
-    public function build_filter_html_price($page=1, $idC){
-        $class_name = $this->router->fetch_class();
-        $method_name = $this->router->fetch_method();
-        $data['content'] = $this->mpost->get_by_category($idC, $page);
-        $data['pagination'] = array($class_name, $method_name, $page, $idC);
-        $data['items_per_page'] = POSTS_PER_PAGE;
-        $data['num_rows'] = $this->mpost->get_category_rows($idC);
-        $data['url_alias'] = '';
-        $html = $this->load->view("home", $data, TRUE);
-        return $html;
-        
-    }
-    public function build_filter_html_district($page=1, $idC){
-        $class_name = $this->router->fetch_class();
-        $method_name = $this->router->fetch_method();
-        $data['content'] = $this->mpost->get_by_category($idC, $page);
-        $data['pagination'] = array($class_name, $method_name, $page, $idC);
-        $data['items_per_page'] = POSTS_PER_PAGE;
-        $data['num_rows'] = $this->mpost->get_category_rows($idC);
-        $data['url_alias'] = '';
-        $html = $this->load->view("home", $data, TRUE);
-        return $html;
-        
     }
 }
 ?>
