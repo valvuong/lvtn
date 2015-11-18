@@ -266,7 +266,7 @@ $float_left = 'float-left';
                     'name' => $field_name,
                     'type' => 'number',
                     'class' => $input_class,
-                    'value' => (!empty(set_value($field_name)))?set_value($field_name):0,
+                    'value' => set_value($field_name),
                     'style' => 'width: 100px;display: inline-block; padding-left: 30px',
                     'min' => 0
                 );
@@ -283,15 +283,15 @@ $float_left = 'float-left';
                 $field_name = 'gender-only';
                 ?>
                 <label class="radio">
-                    <input id="radio1" value="Nữ Ở" type="radio" name="<?=$field_name?>">
+                    <input value="Nữ Ở" type="radio" name="<?=$field_name?>">
                     <span class="outer"><span class="inner"></span></span>Nữ Ở
                 </label>
                 <label class="radio">
-                    <input id="radio1" value="Nam Ở" type="radio" name="<?=$field_name?>">
+                    <input value="Nam Ở" type="radio" name="<?=$field_name?>">
                     <span class="outer"><span class="inner"></span></span>Nam Ở
                 </label>
                 <label class="radio">
-                    <input id="radio1" value="Tùy Ý" type="radio" name="<?=$field_name?>">
+                    <input value="Tùy Ý" type="radio" name="<?=$field_name?>">
                     <span class="outer"><span class="inner"></span></span>Tùy Ý
                 </label>
             </div>

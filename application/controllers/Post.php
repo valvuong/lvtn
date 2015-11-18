@@ -107,14 +107,13 @@ class Post extends CI_Controller {
                         'anninh' => $this->input->post('security'),
                         'naunuong' => $this->input->post('cook')===NULL ? 0:1,
                         'chungchu' => $this->input->post('with-host')===NULL ? 0:1,
-                        // 'nam'
-                        // 'nu'
                         'giogiac' => $this->input->post('time-off'),
                         'nhavesinh' => $this->input->post('wc')===NULL ? 0:1,
-                        'xebuyt' => $this->input->post('bus')===NULL ? 0:1,
-                        // 'khoangcach'
-                        // 'giatui'
-                        'bancong' => $this->input->post('balcony')===NULL ? 0:1
+                        'xebuyt' => $this->input->post('bus'),
+                        'khoangcach' => 0,
+                        'bancong' => $this->input->post('balcony')===NULL ? 0:1,
+                        'soluong' => $this->input->post('limit'),
+                        'chicho' => $this->input->post('gender-only')===NULL ? NULL:$this->input->post('gender-only')
                     )
                 );
                 $id = $this->mpost->create($info);
@@ -132,6 +131,7 @@ class Post extends CI_Controller {
     public function join() {
         $data['view'] = 'post/join';
         $data['content']['content'] = '';
+        $data['content']['title'] = 'ĐĂNG TIN Ở GHÉP';
         $data['left_hidden'] = true;
         $this->load->library('form_validation');
         $main_rules = $this->set_form_rules();
@@ -149,7 +149,7 @@ class Post extends CI_Controller {
                         'tieude' => $this->input->post('title'),
                         'quan' => $this->input->post('district'),
                         'phuong' => $this->input->post('ward'),
-                        'chuyenmuc' => 1,
+                        'chuyenmuc' => 2,
                         'giaphong' => $this->input->post('price'),
                         'dientich' => $this->input->post('area'),
                         'noidung' => $this->input->post('content_post'),
@@ -168,18 +168,18 @@ class Post extends CI_Controller {
                         'email' => $this->input->post('email')
                     ),
                     ACTION_POST_UPLOAD => $_FILES,
-                    MODEL_POST_RENTROOM => array(
+                    MODEL_POST_JOIN => array(
                         'anninh' => $this->input->post('security'),
                         'naunuong' => $this->input->post('cook')===NULL ? 0:1,
                         'chungchu' => $this->input->post('with-host')===NULL ? 0:1,
-                        // 'nam'
-                        // 'nu'
-                        // 'giogiac'
+                        'giogiac' => $this->input->post('time-off'),
                         'nhavesinh' => $this->input->post('wc')===NULL ? 0:1,
-                        'xebuyt' => $this->input->post('bus')===NULL ? 0:1,
-                        // 'khoangcach'
-                        // 'giatui'
-                        'bancong' => $this->input->post('balcony')===NULL ? 0:1
+                        'xebuyt' => $this->input->post('bus'),
+                        'khoangcach' => 0,
+                        'bancong' => $this->input->post('balcony')===NULL ? 0:1,
+                        'daco' => $this->input->post('available-nums'),
+                        'nu' => $this->input->post('female-need'),
+                        'nam' => $this->input->post('male-need')
                     )
                 );
                 $id = $this->mpost->create($info);
