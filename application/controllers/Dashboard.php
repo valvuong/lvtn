@@ -9,6 +9,8 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function index() {
-		$this->load->view('dashboard/main');
+		if($this->session->userdata('logged_in')) {
+			$this->load->view('dashboard/main');
+		}$this->load->view('dashboard/main');
 	}
 }

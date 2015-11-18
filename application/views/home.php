@@ -2,7 +2,7 @@
     <span class="glyphicon glyphicon-list-alt"></span>
     <div class="form-group sort">
       <select class="form-control" id="post-sort">
-        <option value="0">Sắp Xếp</option>
+        <option value="0">Sắp Xếp Theo</option>
         <option value="1">Mới Nhất</option>
         <option value="2">Giá Rẻ</option>
         <option value="3">Diện Tích Nhỏ</option>

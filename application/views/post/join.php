@@ -268,10 +268,9 @@ $float_left = 'float-left';
                     'name' => $field_name,
                     'class' => $input_class,
                     'type' => 'number',
-                    'value' => set_value($field_name),
+                    'value' => (!empty(set_value($field_name)))?set_value($field_name):0,
                     'style' => 'width:100px;display: inline-block',
-                    'min' => 0,
-                    'value' => 0
+                    'min' => 0
                 );
                 echo form_input($data);
                 ?>
@@ -289,10 +288,9 @@ $float_left = 'float-left';
                     'name' => $field_name,
                     'class' => $input_class,
                     'type' => 'number',
-                    'value' => set_value($field_name),
+                    'value' => (!empty(set_value($field_name)))?set_value($field_name):0,
                     'style' => 'width: 100px;display: inline-block',
-                    'min' => 0,
-                    'value' => 0
+                    'min' => 0
                 );
                 echo form_input($data);
                 ?>
@@ -304,10 +302,9 @@ $float_left = 'float-left';
                     'name' => $field_name,
                     'class' => $input_class,
                     'type' => 'number',
-                    'value' => set_value($field_name),
+                    'value' => (!empty(set_value($field_name)))?set_value($field_name):0,
                     'style' => 'width: 100px;display: inline-block',
-                    'min' => 0,
-                    'value' => 0
+                    'min' => 0
                 );
                 echo form_input($data);
                 ?>

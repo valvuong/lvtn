@@ -186,20 +186,7 @@ $float_left = 'float-left';
             ?>
         </div>
 
-        <div class="<?=$form_group?>">
-            <?php
-            echo form_label('Nội Dung'.$required.':', 'info', array('class'=>$label_class));
-            $field_name = 'content_post';
-            $data = array(
-                'id' => $field_name,
-                'name' => $field_name,
-                'class' => "form-control",
-                'minlength' => "30",
-                'maxlength' => "3000",
-            );
-            echo form_textarea($data);
-            ?>
-        </div>
+        
 
         <div class="<?=$form_group?>">
             <?php echo form_label('Hình ảnh'.$required.':', '', array('class'=>$label_class)) ?>
@@ -262,10 +249,30 @@ $float_left = 'float-left';
                     'name' => $field_name,
                     'class' => $input_class,
                     'value' => set_value($field_name),
-                    'placeholder' => ''
+                    'placeholder' => 'VD: đóng cửa vào lúc 23h'
                 );
                 echo form_input($data);
                 ?>
+            </div>
+        </div>
+
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Số Người Có Thể Ở</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'limit';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'type' => 'number',
+                    'class' => $input_class,
+                    'value' => (!empty(set_value($field_name)))?set_value($field_name):0,
+                    'style' => 'width: 100px;display: inline-block; padding-left: 30px',
+                    'min' => 0
+                );
+                echo form_input($data);
+                ?>
+                Người
             </div>
         </div>
 
@@ -276,12 +283,16 @@ $float_left = 'float-left';
                 $field_name = 'gender-only';
                 ?>
                 <label class="radio">
-                    <input id="radio1" value="0" type="radio" name="<?=$field_name?>">
+                    <input id="radio1" value="Nữ Ở" type="radio" name="<?=$field_name?>">
+                    <span class="outer"><span class="inner"></span></span>Nữ Ở
+                </label>
+                <label class="radio">
+                    <input id="radio1" value="Nam Ở" type="radio" name="<?=$field_name?>">
                     <span class="outer"><span class="inner"></span></span>Nam Ở
                 </label>
                 <label class="radio">
-                    <input id="radio1" value="1" type="radio" name="<?=$field_name?>">
-                    <span class="outer"><span class="inner"></span></span>Nữ Ở
+                    <input id="radio1" value="Tùy Ý" type="radio" name="<?=$field_name?>">
+                    <span class="outer"><span class="inner"></span></span>Tùy Ý
                 </label>
             </div>
         </div>
@@ -338,23 +349,6 @@ $float_left = 'float-left';
         </div>
 
         <div class="<?=$form_group?>">
-            <div class="<?=$stage_1.' '.$text_right ?>">Xe Buýt</div>
-            <div class="<?=$stage_2 ?>">
-                <?php
-                $field_name = 'bus';
-                $data = array(
-                    'id' => $field_name,
-                    'name' => $field_name,
-                    'class' => $checkbox_class,
-                    'checked' => set_checkbox($field_name, $field_name)
-                );
-                echo form_checkbox($data);
-                echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
-                ?>
-            </div>
-        </div>
-
-        <div class="<?=$form_group?>">
             <div class="<?=$stage_1.' '.$text_right ?>">Có Ban Công</div>
             <div class="<?=$stage_2 ?>">
                 <?php
@@ -369,6 +363,41 @@ $float_left = 'float-left';
                 echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
                 ?>
             </div>
+        </div>
+
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Các Tuyến Xe Buýt Gần Đó</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'bus';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $input_class,
+                    'value' => set_value($field_name),
+                    'placeholder' => 'VD: 50, 80, 100'
+                );
+                echo form_input($data);
+                ?>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend style="width: 120px">NỘI DUNG</legend>
+        <div class="<?=$form_group?>">
+            <?php
+            // echo form_label('Nội Dung'.$required.':', 'info', array('class'=>$label_class));
+            $field_name = 'content_post';
+            $data = array(
+                'id' => $field_name,
+                'name' => $field_name,
+                'class' => "form-control",
+                'minlength' => "30",
+                'maxlength' => "3000",
+            );
+            echo form_textarea($data);
+            ?>
         </div>
     </fieldset>
 
