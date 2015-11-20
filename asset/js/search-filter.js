@@ -10,3 +10,4 @@ $(document).on('click', '.panel-heading span.clickable', function(e){
         $this.find('i').removeClass('glyphicon-minus-sign').addClass('glyphicon-plus-sign');
     }
 });
+

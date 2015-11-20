@@ -73,6 +73,7 @@ $route['loai-(:num)'] = 'post/show_by_category/1/$1';
 $route['loai-(:num)-(:num)'] = 'post/show_by_category/$1/$2';
 $route['(:num)'] = 'welcome/index/$1';
 $route['tin-(:num)'] = 'post/index/$1';
+$route['filter-(:num)'] = 'filter/filter/$1';
 
 $route['buon-ban'] = 'market/create';
 $route['tin-vat'] = 'market/get_all';

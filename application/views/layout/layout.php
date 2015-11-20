@@ -22,8 +22,10 @@
     <script type="text/javascript" src="<?php echo js_url()?>jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="<?php echo bootstrap_url()?>js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo asset_url()?>bootstrap-select/bootstrap-select.js"></script>
+    <script type="text/javascript" src="<?php echo js_url()?>main-filter.js"></script>
     <script type="text/javascript" src="<?php echo js_url()?>main.js"></script>
     <script type="text/javascript" src="<?php echo js_url()?>search-filter.js"></script>
+    
 
     <link rel="icon" type="image/png" href="<?php echo image_url() ?>icon.png">
 
@@ -64,7 +66,7 @@
                     </ul>
                 </li>
                 <li class="float-right search-main">
-                    <form>
+                    <form action="search" method="get">
                         <input type="text" name="search" placeholder="Nhập Từ Khóa">
                         <span class="glyphicon glyphicon-search"></span>
                     </form>
@@ -90,9 +92,10 @@
                             </div>
                             <div class="panel-body">
                                 <ul>
+                                    <li><label><input type="radio" name="category" value="">Tất cả</label></li>
                                     <?php $query = $this->mcategory->get_all() ?>
                                     <?php foreach($query as $row): ?>
-                                        <li><label><input type="checkbox" name="category[]" value="<?=$row['id']?>"><?=$row['ten']?></label></li>
+                                        <li><label><input type="radio" name="category" value="<?=$row['id']?>"><?=$row['ten']?></label></li>
                                     <?php endforeach ?>
                                 </ul>
                             </div>
@@ -104,9 +107,10 @@
                             </div>
                             <div class="panel-body">
                                 <ul>
+                                    <li><label><input type="radio" name="area" value="">Tất cả</label></li>
                                     <?php $query = $this->db->get('dientich') ?>
                                     <?php foreach($query->result_array() as $row): ?>
-                                        <li><label><input type="checkbox" name="category[]" value="<?=$row['value']?>"><?=$row['text']?></label></li>
+                                        <li><label><input type="radio" name="area" value="<?=$row['value']?>"><?=$row['text']?></label></li>
                                     <?php endforeach ?>
                                 </ul>
                             </div>
@@ -118,9 +122,10 @@
                             </div>
                             <div class="panel-body">
                                 <ul>
+                                    <li><label><input type="radio" name="price" value="">Tất cả</label></li>
                                     <?php $query = $this->db->get('giaphong') ?>
                                     <?php foreach($query->result_array() as $row): ?>
-                                        <li><label><input type="checkbox" name="category[]" value="<?=$row['value']?>"><?=$row['text']?></label></li>
+                                        <li><label><input type="radio" name="price" value="<?=$row['value']?>"><?=$row['text']?></label></li>
                                     <?php endforeach ?>
                                 </ul>
                             </div>
@@ -132,9 +137,10 @@
                             </div>
                             <div class="panel-body">
                                 <ul>
+                                    <li><label><input type="radio" name="district" value="">Tất cả</label></li>
                                     <?php $query = $this->mdistrict->get_all() ?>
                                     <?php foreach($query as $row): ?>
-                                        <li><label><input type="checkbox" name="category[]" value="<?=$row['idQ']?>"><?=$row['tenquan']?></label></li>
+                                        <li><label><input type="radio" name="district" value="<?=$row['idQ']?>"><?=$row['tenquan']?></label></li>
                                     <?php endforeach ?>
                                 </ul>
                             </div>

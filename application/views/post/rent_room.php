@@ -184,9 +184,7 @@ $float_left = 'float-left';
             );
             echo form_input($data);
             ?>
-        </div>
-
-        
+        </div>        
 
         <div class="<?=$form_group?>">
             <?php echo form_label('Hình ảnh'.$required.':', '', array('class'=>$label_class)) ?>
@@ -362,6 +360,35 @@ $float_left = 'float-left';
                 echo form_checkbox($data);
                 echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
                 ?>
+            </div>
+        </div>
+
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Có Chỗ Để Xe</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'parking';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $checkbox_class,
+                    'checked' => set_checkbox($field_name, $field_name)
+                );
+                echo form_checkbox($data);
+                echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
+
+                $field_name = 'parking-limit';
+                $data = array(
+                    'type' => 'number',
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $input_class,
+                    'min' => 0,
+                    'value' => set_checkbox($field_name),
+                    'style' => 'width: 70px;display: inline-block'
+                );
+                ?>
+                <span class="after-checkbox">Tối Đa <?php echo form_input($data); ?> Chiếc</span>
             </div>
         </div>
 
