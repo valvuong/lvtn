@@ -130,10 +130,10 @@ class Post extends CI_Controller {
                         'bancong' => $this->input->post('balcony')===NULL ? 0:1,
                         'chodexe' => $this->input->post('parking')===NULL ? 0:$this->input->post('parking-limit'),
                         'soluong' => $this->input->post('limit'),
-                        'chicho' => $this->input->post('gender-only')===NULL ? NULL:$this->input->post('gender-only')
+                        'chicho' => $this->input->post('gender-only')===NULL ? "":$this->input->post('gender-only')
                     )
                 );
-                $info = array_merge($main_info, $sub_info);
+                $info = $main_info + $sub_info;
                 $id = $this->mpost->create($info);
                 redirect('tin-'.$id,'refresh');
             }
@@ -204,7 +204,7 @@ class Post extends CI_Controller {
                         'nam' => $this->input->post('male-need')
                     )
                 );
-                $info = array_merge($main_info, $sub_info);
+                $info = $main_info + $sub_info;
                 $id = $this->mpost->create($info);
                 redirect('tin-'.$id,'refresh');
             }
@@ -235,7 +235,7 @@ class Post extends CI_Controller {
         
         $data['content']['map'] = $this->googlemaps->create_map();
         //////////////////gmap///////////////
-        
+
         $this->load->view(LAYOUT, $data);
     }
 

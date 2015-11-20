@@ -207,7 +207,7 @@ $float_left = 'float-left';
     <!-- //////////gmap///////////////-->
     <head><?php echo $map['js'];?></head>
     <fieldset>
-        <legend style="width: 80px">BẢN ĐỒ</legend>
+        <legend style="width: 100px">BẢN ĐỒ</legend>
         <h3 style="margin-top: 0;">Hãy click vào bản đồ chọn vị trí cho phòng trọ</h3>
         <div><?php echo $map['html'];?></div>
         <div class="<?=$form_group?>">

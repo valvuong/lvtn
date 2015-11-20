@@ -79,12 +79,16 @@ define('EXIT_USER_INPUT', 7); // invalid user input
 define('EXIT_DATABASE', 8); // database error
 define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
 define('LAYOUT','layout/layout');
+
 define('POSTS_PER_PAGE', 5);
 define('ADS_PER_PAGE', 5);
+
 define('MODEL_DISTRICT', 'quan');
 define('MODEL_USER', 'user');
 define('MODEL_WARD', 'phuong');
+
 define('MODEL_POST', 'phong_bantin');
 define('MODEL_POST_CATEGORY', 'phong_chuyenmuc');
 define('MODEL_POST_PRICE', 'phong_chiphi');

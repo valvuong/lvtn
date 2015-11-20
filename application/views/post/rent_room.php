@@ -18,7 +18,7 @@ $text_right = 'text-right';
 $float_left = 'float-left';
 ?>
 <h2 class="dt">ĐĂNG TIN PHÒNG TRỌ</h2>
-<?php echo form_open_multipart('post/form', array('id'=>'post-form')) ?>
+<?php echo form_open_multipart('post/rent_room', array('id'=>'post-form')) ?>
     <?php echo form_input(array('type' => 'hidden', 'id' => 'url_ajax', 'name' => 'url_ajax', 'value' => base_url().'ajax/get_ward')) ?>
 
     <fieldset>
@@ -218,7 +218,7 @@ $float_left = 'float-left';
     <!-- //////////gmap///////////////-->
     <head><?php echo $map['js'];?></head>
     <fieldset>
-        <legend style="width: 80px">BẢN ĐỒ</legend>
+        <legend style="width: 100px">BẢN ĐỒ</legend>
         <h3 style="margin-top: 0;">Hãy click vào bản đồ chọn vị trí cho phòng trọ</h3>
         <div><?php echo $map['html'];?></div>
         <div class="<?=$form_group?>">
