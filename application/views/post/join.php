@@ -1,7 +1,3 @@
-<!-- //////////gmap///////////////-->
-<head><?php echo $map['js'];?></head>
-<!-- //////////gmap///////////////-->
-
 <script src="<?php echo asset_url() ?>ckeditor/ckeditor.js"></script>
 
 <script type="text/javascript" src="<?php echo asset_url() ?>js/post-form.js"></script>
@@ -205,9 +201,17 @@ $float_left = 'float-left';
             </div>
         </div>
 
-        <div class=<?=$form_group?> id="preview"></div>
-	<!-- //////////gmap///////////////-->
-		<div class=<?=$form_group?>>
+
+        <div class="<?=$form_group?>" id="preview"></div>
+    </fieldset>
+
+    <!-- //////////gmap///////////////-->
+    <head><?php echo $map['js'];?></head>
+    <fieldset>
+        <legend style="width: 100px">BẢN ĐỒ</legend>
+        <h3 style="margin-top: 0;">Hãy click vào bản đồ chọn vị trí cho phòng trọ</h3>
+        <div><?php echo $map['html'];?></div>
+        <div class="<?=$form_group?>">
             <?php
             $field_name = 'lat';
             echo form_label('Vĩ độ'.$required.':', $field_name, array('class'=>$label_class));
@@ -219,7 +223,7 @@ $float_left = 'float-left';
             echo form_input($data);
             ?>
         </div>
-		<div class=<?=$form_group?>>
+        <div class="<?=$form_group?>">
             <?php
             $field_name = 'lng';
             echo form_label('Kinh độ'.$required.':', $field_name, array('class'=>$label_class));
@@ -231,11 +235,6 @@ $float_left = 'float-left';
             echo form_input($data);
             ?>
         </div>
-		<div><?php echo $map['html'];?></div>
-	
-	
-	<!-- //////////gmap///////////////-->
-        <div class="<?=$form_group?>" id="preview"></div>
     </fieldset>
 
     <fieldset>
@@ -396,6 +395,35 @@ $float_left = 'float-left';
                 echo form_checkbox($data);
                 echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
                 ?>
+            </div>
+        </div>
+
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Có Chỗ Để Xe</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'parking';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $checkbox_class,
+                    'checked' => set_checkbox($field_name, $field_name)
+                );
+                echo form_checkbox($data);
+                echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
+
+                $field_name = 'parking-limit';
+                $data = array(
+                    'type' => 'number',
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $input_class,
+                    'min' => 0,
+                    'value' => set_checkbox($field_name),
+                    'style' => 'width: 70px;display: inline-block'
+                );
+                ?>
+                <span class="after-checkbox">Tối Đa <?php echo form_input($data); ?> Chiếc</span>
             </div>
         </div>
 

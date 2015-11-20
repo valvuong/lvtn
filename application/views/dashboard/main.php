@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>QUẢN LÝ TÀI KHOẢN</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo bootstrap_url()?>css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="<?php echo css_url()?>dashboard/css/sb-admin.css" rel="stylesheet">
+    <link href="<?php echo asset_url()?>dashboard/css/sb-admin.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="css/plugins/morris.css" rel="stylesheet">
@@ -31,7 +29,6 @@
     <![endif]-->
 
     <link rel="icon" type="image/png" href="<?php echo image_url() ?>icon.png">
-
 </head>
 
 <body>

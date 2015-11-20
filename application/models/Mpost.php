@@ -12,6 +12,8 @@ class Mpost extends CI_Model {
     private $noidung = 'noidung';
     private $ngaydang= 'ngaydang';
     private $hethan = 'hethan';
+    private $kinhdo = 'kinhdo';
+    private $vido = 'vido';
 
     public function __construct() {
         parent::__construct();

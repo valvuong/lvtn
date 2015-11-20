@@ -1,7 +1,3 @@
-<!-- //////////gmap///////////////-->
-<head><?php echo $map['js'];?></head>
-<!-- //////////gmap///////////////-->
-
 <script src="<?php echo asset_url() ?>ckeditor/ckeditor.js"></script>
 
 <script type="text/javascript" src="<?php echo asset_url() ?>js/post-form.js"></script>
@@ -22,7 +18,7 @@ $text_right = 'text-right';
 $float_left = 'float-left';
 ?>
 <h2 class="dt"><?=$title?></h2>
-<?php echo form_open_multipart('post/form', array('id'=>'post-form')) ?>
+<?php echo form_open_multipart('post/home', array('id'=>'post-form')) ?>
     <?php echo form_input(array('type' => 'hidden', 'id' => 'url_ajax', 'name' => 'url_ajax', 'value' => base_url().'ajax/get_ward')) ?>
 
     <fieldset>
@@ -206,8 +202,15 @@ $float_left = 'float-left';
         </div>
 
         <div class=<?=$form_group?> id="preview"></div>
-	<!-- //////////gmap///////////////-->
-		<div class=<?=$form_group?>>
+    </fieldset>
+
+    <!-- //////////gmap///////////////-->
+    <head><?php echo $map['js'];?></head>
+    <fieldset>
+        <legend style="width: 100px">BẢN ĐỒ</legend>
+        <h3 style="margin-top: 0;">Hãy click vào bản đồ chọn vị trí cho phòng trọ</h3>
+        <div><?php echo $map['html'];?></div>
+        <div class="<?=$form_group?>">
             <?php
             $field_name = 'lat';
             echo form_label('Vĩ độ'.$required.':', $field_name, array('class'=>$label_class));
@@ -219,7 +222,7 @@ $float_left = 'float-left';
             echo form_input($data);
             ?>
         </div>
-		<div class=<?=$form_group?>>
+        <div class="<?=$form_group?>">
             <?php
             $field_name = 'lng';
             echo form_label('Kinh độ'.$required.':', $field_name, array('class'=>$label_class));
@@ -231,11 +234,6 @@ $float_left = 'float-left';
             echo form_input($data);
             ?>
         </div>
-		<div><?php echo $map['html'];?></div>
-	
-	
-	<!-- //////////gmap///////////////-->
-        <div class="<?=$form_group?>" id="preview"></div>
     </fieldset>
 
     <fieldset>

@@ -11,7 +11,6 @@ function getfilter() {
         data['price'] = $("input[name='price']:checked").val();
         data['district'] = $("input[name='district']:checked").val();
 
-        if($(this).is(':checked')) { 
             $.ajax({
                 type    : "POST",
                 url     : 'filter/filter',
@@ -20,12 +19,16 @@ function getfilter() {
                     $('#content').html(result);
                 }
             });
-        }
     });
 }
 
 function showmore() {
     $(document).on('click','.show_more',function(){
+        var data = {};
+        data['category'] = $("input[name='category']:checked").val();
+        data['area'] = $("input[name='area']:checked").val();
+        data['price'] = $("input[name='price']:checked").val();
+        data['district'] = $("input[name='district']:checked").val();
         var page = $(this).attr('id');
         var add = 'filter/filter' + '/' +page;
         $('.show_more').hide();
@@ -33,7 +36,7 @@ function showmore() {
         $.ajax({
             type:'POST',
             url: add,
-            data: {page:page},
+            data: {data:data},
             success:function(result){
                 $('#show_more_main'+page).remove();
                 $('#content').append(result);

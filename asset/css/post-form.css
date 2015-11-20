@@ -120,6 +120,9 @@ input.checkbox-primary:checked + .label-checkbox-primary:after {
   content: "\f00c";
   color: #fff;
 }
+.after-checkbox {
+  margin-left: 20px;
+}
 .row {
   margin: 0;
   position: relative;
