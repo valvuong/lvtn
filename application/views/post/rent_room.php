@@ -215,6 +215,38 @@ $float_left = 'float-left';
         <div class="<?=$form_group?>" id="preview"></div>
     </fieldset>
 
+    <!-- //////////gmap///////////////-->
+    <head><?php echo $map['js'];?></head>
+    <fieldset>
+        <legend style="width: 80px">BẢN ĐỒ</legend>
+        <h3 style="margin-top: 0;">Hãy click vào bản đồ chọn vị trí cho phòng trọ</h3>
+        <div><?php echo $map['html'];?></div>
+        <div class="<?=$form_group?>">
+            <?php
+            $field_name = 'lat';
+            echo form_label('Vĩ độ'.$required.':', $field_name, array('class'=>$label_class));
+            $data= array(
+                'id' => $field_name,
+                'name' => $field_name,
+                'class' => $input_class,
+            );
+            echo form_input($data);
+            ?>
+        </div>
+        <div class="<?=$form_group?>">
+            <?php
+            $field_name = 'lng';
+            echo form_label('Kinh độ'.$required.':', $field_name, array('class'=>$label_class));
+            $data= array(
+                'id' => $field_name,
+                'name' => $field_name,
+                'class' => $input_class,
+            );
+            echo form_input($data);
+            ?>
+        </div>
+    </fieldset>
+
     <fieldset>
         <legend style="width: 230px">THÔNG TIN BỔ SUNG</legend>
         <?php

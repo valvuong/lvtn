@@ -164,6 +164,7 @@ class Post extends CI_Controller {
 		
 		$data['content']['map'] = $this->googlemaps->create_map();
 		//////////////////gmap///////////////
+
         $this->load->view(LAYOUT, $data);
     }
 
@@ -234,6 +235,7 @@ class Post extends CI_Controller {
         
         $data['content']['map'] = $this->googlemaps->create_map();
         //////////////////gmap///////////////
+        
         $this->load->view(LAYOUT, $data);
     }
 

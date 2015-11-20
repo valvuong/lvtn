@@ -1,7 +1,3 @@
-<!-- //////////gmap///////////////-->
-<head><?php echo $map['js'];?></head>
-<!-- //////////gmap///////////////-->
-
 <script src="<?php echo asset_url() ?>ckeditor/ckeditor.js"></script>
 
 <script type="text/javascript" src="<?php echo asset_url() ?>js/post-form.js"></script>
@@ -209,8 +205,9 @@ $float_left = 'float-left';
     </fieldset>
 
     <!-- //////////gmap///////////////-->
+    <head><?php echo $map['js'];?></head>
     <fieldset>
-        <legend style="width: 80px">VỊ TRÍ</legend>
+        <legend style="width: 80px">BẢN ĐỒ</legend>
         <h3 style="margin-top: 0;">Hãy click vào bản đồ chọn vị trí cho phòng trọ</h3>
         <div><?php echo $map['html'];?></div>
         <div class="<?=$form_group?>">

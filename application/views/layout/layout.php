@@ -26,9 +26,7 @@
     <script type="text/javascript" src="<?php echo js_url()?>main.js"></script>
     <script type="text/javascript" src="<?php echo js_url()?>search-filter.js"></script>
     
-
     <link rel="icon" type="image/png" href="<?php echo image_url() ?>icon.png">
-
 </head>
 <body>
     <a href="#" id="gotop" class="fbtn"><span class="icon glyphicon glyphicon-chevron-up"></span></a>
@@ -82,7 +80,7 @@
             <div id="left">
                 <div class="panel-primary">
                     <div class="panel-heading">
-                        <h2 class="panel-title search-title">Tìm Kiếm</h2>
+                        <h2 class="panel-title search-title"><span class="glyphicon glyphicon-search"></span> TÌM KIẾM</h2>
                     </div>
                     <div class="panel-search">
                         <div class="panel panel-info">
