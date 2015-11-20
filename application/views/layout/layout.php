@@ -22,7 +22,6 @@
     <script type="text/javascript" src="<?php echo js_url()?>jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="<?php echo bootstrap_url()?>js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo asset_url()?>bootstrap-select/bootstrap-select.js"></script>
-    <script type="text/javascript" src="<?php echo js_url()?>main-filter.js"></script>
     <script type="text/javascript" src="<?php echo js_url()?>main.js"></script>
     <script type="text/javascript" src="<?php echo js_url()?>search-filter.js"></script>
     
@@ -56,8 +55,13 @@
                     <ul>
                         <li><a href="<?=site_url('buon-ban')?>">Rao Vặt</a></li>
                         <li><a href="<?=site_url('dang-tin')?>">Đăng Tin</a></li>
-                        <li><a href="<?=site_url('dang-ki')?>">Đăng Kí</a></li>
-                        <li><a href="<?=site_url('dang-nhap')?>">Đăng Nhập</a></li>
+                        <?php if(!$this->session->userdata('logged_in')): ?>
+                            <li><a href="<?=site_url('dang-ki')?>">Đăng Kí</a></li>
+                            <li><a href="<?=site_url('dang-nhap')?>">Đăng Nhập</a></li>
+                        <?php else: ?>
+                            <li><a href="<?=site_url('dang-xuat')?>">Đăng Xuất</a></li>
+                            <li><a href="<?=site_url('tai-khoan')?>">Tài Khoản</a></li>
+                        <?php endif; ?>
                     </ul>
                 </li>
                 <li class="float-right search-main">
@@ -74,6 +78,7 @@
 
     <div class="body-content container">
         <?php if(!isset($left_hidden)): ?>
+        <script type="text/javascript" src="<?php echo js_url()?>main-filter.js"></script>
             <div id="left">
                 <div class="panel-primary">
                     <div class="panel-heading">

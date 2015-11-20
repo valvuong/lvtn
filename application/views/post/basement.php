@@ -278,30 +278,10 @@ $float_left = 'float-left';
         </div>
 
         <div class="<?=$form_group?>">
-            <div class="<?=$stage_1.' '.$text_right ?>">Hiện Tại Đã Có</div>
+            <div class="<?=$stage_1.' '.$text_right ?>">Có Tất Cả Là</div>
             <div class="<?=$stage_2 ?>">
                 <?php
-                $field_name = 'available-nums';
-                $data = array(
-                    'id' => $field_name,
-                    'name' => $field_name,
-                    'class' => $input_class,
-                    'type' => 'number',
-                    'value' => (!empty(set_value($field_name)))?set_value($field_name):0,
-                    'style' => 'width:100px;display: inline-block',
-                    'min' => 0
-                );
-                echo form_input($data);
-                ?>
-                Người
-            </div>
-        </div>
-
-        <div class="<?=$form_group?>">
-            <div class="<?=$stage_1.' '.$text_right ?>">Cần Thêm</div>
-            <div class="<?=$stage_2 ?>">
-                <?php
-                $field_name = 'male-need';
+                $field_name = 'all-room';
                 $data = array(
                     'id' => $field_name,
                     'name' => $field_name,
@@ -313,9 +293,9 @@ $float_left = 'float-left';
                 );
                 echo form_input($data);
                 ?>
-                Nam
+                Phòng
                 <?php
-                $field_name = 'female-need';
+                $field_name = 'bed-room';
                 $data = array(
                     'id' => $field_name,
                     'name' => $field_name,
@@ -327,15 +307,15 @@ $float_left = 'float-left';
                 );
                 echo form_input($data);
                 ?>
-                Nữ
+                Phòng Ngủ
             </div>
         </div>
 
         <div class="<?=$form_group?>">
-            <div class="<?=$stage_1.' '.$text_right ?>">Cho Phép Nấu Nướng</div>
+            <div class="<?=$stage_1.' '.$text_right ?>">Dịch Vụ Giặt Ủi</div>
             <div class="<?=$stage_2 ?>">
                 <?php
-                $field_name = 'cook';
+                $field_name = 'laundry';
                 $data = array(
                     'id' => $field_name,
                     'name' => $field_name,
@@ -349,52 +329,18 @@ $float_left = 'float-left';
         </div>
 
         <div class="<?=$form_group?>">
-            <div class="<?=$stage_1.' '.$text_right ?>">Ở Chung Với Chủ</div>
+            <div class="<?=$stage_1.' '.$text_right ?>">Các Dịch Vụ Khác</div>
             <div class="<?=$stage_2 ?>">
                 <?php
-                $field_name = 'with-host';
+                $field_name = 'other-services';
                 $data = array(
                     'id' => $field_name,
                     'name' => $field_name,
-                    'class' => $checkbox_class,
-                    'checked' => set_checkbox($field_name, $field_name)
+                    'class' => $input_class,
+                    'value' => set_value($field_name),
+                    'placeholder' => 'Vd: giao cơm tận phòng,... '
                 );
-                echo form_checkbox($data);
-                echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
-                ?>
-            </div>
-        </div>
-
-        <div class="<?=$form_group?>">
-            <div class="<?=$stage_1.' '.$text_right ?>">Nhà Vệ Sinh Riêng</div>
-            <div class="<?=$stage_2 ?>">
-                <?php
-                $field_name = 'wc';
-                $data = array(
-                    'id' => $field_name,
-                    'name' => $field_name,
-                    'class' => $checkbox_class,
-                    'checked' => set_checkbox($field_name, $field_name)
-                );
-                echo form_checkbox($data);
-                echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
-                ?>
-            </div>
-        </div>
-
-        <div class="<?=$form_group?>">
-            <div class="<?=$stage_1.' '.$text_right ?>">Có Ban Công</div>
-            <div class="<?=$stage_2 ?>">
-                <?php
-                $field_name = 'balcony';
-                $data = array(
-                    'id' => $field_name,
-                    'name' => $field_name,
-                    'class' => $checkbox_class,
-                    'checked' => set_checkbox($field_name, $field_name)
-                );
-                echo form_checkbox($data);
-                echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
+                echo form_input($data);
                 ?>
             </div>
         </div>

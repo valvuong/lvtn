@@ -22,7 +22,6 @@ fieldset {
   margin-bottom: 20px;
   box-shadow: 0 8px 17px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);
   legend {
-    width: 215px;
     background: #1F497D;
     color: #fff;
     padding: 5px 10px ;
@@ -69,28 +68,47 @@ fieldset {
   font-weight: bold;
 }
 
-.btn.btn-flat:not(.btn-link), .btn-default.btn-flat:not(.btn-link) {
+.btn.btn-flat:not(.btn-link), 
+.btn-default.btn-flat:not(.btn-link) {
   color: rgba(0,0,0,.84);
 }
 
-button.dtp-btn-cancel:hover, button.dtp-btn-ok:hover {
+button.dtp-btn-cancel:hover, 
+button.dtp-btn-ok:hover {
   background: rgba(0,0,0,.2);;
 }
 
 input.checkbox-primary {
   position: absolute;
   left: 0;
-  opacity: 0;
-  z-index: 1;
+  // opacity: 0;
+  // z-index: 1;
+  display: none;
 }
 
 .label-checkbox-primary {
   margin-left: 25px;
   cursor: pointer;
   font-weight: normal;
+  &.bigger {
+    @top-label-bigger: -5px;
+    &:before {
+      width: 30px;
+      height: 30px;
+      top: @top-label-bigger;
+      input.checkbox-primary:checked + & {
+        background-color: #f0ad4e;
+        border-color: #f0ad4e;
+      }
+    }
+    &:after {
+      font-size: 20px;
+      padding-left: 5px;
+      top: @top-label-bigger;
+    }
+  }
   &:before {
     content: "";
-    float: left;
     display: inline-block;
     position: absolute;
     width: 20px;
@@ -111,7 +129,6 @@ input.checkbox-primary {
     display: inline-block;
     position: absolute;
     left: 0;
-    top: 0;
     padding-left: 3px;
     padding-top: 1px;
     font-size: 13px;
@@ -127,7 +144,70 @@ input.checkbox-primary {
 .row {
   margin: 0;
   position: relative;
-  * {
+}
+
+.radio {
+  display: inline-block;
+  padding-right: 20px;
+  font-size: 15px;
+  line-height: 49px;
+  cursor: pointer;
+  font-weight: normal;
+  &:hover .inner {
+    -webkit-transform: scale(0.5);
+    -ms-transform: scale(0.5);
+    transform: scale(0.5);
+    opacity: .5;
+  }
+  input {
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    &:checked {
+      + .outer { 
+        border: 3px solid #009688;
+        .inner {
+          -webkit-transform: scale(1);
+          -ms-transform: scale(1);
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    }
+    &:focus {
+      + .outer {
+        .inner {
+          -webkit-transform: scale(1);
+          -ms-transform: scale(1);
+          transform: scale(1);
+          opacity: 1;
+          background-color: #009688;
+        }
+      }
+    }
+  }
+  .outer {
+    width: 26px;
+    height: 26px;
+    display: block;
     float: left;
+    margin: 10px 9px 10px 10px;
+    border: 3px solid #009688;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+  .inner {
+    -webkit-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+    width: 16px;
+    height: 16px;
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    display: block;
+    margin: 2px;
+    border-radius: 50%;
+    background-color: #009688;
+    opacity: 0;
   }
 }

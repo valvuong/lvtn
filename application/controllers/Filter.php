@@ -28,7 +28,7 @@ class Filter extends CI_Controller {
         echo $html;
     }
 
-    public function build_filter_html($page=1, $category, $area, $price, $district){
+    public function build_filter_html($page, $category, $area, $price, $district){
         $class_name = $this->router->fetch_class();
         $method_name = $this->router->fetch_method();
         $data['content'] = $this->mfilter->get_filter_content($category, $area, $price, $district, $page);

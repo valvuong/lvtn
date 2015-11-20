@@ -90,6 +90,13 @@ define('MODEL_POST_CATEGORY', 'phong_chuyenmuc');
 define('MODEL_POST_PRICE', 'phong_chiphi');
 define('MODEL_POST_CONTACT', 'phong_thongtinlienlac');
 define('MODEL_POST_UPLOAD', 'phong_hinh');
+
+define('MODEL_POST_RENTROOM', 'phong_nhatro');
+define('MODEL_POST_JOIN', 'phong_oghep');
+define('MODEL_POST_APARTMENT', 'phong_chungcu');
+define('MODEL_POST_HOME', 'phong_nhanguyencan');
+define('MODEL_POST_BASEMENT', 'phong_tangham');
+
 define('MODEL_MARKET', 'raovat');
 define('MODEL_MARKET_UPLOAD', 'raovat_hinh');
 define('MODEL_MARKET_CATEGORY', 'raovat_loai');

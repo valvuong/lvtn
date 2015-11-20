@@ -64,9 +64,10 @@ foreach( $result as $row ) {
 
 $route['dang-ki'] = 'user/register';
 $route['dang-nhap'] = 'user/login';
-$route['logout'] = 'user/logout';
+$route['dang-xuat'] = 'user/logout';
 $route['contact'] = 'welcome/contact';
 $route['about'] = 'welcome/about';
+$route['tai-khoan'] = 'dashboard';
 
 $route['loai-(:num)'] = 'post/show_by_category/1/$1';
 $route['loai-(:num)-(:num)'] = 'post/show_by_category/$1/$2';
