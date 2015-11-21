@@ -102,13 +102,29 @@ class Mpost extends CI_Model {
         $this->db->join(MODEL_POST_PRICE, MODEL_POST_PRICE.'.idBantin = '.$id, 'left');
         $this->db->join(MODEL_POST_CONTACT, MODEL_POST_CONTACT.'.idBantin = '.$id, 'left');
         $query = $this->db->get();
-        $result = $query->result_array();
+        $result = $query->result_array();var_dump($result);
+
+        $this->db->select(MODEL_POST_CATEGORY.'.bang_phu');
+        $this->db->from(MODEL_POST_CATEGORY);
+        $this->db->where(MODEL_POST_CATEGORY.'.id', $result[0]['chuyenmuc']);
+        $query = $this->db->get();
+        $r = $query->result_array();
+        $t = $r[0]['bang_phu'];
+
+        $this->db->select($t.'.*');
+        $this->db->from($t);
+        $this->db->where($t.'.idBantin', $id);
+        $query = $this->db->get();
+        $r = $query->result_array()[0];
+        unset($r['id']);
+        unset($r['idBantin']);
+        $result[0]['thongtinbosung'] = $r;
 
         $this->db->select('tenhinh');
         $this->db->from(MODEL_POST_UPLOAD);
         $this->db->where('idBantin',$id);
         $query = $this->db->get();
-        $result[0]['tenhinh'] = $query->result_array();
+        $result[0]['tenhinh'] = $query->result_array();var_dump($result);
 
         return $result[0];
     }

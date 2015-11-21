@@ -60,7 +60,7 @@ function formatNumber (num) {
 function goTop() {
 	var top = $('#gotop');
     $(window).scroll(function(){
-        if($(this).scrollTop() != 0) {
+        if($(this).scrollTop() >= 300) {
             $(top).fadeIn();
         } else {
             $(top).fadeOut();

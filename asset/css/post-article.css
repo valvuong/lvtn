@@ -9,9 +9,9 @@
   width: 70%;
 }
 fieldset {
-  width: 50%;
-  display: inline-block;
-  float: left;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 fieldset legend {
   color: #ff0a61;

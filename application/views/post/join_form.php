@@ -18,7 +18,7 @@ $text_right = 'text-right';
 $float_left = 'float-left';
 ?>
 <h2 class="dt"><?=$title?></h2>
-<?php echo form_open_multipart('post/form', array('id'=>'post-form')) ?>
+<?php echo form_open_multipart('post/join', array('id'=>'post-form')) ?>
     <?php echo form_input(array('type' => 'hidden', 'id' => 'url_ajax', 'name' => 'url_ajax', 'value' => base_url().'ajax/get_ward')) ?>
 
     <fieldset>
