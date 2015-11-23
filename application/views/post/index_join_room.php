@@ -33,15 +33,15 @@
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($daco)): ?>
-	    <p><strong><!-- Số Lượng Tối Đa Cho Ở --></strong><span><?php echo $daco ?></span></p>
+	    <p><strong><!-- Số Lượng Tối Đa Cho Ở --></strong><span>Đã Có <?php echo $daco ?> Người</span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($nu)): ?>
-	    <p><strong><!-- Chỉ Cho Ở --></strong><span>Chỉ Cho <?php echo $nu ?></span></p>
+	    <p><strong><!-- Chỉ Cho Ở --></strong><span>Hiện Tại Cần <?php echo $nu ?> Nữ</span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($nam)): ?>
-	    <p><strong><!-- Chỉ Cho Ở --></strong><span>Chỉ Cho <?php echo $nam ?></span></p>
+	    <p><strong><!-- Chỉ Cho Ở --></strong><span>Hiện Tại Cần <?php echo $nam ?> Nam</span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
 </fieldset>
