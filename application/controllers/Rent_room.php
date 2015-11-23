@@ -56,32 +56,10 @@ class Rent_room extends Post_Controller {
                 // redirect('tin-'.$id,'refresh');
             }
         }//var_dump($_FILES);
+
 		///////////gmap///////////////
-		$this->load->library('googlemaps');
-		$config['center'] = 'auto';
-		$config['onclick'] = '
-				if (markers_map) {
-					for (i in markers_map) {
-						markers_map[i].setMap(null);
-					}
-					markers_map.length = 0;
-				}
-				var marker = new google.maps.Marker({
-					map:       map,
-					position:  event.latLng
-				}); 
-				markers_map.push(marker);
-				var lat = event.latLng.lat();
-				var lng = event.latLng.lng();
-				$(\'#lat\').val(lat);
-				$(\'#lng\').val(lng);
-				';
-		
-		$config['zoom'] = 'auto';
-		$this->googlemaps->initialize($config);
-		
-		$data['content']['map'] = $this->googlemaps->create_map();
-		//////////////////gmap///////////////
+		$data['content']['map'] = $this->gmap();
+		///////////gmap///////////////
 
         $this->load->view(LAYOUT, $data);
     }

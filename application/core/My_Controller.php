@@ -74,7 +74,7 @@ class Post_Controller extends CI_Controller {
                 'dientich'  => $this->input->post('area'),
                 'noidung'   => $this->input->post('content_post'),
                 'ngaydang'  => date('Y-m-d'),
-                'hethan'    => date('Y-m-d',strtotime($this->input->post('expired_date'))),
+                'hethan'    => date('Y-m-d', strtotime($this->input->post('expired_date'))),
                 'kinhdo'    => $this->input->post('lat'),
                 'vido'      => $this->input->post('lng')
             ),
@@ -96,5 +96,32 @@ class Post_Controller extends CI_Controller {
 
     public function match_date($date) {
         return (bool)preg_match('/^(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-[0-9]{4}$/', $date);
+    }
+
+    protected function gmap() {
+        $this->load->library('googlemaps');
+        $config['center'] = 'auto';
+        $config['onclick'] = '
+                if (markers_map) {
+                    for (i in markers_map) {
+                        markers_map[i].setMap(null);
+                    }
+                    markers_map.length = 0;
+                }
+                var marker = new google.maps.Marker({
+                    map:       map,
+                    position:  event.latLng
+                }); 
+                markers_map.push(marker);
+                var lat = event.latLng.lat();
+                var lng = event.latLng.lng();
+                $(\'#lat\').val(lat);
+                $(\'#lng\').val(lng);
+                ';
+        
+        $config['zoom'] = 'auto';
+        $this->googlemaps->initialize($config);
+        
+        return $this->googlemaps->create_map();
     }
 }

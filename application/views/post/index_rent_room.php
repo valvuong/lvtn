@@ -37,7 +37,7 @@
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($chicho)): ?>
-	    <p><strong><!-- Chỉ Cho Ở --></strong><span><?php echo $chicho ?></span></p>
+	    <p><strong><!-- Chỉ Cho Ở --></strong><span>Chỉ Cho <?php echo $chicho ?></span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
 </fieldset>

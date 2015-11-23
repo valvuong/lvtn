@@ -83,7 +83,7 @@ $bigger = 'bigger';
                 <span class="outer"><span class="inner"></span></span>Nam Ở
             </label>
             <label class="radio">
-                <input value="Tùy Ý" type="radio" name="<?=$field_name?>">
+                <input value="0" type="radio" name="<?=$field_name?>">
                 <span class="outer"><span class="inner"></span></span>Tùy Ý
             </label>
         </div>
