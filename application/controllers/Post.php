@@ -31,6 +31,7 @@ class Post extends CI_Controller {
         }
         redirect($url,'refresh');
     }
+       
 
     public function show_by_district($page=1, $idD) {
         $data['view'] = 'home';

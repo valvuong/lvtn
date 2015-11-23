@@ -6,7 +6,7 @@ $(function(){
     prePay();
     datepicker();
     selectepicker();
-    fsubmit();
+    // fsubmit();
 });
 
 function datepicker() {
@@ -39,9 +39,10 @@ function getWard() {
 }
 
 function showWard(code) {
+    var url = $('#url_ajax').val();
     $.ajax({
         type: "POST",
-        url: 'ajax/get_ward',
+        url: url,
         data: {q: code},
         dataType: "json",
         success: function(data) {
@@ -53,7 +54,7 @@ function showWard(code) {
             $(ward).selectpicker("refresh");
         },
         error: function() {
-            alert('fucking error');
+            alert('error');
         }
     });
 }

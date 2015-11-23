@@ -17,8 +17,8 @@ $area_error = form_error('area');
 $text_right = 'text-right';
 $float_left = 'float-left';
 ?>
-<h2 class="dt">ĐĂNG TIN PHÒNG TRỌ</h2>
-<?php echo form_open_multipart($action, array('id'=>'post-form')) ?>
+<h2 class="dt"><?=$title?></h2>
+<?php echo form_open_multipart('post/apartment', array('id'=>'post-form')) ?>
     <?php echo form_input(array('type' => 'hidden', 'id' => 'url_ajax', 'name' => 'url_ajax', 'value' => base_url().'ajax/get_ward')) ?>
 
     <fieldset>
@@ -34,8 +34,7 @@ $float_left = 'float-left';
                 'class' => $input_class,
                 'minlength'=>'15',
                 'maxlength'=>'100',
-                'value' => set_value($field_name),
-                // 'required' => 'required'
+                'value' => set_value($field_name)
             );
             echo form_input($data);
             ?>
@@ -59,17 +58,6 @@ $float_left = 'float-left';
             <select id=<?=$field_name?> name=<?=$field_name?> class="selectpicker"></select>
         </div>
 
-        <!-- <div class="<?=$form_group?>">
-            <?php // $field_name = 'category' ?>
-            <?php // echo form_label('Chuyên Mục'.$required, '', array('class'=>$label_class.' '.$stage_1)) ?>
-            <select name=<?=$field_name?> class="selectpicker">
-                <?php // $query = $this->mcategory->get_all() ?>
-                <?php // foreach($query as $row): ?>
-                    <option value="<?=$row['id']?>"><?=$row['ten']?></option>
-                <?php //endforeach; ?>
-            </select>
-        </div> -->
-
         <div class="<?=$form_group?>">
             <?php
             $field_name = 'area';
@@ -83,8 +71,7 @@ $float_left = 'float-left';
                 'style' => 'display: inline-block;width: 150px',
                 'step' => '0.1',
                 'min' => '0',
-                'value' => set_value($field_name),
-                // 'required' => 'required'
+                'value' => set_value($field_name)
             );
             echo form_input($data);
             ?>
@@ -105,8 +92,7 @@ $float_left = 'float-left';
                 'step' => '0.1',
                 'maxlength' => '50',
                 'min' => '0',
-                'value' => set_value($field_name),
-                // 'required' => 'required'
+                'value' => set_value($field_name)
             );
             echo form_input($data);
             ?>
@@ -183,12 +169,11 @@ $float_left = 'float-left';
                 'placeholder' => 'Hãy click vào đây',
                 'class' => $input_class.' '.$stage_2,
                 'value' => set_value($field_name),
-                'pattern' => '(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-([0-9]{4})',
-                // 'required' => 'required'
+                'pattern' => '(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-([0-9]{4})'
             );
             echo form_input($data);
             ?>
-        </div>        
+        </div>
 
         <div class="<?=$form_group?>">
             <?php echo form_label('Hình ảnh'.$required.':', '', array('class'=>$label_class)) ?>
@@ -216,10 +201,9 @@ $float_left = 'float-left';
             </div>
         </div>
 
-        <div class="<?=$form_group?>" id="preview"></div>
+        <div class=<?=$form_group?> id="preview"></div>
     </fieldset>
-
-    <!-- //////////gmap///////////////-->
+	<!-- //////////gmap///////////////-->
     <head><?php echo $map['js'];?></head>
     <fieldset>
         <legend style="width: 100px">BẢN ĐỒ</legend>
@@ -233,7 +217,6 @@ $float_left = 'float-left';
                 'id' => $field_name,
                 'name' => $field_name,
                 'class' => $input_class,
-                // 'required' => 'required'
             );
             echo form_input($data);
             ?>
@@ -246,21 +229,126 @@ $float_left = 'float-left';
                 'id' => $field_name,
                 'name' => $field_name,
                 'class' => $input_class,
-                // 'required' => 'required'
             );
             echo form_input($data);
             ?>
         </div>
     </fieldset>
 
-    <?php
-    $this->load->view($additional);
-    ?>
+    <fieldset>
+        <legend style="width: 230px">THÔNG TIN BỔ SUNG</legend>
+        <?php
+        $bigger = 'bigger';
+        ?>
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">An Ninh</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'security';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $input_class,
+                    'value' => set_value($field_name),
+                    'placeholder' => 'VD: gần đồn công an, hoặc gần đồn dân phòng'
+                );
+                echo form_input($data);
+                ?>
+            </div>
+        </div>
+
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Giờ Giấc</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'time-off';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $input_class,
+                    'value' => set_value($field_name),
+                    'placeholder' => 'VD: đóng cửa vào lúc 23h'
+                );
+                echo form_input($data);
+                ?>
+            </div>
+        </div>
+
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Có Tất Cả Là</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'all-room';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $input_class,
+                    'type' => 'number',
+                    'value' => (!empty(set_value($field_name)))?set_value($field_name):0,
+                    'style' => 'width: 100px;display: inline-block',
+                    'min' => 0
+                );
+                echo form_input($data);
+                ?>
+                Phòng
+                <?php
+                $field_name = 'bed-room';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $input_class,
+                    'type' => 'number',
+                    'value' => (!empty(set_value($field_name)))?set_value($field_name):0,
+                    'style' => 'width: 100px;display: inline-block',
+                    'min' => 0
+                );
+                echo form_input($data);
+                ?>
+                Phòng Ngủ
+            </div>
+        </div>
+
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Dịch Vụ Giặt Ủi</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'laundry';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $checkbox_class,
+                    'checked' => set_checkbox($field_name, $field_name)
+                );
+                echo form_checkbox($data);
+                echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
+                ?>
+            </div>
+        </div>
+
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Các Dịch Vụ Khác</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'other-services';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $input_class,
+                    'value' => set_value($field_name),
+                    'placeholder' => 'Vd: có thang máy, hầm để xe,... '
+                );
+                echo form_input($data);
+                ?>
+            </div>
+        </div>
+
+    </fieldset>
 
     <fieldset>
         <legend style="width: 120px">NỘI DUNG</legend>
         <div class="<?=$form_group?>">
             <?php
+            // echo form_label('Nội Dung'.$required.':', 'info', array('class'=>$label_class));
             $field_name = 'content_post';
             $data = array(
                 'id' => $field_name,
@@ -347,8 +435,8 @@ $float_left = 'float-left';
             ?>
 
             <div id="name_tooltip" class="tooltip" style="display: none">
-                <div id="name_tooltip_triangle" class="triangle">&nbsp;</div>
-                <div class="tooltip_content" style="width: 210px">
+                <div id="name_tooltip_triangle" class="triangle">&nbsp;aaa</div>
+                <div class="tooltip_content" style="width: 210px">bbb
                     <span id="tooltip_content">Ví dụ: <span style="color: red">example@abc.com</span></span>
                 </div>
             </div>

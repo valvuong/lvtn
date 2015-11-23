@@ -163,14 +163,16 @@ class Mpost extends CI_Model {
                 $config['file_name'] = $file_name;
                 $this->upload->initialize($config);
 
-                $data['idBantin'] = $id;
-                $fname = $file['name'][$key];
-                $fname = explode('.', $fname);
-                $extension = end($fname);
-                $data['tenhinh'] = $file_name.'.'.$extension;
-                $this->db->insert(MODEL_POST_UPLOAD, $data);
-
-                $this->upload->do_upload($field_name);
+                if ($this->upload->do_upload($field_name)) {
+                    $data['idBantin'] = $id;
+                    $fname = $file['name'][$key];
+                    $fname = explode('.', $fname);
+                    $extension = end($fname);
+                    $data['tenhinh'] = $file_name.'.'.$extension;
+                    $this->db->insert(MODEL_POST_UPLOAD, $data);
+                } else {
+                    $this->upload->display_errors();
+                }
             }
         }
     }

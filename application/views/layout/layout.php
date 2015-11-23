@@ -22,7 +22,6 @@
     <script type="text/javascript" src="<?php echo js_url()?>jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="<?php echo bootstrap_url()?>js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo asset_url()?>bootstrap-select/bootstrap-select.js"></script>
-    <script type="text/javascript" src="<?php echo js_url()?>main-filter.js"></script>
     <script type="text/javascript" src="<?php echo js_url()?>main.js"></script>
     <script type="text/javascript" src="<?php echo js_url()?>search-filter.js"></script>
     
@@ -77,6 +76,7 @@
 
     <div class="body-content container">
         <?php if(!isset($left_hidden)): ?>
+        <script type="text/javascript" src="<?php echo js_url()?>main-filter.js"></script>
             <div id="left">
                 <div class="panel-primary">
                     <div class="panel-heading">

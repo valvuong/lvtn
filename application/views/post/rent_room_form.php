@@ -43,7 +43,7 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 'name' => $field_name,
                 'class' => $input_class,
                 'value' => set_value($field_name),
-                'placeholder' => 'VD: đóng cửa vào lúc 23h'
+                'placeholder' => 'VD: đóng cửa vào lúc 23h hoặc giờ giấc tự do'
             );
             echo form_input($data);
             ?>

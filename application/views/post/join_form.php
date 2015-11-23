@@ -201,6 +201,7 @@ $float_left = 'float-left';
             </div>
         </div>
 
+
         <div class="<?=$form_group?>" id="preview"></div>
     </fieldset>
 
