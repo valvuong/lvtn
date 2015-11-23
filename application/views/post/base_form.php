@@ -29,13 +29,13 @@ $float_left = 'float-left';
             $field_name = 'title';
             echo form_label('Tiêu Đề'.$required.':', $field_name, array('class'=>$label_class));
             $data= array(
-                'id' => $field_name,
-                'name' => $field_name,
-                'class' => $input_class,
-                'minlength'=>'15',
-                'maxlength'=>'100',
-                'value' => set_value($field_name),
-                // 'required' => 'required'
+                'id'                => $field_name,
+                'name'              => $field_name,
+                'class'             => $input_class,
+                'maxlength'         =>'100',
+                'value'             => set_value($field_name),
+                'required'          => 'required',
+                'oninvalid'         => 'this.setCustomValidity("Hãy Điền Tiêu Đề Vào")',
             );
             echo form_input($data);
             ?>
@@ -84,7 +84,8 @@ $float_left = 'float-left';
                 'step' => '0.1',
                 'min' => '0',
                 'value' => set_value($field_name),
-                // 'required' => 'required'
+                'required' => 'required',
+                'oninvalid' => 'this.setCustomValidity("Hãy Điền Diện Tích Vào")'
             );
             echo form_input($data);
             ?>
@@ -106,7 +107,8 @@ $float_left = 'float-left';
                 'maxlength' => '50',
                 'min' => '0',
                 'value' => set_value($field_name),
-                // 'required' => 'required'
+                'required' => 'required',
+                'oninvalid' => 'this.setCustomValidity("Hãy Điền Giá Phòng Vào")'
             );
             echo form_input($data);
             ?>
@@ -184,7 +186,8 @@ $float_left = 'float-left';
                 'class' => $input_class.' '.$stage_2,
                 'value' => set_value($field_name),
                 'pattern' => '(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-([0-9]{4})',
-                // 'required' => 'required'
+                'required' => 'required',
+                'oninvalid' => 'this.setCustomValidity("Hãy Điền Ngày Hết Hạn Vào")'
             );
             echo form_input($data);
             ?>
@@ -208,7 +211,9 @@ $float_left = 'float-left';
                     'id' => 'upload-file',
                     'name' => 'upload_file[]',
                     'accept' => 'image/jpeg, image/gif, image/png, image/jpg',
-                    'multiple' => true
+                    'multiple' => true,
+                    'required' => 'required',
+                    // 'oninvalid' => 'this.setCustomValidity("Hãy Điền Giá Phòng Vào")'
                 );
                 echo form_upload($data);
                 ?>
@@ -233,7 +238,8 @@ $float_left = 'float-left';
                 'id' => $field_name,
                 'name' => $field_name,
                 'class' => $input_class,
-                // 'required' => 'required'
+                'required' => 'required',
+                'oninvalid' => 'this.setCustomValidity("Hãy Chọn Vị Trí Phòng Trọ Trên Bản Đồ")'
             );
             echo form_input($data);
             ?>
@@ -246,7 +252,8 @@ $float_left = 'float-left';
                 'id' => $field_name,
                 'name' => $field_name,
                 'class' => $input_class,
-                // 'required' => 'required'
+                'required' => 'required',
+                'oninvalid' => 'this.setCustomValidity("Hãy Chọn Vị Trí Phòng Trọ Trên Bản Đồ")'
             );
             echo form_input($data);
             ?>
@@ -287,7 +294,9 @@ $float_left = 'float-left';
                 'placeholder' => '',
                 'class' => $input_class,
                 'maxlength'=>'50',
-                'value' => set_value($field_name)
+                'value' => set_value($field_name),
+                'required' => 'required',
+                'oninvalid' => 'this.setCustomValidity("Hãy Điền Tên Liên Hệ Vào")'
             );
             echo form_input($data);
             ?>
@@ -303,7 +312,9 @@ $float_left = 'float-left';
                 'name' => $field_name,
                 'placeholder' => '',
                 'maxlength'=>'20',
-                'value' => set_value($field_name)
+                'value' => set_value($field_name),
+                'required' => 'required',
+                'oninvalid' => 'this.setCustomValidity("Hãy Điền Số Điện Thoại Vào")'
             );
             echo form_input($data);
             ?>
@@ -325,7 +336,9 @@ $float_left = 'float-left';
                 'id' => $field_name,
                 'placeholder' => 'VD: 232/3 Lý Thường Kiệt, P.15, Q.10',
                 'class' => $input_class,
-                'value' => set_value($field_name)
+                'value' => set_value($field_name),
+                'required' => 'required',
+                'oninvalid' => 'this.setCustomValidity("Hãy Điền Địa Chỉ Vào")'
             );
             echo form_input($data);
             ?>
