@@ -173,7 +173,7 @@ $label_checkbox_primary = 'label-checkbox-primary';
             echo form_checkbox($data);
             echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
 
-            $field_name = 'parking-limit';
+            /*$field_name = 'parking-limit';
             $data = array(
                 'type' => 'number',
                 'id' => $field_name,
@@ -182,9 +182,9 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 'min' => 0,
                 'value' => set_checkbox($field_name),
                 'style' => 'width: 70px;display: inline-block'
-            );
+            );*/
             ?>
-            <span class="after-checkbox">Tối Đa <?php echo form_input($data); ?> Chiếc</span>
+            <!-- <span class="after-checkbox">Tối Đa <?php echo form_input($data); ?> Chiếc</span> -->
         </div>
     </div>
 

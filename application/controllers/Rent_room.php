@@ -46,7 +46,7 @@ class Rent_room extends Post_Controller {
                         'xebuyt' => $this->input->post('bus'),
                         'khoangcach' => 0,
                         'bancong' => $this->input->post('balcony')===NULL ? "":"Có Ban Công",
-                        'chodexe' => $this->input->post('parking')===NULL ? 0:$this->input->post('parking-limit'),
+                        'chodexe' => $this->input->post('parking')===NULL ? 0:"Có Chỗ Để Xe",//$this->input->post('parking-limit'),
                         'soluong' => $this->input->post('limit'),
                         'chicho' => $this->input->post('gender-only')===NULL ? "":$this->input->post('gender-only')
                     )
