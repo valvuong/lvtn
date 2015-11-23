@@ -10,12 +10,10 @@ $float_left = 'float-left';
 $normal_label = 'normal-label';
 $checkbox_class = 'checkbox-primary';
 $label_checkbox_primary = 'label-checkbox-primary';
+$bigger = 'bigger';
 ?>
 <fieldset>
     <legend style="width: 230px">THÔNG TIN BỔ SUNG</legend>
-    <?php
-    $bigger = 'bigger';
-    ?>
     <div class="<?=$form_group?>">
         <div class="<?=$stage_1.' '.$text_right ?>">An Ninh</div>
         <div class="<?=$stage_2 ?>">
@@ -103,7 +101,7 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 'checked' => set_checkbox($field_name, $field_name)
             );
             echo form_checkbox($data);
-            echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
+            echo form_label('', $field_name, array('class' => "$label_checkbox_primary $bigger"));
             ?>
         </div>
     </div>
@@ -120,7 +118,7 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 'checked' => set_checkbox($field_name, $field_name)
             );
             echo form_checkbox($data);
-            echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
+            echo form_label('', $field_name, array('class' => "$label_checkbox_primary $bigger"));
             ?>
         </div>
     </div>
@@ -137,7 +135,7 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 'checked' => set_checkbox($field_name, $field_name)
             );
             echo form_checkbox($data);
-            echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
+            echo form_label('', $field_name, array('class' => "$label_checkbox_primary $bigger"));
             ?>
         </div>
     </div>
@@ -154,7 +152,7 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 'checked' => set_checkbox($field_name, $field_name)
             );
             echo form_checkbox($data);
-            echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
+            echo form_label('', $field_name, array('class' => "$label_checkbox_primary $bigger"));
             ?>
         </div>
     </div>
@@ -171,7 +169,7 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 'checked' => set_checkbox($field_name, $field_name)
             );
             echo form_checkbox($data);
-            echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
+            echo form_label('', $field_name, array('class' => "$label_checkbox_primary $bigger"));
 
             /*$field_name = 'parking-limit';
             $data = array(
