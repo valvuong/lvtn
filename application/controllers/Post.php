@@ -8,24 +8,10 @@ class Post extends CI_Controller {
     }
     public function index($id) {
         $query = $this->db->query('SELECT '.MODEL_POST.'.chuyenmuc FROM '.MODEL_POST.' WHERE '.MODEL_POST.'.id = '.$id);
-        $result = $query->row_array();var_dump($result);
-        switch ($result['chuyenmuc']) {
-            case 1:
-                $url = 'rent_room/index/'.$id;
-                break;
-            case 2:
-                $url = 'join/index/'.$id;
-                break;
-            case 3:
-                $url = 'apartment/index/'.$id;
-                break;
-            case 4:
-                $url = 'full_house/index'.$id;
-                break;
-            case 5:
-                $url = 'basement/index'.$id;
-                break;
-        }
+        $result = $query->row_array();
+        $query = $this->db->query('SELECT '.MODEL_POST_CATEGORY.'.link AS url FROM '.MODEL_POST_CATEGORY.' WHERE '.MODEL_POST_CATEGORY.'.id = '.$result['chuyenmuc']);
+        $result = $query->row_array();
+        $url = explode("/", $result['url'])[0].'/index/'.$id;
         redirect($url,'refresh');
     }
     public function show_by_district($page=1, $idD) {

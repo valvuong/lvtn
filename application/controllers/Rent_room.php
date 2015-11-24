@@ -9,6 +9,11 @@ class Rent_room extends Post_Controller {
 
 	public function index($id) {
 		$f = $this->mpost->get_one($id);
+
+        ///////////gmap///////////////       
+        $data['content']['map'] = $this->index_gmap($f['kinhdo'],$f['vido']);
+        //////////////////gmap///////////////
+        
         $data['view'] = 'post/index_base';
         $data['content']['content'] = $f;
         $data['content']['additional'] = 'post/index_rent_room';
@@ -39,14 +44,14 @@ class Rent_room extends Post_Controller {
                 $sub_info = array(
                     MODEL_POST_RENTROOM => array(
                         'anninh' => $this->input->post('security'),
-                        'naunuong' => $this->input->post('cook')===NULL ? 0:1,
-                        'chungchu' => $this->input->post('with-host')===NULL ? 0:1,
+                        'naunuong' => $this->input->post('cook')===NULL ? "":"Cho Nấu Nướng",
+                        'chungchu' => $this->input->post('with-host')===NULL ? "":"Ở Chung Với Chủ",
                         'giogiac' => $this->input->post('time-off'),
-                        'nhavesinh' => $this->input->post('wc')===NULL ? 0:1,
+                        'nhavesinh' => $this->input->post('wc')===NULL ? "":"Có Nhà Vệ Riêng",
                         'xebuyt' => $this->input->post('bus'),
                         'khoangcach' => 0,
-                        'bancong' => $this->input->post('balcony')===NULL ? 0:1,
-                        'chodexe' => $this->input->post('parking')===NULL ? 0:$this->input->post('parking-limit'),
+                        'bancong' => $this->input->post('balcony')===NULL ? "":"Có Ban Công",
+                        'chodexe' => $this->input->post('parking')===NULL ? 0:"Có Chỗ Để Xe",//$this->input->post('parking-limit'),
                         'soluong' => $this->input->post('limit'),
                         'chicho' => $this->input->post('gender-only')===NULL ? "":$this->input->post('gender-only')
                     )
@@ -57,31 +62,8 @@ class Rent_room extends Post_Controller {
             }
         }
 		///////////gmap///////////////
-		$this->load->library('googlemaps');
-		$config['center'] = 'auto';
-		$config['onclick'] = '
-				if (markers_map) {
-					for (i in markers_map) {
-						markers_map[i].setMap(null);
-					}
-					markers_map.length = 0;
-				}
-				var marker = new google.maps.Marker({
-					map:       map,
-					position:  event.latLng
-				}); 
-				markers_map.push(marker);
-				var lat = event.latLng.lat();
-				var lng = event.latLng.lng();
-				$(\'#lat\').val(lat);
-				$(\'#lng\').val(lng);
-				';
-		
-		$config['zoom'] = 'auto';
-		$this->googlemaps->initialize($config);
-		
-		$data['content']['map'] = $this->googlemaps->create_map();
-		//////////////////gmap///////////////
+		$data['content']['map'] = $this->gmap();
+		///////////gmap///////////////
 
         $this->load->view(LAYOUT, $data);
     }

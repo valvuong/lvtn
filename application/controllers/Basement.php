@@ -9,6 +9,11 @@ class Basement extends Post_Controller {
 
 	public function index($id) {
 		$f = $this->mpost->get_one($id);
+
+        ///////////gmap///////////////       
+        $data['content']['map'] = $this->index_gmap($f['kinhdo'],$f['vido']);
+        //////////////////gmap///////////////
+
         $data['view'] = 'post/index_base';
         $data['content']['content'] = $f;
         $data['content']['additional'] = 'post/index_basement';
@@ -35,13 +40,13 @@ class Basement extends Post_Controller {
 
         if($this->input->post('submit')) {
             if($this->form_validation->run()) {
-                $main_info = $this->get_main_input(1);
+                $main_info = $this->get_main_input(5);
                 $sub_info = array(
                     MODEL_POST_BASEMENT => array(
                         'anninh' => $this->input->post('security'),
                         'giogiac' => $this->input->post('time-off'),
-                        'sophong' => $this->input->post('all-room'),
-                        'phongngu' => $this->input->post('bed-room'),
+                        'nhavesinh' => $this->input->post('rest-room'),
+                        'amthap' => $this->input->post('amthap'),
                         'tiennghi' => $this->input->post('other-services'),
                         'xebuyt' => $this->input->post('bus')
 
@@ -53,31 +58,8 @@ class Basement extends Post_Controller {
             }
         }
 		///////////gmap///////////////
-		$this->load->library('googlemaps');
-		$config['center'] = 'auto';
-		$config['onclick'] = '
-				if (markers_map) {
-					for (i in markers_map) {
-						markers_map[i].setMap(null);
-					}
-					markers_map.length = 0;
-				}
-				var marker = new google.maps.Marker({
-					map:       map,
-					position:  event.latLng
-				}); 
-				markers_map.push(marker);
-				var lat = event.latLng.lat();
-				var lng = event.latLng.lng();
-				$(\'#lat\').val(lat);
-				$(\'#lng\').val(lng);
-				';
-		
-		$config['zoom'] = 'auto';
-		$this->googlemaps->initialize($config);
-		
-		$data['content']['map'] = $this->googlemaps->create_map();
-		//////////////////gmap///////////////
+        $data['content']['map'] = $this->gmap();
+        ///////////gmap///////////////
 
         $this->load->view(LAYOUT, $data);
     }

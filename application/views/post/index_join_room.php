@@ -1,16 +1,11 @@
-<style type="text/css">
-	strong {
-		min-height: 1px;
-	}
-</style>
 <fieldset>
     <legend>Thông Tin Bổ Sung</legend>
     <?php if(!empty($anninh)): ?>
-	    <p><strong><!-- An Ninh --></strong><span><?php echo $anninh ?></span></p>
+	    <p><strong>An Ninh</strong><span><?php echo $anninh ?></span></p>
 	    <div class="clear"></div>
 	<?php endif; ?>
 	<?php if(!empty($naunuong)): ?>
-	    <p><strong><!-- Nấu Nướng --></strong><span><?php echo $naunuong ?></span></p>
+	    <p><strong>Nấu Nướng</strong><span><?php echo $naunuong ?></span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($chungchu)): ?>
@@ -26,7 +21,7 @@
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($xebuyt)): ?>
-	    <p><strong><!-- Các Tuyến Xe Buýt --></strong><span>Các Tuyến Xe Buýt Gần Đó: <?php echo $xebuyt ?></span></p>
+	    <p><strong><!-- Các Tuyến Xe Buýt --></strong><span><?php echo $xebuyt ?></span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($bancong)): ?>
@@ -37,12 +32,16 @@
 	    <p><strong><!-- Chỗ Để Xe --></strong><span><?php echo $chodexe ?></span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
-    <?php if(!empty($soluong)): ?>
-	    <p><strong><!-- Số Lượng Tối Đa Cho Ở --></strong><span>Tối Đa Cho <?php echo $soluong ?> Người Ở</span></p>
+    <?php if(!empty($daco)): ?>
+	    <p><strong><!-- Số Lượng Tối Đa Cho Ở --></strong><span>Đã Có <?php echo $daco ?> Người</span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
-    <?php if(!empty($chicho)): ?>
-	    <p><strong><!-- Chỉ Cho Ở --></strong><span>Chỉ Cho <?php echo $chicho ?></span></p>
+    <?php if(!empty($nu)): ?>
+	    <p><strong><!-- Chỉ Cho Ở --></strong><span>Hiện Tại Cần <?php echo $nu ?> Nữ</span></p>
+	    <div class="clear"></div>
+    <?php endif; ?>
+    <?php if(!empty($nam)): ?>
+	    <p><strong><!-- Chỉ Cho Ở --></strong><span>Hiện Tại Cần <?php echo $nam ?> Nam</span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
 </fieldset>

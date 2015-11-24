@@ -102,7 +102,7 @@ class Mpost extends CI_Model {
         $this->db->join(MODEL_POST_PRICE, MODEL_POST_PRICE.'.idBantin = '.$id, 'left');
         $this->db->join(MODEL_POST_CONTACT, MODEL_POST_CONTACT.'.idBantin = '.$id, 'left');
         $query = $this->db->get();
-        $result = $query->result_array();var_dump($result);
+        $result = $query->result_array();
 
         $this->db->select(MODEL_POST_CATEGORY.'.bang_phu');
         $this->db->from(MODEL_POST_CATEGORY);
@@ -124,7 +124,7 @@ class Mpost extends CI_Model {
         $this->db->from(MODEL_POST_UPLOAD);
         $this->db->where('idBantin',$id);
         $query = $this->db->get();
-        $result[0]['tenhinh'] = $query->result_array();var_dump($result);
+        $result[0]['tenhinh'] = $query->result_array();
 
         return $result[0];
     }
@@ -163,14 +163,17 @@ class Mpost extends CI_Model {
                 $config['file_name'] = $file_name;
                 $this->upload->initialize($config);
 
-                $data['idBantin'] = $id;
-                $fname = $file['name'][$key];
-                $fname = explode('.', $fname);
-                $extension = end($fname);
-                $data['tenhinh'] = $file_name.'.'.$extension;
-                $this->db->insert(MODEL_POST_UPLOAD, $data);
-
-                $this->upload->do_upload($field_name);
+                if ($this->upload->do_upload($field_name)) {
+                    $data['idBantin'] = $id;
+                    $fname = $file['name'][$key];
+                    $fname = explode('.', $fname);
+                    $extension = end($fname);
+                    $data['tenhinh'] = $file_name.'.'.$extension;
+                    $this->db->insert(MODEL_POST_UPLOAD, $data);
+                } /*else {
+                    $errors[] = $this->upload->display_errors();
+                }*/
+                $file_datas[] = $this->upload->data();
             }
         }
     }

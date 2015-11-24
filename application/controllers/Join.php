@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Apartment extends Post_Controller {
+class Join extends Post_Controller {
 
 	public function __construct() {
 		parent::__construct();
@@ -9,14 +9,9 @@ class Apartment extends Post_Controller {
 
 	public function index($id) {
 		$f = $this->mpost->get_one($id);
-
-        ///////////gmap///////////////       
-        $data['content']['map'] = $this->index_gmap($f['kinhdo'],$f['vido']);
-        //////////////////gmap///////////////
-
         $data['view'] = 'post/index_base';
         $data['content']['content'] = $f;
-        $data['content']['additional'] = 'post/index_apartment';
+        $data['content']['additional'] = 'post/index_rent_room';
         $data['left_hidden'] = true;
         $data['title'] = $f['tieude'];
         $this->load->view(LAYOUT, $data);
@@ -28,27 +23,33 @@ class Apartment extends Post_Controller {
         $class_name = $this->router->fetch_class();
         $method_name = $this->router->fetch_method();
         $data['content']['action'] = $class_name.'/'.$method_name;
-        $data['content']['additional'] = 'post/apartment_form';
+        $data['content']['additional'] = 'post/join_form';
         $data['left_hidden'] = true;
         $this->load->library('form_validation');
         $main_rules = $this->set_form_rules();
-        $rent_room_rules = array();
+        $join_rules = array();
 
-        $rules = array_merge($main_rules, $rent_room_rules);
+        $rules = array_merge($main_rules, $join_rules);
 
         $this->form_validation->set_rules($rules);
 
         if($this->input->post('submit')) {
             if($this->form_validation->run()) {
-                $main_info = $this->get_main_input(3);
+                $main_info = $this->get_main_input(2);
                 $sub_info = array(
-                    MODEL_POST_APARTMENT => array(
+                    MODEL_POST_JOIN => array(
                         'anninh' => $this->input->post('security'),
+                        'naunuong' => $this->input->post('cook')===NULL ? "":"Cho Nấu Nướng",
+                        'chungchu' => $this->input->post('with-host')===NULL ? "":"Ở Chung Với Chủ",
                         'giogiac' => $this->input->post('time-off'),
-                        'giatui' => $this->input->post('laundry')===NULL ? 0:1,
-                        'sophong' => $this->input->post('all-room'),
-                        'phongngu' => $this->input->post('bed-room'),
-                        'tiennghi' => $this->input->post('other-services'),
+                        'nhavesinh' => $this->input->post('wc')===NULL ? "":"Có Nhà Vệ Riêng",
+                        'xebuyt' => $this->input->post('bus'),
+                        'khoangcach' => 0,
+                        'bancong' => $this->input->post('balcony')===NULL ? "":"Có Ban Công",
+                        'chodexe' => $this->input->post('parking')===NULL ? 0:"Có Chỗ Để Xe",//$this->input->post('parking-limit'),
+                        'daco' => $this->input->post('available-nums'),
+                        'nu' => $this->input->post('female-need'),
+                        'nam' => $this->input->post('male-need')
                     )
                 );
                 $info = $main_info + $sub_info;
@@ -57,8 +58,8 @@ class Apartment extends Post_Controller {
             }
         }
 		///////////gmap///////////////
-        $data['content']['map'] = $this->gmap();
-        ///////////gmap///////////////
+		$data['content']['map'] = $this->gmap();
+		//////////////////gmap///////////////
 
         $this->load->view(LAYOUT, $data);
     }

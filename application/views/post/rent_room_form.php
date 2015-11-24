@@ -10,12 +10,10 @@ $float_left = 'float-left';
 $normal_label = 'normal-label';
 $checkbox_class = 'checkbox-primary';
 $label_checkbox_primary = 'label-checkbox-primary';
+$bigger = 'bigger';
 ?>
 <fieldset>
     <legend style="width: 230px">THÔNG TIN BỔ SUNG</legend>
-    <?php
-    $bigger = 'bigger';
-    ?>
     <div class="<?=$form_group?>">
         <div class="<?=$stage_1.' '.$text_right ?>">An Ninh</div>
         <div class="<?=$stage_2 ?>">
@@ -43,7 +41,7 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 'name' => $field_name,
                 'class' => $input_class,
                 'value' => set_value($field_name),
-                'placeholder' => 'VD: đóng cửa vào lúc 23h'
+                'placeholder' => 'VD: đóng cửa vào lúc 23h hoặc giờ giấc tự do'
             );
             echo form_input($data);
             ?>
@@ -85,7 +83,7 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 <span class="outer"><span class="inner"></span></span>Nam Ở
             </label>
             <label class="radio">
-                <input value="Tùy Ý" type="radio" name="<?=$field_name?>">
+                <input value="0" type="radio" name="<?=$field_name?>">
                 <span class="outer"><span class="inner"></span></span>Tùy Ý
             </label>
         </div>
@@ -103,7 +101,7 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 'checked' => set_checkbox($field_name, $field_name)
             );
             echo form_checkbox($data);
-            echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
+            echo form_label('', $field_name, array('class' => "$label_checkbox_primary $bigger"));
             ?>
         </div>
     </div>
@@ -120,7 +118,7 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 'checked' => set_checkbox($field_name, $field_name)
             );
             echo form_checkbox($data);
-            echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
+            echo form_label('', $field_name, array('class' => "$label_checkbox_primary $bigger"));
             ?>
         </div>
     </div>
@@ -137,7 +135,7 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 'checked' => set_checkbox($field_name, $field_name)
             );
             echo form_checkbox($data);
-            echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
+            echo form_label('', $field_name, array('class' => "$label_checkbox_primary $bigger"));
             ?>
         </div>
     </div>
@@ -154,7 +152,7 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 'checked' => set_checkbox($field_name, $field_name)
             );
             echo form_checkbox($data);
-            echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
+            echo form_label('', $field_name, array('class' => "$label_checkbox_primary $bigger"));
             ?>
         </div>
     </div>
@@ -171,9 +169,9 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 'checked' => set_checkbox($field_name, $field_name)
             );
             echo form_checkbox($data);
-            echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
+            echo form_label('', $field_name, array('class' => "$label_checkbox_primary $bigger"));
 
-            $field_name = 'parking-limit';
+            /*$field_name = 'parking-limit';
             $data = array(
                 'type' => 'number',
                 'id' => $field_name,
@@ -182,9 +180,9 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 'min' => 0,
                 'value' => set_checkbox($field_name),
                 'style' => 'width: 70px;display: inline-block'
-            );
+            );*/
             ?>
-            <span class="after-checkbox">Tối Đa <?php echo form_input($data); ?> Chiếc</span>
+            <!-- <span class="after-checkbox">Tối Đa <?php echo form_input($data); ?> Chiếc</span> -->
         </div>
     </div>
 

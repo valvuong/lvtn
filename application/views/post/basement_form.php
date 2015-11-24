@@ -51,10 +51,10 @@ $label_checkbox_primary = 'label-checkbox-primary';
         </div>
 
         <div class="<?=$form_group?>">
-            <div class="<?=$stage_1.' '.$text_right ?>">Có Tất Cả Là</div>
+            <div class="<?=$stage_1.' '.$text_right ?>">Nhà vệ sinh</div>
             <div class="<?=$stage_2 ?>">
                 <?php
-                $field_name = 'all-room';
+                $field_name = 'rest-room';
                 $data = array(
                     'id' => $field_name,
                     'name' => $field_name,
@@ -66,21 +66,23 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 );
                 echo form_input($data);
                 ?>
-                Phòng
+            </div>
+        </div>
+
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Ẩm thấp</div>
+            <div class="<?=$stage_2 ?>">
                 <?php
-                $field_name = 'bed-room';
+                $field_name = 'amthap';
                 $data = array(
                     'id' => $field_name,
                     'name' => $field_name,
-                    'class' => $input_class,
-                    'type' => 'number',
-                    'value' => (!empty(set_value($field_name)))?set_value($field_name):0,
-                    'style' => 'width: 100px;display: inline-block',
-                    'min' => 0
+                    'class' => $checkbox_class,
+                    'checked' => set_checkbox($field_name, $field_name)
                 );
-                echo form_input($data);
+                echo form_checkbox($data);
+                echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
                 ?>
-                Phòng Ngủ
             </div>
         </div>
 

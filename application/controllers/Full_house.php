@@ -9,6 +9,11 @@ class Full_house extends Post_Controller {
 
 	public function index($id) {
 		$f = $this->mpost->get_one($id);
+
+        ///////////gmap///////////////       
+        $data['content']['map'] = $this->index_gmap($f['kinhdo'],$f['vido']);
+        //////////////////gmap///////////////
+
         $data['view'] = 'post/index_base';
         $data['content']['content'] = $f;
         $data['content']['additional'] = 'post/index_full_house';
@@ -35,7 +40,7 @@ class Full_house extends Post_Controller {
 
         if($this->input->post('submit')) {
             if($this->form_validation->run()) {
-                $main_info = $this->get_main_input(1);
+                $main_info = $this->get_main_input(4);
                 $sub_info = array(
                     MODEL_POST_FULL_HOUSE => array(
                         'anninh' => $this->input->post('security'),
@@ -52,31 +57,8 @@ class Full_house extends Post_Controller {
             }
         }
 		///////////gmap///////////////
-		$this->load->library('googlemaps');
-		$config['center'] = 'auto';
-		$config['onclick'] = '
-				if (markers_map) {
-					for (i in markers_map) {
-						markers_map[i].setMap(null);
-					}
-					markers_map.length = 0;
-				}
-				var marker = new google.maps.Marker({
-					map:       map,
-					position:  event.latLng
-				}); 
-				markers_map.push(marker);
-				var lat = event.latLng.lat();
-				var lng = event.latLng.lng();
-				$(\'#lat\').val(lat);
-				$(\'#lng\').val(lng);
-				';
-		
-		$config['zoom'] = 'auto';
-		$this->googlemaps->initialize($config);
-		
-		$data['content']['map'] = $this->googlemaps->create_map();
-		//////////////////gmap///////////////
+        $data['content']['map'] = $this->gmap();
+        ///////////gmap///////////////
 
         $this->load->view(LAYOUT, $data);
     }
