@@ -3,16 +3,6 @@
 <h3 class="title"><?php echo mb_strtoupper($content['tieude'],'utf8'); ?></h3>
 <div class="contact">
     <fieldset>
-        <legend>Thông Tin Liên Hệ</legend>
-        <p><strong>Tên Người Liên Hệ:</strong><span><?=$content['hoten']?></span></p>
-        <div class="clear"></div>
-        <p><strong>Địa Chỉ:</strong><span><?=$content['diachi']?></span></p>
-        <div class="clear"></div>
-        <p><strong>Số Điện Thoại:</strong><span><?=$content['sodienthoai']?></span></p>
-        <div class="clear"></div>
-        <p><Strong>Email:</strong><span><?=$content['email']?></span></p>
-    </fieldset>
-    <fieldset>
         <legend>Thông Tin Nhà Trọ</legend>
         <p><strong>Ngày Đăng:</strong><span><?=date('d/m/Y',strtotime($content['ngaydang']))?></span></p>
         <div class="clear"></div>
@@ -20,10 +10,9 @@
         <div class="clear"></div>
         <p><strong>Diện Tích:</strong><span><?=$content['dientich']?> m<sup>2</sup></span></p>
         <div class="clear"></div>
-        <p><strong>Giá Phòng:</strong><span><?=number_format($content['giaphong']*1000000)?> VNĐ</span></p>
-        <div class="clear"></div>
         <p>
-            <strong style="color: transparent">hidden text</strong>
+            <strong>Giá Phòng:</strong>
+            <span><?=number_format($content['giaphong']*1000000)?> VNĐ</span>
             <span>
                 <?php
                 if((intval($content['tiendien']) + intval($content['tiennuoc'])) > 0 ) {
@@ -45,6 +34,20 @@
         <p><strong>Phường:</strong><span><?=$content['tenphuong']?></span></p>
         <div class="clear"></div>
         <p><strong>Quận/Huyện:</strong><span><?=$content['tenquan']?></span></p>
+        <div class="clear"></div>
+    </fieldset>
+
+    <?php $this->load->view($additional, $content['thongtinbosung']); ?>
+
+    <fieldset>
+        <legend>Thông Tin Liên Hệ</legend>
+        <p><strong>Tên Người Liên Hệ:</strong><span><?=$content['hoten']?></span></p>
+        <div class="clear"></div>
+        <p><strong>Địa Chỉ:</strong><span><?=$content['diachi']?></span></p>
+        <div class="clear"></div>
+        <p><strong>Số Điện Thoại:</strong><span><?=$content['sodienthoai']?></span></p>
+        <div class="clear"></div>
+        <p><Strong>Email:</strong><span><?=$content['email']?></span></p>
     </fieldset>
 </div>
 
@@ -74,4 +77,12 @@
             <span class="glyphicon glyphicon-circle-arrow-right size40" aria-hidden="true"></span>
         </a>
     </div>
+</div>
+
+<div class="map">
+    <head><?php echo $map['js'];?></head>
+    <fieldset>
+        <legend style="width: 100px">BẢN ĐỒ</legend>
+        <div><?php echo $map['html'];?></div>
+    </fielset>
 </div>

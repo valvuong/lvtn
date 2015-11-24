@@ -68,7 +68,7 @@ function readURL(input) {
     if (input.files && input.files[0]) {
         var selector = '#preview';
         var n = input.files.length;
-        n = n > 8 ? 8:n;
+        n = input.files.length;
         $(selector).empty();
         for(i = 0; i < n; i++) {
             var ext = input.files[i].name.split('.').pop().toLowerCase();

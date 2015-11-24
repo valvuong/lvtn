@@ -98,7 +98,7 @@ define('MODEL_POST_UPLOAD', 'phong_hinh');
 define('MODEL_POST_RENTROOM', 'phong_nhatro');
 define('MODEL_POST_JOIN', 'phong_oghep');
 define('MODEL_POST_APARTMENT', 'phong_chungcu');
-define('MODEL_POST_HOME', 'phong_nhanguyencan');
+define('MODEL_POST_FULL_HOUSE', 'phong_nhanguyencan');
 define('MODEL_POST_BASEMENT', 'phong_tangham');
 
 define('MODEL_MARKET', 'raovat');
