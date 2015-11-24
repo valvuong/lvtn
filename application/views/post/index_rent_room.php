@@ -1,11 +1,16 @@
+<style type="text/css">
+	strong {
+		min-height: 1px;
+	}
+</style>
 <fieldset>
     <legend>Thông Tin Bổ Sung</legend>
     <?php if(!empty($anninh)): ?>
-	    <p><strong>An Ninh</strong><span><?php echo $anninh ?></span></p>
+	    <p><strong><!-- An Ninh --></strong><span><?php echo $anninh ?></span></p>
 	    <div class="clear"></div>
 	<?php endif; ?>
 	<?php if(!empty($naunuong)): ?>
-	    <p><strong>Nấu Nướng</strong><span><?php echo $naunuong ?></span></p>
+	    <p><strong><!-- Nấu Nướng --></strong><span><?php echo $naunuong ?></span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($chungchu)): ?>
@@ -21,7 +26,7 @@
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($xebuyt)): ?>
-	    <p><strong><!-- Các Tuyến Xe Buýt --></strong><span><?php echo $xebuyt ?></span></p>
+	    <p><strong><!-- Các Tuyến Xe Buýt --></strong><span>Các Tuyến Xe Buýt Gần Đó: <?php echo $xebuyt ?></span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($bancong)): ?>
@@ -33,7 +38,7 @@
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($soluong)): ?>
-	    <p><strong><!-- Số Lượng Tối Đa Cho Ở --></strong><span><?php echo $soluong ?></span></p>
+	    <p><strong><!-- Số Lượng Tối Đa Cho Ở --></strong><span>Tối Đa Cho <?php echo $soluong ?> Người Ở</span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($chicho)): ?>

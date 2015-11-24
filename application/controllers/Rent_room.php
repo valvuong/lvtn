@@ -53,10 +53,9 @@ class Rent_room extends Post_Controller {
                 );
                 $info = $main_info + $sub_info;
                 $id = $this->mpost->create($info);
-                // redirect('tin-'.$id,'refresh');
+                redirect('tin-'.$id,'refresh');
             }
-        }//var_dump($_FILES);
-
+        }
 		///////////gmap///////////////
 		$data['content']['map'] = $this->gmap();
 		///////////gmap///////////////
