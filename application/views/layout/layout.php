@@ -117,7 +117,7 @@
                             <div class="panel-body">
                                 <ul>
                                     <li><label><input type="radio" name="area" value="">Tất cả</label></li>
-                                    <?php $query = $this->db->get('dientich') ?>
+                                    <?php $query = $this->db->get(SEARCH_AREA) ?>
                                     <?php foreach($query->result_array() as $row): ?>
                                         <li><label><input type="radio" name="area" value="<?=$row['value']?>"><?=$row['text']?></label></li>
                                     <?php endforeach ?>
@@ -132,7 +132,7 @@
                             <div class="panel-body">
                                 <ul>
                                     <li><label><input type="radio" name="price" value="">Tất cả</label></li>
-                                    <?php $query = $this->db->get('giaphong') ?>
+                                    <?php $query = $this->db->get(SEARCH_PRICE) ?>
                                     <?php foreach($query->result_array() as $row): ?>
                                         <li><label><input type="radio" name="price" value="<?=$row['value']?>"><?=$row['text']?></label></li>
                                     <?php endforeach ?>
