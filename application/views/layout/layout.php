@@ -156,3 +156,13 @@
     <?php $this->load->view('layout/footer') ?>
 </body>
 </html>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
+<script> 
+
+            var p1 = new google.maps.LatLng(10.732897216070397, 106.62367165088654 );//bach khoa
+            var p2 = new google.maps.LatLng(10.732897216070397, 106.62367165088654);
+            alert((google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2));
+     
+        //calculates distance between two points in km's
+</script>
