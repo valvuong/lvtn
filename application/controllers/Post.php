@@ -1,14 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Post extends CI_Controller {
-
     public function __construct() {
         parent::__construct();
         $this->load->helper(array('url','form'));
         $this->load->model(array('mdistrict','mpost'));
     }
-
     public function index($id) {
         $query = $this->db->query('SELECT '.MODEL_POST.'.chuyenmuc FROM '.MODEL_POST.' WHERE '.MODEL_POST.'.id = '.$id);
         $result = $query->row_array();
@@ -17,14 +14,12 @@ class Post extends CI_Controller {
         $url = explode("/", $result['url'])[0].'/index/'.$id;
         redirect($url,'refresh');
     }
-       
 
     public function show_by_district($page=1, $idD) {
         $data['view'] = 'home';
         $data['content']['content'] = $this->mpost->get_by_district($idD, $page);
         $this->load->view(LAYOUT, $data);
     }
-
     public function show_by_category($page=1, $idC) {
         $class_name = $this->router->fetch_class();
         $method_name = $this->router->fetch_method();

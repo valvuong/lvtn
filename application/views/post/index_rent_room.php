@@ -5,6 +5,7 @@
 </style>
 <fieldset>
     <legend>Thông Tin Bổ Sung</legend>
+<<<<<<< HEAD
     <?php if(!empty($anninh)): ?>
 	    <p><strong><!-- An Ninh --></strong><span><?php echo $anninh ?></span></p>
 	    <div class="clear"></div>
@@ -45,4 +46,10 @@
 	    <p><strong><!-- Chỉ Cho Ở --></strong><span>Chỉ Cho <?php echo $chicho ?></span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
+=======
+    <?php 
+    	echo $anninh;
+    	echo 'thong tin bo sung';
+    ?>
+>>>>>>> 073be72e511815b2211b95b99f63ba41b93d4b01
 </fieldset>

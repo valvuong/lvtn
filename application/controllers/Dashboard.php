@@ -10,7 +10,15 @@ class Dashboard extends CI_Controller {
 
 	public function index() {
 		if($this->session->userdata('logged_in')) {
-			$this->load->view('dashboard/main');
-		}$this->load->view('dashboard/main');
+			$data['view'] = 'dashboard/index';
+			$this->load->view('dashboard/main', $data);
+		} else {
+			$data['view'] = 'dashboard/index';
+			$this->load->view('dashboard/main', $data);
+		}
+	}
+
+	public function market() {
+		
 	}
 }

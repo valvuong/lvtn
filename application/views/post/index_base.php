@@ -37,7 +37,7 @@
         <div class="clear"></div>
     </fieldset>
 
-    <?php $this->load->view('post/index_rent_room', $content['thongtinbosung']); ?>
+    <?php $this->load->view($additional, $content['thongtinbosung']); ?>
 
     <fieldset>
         <legend>Thông Tin Liên Hệ</legend>
@@ -79,4 +79,10 @@
     </div>
 </div>
 
-<div class="map"></div>
+<div class="map">
+    <head><?php echo $map['js'];?></head>
+    <fieldset>
+        <legend style="width: 100px">BẢN ĐỒ</legend>
+        <div><?php echo $map['html'];?></div>
+    </fielset>
+</div>

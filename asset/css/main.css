@@ -239,3 +239,12 @@ ul {
 .clear-row {
   clear: both;
 }
+.href-none-after a:after {
+  display: none !important;
+}
+.avatar-icon a {
+  padding: 5px 10px !important;
+}
+.avatar-icon img {
+  width: 32px;
+}

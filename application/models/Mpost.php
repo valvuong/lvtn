@@ -109,7 +109,7 @@ class Mpost extends CI_Model {
         $this->db->where(MODEL_POST_CATEGORY.'.id', $result[0]['chuyenmuc']);
         $query = $this->db->get();
         $r = $query->result_array();
-        $t = $r[0]['bang_phu'];
+        $t = $r[0]['bang_phu'];var_dump($t);
 
         $this->db->select($t.'.*');
         $this->db->from($t);
