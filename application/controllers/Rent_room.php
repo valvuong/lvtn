@@ -9,6 +9,11 @@ class Rent_room extends Post_Controller {
 
 	public function index($id) {
 		$f = $this->mpost->get_one($id);
+
+        ///////////gmap///////////////       
+        $data['content']['map'] = $this->index_gmap($f['kinhdo'],$f['vido']);
+        //////////////////gmap///////////////
+        
         $data['view'] = 'post/index_base';
         $data['content']['content'] = $f;
         $data['content']['additional'] = 'post/index_rent_room';

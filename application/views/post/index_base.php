@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" href="<?php echo css_url() ?>post-article.css">
+<script type="text/javascript" src="<?php echo js_url()?>gmap_distant.js"></script>
 
 <h3 class="title"><?php echo mb_strtoupper($content['tieude'],'utf8'); ?></h3>
 <div class="contact">

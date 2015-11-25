@@ -35,9 +35,9 @@ class User extends CI_Controller {
 				'img_height'    => 40,
 				'expiration'    => 7200,
 				'word_length'   => 8,
-				'font_size'     => 40,
+				'font_size'     => ,
 				'img_id'        => 'Imageid',
-				'pool'          => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+				'pool'          => '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 
 				// White background and border, black text and red grid
 				'colors'        => array(

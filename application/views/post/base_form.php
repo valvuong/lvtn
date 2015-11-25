@@ -262,6 +262,21 @@ $label_checkbox_primary = 'label-checkbox-primary';
             echo form_input($data);
             ?>
         </div>
+        <div class="<?=$form_group?>">
+            <?php
+            $field_name = 'distant';
+            echo form_label("Khoảng cách tới ĐHBK(km)$required:", $field_name, array('class' => $label_class));
+            $data= array(
+                'id' => $field_name,
+                'name' => $field_name,
+                'class' => $input_class,
+                'required' => 'required',
+                'title' => 'Khoảng cách tới trường Đại Học Bách Khoa TpHCM',
+                // 'oninvalid' => "this.setCustomValidity('Hãy Chọn Vị Trí Phòng Trọ Trên Bản Đồ')"
+            );
+            echo form_input($data);
+            ?>
+        </div>
     </fieldset>
 
     <?php
@@ -367,3 +382,5 @@ $label_checkbox_primary = 'label-checkbox-primary';
         </div>
     </div>
 <?php echo form_close() ?>
+
+

@@ -10,16 +10,8 @@ class Apartment extends Post_Controller {
 	public function index($id) {
 		$f = $this->mpost->get_one($id);
 
-        ///////////gmap///////////////
-        $this->load->library('googlemaps');
-        $config['center'] = 'auto';
-        $this->googlemaps->initialize($config);
-
-        $marker = array();
-        $marker['position'] = $f['kinhdo'].','.$f['vido'];
-        $this->googlemaps->add_marker($marker);
-        
-        $data['content']['map'] = $this->googlemaps->create_map();
+        ///////////gmap///////////////       
+        $data['content']['map'] = $this->index_gmap($f['kinhdo'],$f['vido']);
         //////////////////gmap///////////////
 
         $data['view'] = 'post/index_base';
@@ -65,31 +57,8 @@ class Apartment extends Post_Controller {
             }
         }
 		///////////gmap///////////////
-		$this->load->library('googlemaps');
-		$config['center'] = 'auto';
-		$config['onclick'] = '
-				if (markers_map) {
-					for (i in markers_map) {
-						markers_map[i].setMap(null);
-					}
-					markers_map.length = 0;
-				}
-				var marker = new google.maps.Marker({
-					map:       map,
-					position:  event.latLng
-				}); 
-				markers_map.push(marker);
-				var lat = event.latLng.lat();
-				var lng = event.latLng.lng();
-				$(\'#lat\').val(lat);
-				$(\'#lng\').val(lng);
-				';
-		
-		$config['zoom'] = 'auto';
-		$this->googlemaps->initialize($config);
-		
-		$data['content']['map'] = $this->googlemaps->create_map();
-		//////////////////gmap///////////////
+        $data['content']['map'] = $this->gmap();
+        ///////////gmap///////////////
 
         $this->load->view(LAYOUT, $data);
     }

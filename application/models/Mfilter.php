@@ -95,6 +95,7 @@ class Mfilter extends CI_Model {
         $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.id', 'left');
         $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
         $this->db->group_by(MODEL_POST.'.'.$this->id);
+        $this->db->order_by(MODEL_POST.'.'.$this->id, 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }
