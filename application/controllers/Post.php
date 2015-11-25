@@ -14,6 +14,7 @@ class Post extends CI_Controller {
         $url = explode("/", $result['url'])[0].'/index/'.$id;
         redirect($url,'refresh');
     }
+
     public function show_by_district($page=1, $idD) {
         $data['view'] = 'home';
         $data['content']['content'] = $this->mpost->get_by_district($idD, $page);

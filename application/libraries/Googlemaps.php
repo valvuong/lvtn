@@ -1124,6 +1124,7 @@ class Googlemaps {
 				$apiLocation .= '.google.com/maps/api/js?';
 			}
 			$apiLocation .= 'sensor='.$this->sensor;
+			$apiLocation .= '&libraries=geometry';
 			if ($this->region!="" && strlen($this->region)==2) { $apiLocation .= '&region='.strtoupper($this->region); }
 			if ($this->language!="") { $apiLocation .= '&language='.$this->language; }
 			$libraries = array();

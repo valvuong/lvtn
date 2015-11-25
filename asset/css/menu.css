@@ -153,9 +153,6 @@ nav {
   position: relative;
   z-index: 100;
 }
-.task a:after {
-  display: none !important;
-}
 .task:after {
   display: none;
 }

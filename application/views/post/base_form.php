@@ -262,6 +262,21 @@ $label_checkbox_primary = 'label-checkbox-primary';
             echo form_input($data);
             ?>
         </div>
+        <div class="<?=$form_group?>">
+            <?php
+            $field_name = 'distant';
+            echo form_label("Khoảng cách tới ĐHBK(km)$required:", $field_name, array('class' => $label_class));
+            $data= array(
+                'id' => $field_name,
+                'name' => $field_name,
+                'class' => $input_class,
+                'required' => 'required',
+                'title' => 'Khoảng cách tới trường Đại Học Bách Khoa TpHCM',
+                // 'oninvalid' => "this.setCustomValidity('Hãy Chọn Vị Trí Phòng Trọ Trên Bản Đồ')"
+            );
+            echo form_input($data);
+            ?>
+        </div>
     </fieldset>
 
     <?php
@@ -369,14 +384,3 @@ $label_checkbox_primary = 'label-checkbox-primary';
 <?php echo form_close() ?>
 
 
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
-<script> 
-    function distant() {
-        $('#map_canvas').on('click', function() {
-            var p1 = new google.maps.LatLng(10.732897216070397, 106.62367165088654 );//bach khoa
-            var p2 = new google.maps.LatLng(10.732897216070397, 106.62367165088654);
-            alert((google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2));
-        });
-        //calculates distance between two points in km's
-    }
-</script>

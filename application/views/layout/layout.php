@@ -48,7 +48,16 @@
                     </ul>
                 </li>
                 <li><a href="<?=site_url('tin-vat')?>">Rao Vặt</a></li>
-                <li class="float-right task">
+                <?php if(!$this->session->userdata('logged_in')): ?>
+                    <li class="float-right href-none-after">
+                        <a href="<?=site_url('dang-nhap')?>"><i class="fa fa-lock"></i></a>
+                    </li>
+                <?php else: ?>
+                    <li class="float-right avatar-icon href-none-after">
+                        <a href="<?=site_url('tai-khoan')?>"><img src="<?php echo image_url() ?>avatar-001.jpg"></a>
+                    </li>
+                <?php endif; ?>
+                <li class="float-right task href-none-after">
                     <a href="javascript:void(0)" class="click-dropdown"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
                     <ul>
                         <li><a href="<?=site_url('buon-ban')?>">Rao Vặt</a></li>
@@ -62,12 +71,12 @@
                         <?php endif; ?>
                     </ul>
                 </li>
-                <li class="float-right search-main">
+                <!-- <li class="float-right search-main">
                     <form action="search" method="get">
                         <input type="text" name="search" placeholder="Nhập Từ Khóa">
                         <span class="glyphicon glyphicon-search"></span>
                     </form>
-                </li>
+                </li> -->
             </ul>
         </div>
     </nav>
@@ -156,13 +165,3 @@
     <?php $this->load->view('layout/footer') ?>
 </body>
 </html>
-
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
-<script> 
-
-            var p1 = new google.maps.LatLng(10.732897216070397, 106.62367165088654 );//bach khoa
-            var p2 = new google.maps.LatLng(10.732897216070397, 106.62367165088654);
-            alert((google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2));
-     
-        //calculates distance between two points in km's
-</script>

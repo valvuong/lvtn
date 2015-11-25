@@ -115,6 +115,11 @@ class Post_Controller extends CI_Controller {
                 markers_map.push(marker);
                 var lat = event.latLng.lat();
                 var lng = event.latLng.lng();
+
+                var p1 = new google.maps.LatLng(10.772223670808806, 106.65842771530151 );//bach khoa
+                var p2 = new google.maps.LatLng(lat, lng);
+
+                $(\'#distant\').val((google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2));
                 $(\'#lat\').val(lat);
                 $(\'#lng\').val(lng);
                 ';
