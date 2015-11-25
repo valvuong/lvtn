@@ -12,6 +12,7 @@ class Rent_room extends Post_Controller {
         $data['view'] = 'post/index_base';
         $data['content']['content'] = $f;
         $data['content']['additional'] = 'post/index_rent_room';
+        $data['content']['map'] = $this->gmap();
         $data['left_hidden'] = true;
         $data['title'] = $f['tieude'];
         $this->load->view(LAYOUT, $data);

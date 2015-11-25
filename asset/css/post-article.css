@@ -28,7 +28,7 @@ fieldset p span {
 }
 .contact p {
   margin-bottom: 8px;
-  font-size: 13px;
+  font-size: 18px;
 }
 .contact p strong {
   display: inline-block;
@@ -62,6 +62,7 @@ fieldset p span {
 }
 .detail {
   text-align: justify;
+  font-size: 15px;
 }
 .gallery {
   margin-top: 50px;
