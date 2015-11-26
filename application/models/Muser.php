@@ -54,9 +54,48 @@ class Muser extends CI_Model {
 	
 	public function create_user($data) {
         $last_id = '';
-		$this->db->insert('user',$data);
-		$last_id = $this->db->insert_id();
-        return $last_id;
+        foreach($data as $table => $info){
+        	if($table == 'avatar') {
+                $this->upload_avatar($info,$last_id);
+            } else {
+				$this->db->insert('user',$info);
+				$last_id = $this->db->insert_id();
+			}
+		}
+	    return $last_id;
+    }
+
+    private function upload_avatar($files,$id) {
+        $config['upload_path'] = 'asset/uploads/user';
+        $config['allowed_types'] = 'gif|jpg|jpeg|png';
+        $config['max_size']	= '1024';
+        $this->load->library('upload');
+        foreach ($files as $field_name => $file)
+        {
+            foreach($file['name'] as $key => $image_name) {
+                $_FILES[$field_name]['name'] = $file['name'][$key];
+                $_FILES[$field_name]['type'] = $file['type'][$key];
+                $_FILES[$field_name]['tmp_name'] = $file['tmp_name'][$key];
+                $_FILES[$field_name]['error'] = $file['error'][$key];
+                $_FILES[$field_name]['size'] = $file['size'][$key];
+
+                $file_name = uniqid($id.'_');
+                $config['file_name'] = $file_name;
+                $this->upload->initialize($config);
+
+                if ($this->upload->do_upload($field_name)) {
+                    $fname = $file['name'][$key];
+                    $fname = explode('.', $fname);
+                    $extension = end($fname);
+                    $data['avatar'] = $file_name.'.'.$extension;
+                    $this->db->where('idUser',$id);
+					$this->db->update('user',$data);
+                } /*else {
+                    $errors[] = $this->upload->display_errors();
+                }*/
+                $file_datas[] = $this->upload->data();
+            }
+        }
     }
 	
 	public function get_profile($id) {

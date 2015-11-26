@@ -23,7 +23,7 @@ $area_error = form_error('area');
 				if($login_fail==true): ?>
 				<h1 class="card-heading">Sai tên hoặc mật khẩu</h1>
 				
-				<?php else: ?> <div class="card-heading">ĐĂNG NHẬP</div>
+				<?php else: ?> <div class="card-heading">XIN CHÀO - ĐĂNG NHẬP</div>
 				<?php endif ?>
 			</div>
 		
