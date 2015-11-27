@@ -33,7 +33,7 @@ class User extends CI_Controller {
 				
 				'img_width'     => '200',
 				'img_height'    => 40,
-				'expiration'    => 7200,
+				'expiration'    => 600,
 				'word_length'   => 8,
 				'font_size'     => 16,
 				'img_id'        => 'Imageid',
@@ -84,14 +84,18 @@ class User extends CI_Controller {
 		if($this->input->post('register')) {
             if($this->form_validation->run()) {
                 $info = array(
+                	'register' => array(
                         'username' => $this->input->post('register-username'),
 						'email'    => $this->input->post('register-email'),
                         'password' => $this->input->post('register-password'),
 						'role'	   => 'ROLE_USER'
-					);
+					),
+					'avatar'   => $_FILES,
+				);
 			
 				$id = $this->muser->create_user($info);
 				$data['view'] = 'register/success';
+				$data['content']['test'] = $_FILES;
 			}
 		}
 		$this->load->view(LAYOUT, $data);
@@ -129,11 +133,10 @@ class User extends CI_Controller {
 		else 
 			return true;
 	}
-			
-	public function login() {
 		
-		
+//////////////login////////////////	
 
+	public function login() {
         $data['view'] = 'login/login';
 		$data['title'] = 'Đăng nhập';
 		$data['content']['login_fail']= false;

@@ -7,6 +7,8 @@
 	<!-- css -->
 	<link href="<?php echo asset_url()?>css/base.min.css" rel="stylesheet">
 	<link href="<?php echo asset_url()?>css/project.min.css" rel="stylesheet">
+	<script src="<?php echo asset_url() ?>ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="<?php echo asset_url() ?>js/register.js"></script>
 <?php
 $required = '<span style="color: red">*</span>';
 $form_group = 'form-group';
@@ -27,11 +29,39 @@ $area_error = form_error('area');
 		</div>
 		<div class="card-inner">
 			<p class="text-center">
-				<span class="avatar avatar-inline avatar-lg">
+				<span id=preview class="avatar avatar-inline avatar-lg">
 					<img alt="register" src="<?php echo asset_url()?>image/avatar-001.jpg">
 				</span>
 			</p>
-			<?php echo form_open_multipart('user/register') ?>
+		</div>
+<?php echo form_open_multipart('user/register') ?>
+<!--///////////////////// -->
+			<div class="<?=$form_group?>">
+	            <div class="<?=$form_group?> upload-warning">
+	                <?php
+	                echo form_label(
+	                    '<span class="glyphicon glyphicon-upload"></span>Chọn ảnh đại diện',
+	                    'upload-file',
+	                    array(
+	                        'class'=>'upload-file',
+	                        'id' => 'upload-label',
+	                        'data-toggle' => "tooltip"
+	                    )
+	                );
+	                $data = array(
+	                    'id' => 'upload-file',
+	                    'name' => 'upload_file[]',
+	                    'accept' => 'image/jpeg, image/gif, image/png, image/jpg',
+	                    'multiple' => false,
+	                    'required' => 'required'
+	                );
+	                echo form_upload($data);
+	                ?>
+	            </div>
+	        </div>
+<!--///////////////////////////////-->
+
+
 				<div class="form-group form-group-label">
 					<div class="row">
 						<div class="col-md-10 col-md-push-1">		
