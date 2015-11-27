@@ -35,7 +35,7 @@ class User extends CI_Controller {
 				'img_height'    => 40,
 				'expiration'    => 7200,
 				'word_length'   => 8,
-				'font_size'     => ,
+				'font_size'     => 16,
 				'img_id'        => 'Imageid',
 				'pool'          => '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 

@@ -42,6 +42,7 @@ fieldset p span {
 .item img {
   height: 100% !important;
   margin: 0 auto;
+  max-width: 480px !important;
 }
 .title {
   background: none;
