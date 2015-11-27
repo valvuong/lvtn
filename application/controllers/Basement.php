@@ -49,7 +49,6 @@ class Basement extends Post_Controller {
                         'amthap' => $this->input->post('amthap'),
                         'tiennghi' => $this->input->post('other-services'),
                         'xebuyt' => $this->input->post('bus')
-
                     )
                 );
                 $info = $main_info + $sub_info;
