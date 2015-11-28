@@ -58,6 +58,10 @@ class Post_Controller extends CI_Controller {
             array(
                 'field' => 'lat',
                 'rules' => 'required|numeric'
+            ),
+            array(
+                'field' => 'distant',
+                'rules' => 'required|numeric'
             )
         );
         return $rules;
@@ -66,17 +70,18 @@ class Post_Controller extends CI_Controller {
     protected function get_main_input($c) {
         $info = array(
             MODEL_POST => array(
-                'tieude'    => $this->input->post('title'),
-                'quan'      => $this->input->post('district'),
-                'phuong'    => $this->input->post('ward'),
-                'chuyenmuc' => $c,
-                'giaphong'  => $this->input->post('price'),
-                'dientich'  => $this->input->post('area'),
-                'noidung'   => $this->input->post('content_post'),
-                'ngaydang'  => date('Y-m-d'),
-                'hethan'    => date('Y-m-d', strtotime($this->input->post('expired_date'))),
-                'kinhdo'    => $this->input->post('lat'),
-                'vido'      => $this->input->post('lng')
+                'tieude'     => $this->input->post('title'),
+                'quan'       => $this->input->post('district'),
+                'phuong'     => $this->input->post('ward'),
+                'chuyenmuc'  => $c,
+                'giaphong'   => $this->input->post('price'),
+                'dientich'   => $this->input->post('area'),
+                'noidung'    => $this->input->post('content_post'),
+                'ngaydang'   => date('Y-m-d'),
+                'hethan'     => date('Y-m-d', strtotime($this->input->post('expired_date'))),
+                'kinhdo'     => $this->input->post('lat'),
+                'vido'       => $this->input->post('lng'),
+                'khoangcach' => $this->input->post('distant')
             ),
             MODEL_POST_PRICE => array(
                 'tiendien' => $this->input->post('e_price')===NULL ? 0:1,
