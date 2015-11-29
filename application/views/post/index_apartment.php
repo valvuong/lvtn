@@ -1,5 +1,5 @@
 <fieldset>
-    <legend>Thông Tin Bổ Sung</legend>
+    <legend style="width: 194px">Thông Tin Bổ Sung</legend>
     <p><strong>An Ninh:</strong><span><?=$anninh?></span></p>
     <div class="clear"></div>
     <p><strong>Giờ giấc:</strong><span><?=$giogiac?></span></p>
