@@ -36,6 +36,8 @@
         <div class="clear"></div>
         <p><strong>Quận/Huyện:</strong><span><?=$content['tenquan']?></span></p>
         <div class="clear"></div>
+        <p><strong>Cách Đại Học Bách Khoa:</strong><span><?=$content['khoangcach']?> km</span></p>
+        <div class="clear"></div>
     </fieldset>
 
     <?php $this->load->view($additional, $content['thongtinbosung']); ?>
