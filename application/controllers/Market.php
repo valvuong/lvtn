@@ -92,14 +92,15 @@ class Market extends CI_Controller {
         }
     }
 
-    public function get_by_category($cate_id, $page = 1) {
+    public function get_by_category($page = 1, $cate_id) {
         $class_name = $this->router->fetch_class();
         $method_name = $this->router->fetch_method();
         $data['view'] = 'market/list';
         $data['content']['content'] = $this->mmarket->get_by_category($page, $cate_id);
-        $data['content']['pagination'] = array($class_name, $method_name, $cate_id, $page);
+        $data['content']['pagination'] = array($class_name, $method_name, $page, $cate_id);
         $data['content']['items_per_page'] = ADS_PER_PAGE;
         $data['content']['num_rows'] = $this->mmarket->get_cate_rows($cate_id);
+        $data['content']['url_alias'] = $cate_id.'-rao-vat-';
         $data['header_message'] = $this->header_message;
         $this->load->view(LAYOUT, $data);
     }
