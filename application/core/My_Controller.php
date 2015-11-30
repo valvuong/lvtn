@@ -76,7 +76,8 @@ class Post_Controller extends CI_Controller {
                 'ngaydang'  => date('Y-m-d'),
                 'hethan'    => date('Y-m-d', strtotime($this->input->post('expired_date'))),
                 'kinhdo'    => $this->input->post('lat'),
-                'vido'      => $this->input->post('lng')
+                'vido'      => $this->input->post('lng'),
+                'khoangcach'=>$this->input->post('distant')
             ),
             MODEL_POST_PRICE => array(
                 'tiendien' => $this->input->post('e_price')===NULL ? 0:1,
@@ -133,12 +134,11 @@ class Post_Controller extends CI_Controller {
     protected function index_gmap($lng,$lat) {
         $this->load->library('googlemaps');
         $config['center'] = $lng.','.$lat;
+        $config['directions'] = 'true';
+        $config['directionsStart'] = '10.772223670808806, 106.65842771530151';
+        $config['directionsEnd'] = $lng.','.$lat;
         $this->googlemaps->initialize($config);
 
-        $marker = array();
-        $marker['position'] = $lng.','.$lat;
-        $this->googlemaps->add_marker($marker);
-        
         return $this->googlemaps->create_map();
     }
 }
