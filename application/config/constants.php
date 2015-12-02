@@ -110,3 +110,5 @@ define('MODEL_CATEGORY', MODEL_POST_CATEGORY);
 
 define('SEARCH_AREA', 'timkiem_dientich');
 define('SEARCH_PRICE', 'timkiem_giaphong');
+
+define('COOKIE_POST_SORT', 'post_sort');

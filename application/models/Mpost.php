@@ -31,8 +31,8 @@ class Mpost extends CI_Model {
         $this->db->select(MODEL_POST_UPLOAD.'.tenhinh');
         $this->db->from(MODEL_POST);
         $this->db->where($this->hethan." >=", date('Y-m-d'));
-        $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.quan', 'left');
-        $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.id', 'left');
+        $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.'.$this->quan, 'left');
+        $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.'.$this->id, 'left');
         $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
         $this->db->group_by(MODEL_POST.'.'.$this->id);
         $this->db->order_by(MODEL_POST.'.'.$this->id, 'DESC');
@@ -175,5 +175,20 @@ class Mpost extends CI_Model {
                 }*/
             }
         }
+    }
+
+    public function post_sort($page = 1, $sort, $field) {
+        $this->db->select(MODEL_POST.'.*');
+        $this->db->select(MODEL_DISTRICT.'.tenquan');
+        $this->db->select(MODEL_POST_UPLOAD.'.tenhinh');
+        $this->db->from(MODEL_POST);
+        $this->db->where($this->hethan." >=", date('Y-m-d'));
+        $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.quan', 'left');
+        $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.id', 'left');
+        $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
+        $this->db->group_by(MODEL_POST.'.'.$field);
+        $this->db->order_by(MODEL_POST.'.'.$field, $sort);
+        $query = $this->db->get();
+        return $query->result_array();
     }
 }
