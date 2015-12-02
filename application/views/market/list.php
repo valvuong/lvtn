@@ -1,5 +1,4 @@
 <div class="list-header market-header">
-    <span class="glyphicon glyphicon-list-alt"></span>
     <div class="btn-group">
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Loại <span class="caret"></span>

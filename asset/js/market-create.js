@@ -2,14 +2,7 @@ $(function(){
     editor();
     preview();
     price();
-    selectepicker();
 });
-
-function selectepicker() {
-    $('.selectpicker').selectpicker({
-        size: 6
-    });
-}
 
 function editor() {
     CKEDITOR.replace( 'ad-content' );

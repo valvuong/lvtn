@@ -8,7 +8,6 @@ class Welcome extends CI_Controller {
         parent::__construct();
         $this->load->helper(array('url'));
         $this->load->model(array('mdistrict','mpost'));	
-        $this->input->set_cookie(COOKIE_POST_SORT, 0, 86400);
     }
 
 	public function index($page=1)
@@ -16,21 +15,25 @@ class Welcome extends CI_Controller {
         $class_name = $this->router->fetch_class();
         $method_name = $this->router->fetch_method();
         $data['view'] = 'home';
-        if ($this->input->cookie(COOKIE_POST_SORT) == 0) {
-            $data['content']['content'] = $this->mpost->get_all($page);
-        } else {
-            switch ($this->input->cookie(COOKIE_POST_SORT)) {
-                case 1:
-                    $data['content']['content'] = $this->mpost->post_sort($page, 'DESC', 'id');
-                    break;
-                case 2:
-                    $data['content']['content'] = $this->mpost->post_sort($page, 'ASC', 'giaphong');
-                    break;
-                case 3:
-                    $data['content']['content'] = $this->mpost->post_sort($page, 'ASC', 'dientich');
-                    break;
-            }
+        if ($this->agent->referrer() == base_url() && $page == 1) {
+            $this->input->set_cookie(COOKIE_POST_SORT, 0, 86400);
         }
+        switch ($this->input->cookie(COOKIE_POST_SORT)) {
+            case 0:
+            case 1:
+                $sort = 'DESC';
+                $field = 'id';
+                break;
+            case 2:
+                $sort = 'ASC';
+                $field = 'giaphong';
+                break;
+            case 3:
+                $sort = 'ASC';
+                $field = 'dientich';
+                break;
+        }
+        $data['content']['content'] = $this->mpost->get_all($page, $sort, $field);
         $data['content']['pagination'] = array($class_name, $method_name, $page);
         $data['content']['items_per_page'] = POSTS_PER_PAGE;
         $data['content']['num_rows'] = $this->mpost->get_all_rows();
@@ -42,6 +45,7 @@ class Welcome extends CI_Controller {
         $data['view'] = 'static_page/contact';
         $data['content']['content'] = '';
         $data['left_hidden'] = true;
+        $data['right_hidden'] = true;
         $this->load->view(LAYOUT, $data);
     }
 
@@ -49,6 +53,7 @@ class Welcome extends CI_Controller {
         $data['view'] = 'static_page/about';
         $data['content']['content'] = '';
         $data['left_hidden'] = true;
+        $data['right_hidden'] = true;
         $this->load->view(LAYOUT, $data);
     }
 
@@ -56,6 +61,7 @@ class Welcome extends CI_Controller {
         $data['view'] = 'post/create_post';
         $data['content']['content'] = '';
         $data['left_hidden'] = true;
+        $data['right_hidden'] = true;
         $this->load->view(LAYOUT, $data);
     }
 

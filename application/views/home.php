@@ -1,20 +1,16 @@
 <div class="list-header">
-    <span class="glyphicon glyphicon-list-alt"></span>
-    <div class="form-group sort">
-      <!-- <select class="form-control" id="post-sort">
-        <option value="0" <?php if($this->input->cookie(COOKIE_POST_SORT) == 0) echo 'selected' ?>>Sắp Xếp Theo</option>
-        <option value="1" <?php if($this->input->cookie(COOKIE_POST_SORT) == 1) echo 'selected' ?>>Mới Nhất</option>
-        <option value="2" <?php if($this->input->cookie(COOKIE_POST_SORT) == 2) echo 'selected' ?>>Giá Tăng Dần</option>
-        <option value="3" <?php if($this->input->cookie(COOKIE_POST_SORT) == 3) echo 'selected' ?>>Diện Tích Nhỏ</option>
-      </select> -->
-      <span>Sắp Xếp Theo</span>
-      <ul>
+    <div class="btn-group sort">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sắp Xếp Theo <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
           <li><a href="<?php echo site_url('welcome/sort/1') ?>">Mới Nhất</a></li>
           <li><a href="<?php echo site_url('welcome/sort/2') ?>">Giá Tăng Dần</a></li>
           <li><a href="<?php echo site_url('welcome/sort/3') ?>">Diện Tích Nhỏ</a></li>
       </ul>
     </div>
 </div>
+
 <?php foreach($content as $row): ?>
 <a class="post" href="<?=site_url('tin-'.$row['id'])?>">
     <div class="thumbnail">
@@ -55,6 +51,6 @@
         </p>
     </div>
 </a>
-<?php endforeach ?>
+<?php endforeach; ?>
 <!--Pagination-->
 <?php $this->load->view('pagination') ?>

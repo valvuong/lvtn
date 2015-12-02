@@ -1,3 +1,8 @@
+<style type="text/css">
+	strong {
+		min-height: 1px;
+	}
+</style>
 <fieldset>
     <legend style="width: 194px">Thông Tin Bổ Sung</legend>
     <?php if(!empty($anninh)): ?>

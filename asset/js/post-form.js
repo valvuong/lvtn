@@ -5,7 +5,6 @@ $(function(){
     priceEvent();
     prePay();
     datepicker();
-    selectepicker();
     // fsubmit();
 });
 
@@ -14,12 +13,6 @@ function datepicker() {
         time: false,
         format : 'DD-MM-YYYY',
         minDate : new Date()
-    });
-}
-
-function selectepicker() {
-    $('.selectpicker').selectpicker({
-        size: 6
     });
 }
 
