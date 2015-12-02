@@ -68,7 +68,7 @@ ul {
   color: #ff0000;
 }
 #right {
-  width: 230px;
+  width: 300px;
   float: right;
   background: rgba(52, 162, 198, 0.48);
 }
@@ -94,7 +94,6 @@ ul {
 #content {
   padding-left: 10px;
   padding-right: 10px;
-  float: left;
 }
 .fbtn {
   background-color: #f5f5f5;
@@ -152,7 +151,7 @@ ul {
 }
 .post #middle {
   display: inline-block;
-  width: 510px;
+  width: 500px;
   padding: 5px 10px;
 }
 .post #middle h4 {
@@ -257,4 +256,9 @@ ul {
 }
 .avatar-icon img {
   width: 32px;
+}
+.center {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
