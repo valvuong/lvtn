@@ -27,6 +27,9 @@ class Post extends CI_Controller {
         $class_name = $this->router->fetch_class();
         $method_name = $this->router->fetch_method();
         $data['view'] = 'home';
+        $data['left_hidden'] = true;
+        $data['right_view'] = 'layout/right';
+        $data['right_content'] = '';
         $data['content']['content'] = $this->mpost->get_by_category($idC, $page);
         $data['content']['pagination'] = array($class_name, $method_name, $page, $idC);
         $data['content']['items_per_page'] = POSTS_PER_PAGE;
