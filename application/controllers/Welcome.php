@@ -15,6 +15,9 @@ class Welcome extends CI_Controller {
         $class_name = $this->router->fetch_class();
         $method_name = $this->router->fetch_method();
         $data['view'] = 'home';
+        $data['left_hidden'] = true;
+        $data['right_view'] = 'layout/right';
+        $data['right_content']['content'] = '';
         if ($this->agent->referrer() == base_url() && $page == 1) {
             $this->input->set_cookie(COOKIE_POST_SORT, 0, 86400);
         }

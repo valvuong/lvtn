@@ -24,6 +24,8 @@ class Market extends CI_Controller {
         $class_name = $this->router->fetch_class();
         $method_name = $this->router->fetch_method();
         $data['view'] = 'market/list';
+        $data['left_hidden'] = true;
+        $data['right_hidden'] = true;
         $data['content']['content'] = $this->mmarket->get_all($page);
         $data['content']['pagination'] = array($class_name, $method_name, $page);
         $data['content']['items_per_page'] = ADS_PER_PAGE;
@@ -38,6 +40,7 @@ class Market extends CI_Controller {
             $data['view'] = 'market/create';
             $data['content']['content'] = '';
             $data['left_hidden'] = true;
+            $data['right_hidden'] = true;
             $data['header_message'] = $this->header_message;
 
             $this->load->library('form_validation');
@@ -96,6 +99,8 @@ class Market extends CI_Controller {
         $class_name = $this->router->fetch_class();
         $method_name = $this->router->fetch_method();
         $data['view'] = 'market/list';
+        $data['left_hidden'] = true;
+        $data['right_hidden'] = true;
         $data['content']['content'] = $this->mmarket->get_by_category($page, $cate_id);
         $data['content']['pagination'] = array($class_name, $method_name, $page, $cate_id);
         $data['content']['items_per_page'] = ADS_PER_PAGE;

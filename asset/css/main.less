@@ -78,7 +78,7 @@ ul {
 }
 
 #right {
-  @right-width: 230px;
+  @right-width: 300px;
   width: @right-width;
   float: right;
   background: rgba(52, 162, 198, 0.48);
@@ -111,7 +111,6 @@ ul {
   //width: 100 - @left-width - @right-width;
   padding-left: @content-padding;
   padding-right: @content-padding;
-  float: left;
 }
 
 .fbtn {
@@ -176,7 +175,7 @@ ul {
   }
   #middle {
     display: inline-block;
-    width: 510px;
+    width: 500px;
     padding: 5px 10px;
     h4 {
       font-size: 13px;
@@ -299,4 +298,10 @@ ul {
   img {
     width: 32px;
   }
+}
+
+.center {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
