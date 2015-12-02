@@ -1,8 +1,6 @@
 #content {
   clear: both;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 700px;
 }
 .dt {
   text-align: center;

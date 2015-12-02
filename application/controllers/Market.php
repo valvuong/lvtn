@@ -7,7 +7,7 @@ class Market extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helper(array('url','form'));
-        $this->load->model(array('mdistrict','mmarket'));
+        $this->load->model(array('mdistrict','mmarket','mmarket_category'));
         $this->header_message = "CHIA SẺ, BUÔN BÁN, TRAO ĐỔI ĐỒ DÙNG CÁ NHÂN";
     }
 
@@ -16,6 +16,7 @@ class Market extends CI_Controller {
         $data['view'] = 'market/index';
         $data['content']['content'] = $f;
         $data['left_hidden'] = true;
+        $data['right_hidden'] = true;
         $data['title'] = $f['tieude'];
         $this->load->view(LAYOUT, $data);
     }
@@ -25,7 +26,8 @@ class Market extends CI_Controller {
         $method_name = $this->router->fetch_method();
         $data['view'] = 'market/list';
         $data['left_hidden'] = true;
-        $data['right_hidden'] = true;
+        $data['right_view'] = 'market/right';
+        $data['right_content'] = '';
         $data['content']['content'] = $this->mmarket->get_all($page);
         $data['content']['pagination'] = array($class_name, $method_name, $page);
         $data['content']['items_per_page'] = ADS_PER_PAGE;
