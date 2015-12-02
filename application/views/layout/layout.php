@@ -28,7 +28,7 @@
     <link rel="icon" type="image/png" href="<?php echo image_url() ?>icon.png">
 </head>
 <body>
-    <a href="#" id="gotop" class="fbtn"><span class="icon glyphicon glyphicon-chevron-up"></span></a>
+    <a href="#" id="gotop" class="fbtn"><span class="x-icon glyphicon glyphicon-chevron-up"></span></a>
 
     <nav>
         <div class="cssmenu">
@@ -50,14 +50,14 @@
                 <li><a href="<?=site_url('tin-vat')?>">Rao Vặt</a></li>
                 <?php if(!$this->session->userdata('logged_in')): ?>
                     <li class="float-right href-none-after">
-                        <a href="<?=site_url('dang-nhap')?>"><i class="fa fa-lock"></i></a>
+                        <a href="<?=site_url('dang-nhap')?>" title="Đăng Nhập"><i class="fa fa-lock"></i></a>
                     </li>
                 <?php else: ?>
                     <li class="float-right avatar-icon href-none-after">
                         <a href="<?=site_url('tai-khoan')?>"><img src="<?php echo image_url() ?>avatar-001.jpg"></a>
                     </li>
                 <?php endif; ?>
-                <li class="float-right task href-none-after">
+                <!-- <li class="float-right task href-none-after">
                     <a href="javascript:void(0)" class="click-dropdown"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
                     <ul>
                         <li><a href="<?=site_url('buon-ban')?>">Rao Vặt</a></li>
@@ -70,7 +70,9 @@
                             <li><a href="<?=site_url('tai-khoan')?>">Tài Khoản</a></li>
                         <?php endif; ?>
                     </ul>
-                </li>
+                </li> -->
+                <li class="float-right"><a href="<?=site_url('buon-ban')?>">Rao Vặt</a></li>
+                <li class="float-right"><a href="<?=site_url('dang-tin')?>">Đăng Tin</a></li>
                 <!-- <li class="float-right search-main">
                     <form action="search" method="get">
                         <input type="text" name="search" placeholder="Nhập Từ Khóa">
@@ -115,7 +117,7 @@
                             <div class="panel-body">
                                 <ul>
                                     <li><label><input type="radio" name="area" value="">Tất cả</label></li>
-                                    <?php $query = $this->db->get('dientich') ?>
+                                    <?php $query = $this->db->get(SEARCH_AREA) ?>
                                     <?php foreach($query->result_array() as $row): ?>
                                         <li><label><input type="radio" name="area" value="<?=$row['value']?>"><?=$row['text']?></label></li>
                                     <?php endforeach ?>
@@ -130,7 +132,7 @@
                             <div class="panel-body">
                                 <ul>
                                     <li><label><input type="radio" name="price" value="">Tất cả</label></li>
-                                    <?php $query = $this->db->get('giaphong') ?>
+                                    <?php $query = $this->db->get(SEARCH_PRICE) ?>
                                     <?php foreach($query->result_array() as $row): ?>
                                         <li><label><input type="radio" name="price" value="<?=$row['value']?>"><?=$row['text']?></label></li>
                                     <?php endforeach ?>

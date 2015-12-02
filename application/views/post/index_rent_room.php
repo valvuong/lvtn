@@ -4,7 +4,7 @@
 	}
 </style>
 <fieldset>
-    <legend>Thông Tin Bổ Sung</legend>
+    <legend style="width: 194px">Thông Tin Bổ Sung</legend>
     <?php if(!empty($anninh)): ?>
 	    <p><strong><!-- An Ninh --></strong><span><?php echo $anninh ?></span></p>
 	    <div class="clear"></div>

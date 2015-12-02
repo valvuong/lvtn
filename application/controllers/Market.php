@@ -34,70 +34,73 @@ class Market extends CI_Controller {
     }
 
     public function create() {
-        $data['view'] = 'market/create';
-        $data['content']['content'] = '';
-        $data['left_hidden'] = true;
-        $data['header_message'] = $this->header_message;
+        if (!$this->session->userdata('logged_in')) {
+            $data['view'] = 'market/create';
+            $data['content']['content'] = '';
+            $data['left_hidden'] = true;
+            $data['header_message'] = $this->header_message;
 
-        $this->load->library('form_validation');
-        $rules = array(
-            array(
-                'field' => 'ad-title',
-                'rules' => 'trim|required'
-            ),
-            array(
-                'field' => 'ad-content',
-                'rules' => 'trim|required'
-            ),
-            array(
-                'field' => 'ad-price',
-                'rules' => 'trim|required'
-            ),
-            array(
-                'field' => 'ad-phone',
-                'rules' => 'trim|required'
-            ),
-            array(
-                'field' => 'ad-contact-name',
-                'rules' => 'trim|required'
-            )
-        );
-        $this->form_validation->set_rules($rules);
+            $this->load->library('form_validation');
+            $rules = array(
+                array(
+                    'field' => 'ad-title',
+                    'rules' => 'trim|required'
+                ),
+                array(
+                    'field' => 'ad-content',
+                    'rules' => 'trim|required'
+                ),
+                array(
+                    'field' => 'ad-price',
+                    'rules' => 'trim|required'
+                ),
+                array(
+                    'field' => 'ad-phone',
+                    'rules' => 'trim|required'
+                ),
+                array(
+                    'field' => 'ad-contact-name',
+                    'rules' => 'trim|required'
+                )
+            );
+            $this->form_validation->set_rules($rules);
 
-        if($this->input->post('submit')) {
-            if($this->form_validation->run()) {
-                $info = array(
-                    MODEL_MARKET => array(
-                        'idUser' => 45,
-                        'tieude' => $this->input->post('ad-title'),
-                        'loai' => $this->input->post('ad-category'),
-                        'quan' => $this->input->post('ad-district'),
-                        'noidung' => $this->input->post('ad-content'),
-                        'giaca' => $this->input->post('ad-price'),
-                        'tinhtrang' => $this->input->post('ad-status'),
-                        'sodienthoai' => $this->input->post('ad-phone'),
-                        'tenlienhe' => $this->input->post('ad-contact-name'),
-                        'ngaydang' => date('Y-m-d H:i:s')
-                    )
-                );
-                if(isset($_FILES['market_upload']) && !empty($_FILES['market_upload']['name'][0])) {
-                    $info[ACTION_MARKET_UPLOAD] = $_FILES;
+            if($this->input->post('submit')) {
+                if($this->form_validation->run()) {
+                    $info = array(
+                        MODEL_MARKET => array(
+                            'idUser' => 45,
+                            'tieude' => $this->input->post('ad-title'),
+                            'loai' => $this->input->post('ad-category'),
+                            'quan' => $this->input->post('ad-district'),
+                            'noidung' => $this->input->post('ad-content'),
+                            'giaca' => $this->input->post('ad-price'),
+                            'tinhtrang' => $this->input->post('ad-status'),
+                            'sodienthoai' => $this->input->post('ad-phone'),
+                            'tenlienhe' => $this->input->post('ad-contact-name'),
+                            'ngaydang' => date('Y-m-d H:i:s')
+                        )
+                    );
+                    if(isset($_FILES['market_upload']) && !empty($_FILES['market_upload']['name'][0])) {
+                        $info[ACTION_MARKET_UPLOAD] = $_FILES;
+                    }
+                    $id = $this->mmarket->create($info);
+                   redirect($id.'-tin-vat','refresh');
                 }
-                $id = $this->mmarket->create($info);
-               redirect($id.'-tin-vat','refresh');
             }
+            $this->load->view(LAYOUT, $data);
         }
-        $this->load->view(LAYOUT, $data);
     }
 
-    public function get_by_category($cate_id, $page = 1) {
+    public function get_by_category($page = 1, $cate_id) {
         $class_name = $this->router->fetch_class();
         $method_name = $this->router->fetch_method();
         $data['view'] = 'market/list';
         $data['content']['content'] = $this->mmarket->get_by_category($page, $cate_id);
-        $data['content']['pagination'] = array($class_name, $method_name, $cate_id, $page);
+        $data['content']['pagination'] = array($class_name, $method_name, $page, $cate_id);
         $data['content']['items_per_page'] = ADS_PER_PAGE;
         $data['content']['num_rows'] = $this->mmarket->get_cate_rows($cate_id);
+        $data['content']['url_alias'] = $cate_id.'-rao-vat-';
         $data['header_message'] = $this->header_message;
         $this->load->view(LAYOUT, $data);
     }

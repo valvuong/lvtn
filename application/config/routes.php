@@ -80,4 +80,4 @@ $route['tin-vat'] = 'market/get_all';
 $route['tin-vat-(:num)'] = 'market/get_all/$1';
 $route['(:num)-tin-vat'] = 'market/index/$1';
 $route['rao-vat-(:num)'] = 'market/get_by_category/$1';
-$route['(:num)-rao-vat-(:num)'] = 'market/get_by_category/$1/$2';
+$route['(:num)-rao-vat-(:num)'] = 'market/get_by_category/$2/$1';

@@ -107,3 +107,6 @@ define('MODEL_MARKET_CATEGORY', 'raovat_loai');
 define('ACTION_POST_UPLOAD', 'upload_image');
 define('ACTION_MARKET_UPLOAD', 'upload_image');
 define('MODEL_CATEGORY', MODEL_POST_CATEGORY);
+
+define('SEARCH_AREA', 'timkiem_dientich');
+define('SEARCH_PRICE', 'timkiem_giaphong');
