@@ -18,6 +18,7 @@ class Full_house extends Post_Controller {
         $data['content']['content'] = $f;
         $data['content']['additional'] = 'post/index_full_house';
         $data['left_hidden'] = true;
+        $data['right_hidden'] = true;
         $data['title'] = $f['tieude'];
         $this->load->view(LAYOUT, $data);
 	}
@@ -30,6 +31,7 @@ class Full_house extends Post_Controller {
         $data['content']['action'] = $class_name.'/'.$method_name;
         $data['content']['additional'] = 'post/full_house_form';
         $data['left_hidden'] = true;
+        $data['right_hidden'] = true;
         $this->load->library('form_validation');
         $main_rules = $this->set_form_rules();
         $rent_room_rules = array();

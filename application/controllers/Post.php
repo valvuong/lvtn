@@ -31,7 +31,8 @@ class Post extends CI_Controller {
         $data['content']['pagination'] = array($class_name, $method_name, $page, $idC);
         $data['content']['items_per_page'] = POSTS_PER_PAGE;
         $data['content']['num_rows'] = $this->mpost->get_category_rows($idC);
-        $data['content']['url_alias'] = 'tin-vat-';
+        $url_alias = 'loai-'.$idC.'-';
+        $data['content']['url_alias'] = $url_alias;
         $this->load->view(LAYOUT, $data);
     }
 }

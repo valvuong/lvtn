@@ -18,6 +18,7 @@ class Rent_room extends Post_Controller {
         $data['content']['content'] = $f;
         $data['content']['additional'] = 'post/index_rent_room';
         $data['left_hidden'] = true;
+        $data['right_hidden'] = true;
         $data['title'] = $f['tieude'];
         $this->load->view(LAYOUT, $data);
 	}
@@ -30,6 +31,7 @@ class Rent_room extends Post_Controller {
         $data['content']['action'] = $class_name.'/'.$method_name;
         $data['content']['additional'] = 'post/rent_room_form';
         $data['left_hidden'] = true;
+        $data['right_hidden'] = true;
         $this->load->library('form_validation');
         $main_rules = $this->set_form_rules();
         $rent_room_rules = array();
@@ -49,7 +51,6 @@ class Rent_room extends Post_Controller {
                         'giogiac' => $this->input->post('time-off'),
                         'nhavesinh' => $this->input->post('wc')===NULL ? "":"Có Nhà Vệ Riêng",
                         'xebuyt' => $this->input->post('bus'),
-                        'khoangcach' => 0,
                         'bancong' => $this->input->post('balcony')===NULL ? "":"Có Ban Công",
                         'chodexe' => $this->input->post('parking')===NULL ? 0:"Có Chỗ Để Xe",//$this->input->post('parking-limit'),
                         'soluong' => $this->input->post('limit'),

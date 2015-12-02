@@ -67,6 +67,23 @@ ul {
 #left a:hover {
   color: #ff0000;
 }
+#right {
+  width: 230px;
+  float: right;
+  background: rgba(52, 162, 198, 0.48);
+}
+#right .bootstrap-select {
+  display: block;
+  width: auto;
+}
+#right .btn-group > .btn:first-child {
+  margin-bottom: 4px;
+}
+#right input[type='submit']:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
 .body-content {
   min-height: 700px;
   padding: 10px 10px 10px 10px;
@@ -135,7 +152,7 @@ ul {
 }
 .post #middle {
   display: inline-block;
-  width: 450px;
+  width: 510px;
   padding: 5px 10px;
 }
 .post #middle h4 {
@@ -226,57 +243,7 @@ ul {
 .list-header .sort {
   display: inline-block;
   margin: 0;
-  float: right;
   position: relative;
-}
-.list-header .sort:after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: 8px;
-  transform: translateY(-50%);
-  border-top: 6px solid #000000;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-}
-.list-header .sort span {
-  background-color: #fff;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #d1d1d1;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  padding: 3px 25px;
-  color: #333333;
-  display: inline-block;
-}
-.list-header .sort ul {
-  display: none;
-  position: absolute;
-  top: 100%;
-}
-.list-header .sort ul li a {
-  background-color: #fff;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #d1d1d1;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  padding: 7px 25px;
-  color: #333333;
-  width: 100%;
-  display: inline-block;
-}
-.list-header .sort ul li a:hover {
-  background-color: #5faceb;
-}
-.list-header .sort:hover ul {
-  display: block;
-}
-.list-header .sort a {
-  text-decoration: none;
 }
 .clear,
 .clear-row {

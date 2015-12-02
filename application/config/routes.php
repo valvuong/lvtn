@@ -70,7 +70,7 @@ $route['about'] = 'welcome/about';
 $route['tai-khoan'] = 'dashboard';
 
 $route['loai-(:num)'] = 'post/show_by_category/1/$1';
-$route['loai-(:num)-(:num)'] = 'post/show_by_category/$1/$2';
+$route['loai-(:num)-(:num)'] = 'post/show_by_category/$2/$1';
 $route['(:num)'] = 'welcome/index/$1';
 $route['tin-(:num)'] = 'post/index/$1';
 $route['filter-(:num)'] = 'filter/filter/$1';

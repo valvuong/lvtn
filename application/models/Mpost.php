@@ -25,7 +25,7 @@ class Mpost extends CI_Model {
         return $result['total'];
     }
 
-    public function get_all($page = 1) {
+    public function get_all($page = 1, $sort, $field) {
         $this->db->select(MODEL_POST.'.*');
         $this->db->select(MODEL_DISTRICT.'.tenquan');
         $this->db->select(MODEL_POST_UPLOAD.'.tenhinh');
@@ -35,18 +35,15 @@ class Mpost extends CI_Model {
         $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.'.$this->id, 'left');
         $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
         $this->db->group_by(MODEL_POST.'.'.$this->id);
-        $this->db->order_by(MODEL_POST.'.'.$this->id, 'DESC');
+        $this->db->order_by(MODEL_POST.'.'.$field, $sort);
         $query = $this->db->get();
         return $query->result_array();
     }
 
     private function get_field_rows($id, $field_name) {
-        $this->db->select('*');
-        $this->db->from(MODEL_POST);
-        $this->db->where($field_name, $id);
-        $this->db->where($this->hethan." >=", date('Y-m-d'));
-        $query = $this->db->get();
-        return $query->num_rows();
+        $query = $this->db->query('SELECT COUNT(*) as total FROM '.MODEL_POST.' WHERE '.$field_name.' = '.$id.' AND '.$this->hethan.' >= NOW()');
+        $result = $query->row_array();
+        return $result['total'];
     }
 
     private function get_by_field($id, $field_name, $page) {
@@ -85,6 +82,7 @@ class Mpost extends CI_Model {
         $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.id', 'left');
         $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
         $this->db->group_by(MODEL_POST.'.'.$this->id);
+        $this->db->order_by(MODEL_POST.'.'.$this->id, 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -175,20 +173,5 @@ class Mpost extends CI_Model {
                 }*/
             }
         }
-    }
-
-    public function post_sort($page = 1, $sort, $field) {
-        $this->db->select(MODEL_POST.'.*');
-        $this->db->select(MODEL_DISTRICT.'.tenquan');
-        $this->db->select(MODEL_POST_UPLOAD.'.tenhinh');
-        $this->db->from(MODEL_POST);
-        $this->db->where($this->hethan." >=", date('Y-m-d'));
-        $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.quan', 'left');
-        $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.id', 'left');
-        $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
-        $this->db->group_by(MODEL_POST.'.'.$field);
-        $this->db->order_by(MODEL_POST.'.'.$field, $sort);
-        $query = $this->db->get();
-        return $query->result_array();
     }
 }

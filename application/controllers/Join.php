@@ -11,8 +11,10 @@ class Join extends Post_Controller {
 		$f = $this->mpost->get_one($id);
         $data['view'] = 'post/index_base';
         $data['content']['content'] = $f;
-        $data['content']['additional'] = 'post/index_rent_room';
+        $data['content']['additional'] = 'post/index_join_room';
+        $data['content']['map'] = $this->index_gmap($f['kinhdo'],$f['vido']);
         $data['left_hidden'] = true;
+        $data['right_hidden'] = true;
         $data['title'] = $f['tieude'];
         $this->load->view(LAYOUT, $data);
 	}
@@ -25,6 +27,7 @@ class Join extends Post_Controller {
         $data['content']['action'] = $class_name.'/'.$method_name;
         $data['content']['additional'] = 'post/join_form';
         $data['left_hidden'] = true;
+        $data['right_hidden'] = true;
         $this->load->library('form_validation');
         $main_rules = $this->set_form_rules();
         $join_rules = array();
@@ -44,7 +47,6 @@ class Join extends Post_Controller {
                         'giogiac' => $this->input->post('time-off'),
                         'nhavesinh' => $this->input->post('wc')===NULL ? "":"Có Nhà Vệ Riêng",
                         'xebuyt' => $this->input->post('bus'),
-                        'khoangcach' => 0,
                         'bancong' => $this->input->post('balcony')===NULL ? "":"Có Ban Công",
                         'chodexe' => $this->input->post('parking')===NULL ? 0:"Có Chỗ Để Xe",//$this->input->post('parking-limit'),
                         'daco' => $this->input->post('available-nums'),
