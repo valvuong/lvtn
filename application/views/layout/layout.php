@@ -95,12 +95,12 @@
         } ?>
 
         <?php
-        $content_class = '';
+        $content_class = 'float-left';
         if (isset($left_hidden)) {
             if (!isset($right_hidden)) {
                 $content_class = 'float-right';
             } else {
-                $content_class = 'center';
+                $content_class .= ' center';
             }
         }
         ?>
