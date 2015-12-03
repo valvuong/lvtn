@@ -111,5 +111,10 @@
 
     </div>
     <?php $this->load->view('layout/footer') ?>
+    <a id="example1" href="happy.jpg"><img alt="example1" src="happy.jpg" /></a>
 </body>
 </html>
+
+<script>
+    $("a#example1").fancybox();
+</script>

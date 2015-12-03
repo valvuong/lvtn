@@ -4,7 +4,7 @@
             <h2 class="panel-title search-title"><span class="glyphicon glyphicon-search"></span> TÌM KIẾM</h2>
         </div>
         <div class="panel-search">
-            <form action="" method="">
+            <form action="search_by_select" method="">
                 <select class="selectpicker" name="search-category">
                     <option value="0">Theo Chuyên Mục</option>
                     <?php $query = $this->mcategory->get_all() ?>

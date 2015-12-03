@@ -138,12 +138,11 @@ class Post_Controller extends CI_Controller {
     protected function index_gmap($lng,$lat) {
         $this->load->library('googlemaps');
         $config['center'] = $lng.','.$lat;
+        $config['directions'] = 'true';
+        $config['directionsStart'] = '10.772223670808806, 106.65842771530151';
+        $config['directionsEnd'] = $lng.','.$lat;
         $this->googlemaps->initialize($config);
 
-        $marker = array();
-        $marker['position'] = $lng.','.$lat;
-        $this->googlemaps->add_marker($marker);
-        
         return $this->googlemaps->create_map();
     }
 }

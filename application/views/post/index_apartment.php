@@ -4,7 +4,12 @@
     <div class="clear"></div>
     <p><strong>Giờ giấc:</strong><span><?=$giogiac?></span></p>
     <div class="clear"></div>
-    <p><strong>Giặt ủi:</strong><span><?=$giatui?></span></p>
+    <p><strong>Giặt ủi:</strong><span><?php
+        if(isset($giatui))
+            echo 'Có';
+        else echo 'Không';
+        ?>
+    </span></p>
     <div class="clear"></div>
     <p><strong>Số Phòng Tất Cả:</strong><span><?=$sophong?></span></p>
     <div class="clear"></div>
