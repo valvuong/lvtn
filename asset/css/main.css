@@ -70,7 +70,7 @@ ul {
 #right {
   width: 300px;
   float: right;
-  background: rgba(52, 162, 198, 0.48);
+  background: #DDDDDD;
 }
 #right .bootstrap-select {
   display: block;

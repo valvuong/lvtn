@@ -124,7 +124,6 @@
 
     <?php
     // for post-sort
-    // echo $this->agent->referrer();
     $this_class_name = $this->router->fetch_class();
     $this_method_name = $this->router->fetch_method();
     if ($this_class_name != 'welcome' && $this_method_name != 'index') {
