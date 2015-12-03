@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:700);
 @import "global";
-@menu-background: #4C86AF;
+@menu-background: #3a5795;
 @nav-height: 45px;
 @menu-width: 90%;
 nav {
@@ -15,7 +15,7 @@ nav {
 .cssmenu {
   width: @menu-width;
   margin: 0 auto;
-  ul {
+  > ul {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -191,4 +191,44 @@ nav {
 .open-ul {
   max-height: 1000px !important;
   -webkit-transform: perspective(400px) rotate3d(0,0,0,0deg) !important;
+}
+
+.more-options {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 1000;
+  max-height: 0;
+  // display: none;
+  text-align: left;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  overflow: hidden;
+  -webkit-transition: max-height 0.35s;
+  -moz-transition: max-height 0.35s;
+  -ms-transition: max-height 0.35s;
+  -o-transition: max-height 0.35s;
+  transition: max-height 0.35s;
+  a {
+    color: #000000 !important;
+    font-size: 10px !important;
+    min-width: 107px;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    right: 9px;
+    border-bottom: 7px solid #fff;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+  }
+}
+
+.open-more-options {
+  max-height: 1000px;
 }

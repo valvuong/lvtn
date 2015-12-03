@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:700);
 nav {
-  background: #4c86af;
+  background: #3a5795;
   position: fixed;
   z-index: 100;
   width: 100%;
@@ -11,7 +11,7 @@ nav {
   width: 90%;
   margin: 0 auto;
 }
-.cssmenu ul {
+.cssmenu > ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -19,7 +19,7 @@ nav {
   display: block;
   zoom: 1;
 }
-.cssmenu ul:after {
+.cssmenu > ul:after {
   content: " ";
   display: block;
   font-size: 0;
@@ -27,13 +27,13 @@ nav {
   clear: both;
   visibility: hidden;
 }
-.cssmenu ul li {
+.cssmenu > ul li {
   display: inline-block;
   padding: 0;
   margin: 0;
   float: left;
 }
-.cssmenu ul li a {
+.cssmenu > ul li a {
   color: #ffffff;
   text-decoration: none;
   display: block;
@@ -49,13 +49,13 @@ nav {
   -o-transition: color .25s;
   transition: color .25s;
 }
-.cssmenu ul li a:hover {
+.cssmenu > ul li a:hover {
   color: #333333;
 }
-.cssmenu ul li a:hover:before {
+.cssmenu > ul li a:hover:before {
   width: 100%;
 }
-.cssmenu ul li a:after {
+.cssmenu > ul li a:after {
   content: "";
   display: block;
   position: absolute;
@@ -66,7 +66,7 @@ nav {
   background: #ffffff;
   opacity: .5;
 }
-.cssmenu ul li a:before {
+.cssmenu > ul li a:before {
   content: "";
   display: block;
   position: absolute;
@@ -82,12 +82,12 @@ nav {
   transition: width .25s;
 }
 @media screen and (max-width: 768px) {
-  .cssmenu ul li a:before {
+  .cssmenu > ul li a:before {
     display: none;
   }
 }
 @media screen and (max-width: 768px) {
-  .cssmenu ul li a {
+  .cssmenu > ul li a {
     width: 100%;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -95,17 +95,17 @@ nav {
     border-bottom: 1px solid #fb998c;
   }
 }
-.cssmenu ul li.active a {
+.cssmenu > ul li.active a {
   color: #ffffff;
 }
-.cssmenu ul li.active a:before {
+.cssmenu > ul li.active a:before {
   width: 100%;
 }
-.cssmenu ul li.drop-down-menu {
+.cssmenu > ul li.drop-down-menu {
   position: relative;
   z-index: 100;
 }
-.cssmenu ul li.drop-down-menu:after {
+.cssmenu > ul li.drop-down-menu:after {
   content: '';
   position: absolute;
   bottom: 2px;
@@ -115,9 +115,9 @@ nav {
   border-right: 5px solid transparent;
   border-top: 5px solid #ffffff;
 }
-.cssmenu ul li.drop-down-menu > ul {
+.cssmenu > ul li.drop-down-menu > ul {
   position: absolute;
-  background: #4c86af;
+  background: #3a5795;
   max-height: 0;
   overflow: hidden;
   -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -90deg);
@@ -127,11 +127,11 @@ nav {
   -o-transition: 350ms;
   transition: 350ms;
 }
-.cssmenu ul li.drop-down-menu > ul li {
+.cssmenu > ul li.drop-down-menu > ul li {
   clear: both;
 }
 @media screen and (max-width: 768px) {
-  .cssmenu ul li {
+  .cssmenu > ul li {
     float: none;
     display: block;
   }
@@ -160,7 +160,7 @@ nav {
   top: 0;
   right: 100%;
   position: absolute;
-  background: #4c86af;
+  background: #3a5795;
   max-height: 1000px;
   overflow: hidden;
   max-width: 0;
@@ -179,4 +179,41 @@ nav {
 .open-ul {
   max-height: 1000px !important;
   -webkit-transform: perspective(400px) rotate3d(0, 0, 0, 0deg) !important;
+}
+.more-options {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 1000;
+  max-height: 0;
+  text-align: left;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  overflow: hidden;
+  -webkit-transition: max-height 0.35s;
+  -moz-transition: max-height 0.35s;
+  -ms-transition: max-height 0.35s;
+  -o-transition: max-height 0.35s;
+  transition: max-height 0.35s;
+}
+.more-options a {
+  color: #000000 !important;
+  font-size: 10px !important;
+  min-width: 107px;
+}
+.more-options:before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  right: 9px;
+  border-bottom: 7px solid #fff;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+}
+.open-more-options {
+  max-height: 1000px;
 }

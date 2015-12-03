@@ -20,6 +20,9 @@ class Post extends CI_Controller {
     public function show_by_district($page=1, $idD) {
         $data['view'] = 'home';
         $data['content']['content'] = $this->mpost->get_by_district($idD, $page);
+        $data['left_hidden'] = true;
+        $data['right_view'] = 'layout/right';
+        $data['right_content'] = '';
         $this->load->view(LAYOUT, $data);
     }
     

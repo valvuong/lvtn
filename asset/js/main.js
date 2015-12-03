@@ -2,7 +2,7 @@ $(function() {
     goTop();
     menuTask();
     clickDropdown();
-    clickTask();
+    // clickTask();
     header();
     // listSort();
     selectepicker();
@@ -30,6 +30,11 @@ function clickDropdown() {
     a.on("click", function() {
         $(this).children("ul").toggleClass("open-ul");
     });
+    var selector2 = '.more-ops';
+    var b = $(selector2);
+    b.on("click", function() {
+        $(this).children("ul.more-options").toggleClass('open-more-options');
+    });
     //$(document).click(function(e) {
     //    if(!a.is(e.target) && a.has(e.target).length === 0) {
     //        a.children("ul").removeClass("open-ul");
@@ -38,6 +43,9 @@ function clickDropdown() {
     $(document).on('click', function (e) {
         if ($(e.target).closest(selector).length === 0) {
             a.children("ul").removeClass("open-ul");
+        }
+        if ($(e.target).closest(selector2).length === 0) {
+            b.children("ul.more-options").removeClass('open-more-options');
         }
     });
 }

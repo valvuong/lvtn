@@ -53,8 +53,17 @@
                         <a href="<?=site_url('dang-nhap')?>" title="Đăng Nhập"><i class="fa fa-lock"></i></a>
                     </li>
                 <?php else: ?>
-                    <li class="float-right avatar-icon href-none-after">
-                        <a href="<?=site_url('tai-khoan')?>"><img src="<?php echo image_url() ?>avatar-001.jpg"></a>
+                    <li class="float-right href-none-after more-ops" style="position: relative">
+                        <a href="javascript:void(0)" style="padding: 14px 10px"><span class="glyphicon glyphicon-option-vertical"></span></a>
+                        <ul class="more-options">
+                            <li><a href="<?php echo site_url('dang-xuat')?>">Thoát</a></li>
+                            <li><a href="<?php echo site_url('tai-khoan')?>">Tài Khoản</a></li>
+                        </ul>
+                    </li>
+                    <li class="float-right avatar-icon">
+                        <a href="<?=site_url('tai-khoan')?>">
+                            <img src="<?php echo image_url() ?>avatar-001.jpg">
+                        </a>
                     </li>
                 <?php endif; ?>
                 <!-- <li class="float-right task href-none-after">
@@ -111,10 +120,5 @@
 
     </div>
     <?php $this->load->view('layout/footer') ?>
-    <a id="example1" href="happy.jpg"><img alt="example1" src="happy.jpg" /></a>
 </body>
 </html>
-
-<script>
-    $("a#example1").fancybox();
-</script>
