@@ -160,7 +160,7 @@ class User extends CI_Controller {
 						'id' => $row->id
 					);
 				$this->session->set_userdata('logged_in', $sess_array);
-				redirect('welcome');
+				redirect('','refresh');
 				}
 			}
 				else{

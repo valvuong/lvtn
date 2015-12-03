@@ -53,6 +53,8 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['nha-(:num)'] = 'welcome/sort/$1';
+
 $route['dang-tin'] = 'welcome/create_post';
 require_once( BASEPATH .'database/DB.php' );
 $db =& DB();

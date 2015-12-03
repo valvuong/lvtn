@@ -84,6 +84,10 @@ ul {
   background-color: #286090;
   border-color: #204d74;
 }
+#right .panel-heading {
+  background-color: #3a5795;
+  border-color: #3a5795;
+}
 .body-content {
   min-height: 700px;
   padding: 10px 10px 10px 10px;

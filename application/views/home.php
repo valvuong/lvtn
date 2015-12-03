@@ -4,9 +4,9 @@
         Sắp Xếp Theo <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-          <li><a href="<?php echo site_url('welcome/sort/1') ?>">Mới Nhất</a></li>
-          <li><a href="<?php echo site_url('welcome/sort/2') ?>">Giá Tăng Dần</a></li>
-          <li><a href="<?php echo site_url('welcome/sort/3') ?>">Diện Tích Nhỏ</a></li>
+          <li><a href="<?php echo site_url('nha-1') ?>">Mới Nhất</a></li>
+          <li><a href="<?php echo site_url('nha-2') ?>">Giá Tăng Dần</a></li>
+          <li><a href="<?php echo site_url('nha-3') ?>">Diện Tích Nhỏ</a></li>
       </ul>
     </div>
 </div>

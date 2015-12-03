@@ -33,7 +33,7 @@
     <nav>
         <div class="cssmenu">
             <ul>
-                <li><a href="<?=site_url('') ?>">Trang Chủ</a></li>
+                <li><a href="<?=site_url('nha-0') ?>">Trang Chủ</a></li>
                 <li class="drop-down-menu">
                     <a href="javascript:void(0)" class="click-dropdown">Chuyên Mục</a>
                     <ul>
@@ -120,5 +120,16 @@
 
     </div>
     <?php $this->load->view('layout/footer') ?>
+
+
+    <?php
+    // for post-sort
+    // echo $this->agent->referrer();
+    $this_class_name = $this->router->fetch_class();
+    $this_method_name = $this->router->fetch_method();
+    if ($this_class_name != 'welcome' && $this_method_name != 'index') {
+        $this->input->set_cookie(COOKIE_POST_SORT, 0, 0);
+    }
+    ?>
 </body>
 </html>

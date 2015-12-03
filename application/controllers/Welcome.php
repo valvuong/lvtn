@@ -18,9 +18,6 @@ class Welcome extends CI_Controller {
         $data['left_hidden'] = true;
         $data['right_view'] = 'layout/right';
         $data['right_content']['content'] = '';
-        if ($this->agent->referrer() == base_url() && $page == 1) {
-            $this->input->set_cookie(COOKIE_POST_SORT, 0, 86400);
-        }
         switch ($this->input->cookie(COOKIE_POST_SORT)) {
             case 0:
             case 1:
@@ -69,7 +66,9 @@ class Welcome extends CI_Controller {
     }
 
     public function sort($value) {
-        $this->input->set_cookie(COOKIE_POST_SORT, $value, 86400);
+        // $referrer = $this->agent->referrer();
+        $this->input->set_cookie(COOKIE_POST_SORT, $value, 0);
+        $GLOBALS['post_sort'] = true;
         redirect('','refresh');
     }
 	

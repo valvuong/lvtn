@@ -94,6 +94,8 @@ class Market extends CI_Controller {
                 }
             }
             $this->load->view(LAYOUT, $data);
+        } else {
+            redirect('dang-nhap','refresh');
         }
     }
 
