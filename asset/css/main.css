@@ -36,13 +36,18 @@ ul {
   padding: 0;
 }
 #left {
-  width: 230px;
   display: inline-block;
   float: left;
+  width: 230px;
+}
+#left.ads {
+  width: 250px;
+}
+#left.left {
   background: rgba(52, 162, 198, 0.48);
   overflow: hidden;
 }
-#left > p {
+#left.left > p {
   text-align: center;
   height: 26px;
   background: #0F2799;
@@ -51,20 +56,10 @@ ul {
   font-weight: bold;
   color: #ffffff;
 }
-#left > div img {
+#left.left > div img {
   height: 14px;
 }
-#left a {
-  text-decoration: none;
-  color: #4827EE;
-  font-size: 1.3vw;
-}
-#left a:visited {
-  text-decoration: none;
-  color: #4827EE;
-  font-size: 1.3vw;
-}
-#left a:hover {
+#left.left a:hover {
   color: #ff0000;
 }
 #right {
@@ -134,7 +129,7 @@ ul {
   color: #000;
 }
 .post.ads {
-  border-color: #4caf50;
+  border-color: #337ab7;
 }
 .post.ads #middle p {
   margin-bottom: 5px;
@@ -155,7 +150,7 @@ ul {
 }
 .post #middle {
   display: inline-block;
-  width: 500px;
+  width: 495px;
   padding: 5px 10px;
 }
 .post #middle h4 {
@@ -234,7 +229,7 @@ ul {
   padding: 5px 10px;
 }
 .list-header.market-header {
-  background: #4caf50;
+  background: #337ab7;
 }
 .list-header.market-header .glyphicon {
   display: none;
@@ -260,6 +255,7 @@ ul {
 }
 .avatar-icon img {
   width: 32px;
+  border-radius: 50%;
 }
 .center {
   position: relative;

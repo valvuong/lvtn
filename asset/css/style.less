@@ -15,9 +15,6 @@
   color: red;
   font-size: 13px;position: absolute;
 }
-.errorSub {
-  display: none;
-}
 
 
 #priceEx {
@@ -28,4 +25,109 @@
   label {
     display: block;
   }
+}
+
+
+.side-bar {
+  border: 1px solid #ddd;
+  background: #ccc;
+  h2 {
+    border-bottom: 1px solid #ddd;
+    font-family: "Open Sans";
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    padding: 20px 10px;
+    i {
+        background: none repeat scroll 0 0 #337ab7;
+        color: #fff;
+        float: left;
+        height: 40px;
+        margin-right: 25px;
+        margin-top: -9px;
+        padding-top: 10px;
+        text-align: center;
+        width: 40px;
+    }
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      border-bottom: 1px solid #ddd;
+      position: relative;
+      a {
+        color: #4f4d4d;
+        display: block;
+        font-family: "Open Sans";
+        font-size: 13px;
+        font-weight: 300;
+        text-decoration: none;
+        transition: all 0.4s ease 0s;
+        &:hover {
+          background: #2A3139;
+          color: #fff;
+        }
+        span {
+          border-right: 1px solid #ddd;
+          display: inline-block;
+          height: 60px;
+          margin-right: 15px;
+          text-align: center;
+          width: 55px;
+          i {
+            font-size: 20px;
+            margin-top: 18px;
+          }
+          &.right-icon {
+            border-right: 0 none;
+            float: right;
+            margin-right: -5px;
+          }
+        }
+      }
+      &:hover .category-mega-menu{
+        opacity: 1;
+        left: 100%;
+        z-index: 99999;
+      }
+      .category-mega-menu {
+        background: none repeat scroll 0 0 #2a3139;
+        display: block;
+        left: 150%;
+        opacity: 0;
+        padding: 10px 20px;
+        position: absolute;
+        top: 0;
+        transition: all 0.4s ease 0s;
+        width: 500px;
+        z-index: -99;
+        span {
+          float: left;
+          padding: 10px 0 10px 10px;
+          width: 50%;
+          img {
+            width: 100%;
+          }
+        }
+        a {
+          border-bottom: 1px solid #40464d;
+          color: #fff;
+          display: block;
+          font-family: Open Sans;
+          font-size: 12px;
+          font-weight: 300;
+          padding: 10px 9px;
+          &:hover{
+            padding-left:15px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.menu-text {
+    padding: 12px 25px 20px 9px !important;
 }

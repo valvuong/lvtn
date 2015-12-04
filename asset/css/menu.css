@@ -193,12 +193,12 @@ nav {
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  overflow: hidden;
   -webkit-transition: max-height 0.35s;
   -moz-transition: max-height 0.35s;
   -ms-transition: max-height 0.35s;
   -o-transition: max-height 0.35s;
   transition: max-height 0.35s;
+  overflow: hidden;
 }
 .more-options a {
   color: #000000 !important;
@@ -216,4 +216,5 @@ nav {
 }
 .open-more-options {
   max-height: 1000px;
+  overflow: visible;
 }
