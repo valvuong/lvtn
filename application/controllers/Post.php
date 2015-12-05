@@ -26,19 +26,31 @@ class Post extends CI_Controller {
         $this->load->view(LAYOUT, $data);
     }
     
-    public function show_by_category($page=1, $idC) {
+    public function show_by_category($page=1, $idC, $sort = 1) {
         $class_name = $this->router->fetch_class();
         $method_name = $this->router->fetch_method();
         $data['view'] = 'home';
         $data['left_hidden'] = true;
         $data['right_view'] = 'layout/right';
         $data['right_content'] = '';
-        $data['content']['content'] = $this->mpost->get_by_category($idC, $page);
+        $data['content']['content'] = $this->mpost->get_by_category($idC, $page, $sort);
         $data['content']['pagination'] = array($class_name, $method_name, $page, $idC);
         $data['content']['items_per_page'] = POSTS_PER_PAGE;
         $data['content']['num_rows'] = $this->mpost->get_category_rows($idC);
-        $url_alias = 'loai-'.$idC.'-';
+        switch ($sort) {
+            case 1:
+                $url_alias = 'loai-'.$idC.'-';
+                break;
+            case 2:
+                $url_alias = 'loai-'.$idC.'-gia-tang-';
+                break;
+            case 3:
+                $url_alias = 'loai-'.$idC.'-dientich-tang-';
+                break;
+        }
+        // $url_alias = 'loai-'.$idC.'-';
         $data['content']['url_alias'] = $url_alias;
+        $data['content']['url_sort'] = 'loai-'.$idC.'-';
         $this->load->view(LAYOUT, $data);
     }
 }

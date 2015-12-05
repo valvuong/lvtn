@@ -71,8 +71,15 @@ $route['contact'] = 'welcome/contact';
 $route['about'] = 'welcome/about';
 $route['tai-khoan'] = 'dashboard';
 
-$route['loai-(:num)'] = 'post/show_by_category/1/$1';
-$route['loai-(:num)-(:num)'] = 'post/show_by_category/$2/$1';
+$route['loai-(:num)'] = 'post/show_by_category/1/$1/1';
+$route['loai-(:num)-(:num)'] = 'post/show_by_category/$2/$1/1';
+$route['loai-(:num)-moinhat'] = 'post/show_by_category/1/$1/1';
+$route['loai-(:num)-gia-tang'] = 'post/show_by_category/1/$1/2';
+$route['loai-(:num)-dientich-tang'] = 'post/show_by_category/1/$1/3';
+$route['loai-(:num)-moinhat-(:num)'] = 'post/show_by_category/$2/$1/1';
+$route['loai-(:num)-gia-tang-(:num)'] = 'post/show_by_category/$2/$1/2';
+$route['loai-(:num)-dientich-tang-(:num)'] = 'post/show_by_category/$2/$1/3';
+
 $route['(:num)'] = 'welcome/index/$1';
 $route['tin-(:num)'] = 'post/index/$1';
 $route['filter-(:num)'] = 'filter/filter/$1';
