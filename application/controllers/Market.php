@@ -39,7 +39,7 @@ class Market extends CI_Controller {
     }
 
     public function create() {
-        if (!$this->session->userdata('logged_in')) {
+        if ($this->session->userdata('logged_in')) {
             $data['view'] = 'market/create';
             $data['content']['content'] = '';
             $data['left_hidden'] = true;

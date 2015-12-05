@@ -206,16 +206,24 @@ nav {
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
   box-shadow: 0 6px 12px rgba(0,0,0,.175);
-  -webkit-transition: max-height 0.35s;
-  -moz-transition: max-height 0.35s;
-  -ms-transition: max-height 0.35s;
-  -o-transition: max-height 0.35s;
-  transition: max-height 0.35s;
+  @more-options-transition: max-height 0.35s ease;
+  -webkit-transition: @more-options-transition;
+  -moz-transition: @more-options-transition;
+  -ms-transition: @more-options-transition;
+  -o-transition: @more-options-transition;
+  transition: @more-options-transition;
   overflow: hidden;
+  li {
+    max-height: 0;
+    overflow: hidden;
+  }
   a {
     color: #000000 !important;
     font-size: 10px !important;
     min-width: 107px;
+    &:hover {
+      color: #999 !important;
+    }
   }
   &:before {
     content: '';
@@ -231,4 +239,8 @@ nav {
 .open-more-options {
   max-height: 1000px;
   overflow: visible;
+  li {
+    max-height: 100px;
+    overflow: visible;
+  }
 }

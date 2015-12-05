@@ -193,17 +193,24 @@ nav {
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  -webkit-transition: max-height 0.35s;
-  -moz-transition: max-height 0.35s;
-  -ms-transition: max-height 0.35s;
-  -o-transition: max-height 0.35s;
-  transition: max-height 0.35s;
+  -webkit-transition: max-height 0.35s ease;
+  -moz-transition: max-height 0.35s ease;
+  -ms-transition: max-height 0.35s ease;
+  -o-transition: max-height 0.35s ease;
+  transition: max-height 0.35s ease;
+  overflow: hidden;
+}
+.more-options li {
+  max-height: 0;
   overflow: hidden;
 }
 .more-options a {
   color: #000000 !important;
   font-size: 10px !important;
   min-width: 107px;
+}
+.more-options a:hover {
+  color: #999 !important;
 }
 .more-options:before {
   content: '';
@@ -216,5 +223,9 @@ nav {
 }
 .open-more-options {
   max-height: 1000px;
+  overflow: visible;
+}
+.open-more-options li {
+  max-height: 100px;
   overflow: visible;
 }
