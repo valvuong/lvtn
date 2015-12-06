@@ -32,7 +32,9 @@
 </head>
 
 <body>
-
+<?php
+$display_name = $this->session->userdata(LABEL_LOGIN)['username'];
+?>
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -59,7 +61,7 @@
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
                                     <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong></h5>
+                                        <h5 class="media-heading"><strong><?php echo $display_name ?></strong></h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur...</p>
                                     </div>
@@ -129,7 +131,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $display_name ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -142,7 +144,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="<?=site_url('user/logout') ?>"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="<?=site_url('dang-xuat') ?>"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -163,6 +165,9 @@
                     </li>
                     <li>
                         <a href="<?php echo site_url('dashboard/market'); ?>"><i class="fa fa-fw fa-edit"></i> Chỉnh Sửa Tin Rao Vặt</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo site_url('dashboard/market'); ?>"><i class="fa fa-fw fa-edit"></i> Chỉnh Sửa Tin Thuê Trọ</a>
                     </li>
                 </ul>
             </div>

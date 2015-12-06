@@ -9,16 +9,19 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function index() {
-		if($this->session->userdata('logged_in')) {
+		if($this->session->userdata(LABEL_LOGIN)) {
 			$data['view'] = 'dashboard/index';
 			$this->load->view('dashboard/main', $data);
 		} else {
-			$data['view'] = 'dashboard/index';
-			$this->load->view('dashboard/main', $data);
+			redirect('dang-nhap','refresh');
 		}
 	}
 
 	public function market() {
+		
+	}
+
+	public function post() {
 		
 	}
 }

@@ -3,13 +3,24 @@
 		<h2><i class="fa fa-align-justify"></i>Loại</h2>
 		<div>
 			<ul>
-				<?php $results = $this->mmarket_category->get_all() ?>
+				<?php
+				$icons = array(
+					1 => 'fa fa-laptop',
+					'fa fa-spoon',
+					'fa fa-home',
+					'fa fa-motorcycle',
+					'fa fa-book',
+					'glyphicon glyphicon-option-horizontal'
+				);
+				$results = $this->mmarket_category->get_all();
+				?>
                 <?php foreach($results as $row): ?>
-                    <li><a href="<?php echo site_url($row['id'].'-rao-vat-1') ?>"><span><i class="<?=$row['icon']?>"></i></span><?=$row['tenloai']?> <span class="right-icon"><!-- <i class="fa fa-arrow-circle-o-right"></i> --></span></a>
+                    <li>
+                    	<a href="<?php echo site_url($row['id'].'-rao-vat-1') ?>">
+                    		<span><i class="<?=$icons[$row['id']]?>"></i></span><?=$row['tenloai']?> <span class="right-icon"><!-- <i class="fa fa-arrow-circle-o-right"></i> --></span>
+                    	</a>
                     </li>
                 <?php endforeach ?>
-				
-
 				
 				<li><a href="category_grid.html"><span><i class="fa fa-video-camera"></i></span>Digital Camera <span class="right-icon"><i class="fa fa-arrow-circle-o-right"></i></span></a>
 					<div class="category-mega-menu">

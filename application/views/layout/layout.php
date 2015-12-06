@@ -55,7 +55,7 @@
                 <?php else: ?>
                     <li class="float-right href-none-after more-ops" style="position: relative">
                         <a href="javascript:void(0)" style="padding: 14px 10px"><span class="glyphicon glyphicon-option-vertical"></span></a>
-                        <ul class="more-options">
+                        <ul class="more-options href-none-before">
                             <li><a href="<?php echo site_url('dang-xuat')?>">Thoát</a></li>
                             <li><a href="<?php echo site_url('tai-khoan')?>">Tài Khoản</a></li>
                         </ul>

@@ -157,7 +157,7 @@ class User extends CI_Controller {
 					$sess_array = array(
 						'role' => $row->role,
 						'username' => $row->username,
-						'id' => $row->id
+						'id' => $row->idUser
 					);
 				$this->session->set_userdata('logged_in', $sess_array);
 				redirect('','refresh');

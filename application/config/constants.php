@@ -113,3 +113,5 @@ define('SEARCH_PRICE', 'timkiem_giaphong');
 
 define('COOKIE_POST_SORT', 'post_sort');
 define('COOKIE_MARKET_SORT', 'market_sort');
+
+define('LABEL_LOGIN', 'logged_in');

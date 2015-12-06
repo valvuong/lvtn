@@ -250,6 +250,9 @@ ul {
 .href-none-after a:after {
   display: none !important;
 }
+.href-none-before a:before {
+  display: none !important;
+}
 .avatar-icon a {
   padding: 5px 10px !important;
 }
