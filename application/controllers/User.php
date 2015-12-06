@@ -18,87 +18,90 @@ class User extends CI_Controller {
 		
     }
 	public function register() {
-        $data['view'] = 'register/register';
-		$data['title'] = 'Đăng kí tài khoản';
-		
-		$data['left_hidden'] = true;
-		$data['right_hidden'] = true;
-		/////////////////
-		
-		$this->load->helper('captcha');
-			$vals = array(
-				'word'          => '',
-				'img_path'      => './asset/captcha/',
-				'img_url'       => asset_url().'captcha',
-				
-				'img_width'     => '200',
-				'img_height'    => 40,
-				'expiration'    => 600,
-				'word_length'   => 8,
-				'font_size'     => 16,
-				'img_id'        => 'Imageid',
-				'pool'          => '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-
-				// White background and border, black text and red grid
-				'colors'        => array(
-						'background' => array(255, 255, 255),
-						'border' => array(255, 255, 255),
-						'text' => array(0, 0, 0),
-						'grid' => array(255, 40, 40)
-				)
-		);
-		$cap = create_captcha($vals);
-		$data['content']['cap']= $cap;
-		$data_captcha = array(
-        'captcha_time'  => $cap['time'],
-        'ip_address'    => $this->input->ip_address(),
-        'word'          => $cap['word']
-		);
-		$this->muser->save_captcha($data_captcha);
-		////////////////////
-		
-		
-		$rules = array(
-            array(
-                'field' => 'register-username',
-                'rules' => 'trim|required|min_length[3]|callback_check_username'
-            ),
-            array(
-                'field' => 'register-password',
-                'rules' => 'trim|required|min_length[5]'
-            ),
-			array(
-                'field' => 'register-repassword',
-                'rules' => 'trim|required|min_length[5]|matches[register-password]'
-            ),
-			array(
-                'field' => 'register-email',
-                'rules' => 'trim|required|valid_email|callback_check_email'
-            ),
-			array(
-                'field' => 'captcha',
-                'rules' => 'trim|required|callback_check_captcha'
-            )
-		);
-		$this->form_validation->set_rules($rules);
-		if($this->input->post('register')) {
-            if($this->form_validation->run()) {
-                $info = array(
-                	'register' => array(
-                        'username' => $this->input->post('register-username'),
-						'email'    => $this->input->post('register-email'),
-                        'password' => $this->input->post('register-password'),
-						'role'	   => 'ROLE_USER'
-					),
-					'avatar'   => $_FILES,
-				);
+		if($this->session->userdata('logged_in') == false) {
+	        $data['view'] = 'register/register';
+			$data['title'] = 'Đăng kí tài khoản';
 			
-				$id = $this->muser->create_user($info);
-				$data['view'] = 'register/success';
-				$data['content']['test'] = $_FILES;
+			$data['left_hidden'] = true;
+			$data['right_hidden'] = true;
+			/////////////////
+			
+			$this->load->helper('captcha');
+				$vals = array(
+					'word'          => '',
+					'img_path'      => './asset/captcha/',
+					'img_url'       => asset_url().'captcha',
+					
+					'img_width'     => '200',
+					'img_height'    => 40,
+					'expiration'    => 600,
+					'word_length'   => 8,
+					'font_size'     => 16,
+					'img_id'        => 'Imageid',
+					'pool'          => '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+
+					// White background and border, black text and red grid
+					'colors'        => array(
+							'background' => array(255, 255, 255),
+							'border' => array(255, 255, 255),
+							'text' => array(0, 0, 0),
+							'grid' => array(255, 40, 40)
+					)
+			);
+			$cap = create_captcha($vals);
+			$data['content']['cap']= $cap;
+			$data_captcha = array(
+	        'captcha_time'  => $cap['time'],
+	        'ip_address'    => $this->input->ip_address(),
+	        'word'          => $cap['word']
+			);
+			$this->muser->save_captcha($data_captcha);
+			////////////////////
+			
+			
+			$rules = array(
+	            array(
+	                'field' => 'register-username',
+	                'rules' => 'trim|required|min_length[3]|callback_check_username'
+	            ),
+	            array(
+	                'field' => 'register-password',
+	                'rules' => 'trim|required|min_length[5]'
+	            ),
+				array(
+	                'field' => 'register-repassword',
+	                'rules' => 'trim|required|min_length[5]|matches[register-password]'
+	            ),
+				array(
+	                'field' => 'register-email',
+	                'rules' => 'trim|required|valid_email|callback_check_email'
+	            ),
+				array(
+	                'field' => 'captcha',
+	                'rules' => 'trim|required|callback_check_captcha'
+	            )
+			);
+			$this->form_validation->set_rules($rules);
+			if($this->input->post('register')) {
+	            if($this->form_validation->run()) {
+	                $info = array(
+	                	'register' => array(
+	                        'username' => $this->input->post('register-username'),
+							'email'    => $this->input->post('register-email'),
+	                        'password' => $this->input->post('register-password'),
+							'role'	   => 'ROLE_USER'
+						),
+						'avatar'   => $_FILES,
+					);
+				
+					$id = $this->muser->create_user($info);
+					$data['view'] = 'register/success';
+					$data['content']['test'] = $_FILES;
+				}
 			}
+			$this->load->view(LAYOUT, $data);
 		}
-		$this->load->view(LAYOUT, $data);
+		else redirect('','refresh'); 
     }
 	
 	public function check_username($username){
@@ -137,40 +140,55 @@ class User extends CI_Controller {
 //////////////login////////////////	
 
 	public function login() {
-        $data['view'] = 'login/login';
-		$data['title'] = 'Đăng nhập';
-		$data['content']['login_fail']= false;
-		$data['left_hidden'] = true;
-		$data['right_hidden'] = true;
-		if($this->input->post('submit')) {
-			$info = array(
-					'username' => $this->input->post('login-username'),
-					'password' => $this->input->post('login-password')
-				);
-				
-			
-			$result = $this->muser->check_login($info);
-			if($result) {
-				$sess_array = array();
-				foreach($result as $row)
-				{
-					$sess_array = array(
-						'role' => $row->role,
-						'username' => $row->username,
-						'id' => $row->id
+		if($this->session->userdata('logged_in') == false){
+	        $data['view'] = 'login/login';
+			$data['title'] = 'Đăng nhập';
+			$data['content']['login_fail']= false;
+			$data['left_hidden'] = true;
+			$data['right_hidden'] = true;
+			$data['redirect'] = $_SERVER['HTTP_REFERER'];	//get the previous page	
+			$this->load->view(LAYOUT, $data);
+		}
+		else redirect('','refresh');	
+	}
+
+	function dologin(){
+		if($this->session->userdata('logged_in') == false) {
+			$data['view'] = 'login/login';
+			$data['title'] = 'Đăng nhập';
+			$data['content']['login_fail']= false;
+			$data['left_hidden'] = true;
+			$data['right_hidden'] = true;
+			$data['redirect']=$this->input->post('redirect'); //save the previous page if login fail
+			if($this->input->post('submit')) {
+				$info = array(
+						'username' => $this->input->post('login-username'),
+						'password' => $this->input->post('login-password')
 					);
-				$this->session->set_userdata('logged_in', $sess_array);
-				redirect('','refresh');
+				$result = $this->muser->check_login($info);
+				if($result) {
+					$sess_array = array();
+					foreach($result as $row)
+					{
+						$sess_array = array(
+							'role' => $row->role,
+							'username' => $row->username,
+							'id' => $row->idUser
+						);
+					$this->session->set_userdata('logged_in', $sess_array);
+					redirect($this->input->post('redirect'));  //redirect to the previous page
+					}
 				}
-			}
 				else{
 					$data['content']['login_fail']= true;
 				}
-			}		
-		$this->load->view(LAYOUT, $data);	
+			}
+			$this->load->view(LAYOUT, $data);
+		}
+		else redirect('','refresh');
+
 	}
-	function logout()
-	{
+	function logout(){
 		$this->session->unset_userdata('logged_in');
 		session_destroy();
 		redirect('', 'refresh');
