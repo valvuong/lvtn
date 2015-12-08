@@ -20,7 +20,9 @@ $stage_2 = 'stage-2';
             'id' => $field_name,
             'name' => $field_name,
             'class' => $input_class,
-            'value' => set_value($field_name)
+            'value' => set_value($field_name),
+            'required'  => 'required',
+            'title'     => 'Hãy Điền Tiêu Đề Vào',
         );
         echo form_input($data);
         ?>
@@ -34,7 +36,9 @@ $stage_2 = 'stage-2';
             'id' => $field_name,
             'name' => $field_name,
             'class' => $input_class,
-            'value' => set_value($field_name)
+            'value' => set_value($field_name),
+            'required'  => 'required',
+            'title'     => 'Hãy Điền Số Điện Thoại Vào',
         );
         echo form_input($data);
         ?>
@@ -48,7 +52,9 @@ $stage_2 = 'stage-2';
             'id' => $field_name,
             'name' => $field_name,
             'class' => $input_class,
-            'value' => set_value($field_name)
+            'value' => set_value($field_name),
+            'required'  => 'required',
+            'title'     => 'Hãy Điền Tên Liên Hệ Vào',
         );
         echo form_input($data);
         ?>
@@ -56,7 +62,7 @@ $stage_2 = 'stage-2';
 
     <div class="<?=$form_group?>">
         <?php $field_name = 'ad-district' ?>
-        <?php echo form_label('Quận'.$required, '', array('class'=>$label_class.' '.$stage_1)) ?>
+        <?php echo form_label('Danh Mục'.$required, '', array('class'=>$label_class.' '.$stage_1)) ?>
         <select name=<?=$field_name?> class="selectpicker">
             <?php $query = $this->mmarket->get_cate() ?>
             <?php foreach($query as $row): ?>
@@ -67,7 +73,7 @@ $stage_2 = 'stage-2';
 
     <div class="<?=$form_group?>">
         <?php $field_name = 'ad-category' ?>
-        <?php echo form_label('Danh Mục'.$required, '', array('class'=>$label_class.' '.$stage_1)) ?>
+        <?php echo form_label('Quận'.$required, '', array('class'=>$label_class.' '.$stage_1)) ?>
         <select name=<?=$field_name?> class="selectpicker">
             <?php $query = $this->mdistrict->get_all() ?>
             <?php foreach($query as $row): ?>
@@ -105,7 +111,9 @@ $stage_2 = 'stage-2';
             'pattern' => '[0-9]+([\.|,][0-9]+)?',
             'step' => '0.01',
             'min' => '0',
-            'value' => set_value($field_name)
+            'value' => set_value($field_name),
+            'required'  => 'required',
+            'title'     => 'Hãy Điền Giá Cả Vào',
         );
         echo form_input($data);
         ?>
@@ -119,14 +127,16 @@ $stage_2 = 'stage-2';
         $data = array(
             'id' => $field_name,
             'name' => $field_name,
-            'class' => $input_class
+            'class' => $input_class,
+            'required'  => 'required',
+            'title'     => 'Hãy Điền Nội Dung Vào',
         );
         echo form_textarea($data);
         ?>
     </div>
 
     <div class="<?=$form_group?>">
-        <?php echo form_label('Hình Ảnh Đại Diện:', '', array('class'=>$label_class)) ?>
+        <?php echo form_label('Hình Ảnh Đại Diện:'.$required, '', array('class'=>$label_class)) ?>
 
         <div class="row upload">
             <?php
@@ -136,7 +146,9 @@ $stage_2 = 'stage-2';
                 'id' => $field_name,
                 'name' => $field_name.'[]',
                 'accept' => 'image/jpeg, image/gif, image/png, image/jpg',
-                'multiple' => true
+                'multiple' => true,
+                'required'  => 'required',
+                'title'     => 'Hãy Tải Hình Lên Vào',
             );
             echo form_upload($data);
             ?>

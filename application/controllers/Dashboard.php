@@ -9,12 +9,11 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function index() {
-		if($this->session->userdata(LABEL_LOGIN)) {
-			$data['view'] = 'dashboard/index';
-			$this->load->view('dashboard/main', $data);
-		} else {
+		if(!$this->session->userdata(LABEL_LOGIN)) {
 			redirect('dang-nhap','refresh');
 		}
+		$data['view'] = 'dashboard/index';
+		$this->load->view('dashboard/main', $data);
 	}
 
 	public function market() {

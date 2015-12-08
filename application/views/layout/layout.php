@@ -48,7 +48,7 @@
                     </ul>
                 </li>
                 <li><a href="<?=site_url('tin-vat')?>">Rao Vặt</a></li>
-                <?php if(!$this->session->userdata('logged_in')): ?>
+                <?php if(!$this->session->userdata(LABEL_LOGIN)): ?>
                     <li class="float-right href-none-after">
                         <a href="<?=site_url('dang-nhap')?>" title="Đăng Nhập"><i class="fa fa-lock"></i></a>
                     </li>
@@ -71,7 +71,7 @@
                     <ul>
                         <li><a href="<?=site_url('buon-ban')?>">Rao Vặt</a></li>
                         <li><a href="<?=site_url('dang-tin')?>">Đăng Tin</a></li>
-                        <?php if(!$this->session->userdata('logged_in')): ?>
+                        <?php if(!$this->session->userdata(LABEL_LOGIN)): ?>
                             <li><a href="<?=site_url('dang-ki')?>">Đăng Kí</a></li>
                             <li><a href="<?=site_url('dang-nhap')?>">Đăng Nhập</a></li>
                         <?php else: ?>
