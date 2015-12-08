@@ -21,7 +21,7 @@ $area_error = form_error('area');
 				<?php 
 				
 				if($login_fail==true): ?>
-				<h1 class="card-heading">Sai tên hoặc mật khẩu</h1>
+				<h1 class="card-heading-fail">Sai tên hoặc mật khẩu</h1>
 				
 				<?php else: ?> <div class="card-heading">XIN CHÀO - ĐĂNG NHẬP</div>
 				<?php endif ?>
@@ -34,7 +34,7 @@ $area_error = form_error('area');
 					<img alt="Login" src="<?php echo asset_url()?>image/avatar-001.jpg">
 				</span>
 			</p>
-			<?php echo form_open_multipart('user/login') ?>
+			<?php echo form_open_multipart('user/dologin') ?>
 				<div class="form-group form-group-label">
 					<div class="row">
 						<div class="col-md-10 col-md-push-1">		
@@ -78,6 +78,8 @@ $area_error = form_error('area');
 					</div>
 				</div>
 				
+				<input type='hidden' name='redirect' value='<?php echo $redirect ?>' />
+
 				<div class="form-group">
 					<div class="row">
 						<div class="col-md-10 col-md-push-1">
