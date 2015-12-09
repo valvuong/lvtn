@@ -80,8 +80,13 @@
                         <?php endif; ?>
                     </ul>
                 </li> -->
-                <li class="float-right"><a href="<?=site_url('buon-ban')?>">Rao Vặt</a></li>
-                <li class="float-right"><a href="<?=site_url('dang-tin')?>">Đăng Tin</a></li>
+                <li class="drop-down-menu float-right">
+                    <a href="javascript:void(0)" class="click-dropdown">Đăng Tin</a>
+                    <ul>
+                        <li class="href-none-after"><a href="<?=site_url('buon-ban')?>">Rao Vặt</a></li>
+                        <li class="href-none-after"><a href="<?=site_url('dang-tin')?>">Nhà Trọ</a></li>
+                    </ul>
+                </li>
                 <!-- <li class="float-right search-main">
                     <form action="search" method="get">
                         <input type="text" name="search" placeholder="Nhập Từ Khóa">

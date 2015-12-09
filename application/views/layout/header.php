@@ -62,7 +62,6 @@
         <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden;">
             <div data-p="225.00" style="display: none;">
                 <img data-u="image" src="<?php echo image_url() ?>header-bg/header-wall-1.jpg" />
-                <div style="position: absolute; top: 300px; left: 30px; width: 480px; height: 120px; font-size: 30px; color: #000; line-height: 38px;">Build your slider with anything, includes image, content, text, html, photo, picture</div>
             </div>
             <div data-p="225.00" style="display: none;">
                 <img data-u="image" src="<?php echo image_url() ?>header-bg/header-wall-2.jpg" />
@@ -72,6 +71,7 @@
             </div>
             <div data-p="225.00" style="display: none;">
                 <img data-u="image" src="<?php echo image_url() ?>header-bg/header-wall-4.jpg" />
+                <div style="position: absolute; top: 300px; left: 30px; width: 480px; height: 120px; font-size: 30px; color: #ffffff; line-height: 38px;">Build your slider with anything, includes image, content, text, html, photo, picture</div>
             </div>
             <div data-p="225.00" style="display: none;">
                 <img data-u="image" src="<?php echo image_url() ?>header-bg/header-wall-5.jpg" />
