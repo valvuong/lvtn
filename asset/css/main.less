@@ -44,35 +44,32 @@ ul {
 
 #left {
   @left-width: 230px;
-  width: @left-width;
   display: inline-block;
   float: left;
-  background: rgba(52, 162, 198, 0.48);
-  overflow: hidden;
-  > p {
-    text-align: center;
-    height: 26px;
-    background: #0F2799;
-    font-size: 1.5vw;
-    line-height: 24px;
-    font-weight: bold;
-    color: #ffffff;
+  width: @left-width;
+  &.ads {
+    @left-width: 250px;
+    width: @left-width;
   }
-  > div img {
-    height: 14px;
-  }
-  a {
-    .a-text() {
-      text-decoration: none;
-      color: #4827EE;
-      font-size: 1.3vw;
+  &.left {
+    background: rgba(52, 162, 198, 0.48);
+    overflow: hidden;
+    > p {
+      text-align: center;
+      height: 26px;
+      background: #0F2799;
+      font-size: 1.5vw;
+      line-height: 24px;
+      font-weight: bold;
+      color: #ffffff;
     }
-    .a-text();
-    &:visited {
-      .a-text();
+    > div img {
+      height: 14px;
     }
-    &:hover {
-      color: #ff0000;
+    a {
+      &:hover {
+        color: #ff0000;
+      }
     }
   }
 }
@@ -149,7 +146,7 @@ ul {
 
 .post {
   &.ads {
-    border-color: #4caf50;
+    border-color: #337ab7;
     #middle {
       p {
         margin-bottom: 5px;
@@ -179,7 +176,7 @@ ul {
   }
   #middle {
     display: inline-block;
-    width: 500px;
+    width: 495px;
     padding: 5px 10px;
     h4 {
       font-size: 13px;
@@ -260,7 +257,7 @@ ul {
 
 .list-header {
   &.market-header {
-    background: #4caf50;
+    background: #337ab7;
     .glyphicon {
       display: none;
     }
@@ -295,12 +292,21 @@ ul {
   }
 }
 
+.href-none-before {
+  a {
+    &:before {
+      display: none !important;
+    }
+  }
+}
+
 .avatar-icon {
   a {
     padding: 5px 10px !important;
   }
   img {
     width: 32px;
+    border-radius: 50%;
   }
 }
 

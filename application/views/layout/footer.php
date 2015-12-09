@@ -5,7 +5,7 @@
         <h3>Company<span>logo</span></h3>
 
         <p class="footer-links">
-            <a href="<?=site_url('')?>">Home</a>
+            <a href="<?=site_url('')?>"><i class="fa fa-home"></i></a>
             ·
             <a href="<?=site_url('about')?>">About</a>
             ·

@@ -43,9 +43,18 @@ class Welcome extends CI_Controller {
 
     public function contact() {
         $data['view'] = 'static_page/contact';
-        $data['content']['content'] = '';
+        $data['content'] = '';
         $data['left_hidden'] = true;
         $data['right_hidden'] = true;
+
+        $this->load->library('googlemaps');
+        $config['center'] = '10.772223670808806,106.65842771530151';
+        $config['zoom'] = '15';
+        $this->googlemaps->initialize($config);
+        $marker['position'] = '10.772223670808806,106.65842771530151';
+        $this->googlemaps->add_marker($marker);
+        $data['content']['map'] = $this->googlemaps->create_map();
+
         $this->load->view(LAYOUT, $data);
     }
 

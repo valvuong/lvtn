@@ -71,7 +71,7 @@ class Mpost extends CI_Model {
         return $result;
     }
 
-    public function get_by_category($idC, $page) {
+    public function get_by_category($idC, $page, $sort = 1) {
         $this->db->select(MODEL_POST.'.*');
         $this->db->select(MODEL_DISTRICT.'.tenquan');
         $this->db->select(MODEL_POST_UPLOAD.'.tenhinh');
@@ -82,7 +82,12 @@ class Mpost extends CI_Model {
         $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.id', 'left');
         $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
         $this->db->group_by(MODEL_POST.'.'.$this->id);
-        $this->db->order_by(MODEL_POST.'.'.$this->id, 'DESC');
+        $sorts = array(
+            1 => array($this->id, 'DESC'),
+            2 => array($this->giaphong, 'ASC'),
+            3 => array($this->dientich, 'ASC')
+        );
+        $this->db->order_by(MODEL_POST.'.'.$sorts[$sort][0], $sorts[$sort][1]);
         $query = $this->db->get();
         return $query->result_array();
     }

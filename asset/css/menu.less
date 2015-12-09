@@ -199,7 +199,6 @@ nav {
   top: 100%;
   z-index: 1000;
   max-height: 0;
-  // display: none;
   text-align: left;
   background-color: #fff;
   -webkit-background-clip: padding-box;
@@ -207,16 +206,24 @@ nav {
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
   box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  @more-options-transition: max-height 0.35s ease;
+  -webkit-transition: @more-options-transition;
+  -moz-transition: @more-options-transition;
+  -ms-transition: @more-options-transition;
+  -o-transition: @more-options-transition;
+  transition: @more-options-transition;
   overflow: hidden;
-  -webkit-transition: max-height 0.35s;
-  -moz-transition: max-height 0.35s;
-  -ms-transition: max-height 0.35s;
-  -o-transition: max-height 0.35s;
-  transition: max-height 0.35s;
+  li {
+    max-height: 0;
+    overflow: hidden;
+  }
   a {
     color: #000000 !important;
     font-size: 10px !important;
     min-width: 107px;
+    &:hover {
+      color: #999 !important;
+    }
   }
   &:before {
     content: '';
@@ -227,8 +234,12 @@ nav {
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
   }
-}
-
-.open-more-options {
-  max-height: 1000px;
+  &.open-more-options {
+    max-height: 1000px;
+    overflow: visible;
+    li {
+      max-height: 100px;
+      overflow: visible;
+    }
+  }
 }

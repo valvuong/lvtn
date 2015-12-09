@@ -1,14 +1,27 @@
 <div class="list-header">
-    <div class="btn-group sort">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Sắp Xếp Theo <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-          <li><a href="<?php echo site_url('nha-1') ?>">Mới Nhất</a></li>
-          <li><a href="<?php echo site_url('nha-2') ?>">Giá Tăng Dần</a></li>
-          <li><a href="<?php echo site_url('nha-3') ?>">Diện Tích Nhỏ</a></li>
-      </ul>
-    </div>
+    <?php if($this->router->fetch_class() == 'welcome'): ?>
+        <div class="btn-group sort">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sắp Xếp Theo <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+              <li><a href="<?php echo site_url('nha-1') ?>">Mới Nhất</a></li>
+              <li><a href="<?php echo site_url('nha-2') ?>">Giá Tăng Dần</a></li>
+              <li><a href="<?php echo site_url('nha-3') ?>">Diện Tích Tăng</a></li>
+          </ul>
+        </div>
+    <?php elseif ($this->router->fetch_class() == 'post'): ?>
+        <div class="btn-group sort">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sắp Xếp Theo <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+              <li><a href="<?php echo site_url($url_sort.'moinhat') ?>">Mới Nhất</a></li>
+              <li><a href="<?php echo site_url($url_sort.'gia-tang') ?>">Giá Tăng Dần</a></li>
+              <li><a href="<?php echo site_url($url_sort.'dientich-tang') ?>">Diện Tích Tăng</a></li>
+          </ul>
+        </div>
+    <?php endif ?>
 </div>
 
 <?php foreach($content as $row): ?>

@@ -190,7 +190,7 @@ class User extends CI_Controller {
 	}
 	function logout(){
 		$this->session->unset_userdata('logged_in');
-		session_destroy();
+		$this->session->sess_destroy();
 		redirect('', 'refresh');
 	}
 	

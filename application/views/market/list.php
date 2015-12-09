@@ -1,15 +1,5 @@
 <div class="list-header market-header">
-    <div class="btn-group">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Loại <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <?php $query = $this->mmarket_category->get_all() ?>
-        <?php foreach ($query as $row): ?>
-            <li><a href="<?=site_url($row['id'].'-rao-vat-1')?>"><?=$row['tenloai']?></a></li>
-        <?php endforeach; ?>
-      </ul>
-    </div>
+    <h4 style="text-align: center;color: #fff"><?php echo $label_list ?></h4>
 </div>
 <?php foreach($content as $row): ?>
     <a class="post ads" href="<?=site_url($row['id'].'-tin-vat')?>">

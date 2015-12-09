@@ -25,20 +25,21 @@ class Market extends CI_Controller {
         $class_name = $this->router->fetch_class();
         $method_name = $this->router->fetch_method();
         $data['view'] = 'market/list';
-        $data['left_hidden'] = true;
-        $data['right_view'] = 'market/right';
-        $data['right_content'] = '';
+        $data['left_view'] = 'market/left';
+        $data['left_content'] = '';
+        $data['right_hidden'] = true;
         $data['content']['content'] = $this->mmarket->get_all($page);
         $data['content']['pagination'] = array($class_name, $method_name, $page);
         $data['content']['items_per_page'] = ADS_PER_PAGE;
         $data['content']['num_rows'] = $this->mmarket->get_all_rows();
         $data['content']['url_alias'] = 'tin-vat-';
+        $data['content']['label_list'] = 'TẤT CẢ TIN RAO VẶT';
         $data['header_message'] = $this->header_message;
         $this->load->view(LAYOUT, $data);
     }
 
     public function create() {
-        if (!$this->session->userdata('logged_in')) {
+        if ($this->session->userdata('logged_in')) {
             $data['view'] = 'market/create';
             $data['content']['content'] = '';
             $data['left_hidden'] = true;
@@ -103,7 +104,8 @@ class Market extends CI_Controller {
         $class_name = $this->router->fetch_class();
         $method_name = $this->router->fetch_method();
         $data['view'] = 'market/list';
-        $data['left_hidden'] = true;
+        $data['left_view'] = 'market/left';
+        $data['left_content'] = '';
         $data['right_hidden'] = true;
         $data['content']['content'] = $this->mmarket->get_by_category($page, $cate_id);
         $data['content']['pagination'] = array($class_name, $method_name, $page, $cate_id);
@@ -111,6 +113,9 @@ class Market extends CI_Controller {
         $data['content']['num_rows'] = $this->mmarket->get_cate_rows($cate_id);
         $data['content']['url_alias'] = $cate_id.'-rao-vat-';
         $data['header_message'] = $this->header_message;
+        $query = $this->db->query('SELECT tenloai FROM '.MODEL_MARKET_CATEGORY.' WHERE id = '.$cate_id);
+        $result = $query->row_array();
+        $data['content']['label_list'] = $result['tenloai'];
         $this->load->view(LAYOUT, $data);
     }
 }
