@@ -1,9 +1,9 @@
 @import "global";
 
 header.header {
-  @header-height: 250px;
-  height: @header-height;
-  background: #3e50b4;
+  @header-height: 390px;
+  // height: @header-height;
+  // background: #3e50b4;
   margin: 0 auto;
   .logo {
     height: @header-height;
@@ -23,5 +23,103 @@ header.header {
       font-style: oblique;
       font-weight: bold;
     }
+  }
+  .arrow() {
+    // display: block;
+    // height: 65px;
+    // width: 65px;
+    position: absolute;
+    top: 50%;
+    opacity: 0;
+    &:hover {
+      opacity: 1 !important;
+    }
+    transform: translateY(-50%);
+  }
+  .left {
+    background: #323232 url("../image/slider_icon_l.png") no-repeat scroll 50% 50%;
+    .arrow();
+    left: 20px;
+  }
+  .right {
+    background: #323232 url("../image/slider_icon_r.png") no-repeat scroll 50% 50%;
+    .arrow();
+    right: 20px;
+  }
+  &:hover {
+    & .left, & .right {
+      opacity: 0.5;
+    }
+  }
+  /* jssor slider bullet navigator skin 05 css */
+  /*
+  .jssorb05 div           (normal)
+  .jssorb05 div:hover     (normal mouseover)
+  .jssorb05 .av           (active)
+  .jssorb05 .av:hover     (active mouseover)
+  .jssorb05 .dn           (mousedown)
+  */
+  .jssorb05 {
+      position: absolute;
+      .child-style() {
+        position: absolute;
+        /* size of bullet elment */
+        width: 16px;
+        height: 16px;
+        background: url('../image/b05.png') no-repeat;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      div{
+        .child-style();
+        background-position: -7px -7px;
+        &:hover {
+          // .child-style();
+          background-position: -37px -7px;
+        }
+      }
+      .av {
+        &:extend(header.header .jssorb05 div);
+        background-position: -67px -7px;
+        &:hover {
+          &:extend(header.header .jssorb05 div:hover);
+        }
+      }
+      .dn {
+        background-position: -97px -7px;
+      }
+  }
+
+  /* jssor slider arrow navigator skin 22 css */
+  /*
+  .jssora22l                  (normal)
+  .jssora22r                  (normal)
+  .jssora22l:hover            (normal mouseover)
+  .jssora22r:hover            (normal mouseover)
+  .jssora22l.jssora22ldn      (mousedown)
+  .jssora22r.jssora22rdn      (mousedown)
+  */
+  .jssora22l {
+      display: block;
+      position: absolute;
+      /* size of arrow element */
+      width: 40px;
+      height: 58px;
+      cursor: pointer;
+      background: url('../image/a22.png') center center no-repeat;
+      overflow: hidden;
+      background-position: -10px -31px;
+      &:hover {
+        background-position: -130px -31px;
+      }
+      &.jssora22ldn { background-position: -250px -31px; }
+  }
+  .jssora22r {
+    &:extend(header.header .jssora22l);
+    background-position: -70px -31px;
+    &:hover {
+      background-position: -190px -31px;
+    }
+    &.jssora22rdn { background-position: -310px -31px; }
   }
 }

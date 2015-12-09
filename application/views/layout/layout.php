@@ -48,7 +48,7 @@
                     </ul>
                 </li>
                 <li><a href="<?=site_url('tin-vat')?>">Rao Vặt</a></li>
-                <?php if(!$this->session->userdata('logged_in')): ?>
+                <?php if(!$this->session->userdata(LABEL_LOGIN)): ?>
                     <li class="float-right href-none-after">
                         <a href="<?=site_url('dang-nhap')?>" title="Đăng Nhập"><i class="fa fa-lock"></i></a>
                     </li>
@@ -71,7 +71,7 @@
                     <ul>
                         <li><a href="<?=site_url('buon-ban')?>">Rao Vặt</a></li>
                         <li><a href="<?=site_url('dang-tin')?>">Đăng Tin</a></li>
-                        <?php if(!$this->session->userdata('logged_in')): ?>
+                        <?php if(!$this->session->userdata(LABEL_LOGIN)): ?>
                             <li><a href="<?=site_url('dang-ki')?>">Đăng Kí</a></li>
                             <li><a href="<?=site_url('dang-nhap')?>">Đăng Nhập</a></li>
                         <?php else: ?>
@@ -80,8 +80,13 @@
                         <?php endif; ?>
                     </ul>
                 </li> -->
-                <li class="float-right"><a href="<?=site_url('buon-ban')?>">Rao Vặt</a></li>
-                <li class="float-right"><a href="<?=site_url('dang-tin')?>">Đăng Tin</a></li>
+                <li class="drop-down-menu float-right">
+                    <a href="javascript:void(0)" class="click-dropdown">Đăng Tin</a>
+                    <ul>
+                        <li class="href-none-after"><a href="<?=site_url('buon-ban')?>">Rao Vặt</a></li>
+                        <li class="href-none-after"><a href="<?=site_url('dang-tin')?>">Nhà Trọ</a></li>
+                    </ul>
+                </li>
                 <!-- <li class="float-right search-main">
                     <form action="search" method="get">
                         <input type="text" name="search" placeholder="Nhập Từ Khóa">

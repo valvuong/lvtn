@@ -39,14 +39,6 @@ fieldset legend {
   text-align: right;
   margin-right: 20px;
 }
-.item {
-  height: 300px;
-}
-.item img {
-  height: 100% !important;
-  margin: 0 auto;
-  max-width: 480px !important;
-}
 .title {
   background: none;
   color: #66BB6A;
@@ -70,42 +62,50 @@ fieldset legend {
 .gallery {
   margin-top: 50px;
 }
-.carousel {
+.gallery .item {
+  height: 300px;
+}
+.gallery .item img {
+  height: 100% !important;
+  margin: 0 auto;
+  max-width: 480px !important;
+}
+.gallery .carousel {
   display: inline-block;
   min-width: 480px;
   left: 50%;
   transform: translateX(-50%);
 }
 @media screen and (max-width: 900px) {
-  .carousel {
+  .gallery .carousel {
     min-width: 100%;
   }
 }
-.carousel-inner {
+.gallery .carousel-inner {
   margin: 0 auto;
 }
-.carousel-control {
+.gallery .carousel-control {
   width: 40px;
   height: 40px;
 }
-.carousel-control.left,
-.carousel-control.right {
+.gallery .carousel-control.left,
+.gallery .carousel-control.right {
   top: 50%;
   background-image: none;
 }
-.carousel-control.left {
+.gallery .carousel-control.left {
   transform: translateX(-100%);
 }
 @media screen and (max-width: 600px) {
-  .carousel-control.left {
+  .gallery .carousel-control.left {
     transform: translateX(0);
   }
 }
-.carousel-control.right {
+.gallery .carousel-control.right {
   transform: translateX(100%);
 }
 @media screen and (max-width: 600px) {
-  .carousel-control.right {
+  .gallery .carousel-control.right {
     transform: translateX(0);
   }
 }
