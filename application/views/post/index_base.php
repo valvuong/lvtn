@@ -94,3 +94,24 @@
         <div><?php echo $map['html'];?></div>
     </fielset>
 </div>
+
+<div class="paging">
+    <?php
+    // for PREVIOUS post
+    $query = $this->db->query('SELECT id FROM '.MODEL_POST.' WHERE id < '.$content['id'].' ORDER BY id DESC LIMIT 1');
+    $result = $query->row_array();
+    if($result != null) {
+        ?>
+        <a href="<?php echo site_url('tin-'.$result['id']) ?>"><span aria-hidden="true">←</span>Tin Trước</a>
+        <?php
+    }
+    // for NEXT post
+    $query = $this->db->query('SELECT id FROM '.MODEL_POST.' WHERE id > '.$content['id'].' ORDER BY id ASC LIMIT 1');
+    $result = $query->row_array();
+    if($result != null) {
+        ?>
+        <a class="float-right" href="<?php echo site_url('tin-'.$result['id']) ?>">Tin Kế Tiếp<span aria-hidden="true">→</span></a>
+        <?php 
+    } 
+    ?>
+</div>

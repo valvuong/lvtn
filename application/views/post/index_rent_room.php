@@ -6,43 +6,43 @@
 <fieldset>
     <legend style="width: 194px">Thông Tin Bổ Sung</legend>
     <?php if(!empty($anninh)): ?>
-	    <p><strong><!-- An Ninh --></strong><span><?php echo $anninh ?></span></p>
+	    <p><strong>An Ninh</strong><span><?php echo $anninh ?></span></p>
 	    <div class="clear"></div>
 	<?php endif; ?>
 	<?php if(!empty($naunuong)): ?>
-	    <p><strong><!-- Nấu Nướng --></strong><span><?php echo $naunuong ?></span></p>
+	    <p><strong>Nấu Nướng</strong><span><?php echo $naunuong ?></span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($chungchu)): ?>
-	    <p><strong><!-- Chung Chủ Nhà --></strong><span><?php echo $chungchu ?></span></p>
+	    <p><strong>Chung Chủ Nhà</strong><span><?php echo $chungchu ?></span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($giogiac)): ?>
-	    <p><strong><!-- Giờ Giấc --></strong><span><?php echo $giogiac ?></span></p>
+	    <p><strong>Giờ Giấc</strong><span><?php echo $giogiac ?></span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($nhavesinh)): ?>
-	    <p><strong><!-- Nhà Vệ Sinh --></strong><span><?php echo $nhavesinh ?></span></p>
+	    <p><strong>Nhà Vệ Sinh</strong><span><?php echo $nhavesinh ?></span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($xebuyt)): ?>
-	    <p><strong><!-- Các Tuyến Xe Buýt --></strong><span>Các Tuyến Xe Buýt Gần Đó: <?php echo $xebuyt ?></span></p>
+	    <p><strong>Các Tuyến Xe Buýt Gần Đó:</strong><span><?php echo $xebuyt ?></span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($bancong)): ?>
-	    <p><strong><!-- Ban Công --></strong><span><?php echo $bancong ?></span></p>
+	    <p><strong>Ban Công</strong><span><?php echo $bancong ?></span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($chodexe)): ?>
-	    <p><strong><!-- Chỗ Để Xe --></strong><span><?php echo $chodexe ?></span></p>
+	    <p><strong>Chỗ Để Xe</strong><span><?php echo $chodexe ?></span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($soluong)): ?>
-	    <p><strong><!-- Số Lượng Tối Đa Cho Ở --></strong><span>Tối Đa Cho <?php echo $soluong ?> Người Ở</span></p>
+	    <p><strong>Số Người Tối Đa Cho Ở</strong><span><?php echo $soluong ?></span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
     <?php if(!empty($chicho)): ?>
-	    <p><strong><!-- Chỉ Cho Ở --></strong><span>Chỉ Cho <?php echo $chicho ?></span></p>
+	    <p><strong>Chỉ Cho Ở</strong><span><?php echo $chicho ?></span></p>
 	    <div class="clear"></div>
     <?php endif; ?>
 </fieldset>
