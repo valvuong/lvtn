@@ -6,6 +6,7 @@ class Dashboard extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->helper(array('url','form'));
+		$this->load->model(array('muser'));
 	}
 
 	public function index() {
@@ -13,6 +14,10 @@ class Dashboard extends CI_Controller {
 			redirect('dang-nhap','refresh');
 		}
 		$data['view'] = 'dashboard/index';
+		$param = $this->session->userdata(LABEL_LOGIN)['id'];
+		$f = $this->muser->get_profile($param);
+		$data['content']['info'] = $f[0];
+		$data['display_name'] = $f[0]['name'];
 		$this->load->view('dashboard/main', $data);
 	}
 

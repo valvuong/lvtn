@@ -29,11 +29,24 @@
     <![endif]-->
 
     <link rel="icon" type="image/png" href="<?php echo image_url() ?>icon.png">
+
+    <!-- jQuery -->
+    <script src="<?php echo js_url()?>jquery-2.1.3.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<?php echo bootstrap_url()?>js/bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <!-- <script src="js/plugins/morris/raphael.min.js"></script> -->
+    <!-- <script src="js/plugins/morris/morris.min.js"></script> -->
+    <!-- <script src="js/plugins/morris/morris-data.js"></script> -->
 </head>
 
 <body>
 <?php
-$display_name = $this->session->userdata(LABEL_LOGIN)['username'];
+if ($display_name == null) {
+    $display_name = $this->session->userdata(LABEL_LOGIN)['username'];
+}
 ?>
     <div id="wrapper">
 
@@ -104,47 +117,10 @@ $display_name = $this->session->userdata(LABEL_LOGIN)['username'];
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $display_name ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="<?=site_url('dang-xuat') ?>"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="<?=site_url('dang-xuat') ?>"><i class="fa fa-fw fa-power-off"></i> Thoát</a>
                         </li>
                     </ul>
                 </li>
@@ -156,10 +132,10 @@ $display_name = $this->session->userdata(LABEL_LOGIN)['username'];
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Thông Tin Cá Nhân <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="<?php echo site_url(''); ?>">Dropdown Item</a>
+                                <a href="<?php echo site_url(''); ?>">Đổi Mật Khẩu</a>
                             </li>
                             <li>
-                                <a href="<?php echo site_url(''); ?>">Dropdown Item</a>
+                                <a href="<?php echo site_url(''); ?>">Đổi Ảnh Đại Diện</a>
                             </li>
                         </ul>
                     </li>
@@ -178,7 +154,7 @@ $display_name = $this->session->userdata(LABEL_LOGIN)['username'];
 
             <div class="container-fluid">
 
-                <?php $this->load->view($view); ?>
+                <?php $this->load->view($view, $content) ?>
 
             </div>
             <!-- /.container-fluid -->
@@ -188,17 +164,6 @@ $display_name = $this->session->userdata(LABEL_LOGIN)['username'];
 
     </div>
     <!-- /#wrapper -->
-
-    <!-- jQuery -->
-    <script src="<?php echo js_url()?>jquery-2.1.3.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<?php echo bootstrap_url()?>js/bootstrap.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <!-- <script src="js/plugins/morris/raphael.min.js"></script> -->
-    <!-- <script src="js/plugins/morris/morris.min.js"></script> -->
-    <!-- <script src="js/plugins/morris/morris-data.js"></script> -->
 
 </body>
 
