@@ -12,11 +12,6 @@
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>bootstrap-select/bootstrap-select.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo css_url()?>style.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo css_url()?>main.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo css_url()?>footer.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo css_url()?>search.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo css_url()?>menu.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo css_url()?>header.css">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Cookie">
 
     <script type="text/javascript" src="<?php echo js_url()?>jquery-2.1.3.min.js"></script>
@@ -27,7 +22,7 @@
     
     <link rel="icon" type="image/png" href="<?php echo image_url() ?>icon.png">
 </head>
-<body>
+<body class="container">
     <a href="#" id="gotop" class="fbtn"><span class="x-icon glyphicon glyphicon-chevron-up"></span></a>
 
     <nav>
@@ -99,7 +94,7 @@
 
     <?php $this->load->view('layout/header'); ?>
 
-    <div class="body-content container">
+    <div class="body-content">
         <?php if(!isset($left_hidden)) {
             $this->load->view($left_view, $left_content);    
         } ?>

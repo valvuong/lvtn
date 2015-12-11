@@ -27,7 +27,8 @@ class Market extends CI_Controller {
         $data['view'] = 'market/list';
         $data['left_view'] = 'market/left';
         $data['left_content'] = '';
-        $data['right_hidden'] = true;
+        $data['right_view'] = 'market/right';
+        $data['right_content'] = '';
         $data['content']['content'] = $this->mmarket->get_all($page);
         $data['content']['pagination'] = array($class_name, $method_name, $page);
         $data['content']['items_per_page'] = ADS_PER_PAGE;

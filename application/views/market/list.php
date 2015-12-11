@@ -1,5 +1,5 @@
 <div class="list-header market-header">
-    <h4 style="text-align: center;color: #fff"><?php echo $label_list ?></h4>
+    <h4 style="text-align: center;color: #fff;margin: 0;font-size: 20px"><?php echo $label_list ?></h4>
 </div>
 <?php foreach($content as $row): ?>
     <a class="post ads" href="<?=site_url($row['id'].'-tin-vat')?>">
