@@ -1,4 +1,4 @@
-<footer class="footer-distributed container">
+<footer class="footer-distributed">
 
     <div class="footer-left">
 
@@ -7,9 +7,7 @@
         <p class="footer-links">
             <a href="<?=site_url('')?>"><i class="fa fa-home"></i></a>
             ·
-            <a href="<?=site_url('about')?>">About</a>
-            ·
-            <a href="<?=site_url('contact')?>">Contact</a>
+            <a href="<?=site_url('contact')?>">Liên Hệ</a>
         </p>
 
         <p class="footer-company-name">Company Name &copy; 2015</p>

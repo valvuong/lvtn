@@ -12,26 +12,14 @@
                         <option value="<?=$row['id']?>"><?=$row['tenloai']?></option>
                     <?php endforeach ?>
                 </select>
-                <select class="selectpicker" name="search-district">
-                    <option value="0">Theo Quận</option>
-                    <?php $query = $this->mdistrict->get_all() ?>
-                    <?php foreach($query as $row): ?>
-                        <option value="<?=$row['idQ']?>"><?=$row['tenquan']?></option>
-                    <?php endforeach ?>
-                </select>
-                <select class="selectpicker" name="search-area">
-                    <option value="0">Theo Diện Tích</option>
-                    <?php $query = $this->db->get(SEARCH_AREA) ?>
-                    <?php foreach($query->result_array() as $row): ?>
-                        <option value="<?=$row['value']?>"><?=$row['text']?></option>
-                    <?php endforeach ?>
-                </select>
                 <select class="selectpicker" name="search-price">
                     <option value="0">Theo Giá</option>
-                    <?php $query = $this->db->get(SEARCH_PRICE) ?>
-                    <?php foreach($query->result_array() as $row): ?>
-                        <option value="<?=$row['value']?>"><?=$row['text']?></option>
-                    <?php endforeach ?>
+                    <option></option>
+                </select>
+                <select class="selectpicker" name="search-status">
+                    <option value="0">Theo Tình Trạng</option>
+                    <option value="1">Mới</option>
+                    <option value="2">Đã Sử Dụng</option>
                 </select>
                 <div class="text-center"><input type="submit" class="btn btn-default" value="Tìm Kiếm"></div>
             </form>

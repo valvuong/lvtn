@@ -63,17 +63,6 @@ $label_checkbox_primary = 'label-checkbox-primary';
             <select id="<?=$field_name?>" name="<?=$field_name?>" class="selectpicker"></select>
         </div>
 
-        <!-- <div class="<?=$form_group?>">
-            <?php // $field_name = 'category' ?>
-            <?php // echo form_label('Chuyên Mục'.$required, '', array('class'=>$label_class.' '.$stage_1)) ?>
-            <select name=<?=$field_name?> class="selectpicker">
-                <?php // $query = $this->mcategory->get_all() ?>
-                <?php // foreach($query as $row): ?>
-                    <option value="<?=$row['id']?>"><?=$row['ten']?></option>
-                <?php //endforeach; ?>
-            </select>
-        </div> -->
-
         <div class="<?=$form_group?>">
             <?php
             $field_name = 'area';
@@ -219,7 +208,7 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 );
                 echo form_upload($data);
                 ?>
-                <span class="warning">Bạn chỉ có thể tải tối đa 8 hình, mỗi hình không quá 1M với các định dạng ipg, gif, jpeg, png.</span>
+                <span class="warning">Mỗi hình không quá 1M với các định dạng ipg, gif, jpeg, png.</span>
             </div>
         </div>
 

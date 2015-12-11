@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
 }
-body {
+html {
   background-image: url('../image/bg.png') !important;
 }
 ul {
@@ -84,6 +84,8 @@ ul {
   border-color: #3a5795;
 }
 .body-content {
+  display: inline-block;
+  width: 100%;
   min-height: 700px;
   padding: 10px 10px 10px 10px;
   margin-left: auto;
@@ -150,7 +152,7 @@ ul {
 }
 .post #middle {
   display: inline-block;
-  width: 495px;
+  width: 470px;
   padding: 5px 10px;
 }
 .post #middle h4 {
@@ -226,7 +228,7 @@ ul {
 .list-header {
   background: #46D8D8;
   margin-bottom: 10px;
-  padding: 5px 10px;
+  padding: 10px 15px;
 }
 .list-header.market-header {
   background: #337ab7;
