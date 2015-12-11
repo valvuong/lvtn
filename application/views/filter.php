@@ -43,8 +43,8 @@
 <?php endforeach ?>
 <!--Show more-->
 <div class="show_more_main" id="show_more_main<?php echo $page ?>">
-        <span id="<?php echo $page ?>" class="show_more" title="Load more posts">Show more</span>
-        <span class="loding" style="display: none;"><span class="loding_txt">Loading….</span></span>
+        <span id="<?php echo $page ?>" class="show_more" title="Load more posts">Thêm kết quả</span>
+        <span class="loding" style="display: none;"><span class="loding_txt">Đang tải….</span></span>
     </div>
 
 <style>

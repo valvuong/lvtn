@@ -107,7 +107,7 @@ $area_error = form_error('area');
 	</div>
 </div>
 <div class="clearfix">
-<p class="margin-no-top pull-left"><a class="btn btn-flat btn-blue waves-attach" href="javascript:void(0)">Hỗ trợ</a></p>
+<p class="margin-no-top pull-left"><a class="btn btn-flat btn-blue waves-attach" href="javascript:void(0)">Quên mật khẩu</a></p>
 <p class="margin-no-top pull-right"><a class="btn btn-flat btn-blue waves-attach" href="<?=site_url('dang-ki')?>">Đăng kí</a></p>
 </div>
 <?php echo form_close(); ?>

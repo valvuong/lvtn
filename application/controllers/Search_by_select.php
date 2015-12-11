@@ -29,7 +29,11 @@ class Search_by_select extends CI_Controller {
         $method_name = $this->router->fetch_method();
         $data['view'] = 'home';
         $data['content']['content'] = $result;
-        $data['left_hidden'] = true;
+        $data['left_view'] = 'layout/left';
+        $data['left_content']['search_category'] = $search_category;
+        $data['left_content']['search_district'] = $search_district;
+        $data['left_content']['search_area'] = $search_area;
+        $data['left_content']['search_price'] = $search_price;
         $data['right_view'] = 'layout/right';
         $data['right_content']['content'] = '';
         $data['content']['pagination'] = array($class_name, $method_name, $page);
