@@ -60,8 +60,6 @@ $area_error = form_error('area');
 	            </div>
 	        </div>
 <!--///////////////////////////////-->
-
-
 				<div class="form-group form-group-label">
 					<div class="row">
 						<div class="col-md-10 col-md-push-1">		

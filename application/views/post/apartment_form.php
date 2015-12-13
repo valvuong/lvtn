@@ -51,10 +51,10 @@ $label_checkbox_primary = 'label-checkbox-primary';
         </div>
 
         <div class="<?=$form_group?>">
-            <div class="<?=$stage_1.' '.$text_right ?>">Có Tất Cả Là</div>
+            <div class="<?=$stage_1.' '.$text_right ?>">Ở tầng thứ</div>
             <div class="<?=$stage_2 ?>">
                 <?php
-                $field_name = 'all-room';
+                $field_name = 'floor';
                 $data = array(
                     'id' => $field_name,
                     'name' => $field_name,
@@ -66,7 +66,12 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 );
                 echo form_input($data);
                 ?>
-                Phòng
+            </div>
+        </div>
+
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Có Tất Cả Là</div>
+            <div class="<?=$stage_2 ?>">
                 <?php
                 $field_name = 'bed-room';
                 $data = array(
@@ -80,8 +85,49 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 );
                 echo form_input($data);
                 ?>
-                Phòng Ngủ
+                Phòng ngủ
             </div>
+        </div>
+
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Còn trống</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'free-room';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $input_class,
+                    'type' => 'number',
+                    'value' => (!empty(set_value($field_name)))?set_value($field_name):0,
+                    'style' => 'width: 100px;display: inline-block',
+                    'min' => 0
+                );
+                echo form_input($data);
+                ?>
+                Phòng
+            </div>
+        </div>
+
+        <div class="<?=$form_group?>">
+        <div class="<?=$stage_1.' '.$text_right ?>">Chỉ Cho</div>
+        <div class="<?=$stage_2 ?>">
+            <?php
+            $field_name = 'gender-only';
+            ?>
+            <label class="radio">
+                <input value="Nữ Ở" type="radio" name="<?=$field_name?>">
+                <span class="outer"><span class="inner"></span></span>Nữ Ở
+            </label>
+            <label class="radio">
+                <input value="Nam Ở" type="radio" name="<?=$field_name?>">
+                <span class="outer"><span class="inner"></span></span>Nam Ở
+            </label>
+            <label class="radio">
+                <input value="0" type="radio" name="<?=$field_name?>">
+                <span class="outer"><span class="inner"></span></span>Tùy Ý
+            </label>
+        </div>
         </div>
 
         <div class="<?=$form_group?>">
@@ -89,6 +135,23 @@ $label_checkbox_primary = 'label-checkbox-primary';
             <div class="<?=$stage_2 ?>">
                 <?php
                 $field_name = 'laundry';
+                $data = array(
+                    'id' => $field_name,
+                    'name' => $field_name,
+                    'class' => $checkbox_class,
+                    'checked' => set_checkbox($field_name, $field_name)
+                );
+                echo form_checkbox($data);
+                echo form_label('', $field_name, array('class' => $label_checkbox_primary.' '.$bigger));
+                ?>
+            </div>
+        </div>
+
+        <div class="<?=$form_group?>">
+            <div class="<?=$stage_1.' '.$text_right ?>">Thang máy</div>
+            <div class="<?=$stage_2 ?>">
+                <?php
+                $field_name = 'lift';
                 $data = array(
                     'id' => $field_name,
                     'name' => $field_name,

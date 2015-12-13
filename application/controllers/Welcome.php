@@ -67,6 +67,9 @@ class Welcome extends CI_Controller {
     }
 
     public function create_post() {
+        if(!$this->session->userdata(LABEL_LOGIN)) {
+            redirect('dang-nhap','refresh');
+        }
         $data['view'] = 'post/create_post';
         $data['content']['content'] = '';
         $data['left_hidden'] = true;

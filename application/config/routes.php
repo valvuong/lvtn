@@ -65,6 +65,7 @@ foreach( $result as $row ) {
 }
 
 $route['dang-ki'] = 'user/register';
+$route['quen-mat-khau'] = 'user/forgot_password';
 $route['dang-nhap'] = 'user/login';
 $route['dang-xuat'] = 'user/logout';
 $route['contact'] = 'welcome/contact';

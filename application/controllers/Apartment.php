@@ -48,9 +48,12 @@ class Apartment extends Post_Controller {
                         'anninh' => $this->input->post('security'),
                         'giogiac' => $this->input->post('time-off'),
                         'giatui' => $this->input->post('laundry')===NULL ? 0:1,
-                        'sophong' => $this->input->post('all-room'),
+                        'thangmay' => $this->input->post('lift')===NULL ? 0:1,
+                        'sotang' => $this->input->post('floor'),
                         'phongngu' => $this->input->post('bed-room'),
+                        'controng' => $this->input->post('free-room'),
                         'tiennghi' => $this->input->post('other-services'),
+                        'chicho' => $this->input->post('gender-only')===NULL ? "":$this->input->post('gender-only')
                     )
                 );
                 $info = $main_info + $sub_info;

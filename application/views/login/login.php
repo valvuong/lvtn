@@ -23,7 +23,7 @@ $area_error = form_error('area');
 				if($login_fail==true): ?>
 				<h1 class="card-heading-fail">Sai tên hoặc mật khẩu</h1>
 				
-				<?php else: ?> <div class="card-heading">XIN CHÀO - ĐĂNG NHẬP</div>
+				<?php else: ?> <div class="card-heading">ĐĂNG&nbsp;&nbsp;&nbsp;&nbsp;NHẬP</div>
 				<?php endif ?>
 			</div>
 		
@@ -107,7 +107,7 @@ $area_error = form_error('area');
 	</div>
 </div>
 <div class="clearfix">
-<p class="margin-no-top pull-left"><a class="btn btn-flat btn-blue waves-attach" href="javascript:void(0)">Quên mật khẩu</a></p>
+<p class="margin-no-top pull-left"><a class="btn btn-flat btn-blue waves-attach" href="<?=site_url('quen-mat-khau')?>">Quên mật khẩu</a></p>
 <p class="margin-no-top pull-right"><a class="btn btn-flat btn-blue waves-attach" href="<?=site_url('dang-ki')?>">Đăng kí</a></p>
 </div>
 <?php echo form_close(); ?>

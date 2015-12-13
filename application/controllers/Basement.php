@@ -48,9 +48,11 @@ class Basement extends Post_Controller {
                         'anninh' => $this->input->post('security'),
                         'giogiac' => $this->input->post('time-off'),
                         'nhavesinh' => $this->input->post('rest-room'),
-                        'amthap' => $this->input->post('amthap'),
+                        'amthap' => $this->input->post('amthap')===NULL ? 0:1,
                         'tiennghi' => $this->input->post('other-services'),
-                        'xebuyt' => $this->input->post('bus')
+                        'xebuyt' => $this->input->post('bus'),
+                        'thongthoang' => $this->input->post('thongthoang')===NULL ? 0:1,
+                        'chicho' => $this->input->post('gender-only')===NULL ? "":$this->input->post('gender-only')
                     )
                 );
                 $info = $main_info + $sub_info;

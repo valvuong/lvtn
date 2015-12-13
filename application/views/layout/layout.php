@@ -109,7 +109,7 @@
             if (!isset($right_hidden)) {
                 $content_class = 'float-right';
             } else {
-                $content_class .= ' center';
+                $content_class .= 'center';
             }
         }
         ?>
