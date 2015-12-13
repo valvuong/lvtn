@@ -109,7 +109,7 @@
             if (!isset($right_hidden)) {
                 $content_class = 'float-right';
             } else {
-                $content_class .= ' center';
+                $content_class .= ' main-center';
             }
         }
         ?>
@@ -130,5 +130,34 @@
         $this->input->set_cookie(COOKIE_POST_SORT, 0, 0);
     }
     ?>
+    <!-- Modal Register Post-->
+    <div id="register-post" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Đăng Kí Đặt Trước</h4>
+          </div>
+          <div class="modal-body">
+            <form action="" method="">
+                <div class="form-group">
+                    <label>Số Phòng Muốn Đăng Kí</label>
+                    <input type="number" name="register-nums-room" class="form-control" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Số Người Muốn Đăng Kí</label>
+                    <input type="number" name="register-nums-people" class="form-control" min="0">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đăng Kí</button>
+                  </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
 </body>
 </html>

@@ -9,6 +9,13 @@
     .form-control {
         display: none;
     }
+    .form-group {
+        display: none;
+        margin: 0;
+    }
+    label {
+        margin: 0;
+    }
     .min-width {
         min-width: 355px;
     }
@@ -22,7 +29,7 @@
             var parentPrevious = parent.prev();
             var span = parentPrevious.find('span');
             span.hide();
-            var input = parentPrevious.find('input');
+            var input = parentPrevious.find('.edit-field');
             input.slideDown();
             input.val($.trim(parentPrevious.text()));
             thisElement.hide();
@@ -33,7 +40,7 @@
             thisElement.parent().hide();
             thisElement.parent().prev().slideDown();
             var tdInput = thisElement.parent().parent().prev();
-            tdInput.find('input').hide();
+            tdInput.find('.edit-field').hide();
             tdInput.find('span').slideDown();
         });
     });
@@ -62,7 +69,7 @@
                                 <th>Tên Hiển Thị</th>
                                 <td class="min-width">
                                     <span><?php echo $info['name'] ?></span>
-                                    <input class="form-control">
+                                    <input class="form-control edit-field">
                                 </td>
                                 <td class="text-center">
                                     <button class="btn btn-primary edit">Sửa</button>
@@ -75,8 +82,11 @@
                             <tr>
                                 <th>Giới Tính</th>
                                 <td>
-                                    <span><?php echo $info['sex'] ?></span>
-                                    <input class="form-control">
+                                    <span><?php if($info['sex'] != null) {$gender = array('Nam', 'Nữ'); echo $gender[$info['sex']];} ?></span>
+                                    <div class="form-group edit-field">
+                                        <label><input type="radio" value="0" name="gender" <?php if($info['sex'] == 0) echo 'selected' ?>>Nam</label>
+                                        <label><input type="radio" value="1" name="gender" <?php if($info['sex'] == 1) echo 'selected' ?>>Nữ</label>
+                                    </div>
                                 </td>
                                 <td class="text-center">
                                     <button class="btn btn-primary edit">Sửa</button>
@@ -90,7 +100,7 @@
                                 <th>Địa Chỉ</th>
                                 <td>
                                     <span><?php echo $info['address'] ?></span>
-                                    <input class="form-control">
+                                    <input class="form-control edit-field">
                                 </td>
                                 <td class="text-center">
                                     <button class="btn btn-primary edit">Sửa</button>
@@ -104,7 +114,7 @@
                                 <th>Số Điện Thoại</th>
                                 <td>
                                     <span><?php echo $info['phone'] ?></span>
-                                    <input class="form-control">
+                                    <input class="form-control edit-field">
                                 </td>
                                 <td class="text-center">
                                     <button class="btn btn-primary edit">Sửa</button>
@@ -220,56 +230,6 @@
                     <div class="clearfix"></div>
                 </div>
             </a>
-        </div>
-    </div>
-</div>
-<!-- /.row -->
-
-<div class="row">
-    <div class="col-lg-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Tasks Panel</h3>
-            </div>
-            <div class="panel-body">
-                <div class="list-group">
-                    <a href="#" class="list-group-item">
-                        <span class="badge">just now</span>
-                        <i class="fa fa-fw fa-calendar"></i> Calendar updated
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">4 minutes ago</span>
-                        <i class="fa fa-fw fa-comment"></i> Commented on a post
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">23 minutes ago</span>
-                        <i class="fa fa-fw fa-truck"></i> Order 392 shipped
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">46 minutes ago</span>
-                        <i class="fa fa-fw fa-money"></i> Invoice 653 has been paid
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">1 hour ago</span>
-                        <i class="fa fa-fw fa-user"></i> A new user has been added
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">2 hours ago</span>
-                        <i class="fa fa-fw fa-check"></i> Completed task: "pick up dry cleaning"
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">yesterday</span>
-                        <i class="fa fa-fw fa-globe"></i> Saved the world
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">two days ago</span>
-                        <i class="fa fa-fw fa-check"></i> Completed task: "fix error on sales page"
-                    </a>
-                </div>
-                <div class="text-right">
-                    <a href="#">View All Activity <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
         </div>
     </div>
 </div>

@@ -186,7 +186,7 @@ $label_checkbox_primary = 'label-checkbox-primary';
         <div class="<?=$form_group?>">
             <?php echo form_label("Hình ảnh$required:", '', array('class' => $label_class)) ?>
 
-            <div class="<?=$form_group?> upload-warning">
+            <div class="<?=$form_group?> upload-warning" style="display: inline-block;width: 100%">
                 <?php
                 echo form_label(
                     '<span class="glyphicon glyphicon-upload"></span>Tải hình lên',

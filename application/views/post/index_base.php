@@ -1,6 +1,15 @@
 <link rel="stylesheet" type="text/css" href="<?php echo css_url() ?>post-article.css">
 
 <h3 class="title"><?php echo mb_strtoupper($content['tieude'],'utf8'); ?></h3>
+<div>
+<?php
+if ($this->session->userdata(LABEL_LOGIN)) {
+    ?>
+    <button type="button" class="btn btn-primary main-center" data-toggle="modal" data-target="#register-post">Đăng Kí Trước</button>
+    <?php
+}
+?>
+</div>
 <div class="contact">
     <fieldset>
         <legend style="width: 189px">Thông Tin Nhà Trọ</legend>
@@ -98,7 +107,7 @@
 <div class="paging">
     <?php
     // for PREVIOUS post
-    $query = $this->db->query('SELECT id FROM '.MODEL_POST.' WHERE id < '.$content['id'].' ORDER BY id DESC LIMIT 1');
+    $query = $this->db->query('SELECT id FROM '.MODEL_POST.' WHERE id < '.$content['id'].' AND hethan >= NOW() ORDER BY id DESC LIMIT 1');
     $result = $query->row_array();
     if($result != null) {
         ?>
@@ -106,7 +115,7 @@
         <?php
     }
     // for NEXT post
-    $query = $this->db->query('SELECT id FROM '.MODEL_POST.' WHERE id > '.$content['id'].' ORDER BY id ASC LIMIT 1');
+    $query = $this->db->query('SELECT id FROM '.MODEL_POST.' WHERE id > '.$content['id'].' AND hethan >= NOW() ORDER BY id ASC LIMIT 1');
     $result = $query->row_array();
     if($result != null) {
         ?>
