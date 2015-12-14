@@ -130,5 +130,12 @@
         $this->input->set_cookie(COOKIE_POST_SORT, 0, 0);
     }
     ?>
+    
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+
 </body>
 </html>

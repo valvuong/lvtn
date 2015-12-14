@@ -25,7 +25,9 @@
 </div>
 
 <?php foreach($content as $row): ?>
-<a class="post" href="<?=site_url('tin-'.$row['id'])?>">
+<a data-toggle="tooltip" data-placement="right" 
+data-html="true" title='<b><?=$row['tenquan']?></b><br /> <b><span style="color:#0087c7;"><?=$row['tieude']?></span></b><br />Nội dung: <?=$row['noidung']?><br />' 
+rel="tooltip" class="post changecolor" href="<?=site_url('tin-'.$row['id'])?>">
     <div class="thumbnail">
         <img src="<?=uploads_url()?>post/<?=$row['tenhinh']?>">
     </div>
