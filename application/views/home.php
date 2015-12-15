@@ -20,7 +20,9 @@
           <ul class="dropdown-menu">
               <li><a href="<?php echo site_url($url_sort.'moinhat') ?>">Mới Nhất</a></li>
               <li><a href="<?php echo site_url($url_sort.'gia-tang') ?>">Giá Tăng Dần</a></li>
+              <li><a href="<?php echo site_url($url_sort.'gia-giam') ?>">Giá Giảm Dần</a></li>
               <li><a href="<?php echo site_url($url_sort.'dientich-tang') ?>">Diện Tích Tăng</a></li>
+              <li><a href="<?php echo site_url($url_sort.'dientich-giam') ?>">Diện Tích Giảm</a></li>
           </ul>
         </div>
     <?php endif ?>

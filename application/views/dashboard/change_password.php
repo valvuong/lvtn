@@ -37,7 +37,7 @@
 			var confirmpass = $('#confirm-pass').val();
 			var errorShow = $('.error');
 			var changeable = true;
-			if (newpass.length < 8) {
+			if (newpass.length < 5) {
 				errorShow.text('Mật Khẩu phải chứa ít nhất 8 kí tự');
 				errorShow.show();
 				changeable = false;

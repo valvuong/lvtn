@@ -76,10 +76,14 @@ $route['loai-(:num)'] = 'post/show_by_category/1/$1/1';
 $route['loai-(:num)-(:num)'] = 'post/show_by_category/$2/$1/1';
 $route['loai-(:num)-moinhat'] = 'post/show_by_category/1/$1/1';
 $route['loai-(:num)-gia-tang'] = 'post/show_by_category/1/$1/2';
-$route['loai-(:num)-dientich-tang'] = 'post/show_by_category/1/$1/3';
+$route['loai-(:num)-gia-giam'] = 'post/show_by_category/1/$1/3';
+$route['loai-(:num)-dientich-tang'] = 'post/show_by_category/1/$1/4';
+$route['loai-(:num)-dientich-giam'] = 'post/show_by_category/1/$1/5';
 $route['loai-(:num)-moinhat-(:num)'] = 'post/show_by_category/$2/$1/1';
 $route['loai-(:num)-gia-tang-(:num)'] = 'post/show_by_category/$2/$1/2';
-$route['loai-(:num)-dientich-tang-(:num)'] = 'post/show_by_category/$2/$1/3';
+$route['loai-(:num)-gia-giam-(:num)'] = 'post/show_by_category/$2/$1/3';
+$route['loai-(:num)-dientich-tang-(:num)'] = 'post/show_by_category/$2/$1/4';
+$route['loai-(:num)-dientich-giam-(:num)'] = 'post/show_by_category/$2/$1/5';
 
 $route['(:num)'] = 'welcome/index/$1';
 $route['tin-(:num)'] = 'post/index/$1';
