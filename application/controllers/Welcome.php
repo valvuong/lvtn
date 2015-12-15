@@ -29,7 +29,15 @@ class Welcome extends CI_Controller {
                 $field = 'giaphong';
                 break;
             case 3:
+                $sort = 'DESC';
+                $field = 'giaphong';
+                break;
+            case 4:
                 $sort = 'ASC';
+                $field = 'dientich';
+                break;
+            case 5:
+                $sort = 'DESC';
                 $field = 'dientich';
                 break;
         }

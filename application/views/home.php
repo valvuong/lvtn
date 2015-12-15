@@ -6,8 +6,10 @@
           </button>
           <ul class="dropdown-menu">
               <li><a href="<?php echo site_url('nha-1') ?>">Mới Nhất</a></li>
-              <li><a href="<?php echo site_url('nha-2') ?>">Giá Tăng Dần</a></li>
-              <li><a href="<?php echo site_url('nha-3') ?>">Diện Tích Tăng</a></li>
+              <li><a href="<?php echo site_url('nha-2') ?>">Giá Tăng</a></li>
+              <li><a href="<?php echo site_url('nha-3') ?>">Giá Giảm</a></li>
+              <li><a href="<?php echo site_url('nha-4') ?>">Diện Tích Tăng</a></li>
+              <li><a href="<?php echo site_url('nha-5') ?>">Diện Tích Giảm</a></li>
           </ul>
         </div>
     <?php elseif ($this->router->fetch_class() == 'post'): ?>
