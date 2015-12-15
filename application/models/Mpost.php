@@ -145,6 +145,11 @@ class Mpost extends CI_Model {
                 $last_id = $this->db->insert_id();
             }
         }
+        $data_mana = array(
+            'idUser' => $this->session->userdata(LABEL_LOGIN)['id'],
+            'idBantin' => $last_id
+        );
+        $this->db->insert(MODEL_MANAGE_POST, $data_mana);
         return $last_id;
     }
 

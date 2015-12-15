@@ -16,6 +16,14 @@
     ?>
     </span></p>
     <div class="clear"></div>
+    <p><strong>Thông thoáng:</strong><span>
+        <?php 
+        if(!isset($amthap)) 
+            echo 'Ban ngày hơi nóng';
+        else echo 'Thoáng mát';
+    ?>
+    </span></p>
+    <div class="clear"></div>
     <p><strong>Xe Buýt:</strong><span><?=$xebuyt?></span></p>
     <div class="clear"></div>
 </fieldset>

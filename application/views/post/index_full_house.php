@@ -10,6 +10,10 @@
     <div class="clear"></div>
     <p><strong>Số nhà vệ sinh:</strong><span><?=$nhavesinh?></span></p>
     <div class="clear"></div>
+    <p><strong>Số phòng còn trống:</strong><span><?=$controng?></span></p>
+    <div class="clear"></div>
+    <p><strong>Chỉ cho:</strong><span><?=$chicho?></span></p>
+    <div class="clear"></div>
     <p><strong>Xe Buýt:</strong><span><?=$xebuyt?></span></p>
     <div class="clear"></div>
 </fieldset>

@@ -33,6 +33,15 @@
                         <option value="<?=$row['value']?>"><?=$row['text']?></option>
                     <?php endforeach ?>
                 </select>
+                <select class="selectpicker" name="search-distance">
+                    <option value="0">Theo Khoảng cách</option>
+                    <option value="0002"><2km</option>
+                    <option value="0205">2-5km</option>
+                    <option value="0599">>5km</option>
+                    <option value="0005000"><5ph đi xe máy</option>
+                    <option value="0520000">5-20ph đi xe máy</option>
+                    <option value="2099000">>20ph đi xe máy</option>
+                </select>
                 <div class="text-center"><input type="submit" class="btn btn-default" value="Tìm Kiếm"></div>
             </form>
         </div>

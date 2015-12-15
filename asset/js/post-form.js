@@ -5,7 +5,6 @@ $(function(){
     priceEvent();
     prePay();
     datepicker();
-    // fsubmit();
 });
 
 function datepicker() {

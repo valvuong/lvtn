@@ -65,6 +65,7 @@ foreach( $result as $row ) {
 }
 
 $route['dang-ki'] = 'user/register';
+$route['quen-mat-khau'] = 'user/forgot_password';
 $route['dang-nhap'] = 'user/login';
 $route['dang-xuat'] = 'user/logout';
 $route['contact'] = 'welcome/contact';
@@ -88,5 +89,5 @@ $route['buon-ban'] = 'market/create';
 $route['tin-vat'] = 'market/get_all';
 $route['tin-vat-(:num)'] = 'market/get_all/$1';
 $route['(:num)-tin-vat'] = 'market/index/$1';
-$route['rao-vat-(:num)'] = 'market/get_by_category/$1';
+$route['rao-vat-(:num)'] = 'market/get_by_category/1/$1';
 $route['(:num)-rao-vat-(:num)'] = 'market/get_by_category/$2/$1';

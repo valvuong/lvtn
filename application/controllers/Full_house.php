@@ -50,7 +50,9 @@ class Full_house extends Post_Controller {
                         'sophong' => $this->input->post('all-room'),
                         'phongngu' => $this->input->post('bed-room'),
                         'nhavesinh' => $this->input->post('rest-room'),
-                        'xebuyt' => $this->input->post('bus')
+                        'xebuyt' => $this->input->post('bus'),
+                        'controng' => $this->input->post('free-room'),
+                        'chicho' => $this->input->post('gender-only')===NULL ? "":$this->input->post('gender-only')
                     )
                 );
                 $info = $main_info + $sub_info;

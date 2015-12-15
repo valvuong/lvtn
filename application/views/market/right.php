@@ -4,7 +4,7 @@
             <h2 class="panel-title search-title"><span class="glyphicon glyphicon-search"></span> TÌM KIẾM</h2>
         </div>
         <div class="panel-search">
-            <form action="" method="">
+            <form action="Search_market_by_select" method="">
                 <select class="selectpicker" name="search-category">
                     <option value="0">Theo Loại</option>
                     <?php $query = $this->mmarket_category->get_all() ?>
@@ -14,7 +14,10 @@
                 </select>
                 <select class="selectpicker" name="search-price">
                     <option value="0">Theo Giá</option>
-                    <option></option>
+                    <?php $query = $this->db->get(SEARCH_PRICE) ?>
+                    <?php foreach($query->result_array() as $row): ?>
+                        <option value="<?=$row['value']?>"><?=$row['text']?></option>
+                    <?php endforeach ?>
                 </select>
                 <select class="selectpicker" name="search-status">
                     <option value="0">Theo Tình Trạng</option>

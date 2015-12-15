@@ -51,6 +51,11 @@ class Mmarket extends CI_Model {
         if(isset($data[ACTION_MARKET_UPLOAD])) {
             $this->do_upload($data[ACTION_MARKET_UPLOAD], $last_id);
         }
+        $data_mana = array(
+            'idUser' => $this->session->userdata(LABEL_LOGIN)['id'],
+            'idRaovat' => $last_id
+        );
+        $this->db->insert(MODEL_MANAGE_MARKET, $data_mana);
         return $last_id;
     }
 

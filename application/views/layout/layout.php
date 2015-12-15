@@ -11,8 +11,8 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>bootstrap-select/bootstrap-select.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo asset_url()?>font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo css_url()?>style.css">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Cookie">
+    <link rel="stylesheet" type="text/css" href="<?php echo css_url()?>style.css">
 
     <script type="text/javascript" src="<?php echo js_url()?>jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="<?php echo bootstrap_url()?>js/bootstrap.min.js"></script>

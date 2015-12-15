@@ -248,4 +248,60 @@ class User extends CI_Controller {
 			}
 		$this->load->view(LAYOUT, $data);
     }
+
+    public function forgot_password(){
+    	$data['view'] = 'login/forgot_password';
+		$data['title'] = 'Quên mật khẩu';
+		$data['left_hidden'] = true;
+		$data['right_hidden'] = true;
+		$data['content']['message_display'] = 'aaaaaaaaaa';
+		$this->load->view(LAYOUT, $data);
+    }
+
+    public function send_email() {
+		// Check for validation
+		$rules = array(
+			'field' => 'forgot-password-email',
+             'rules' => 'trim|required'
+			);
+		$this->form_validation->set_rules($rules);
+		if ($this->form_validation->run()) {
+			$this->forgot_password();
+		} else {
+
+			// Storing submitted values
+			$forgot_password_email = $this->input->post('forgot_password_email');
+			// Configure email library
+			$config['protocol'] = 'smtp';
+			$config['smtp_host'] = 'ssl://smtp.gmail.com';
+			$config['smtp_port'] = 465;
+			$config['smtp_user'] = 'transong.toan@gmail.com';
+			$config['smtp_pass'] = 'Trymybestto1to1to1';
+
+			// Load email library and passing configured values to email library
+			$this->load->library('email', $config);
+			$this->email->set_newline("\r\n");
+
+			// Sender email address
+			$this->email->from('transong.toan@gmail.com', 'toan');
+			// Receiver email address
+			$this->email->to($forgot_password_email);
+			// Subject of email
+			//$this->email->subject($subject);
+			// Message in email
+			//$this->email->message($message);
+
+			if ($this->email->send()) {
+				$data['message_display'] = 'Email Successfully Send !';
+			} else {
+				$data['message_display'] =  '<p class="error_msg">Invalid Gmail Account or Password !</p>';
+			}
+		$data['view'] = 'login/forgot_password';
+		$data['title'] = 'Quên mật khẩu';
+		$data['left_hidden'] = true;
+		$data['right_hidden'] = true;
+		$this->load->view(LAYOUT, $data);
+		}
+	}
+
 }

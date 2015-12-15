@@ -111,6 +111,9 @@ define('MODEL_CATEGORY', MODEL_POST_CATEGORY);
 define('SEARCH_AREA', 'timkiem_dientich');
 define('SEARCH_PRICE', 'timkiem_giaphong');
 
+define('MODEL_MANAGE_POST', 'quanlytin');
+define('MODEL_MANAGE_MARKET', 'quanlyraovat');
+
 define('COOKIE_POST_SORT', 'post_sort');
 define('COOKIE_MARKET_SORT', 'market_sort');
 
