@@ -176,12 +176,29 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 'value' => set_value($field_name),
                 'pattern' => '(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-([0-9]{4})',
                 'required' => 'required',
-                'title' => 'Hãy Điền Ngày Hết Hạn Vào',
-                // 'oninvalid' => "this.setCustomValidity('Hãy Điền Ngày Hết Hạn Vào')"
+                'title' => 'Ngày Hết Hạn Cho Bài Này',
             );
             echo form_input($data);
             ?>
-        </div>        
+        </div>
+
+        <div class="<?=$form_group?>">
+            <?php
+            $field_name = 'address';
+            echo form_label("Địa Chỉ$required:", $field_name, array('class' => $label_class));
+            $data = array(
+                'id' => $field_name,
+                'name' => $field_name,
+                'placeholder' => 'VD: 232/3 Lý Thường Kiệt, P.15, Q.10',
+                'class' => $input_class,
+                'value' => set_value($field_name),
+                'required' => 'required',
+                'title' => 'Hãy Điền Địa Chỉ Vào',
+                // 'oninvalid' => "this.setCustomValidity('Hãy Điền Địa Chỉ Vào')"
+            );
+            echo form_input($data);
+            ?>
+        </div>
 
         <div class="<?=$form_group?>">
             <?php echo form_label("Hình ảnh$required:", '', array('class' => $label_class)) ?>
@@ -325,24 +342,6 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 'required' => 'required',
                 'title' => 'Hãy Điền Số Điện Thoại Vào',
                 // 'oninvalid' => "this.setCustomValidity('Hãy Điền Số Điện Thoại Vào')"
-            );
-            echo form_input($data);
-            ?>
-        </div>
-
-        <div class="<?=$form_group?>">
-            <?php
-            $field_name = 'address';
-            echo form_label("Địa Chỉ$required:", $field_name, array('class' => $label_class));
-            $data = array(
-                'id' => $field_name,
-                'name' => $field_name,
-                'placeholder' => 'VD: 232/3 Lý Thường Kiệt, P.15, Q.10',
-                'class' => $input_class,
-                'value' => set_value($field_name),
-                'required' => 'required',
-                'title' => 'Hãy Điền Địa Chỉ Vào',
-                // 'oninvalid' => "this.setCustomValidity('Hãy Điền Địa Chỉ Vào')"
             );
             echo form_input($data);
             ?>

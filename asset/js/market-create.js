@@ -2,6 +2,7 @@ $(function(){
     editor();
     preview();
     price();
+    getCate();
 });
 
 function editor() {
@@ -46,6 +47,32 @@ function price() {
             $('#pri').text(formatNumber(formatPrice));
         } else {
             $('#pri').text('');
+        }
+    });
+}
+
+function getCate() {
+    var a = $("#ad-category option:selected").val();
+    showCate(a);
+}
+
+function showCate(code) {
+    var url = $('#url_ajax').val();
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {q: code},
+        dataType: "json",
+        success: function(data) {
+            var selector = "#ad-sub-category";
+            $(selector).empty();
+            $.each(data, function(key, value){
+                $('<option>').val(key).text(value).appendTo(selector);
+            });
+            $(selector).selectpicker("refresh");
+        },
+        error: function() {
+            alert('error');
         }
     });
 }

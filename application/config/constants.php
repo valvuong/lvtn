@@ -104,12 +104,18 @@ define('MODEL_POST_BASEMENT', 'phong_tangham');
 define('MODEL_MARKET', 'raovat');
 define('MODEL_MARKET_UPLOAD', 'raovat_hinh');
 define('MODEL_MARKET_CATEGORY', 'raovat_loai');
+define('MODEL_MARKET_SUB_CATEGORY', 'raovat_loaisp');
 define('ACTION_POST_UPLOAD', 'upload_image');
 define('ACTION_MARKET_UPLOAD', 'upload_image');
 define('MODEL_CATEGORY', MODEL_POST_CATEGORY);
 
 define('SEARCH_AREA', 'timkiem_dientich');
 define('SEARCH_PRICE', 'timkiem_giaphong');
+
+define('MODEL_MANAGE_POST', 'quanlytin');
+define('MODEL_MANAGE_MARKET', 'quanlyraovat');
+
+define('MODEL_CONTACT', 'lienhe');
 
 define('COOKIE_POST_SORT', 'post_sort');
 define('COOKIE_MARKET_SORT', 'market_sort');

@@ -53,6 +53,8 @@ if ($this->session->userdata(LABEL_LOGIN)) {
         <div class="clear"></div>
         <p><strong>Cách Đại Học Bách Khoa:</strong><span><?=$content['khoangcach']?> km</span></p>
         <div class="clear"></div>
+        <p><strong>Địa Chỉ:</strong><span><?=$content['diachi']?></span></p>
+        <div class="clear"></div>
     </fieldset>
 
     <?php $this->load->view($additional, $content['thongtinbosung']); ?>
@@ -60,8 +62,6 @@ if ($this->session->userdata(LABEL_LOGIN)) {
     <fieldset>
         <legend style="width: 189px">Thông Tin Liên Hệ</legend>
         <p><strong>Tên Người Liên Hệ:</strong><span><?=$content['hoten']?></span></p>
-        <div class="clear"></div>
-        <p><strong>Địa Chỉ:</strong><span><?=$content['diachi']?></span></p>
         <div class="clear"></div>
         <p><strong>Số Điện Thoại:</strong><span><?=$content['sodienthoai']?></span></p>
         <div class="clear"></div>

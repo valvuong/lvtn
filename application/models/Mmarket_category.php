@@ -15,4 +15,12 @@ class Mmarket_category extends CI_Model {
     	$query = $this->db->get();
     	return $query->result_array();
     }
+
+    public function get_sub_category($idC) {
+        $this->db->select('*');
+        $this->db->from(MODEL_MARKET_SUB_CATEGORY);
+        $this->db->where('idRLoai', $idC);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }

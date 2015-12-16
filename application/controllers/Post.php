@@ -45,10 +45,15 @@ class Post extends CI_Controller {
                 $url_alias = 'loai-'.$idC.'-gia-tang-';
                 break;
             case 3:
+                $url_alias = 'loai-'.$idC.'-gia-giam-';
+                break;
+            case 4:
                 $url_alias = 'loai-'.$idC.'-dientich-tang-';
                 break;
+            case 5:
+                $url_alias = 'loai-'.$idC.'-dientich-giam-';
+                break;
         }
-        // $url_alias = 'loai-'.$idC.'-';
         $data['content']['url_alias'] = $url_alias;
         $data['content']['url_sort'] = 'loai-'.$idC.'-';
         $this->load->view(LAYOUT, $data);

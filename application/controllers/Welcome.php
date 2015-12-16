@@ -6,8 +6,8 @@ class Welcome extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->helper(array('url'));
-        $this->load->model(array('mdistrict','mpost'));	
+        $this->load->helper(array('url','form'));
+        $this->load->model(array('mdistrict','mpost','mcontact'));	
     }
 
 	public function index($page=1)
@@ -29,7 +29,15 @@ class Welcome extends CI_Controller {
                 $field = 'giaphong';
                 break;
             case 3:
+                $sort = 'DESC';
+                $field = 'giaphong';
+                break;
+            case 4:
                 $sort = 'ASC';
+                $field = 'dientich';
+                break;
+            case 5:
+                $sort = 'DESC';
                 $field = 'dientich';
                 break;
         }
@@ -55,14 +63,39 @@ class Welcome extends CI_Controller {
         $this->googlemaps->add_marker($marker);
         $data['content']['map'] = $this->googlemaps->create_map();
 
-        $this->load->view(LAYOUT, $data);
-    }
+        $this->load->library('form_validation');
+        $rules = array(
+            array(
+                'field' => 'name',
+                'rules' => 'trim|required'
+            ),
+            array(
+                'field' => 'email',
+                'rules' => 'trim|required'
+            ),
+            array(
+                'field' => 'message',
+                'rules' => 'trim|required'
+            )
+        );
+        $this->form_validation->set_rules($rules);
 
-    public function about() {
-        $data['view'] = 'static_page/about';
-        $data['content']['content'] = '';
-        $data['left_hidden'] = true;
-        $data['right_hidden'] = true;
+        if ($this->input->post('contact-submit')) {
+            if($this->form_validation->run()) {
+                $name = $this->input->post('name');
+                $email = $this->input->post('email');
+                $message = $this->input->post('message');
+                $info = array(
+                    'name'      => $name,
+                    'email'     => $email,
+                    'message'   => $message,
+                    'read'      => 0,
+                    'sendemail' => 0
+                );
+                $this->mcontact->save_contact($info);
+            }
+        }
+
         $this->load->view(LAYOUT, $data);
     }
 

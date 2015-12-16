@@ -117,7 +117,7 @@ if ($display_name == null) {
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $display_name ?> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $display_name ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="<?=site_url('dang-xuat') ?>"><i class="fa fa-fw fa-power-off"></i> Thoát</a>
@@ -131,10 +131,16 @@ if ($display_name == null) {
                     <li class="active">
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Thông Tin Cá Nhân <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
-                            <li>
+                            <?php
+                            $method = $this->router->fetch_method();
+                            ?>
+                            <li class="<?php if($method == 'index') echo 'active' ?>">
+                                <a href="<?php echo site_url('dashboard'); ?>">Thông Tin Tải Khoản</a>
+                            </li>
+                            <li class="<?php if($method == 'change_password') echo 'active' ?>">
                                 <a href="<?php echo site_url('dashboard/change_password'); ?>">Đổi Mật Khẩu</a>
                             </li>
-                            <li>
+                            <li class="<?php if($method == 'change_avatar') echo 'active' ?>">
                                 <a href="<?php echo site_url('dashboard/change_avatar'); ?>">Đổi Ảnh Đại Diện</a>
                             </li>
                         </ul>
