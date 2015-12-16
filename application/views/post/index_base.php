@@ -6,6 +6,7 @@
 if ($this->session->userdata(LABEL_LOGIN)) {
     ?>
     <button type="button" class="btn btn-primary main-center" data-toggle="modal" data-target="#register-post">Đăng Kí Trước</button>
+    <button type="button" class="btn btn-danger main-center">Hủy Đăng Kí</button>
     <?php
 }
 ?>
