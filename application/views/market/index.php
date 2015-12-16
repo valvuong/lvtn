@@ -17,9 +17,13 @@ $status = array(0=>'Mới', 1=>'Đã Sử Dụng');
         <div class="clear"></div>
         <p><strong>Ngày Đăng:</strong><span><?=date('H:i d/m/Y',strtotime($content['ngaydang']))?></span></p>
         <div class="clear"></div>
-        <p><strong>Quận/Huyện:</strong><span><?=$content['tenquan']?></span></p>
-        <div class="clear"></div>
-        <p><strong>Loại:</strong><span><a href="<?php echo site_url('rao-vat-'.$content['loai']) ?>"><?=$content['tenloai']?></a></span></p>
+        <p>
+            <strong>Loại:</strong>
+            <span>
+                <a href="<?php echo site_url('rao-vat-'.$content['loai']) ?>"><?=$content['tenloai']?></a>,
+                <a href="<?php echo site_url('') ?>"><?=$content['tenloaisp']?></a>
+            </span>
+        </p>
         <div class="clear"></div>
     </div>
 </div>

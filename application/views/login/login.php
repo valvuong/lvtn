@@ -14,7 +14,7 @@ $email_error = form_error('email');
 $area_error = form_error('area');
 ?>
 
-<div class="card" style="width: 460px">
+<div class="card" style="width: 440px">
 	<div class="card-main">
 		<div class="card-header">
 			<div class="card-inner">

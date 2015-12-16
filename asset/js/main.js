@@ -3,8 +3,7 @@ $(function() {
     menuTask();
     clickDropdown();
     // clickTask();
-    // header();
-    // listSort();
+    header();
     selectepicker();
 });
 
@@ -20,7 +19,6 @@ function header() {
     var bodyWidth = $('.body-content').outerWidth();
     $('header.header').css({
         "margin-top": navheight+"px",
-        "width": bodyWidth+"px"
     });
 }
 
@@ -85,22 +83,5 @@ function goTop() {
 function selectepicker() {
     $('.selectpicker').selectpicker({
         size: 6
-    });
-}
-
-function listSort() {
-    var selector = $('#post-sort');
-    selector.on('change', function(){
-        var value = $(this).val();
-        $.ajax({
-            type: "GET",
-            url: "ajax/post_sort",
-            data: {sort: value},
-            dataType: "json",
-            success: function(data) {
-            },
-            error: function() {
-            }
-        });
     });
 }

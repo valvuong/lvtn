@@ -61,9 +61,9 @@ $stage_2 = 'stage-2';
     </div>
 
     <div class="<?=$form_group?>">
-        <?php $field_name = 'ad-district' ?>
+        <?php $field_name = 'ad-category' ?>
         <?php echo form_label('Danh Mục'.$required, '', array('class'=>$label_class.' '.$stage_1)) ?>
-        <select name=<?=$field_name?> class="selectpicker">
+        <select name=<?=$field_name?> class="selectpicker" id="<?=$field_name?>" onchange="showCate(this.value)">
             <?php $query = $this->mmarket->get_cate() ?>
             <?php foreach($query as $row): ?>
                 <option value="<?=$row['id']?>"><?=$row['tenloai']?></option>
@@ -72,14 +72,10 @@ $stage_2 = 'stage-2';
     </div>
 
     <div class="<?=$form_group?>">
-        <?php $field_name = 'ad-category' ?>
-        <?php echo form_label('Quận'.$required, '', array('class'=>$label_class.' '.$stage_1)) ?>
-        <select name=<?=$field_name?> class="selectpicker">
-            <?php $query = $this->mdistrict->get_all() ?>
-            <?php foreach($query as $row): ?>
-                <option value="<?=$row['idQ']?>"><?=$row['tenquan']?></option>
-            <?php endforeach; ?>
-        </select>
+        <?php $field_name = 'ad-sub-category' ?>
+        <input type="hidden" id="url_ajax" value="<?php echo base_url().'ajax/get_adCate' ?>">
+        <?php echo form_label('Loại'.$required, '', array('class'=>$label_class.' '.$stage_1)) ?>
+        <select name=<?=$field_name?> class="selectpicker" id="<?=$field_name?>"></select>
     </div>
 
     <div class="<?=$form_group?>">

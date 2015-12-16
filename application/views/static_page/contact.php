@@ -1,6 +1,3 @@
-<head>
-	<link rel="stylesheet" type="text/css" href="<?php echo css_url() ?>contact.css">
-</head>
 <div class="maincontain-area">
 	<div class="container">
 		<div class="row">
@@ -48,18 +45,18 @@
 				<div class="col-lg-6 col-md-6">
 					<h2 class="heading_comments">Leave a comments</h2>
 					<div class="comment_form">
-						<form method="post" action="#">
+						<form method="post" action="">
 							<p>
 								<label>Your Name(*)</label>
-								<input type="text" name="your_name">
+								<input type="text" name="name" required>
 							</p>
 							<p>
 								<label>Email Address(*)</label>
-								<input type="email" name="email">
+								<input type="email" name="email" required>
 							</p>
-							<p><textarea rows="3" placeholder="Message(*)" name="message"></textarea></p>
+							<p><textarea rows="3" placeholder="Message(*)" name="message" required></textarea></p>
 							<div class="button_for_text">
-								<button type="submit">Post comment</button>
+								<input type="submit" name="contact-submit" value="Post comment">
 							</div>
 						</form>
 					</div>

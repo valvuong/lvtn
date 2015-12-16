@@ -2,6 +2,7 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
         
 class Market extends CI_Controller {
+    
     private $header_message;
 
     public function __construct() {
@@ -47,7 +48,6 @@ class Market extends CI_Controller {
         $data['content']['content'] = '';
         $data['left_hidden'] = true;
         $data['right_hidden'] = true;
-        $data['header_message'] = $this->header_message;
 
         $this->load->library('form_validation');
         $rules = array(
@@ -80,7 +80,7 @@ class Market extends CI_Controller {
                     MODEL_MARKET => array(
                         'tieude' => $this->input->post('ad-title'),
                         'loai' => $this->input->post('ad-category'),
-                        'quan' => $this->input->post('ad-district'),
+                        'loaisp' => $this->input->post('ad-sub-category'),
                         'noidung' => $this->input->post('ad-content'),
                         'giaca' => $this->input->post('ad-price'),
                         'tinhtrang' => $this->input->post('ad-status'),
@@ -105,16 +105,41 @@ class Market extends CI_Controller {
         $data['view'] = 'market/list';
         $data['left_view'] = 'market/left';
         $data['left_content'] = '';
-        $data['right_hidden'] = true;
+        $data['right_view'] = 'market/right';
+        $data['right_content'] = '';
         $data['content']['content'] = $this->mmarket->get_by_category($page, $cate_id);
         $data['content']['pagination'] = array($class_name, $method_name, $page, $cate_id);
         $data['content']['items_per_page'] = ADS_PER_PAGE;
         $data['content']['num_rows'] = $this->mmarket->get_cate_rows($cate_id);
         $data['content']['url_alias'] = $cate_id.'-rao-vat-';
-        $data['header_message'] = $this->header_message;
         $query = $this->db->query('SELECT tenloai FROM '.MODEL_MARKET_CATEGORY.' WHERE id = '.$cate_id);
         $result = $query->row_array();
         $data['content']['label_list'] = $result['tenloai'];
+        $this->load->view(LAYOUT, $data);
+    }
+
+    public function get_by_subcategory($subcate_id, $page = 1) {
+        $class_name = $this->router->fetch_class();
+        $method_name = $this->router->fetch_method();
+        $data['view'] = 'market/list';
+        $data['left_view'] = 'market/left';
+        $data['left_content'] = '';
+        $data['right_view'] = 'market/right';
+        $data['right_content'] = '';
+        $data['content']['content'] = $this->mmarket->get_by_subcategory($page, $subcate_id);
+        $data['content']['pagination'] = array($class_name, $method_name, $page, $subcate_id);
+        $data['content']['items_per_page'] = ADS_PER_PAGE;
+        $data['content']['num_rows'] = $this->mmarket->get_subcate_rows($subcate_id);
+        $data['content']['url_alias'] = $class_name.'/'.$method_name.'/'.$subcate_id.'/';
+
+        $query = $this->db->query(
+            'SELECT '.MODEL_MARKET_SUB_CATEGORY.'.tenloai AS tenloaisp, '.MODEL_MARKET_CATEGORY.'.tenloai'.
+            ' FROM '.MODEL_MARKET_SUB_CATEGORY.
+            ' LEFT JOIN '.MODEL_MARKET_CATEGORY.
+            ' ON '.MODEL_MARKET_CATEGORY.'.id = '.MODEL_MARKET_SUB_CATEGORY.'.idRLoai'.
+            ' WHERE '.MODEL_MARKET_SUB_CATEGORY.'.id = '.$subcate_id);
+        $result = $query->row_array();
+        $data['content']['label_list'] = $result['tenloai'].' - '.$result['tenloaisp'];
         $this->load->view(LAYOUT, $data);
     }
 }

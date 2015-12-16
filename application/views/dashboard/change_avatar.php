@@ -3,14 +3,15 @@
 		<input type="hidden" value="<?php echo base_url().'ajax/change_avatar' ?>" id="url_ajax">
 	    <input type="file" name="img" class="file">
 	    <div class="input-group col-xs-12">
+		    <input type="text" class="form-control input-lg" style="opacity: 0">
 			<span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
 			<span class="input-group-btn">
 				<button class="browse btn btn-primary input-lg" type="button"><i class="glyphicon glyphicon-search"></i> Tải Ảnh Lên</button>
 			</span>
 			<input type="text" class="form-control input-lg" style="opacity: 0">
 	    </div>
-	    <div class="preview"></div>
-	    <input type="submit" class="btn btn-primary upload" value="Đăng Ảnh">
+	    <div class="preview text-center"></div>
+	    <div class="text-center"><input type="submit" class="btn btn-primary upload" value="Đăng Ảnh"></div>
 	</form>
 	<div class="success-upload">Thay Đổi Ảnh Thành Công</div>
 </div>

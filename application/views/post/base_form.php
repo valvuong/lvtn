@@ -177,7 +177,6 @@ $label_checkbox_primary = 'label-checkbox-primary';
                 'pattern' => '(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-([0-9]{4})',
                 'required' => 'required',
                 'title' => 'Ngày Hết Hạn Cho Bài Này',
-                // 'oninvalid' => "this.setCustomValidity('Hãy Điền Ngày Hết Hạn Vào')"
             );
             echo form_input($data);
             ?>

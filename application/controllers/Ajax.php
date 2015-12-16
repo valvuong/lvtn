@@ -6,7 +6,7 @@ class Ajax extends CI_Controller {
         parent::__construct();
         $this->load->helper(array('url','file'));
         $this->load->database();
-        $this->load->model(array('mward'));
+        $this->load->model(array('mward','mmarket_category'));
     }
 
     public function get_ward() {
@@ -76,5 +76,14 @@ class Ajax extends CI_Controller {
             
             exit(true);
         }
+    }
+
+    public function get_adCate() {
+        $id = $this->input->post('q');
+        $data = $this->mmarket_category->get_sub_category($id);
+        foreach($data as $row) {
+            $result[$row['id']] = $row['tenloai'];
+        }
+        exit(json_encode($result));
     }
 }
