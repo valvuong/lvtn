@@ -4,10 +4,17 @@
 <div>
 <?php
 if ($this->session->userdata(LABEL_LOGIN)) {
+        $this->load->model('mpost');
+        if ($this->mpost->check_register_post($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))) {
+        ?>
+            <button type="button" class="btn btn-primary main-center" data-toggle="modal" data-target="#update-register-post">Sửa Đăng Kí</button>
+    <?php
+    } else {
     ?>
     <button type="button" class="btn btn-primary main-center" data-toggle="modal" data-target="#register-post">Đăng Kí Trước</button>
     <button type="button" class="btn btn-danger main-center">Hủy Đăng Kí</button>
     <?php
+    } 
 }
 ?>
 </div>

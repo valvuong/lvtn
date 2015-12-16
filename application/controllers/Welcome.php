@@ -99,17 +99,6 @@ class Welcome extends CI_Controller {
         $this->load->view(LAYOUT, $data);
     }
 
-    public function create_post() {
-        if(!$this->session->userdata(LABEL_LOGIN)) {
-            redirect('dang-nhap','refresh');
-        }
-        $data['view'] = 'post/create_post';
-        $data['content']['content'] = '';
-        $data['left_hidden'] = true;
-        $data['right_hidden'] = true;
-        $this->load->view(LAYOUT, $data);
-    }
-
     public function sort($value) {
         // $referrer = $this->agent->referrer();
         $this->input->set_cookie(COOKIE_POST_SORT, $value, 0);

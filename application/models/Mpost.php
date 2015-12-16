@@ -186,4 +186,37 @@ class Mpost extends CI_Model {
             }
         }
     }
+    public function register_post($info){
+        $this->db->insert('phong_dangky', $info);
+    }
+    public function update_register_post($info,$idBantin,$idUser){
+        $this->db->where('idUser',$idUser);
+        $this->db->where('idBantin',$idBantin);
+        $this->db->update('phong_dangky', $info);
+    }
+    public function check_register_post($idUser,$idBantin) {
+        $this->db->select('*');
+        $this->db->from('phong_dangky');
+        $this->db->where('idUser',$idUser);
+        $this->db->where('idBantin',$idBantin);
+        $query = $this->db->get();
+        if($query -> num_rows() > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function get_register_num($idUser,$idBantin){
+        $this->db->select('*');
+        $this->db->from('phong_dangky');
+        $this->db->where('idUser',$idUser);
+        $this->db->where('idBantin',$idBantin);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result['0'];
+    }
 }

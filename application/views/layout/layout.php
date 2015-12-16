@@ -57,7 +57,9 @@
                     </li>
                     <li class="float-right avatar-icon">
                         <a href="<?=site_url('tai-khoan')?>">
-                            <img src="<?php echo image_url() ?>avatar-001.jpg">
+                            <?php if($this->session->userdata(LABEL_LOGIN)): ?>
+                                <img src="<?php echo uploads_url().'user/'.$this->session->userdata(LABEL_LOGIN)['avatar'] ?>">
+                            <?php endif ?>
                         </a>
                     </li>
                 <?php endif; ?>
@@ -130,6 +132,15 @@
         $this->input->set_cookie(COOKIE_POST_SORT, 0, 0);
     }
     ?>
+
+    
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+
+
     <!-- Modal Register Post-->
     <div id="register-post" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -141,7 +152,7 @@
             <h4 class="modal-title">Đăng Kí Đặt Trước</h4>
           </div>
           <div class="modal-body">
-            <form action="" method="">
+            <form id='register-form' action="post/register_post" method="get">
                 <div class="form-group">
                     <label>Số Phòng Muốn Đăng Kí</label>
                     <input type="number" name="register-nums-room" class="form-control" min="0">
@@ -150,8 +161,23 @@
                     <label>Số Người Muốn Đăng Kí</label>
                     <input type="number" name="register-nums-people" class="form-control" min="0">
                 </div>
+                <div class="form-group">
+                    <label>Tên</label>
+                    <input type="text" name="register-name" value='<?=$this->session->userdata(LABEL_LOGIN)['username']?>' class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <input type="text" name="register-phone" value='<?=$this->session->userdata(LABEL_LOGIN)['phone']?>' class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="register-email" value='<?=$this->session->userdata(LABEL_LOGIN)['email']?>' class="form-control">
+                </div>
+                <div class='form-group'>
+                    <input type='hidden' name='idBantin' value='<?=$this->uri->segment(3)?>'>
+                </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Đăng Kí</button>
+                    <button type="submit" id='submit-register-post' class="btn btn-default" data-dismiss="modal">Đăng Kí</button>
                   </div>
             </form>
           </div>
@@ -159,5 +185,79 @@
 
       </div>
     </div>
+
+        <!-- Update Modal Register Post-->
+    <div id="update-register-post" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Sủa Tin Đăng Kí Đặt Trước</h4>
+          </div>
+          <div class="modal-body">
+            <form id='update-register-form' action="post/update_register_post" method="get">
+                <div class="form-group">
+                    <label>Số Phòng Muốn Đăng Kí</label>
+                    <input type="number" name="update-register-nums-room" value='<?=$this->mpost->get_register_num($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))['sophong'] ?>' class="form-control" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Số Người Muốn Đăng Kí</label>
+                    <input type="number" name="update-register-nums-people" value='<?=$this->mpost->get_register_num($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))['songuoi'] ?>' class="form-control" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Tên</label>
+                    <input type="text" name="update-register-name" value='<?=$this->session->userdata(LABEL_LOGIN)['username']?>' class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <input type="text" name="update-register-phone" value='<?=$this->session->userdata(LABEL_LOGIN)['phone']?>' class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="update-register-email" value='<?=$this->session->userdata(LABEL_LOGIN)['email']?>' class="form-control">
+                </div>
+                <div class='form-group'>
+                    <input type='hidden' name='idBantin' value='<?=$this->uri->segment(3)?>'>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id='submit-update-register-post' class="btn btn-default" data-dismiss="modal">Cập nhật</button>
+                  </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+<script>
+$(document).ready(function(){
+    $('#submit-register-post').click(function(){
+        $.ajax({
+            url: '<?=base_url()?>' + 'post/register_post', //this is the submit URL
+            type: 'GET', //or POST
+            data: $('#register-form').serialize(),
+            success: function(data){
+                 alert('Đăng ký đặt phòng trước thành công');
+                 location.reload();
+            }
+        });
+    });
+});
+$(document).ready(function(){
+    $('#submit-update-register-post').click(function(){
+        $.ajax({
+            url: '<?=base_url()?>' + 'post/update_register_post', //this is the submit URL
+            type: 'GET', //or POST
+            data: $('#update-register-form').serialize(),
+            success: function(data){
+                 alert('Cập nhật thành công');
+                 location.reload();
+            }
+        });
+    });
+});
+</script>
 </body>
 </html>

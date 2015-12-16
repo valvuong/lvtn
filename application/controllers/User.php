@@ -173,7 +173,10 @@ class User extends CI_Controller {
 						$sess_array = array(
 							'role' => $row->role,
 							'username' => $row->username,
-							'id' => $row->idUser
+							'id' => $row->idUser,
+							'avatar' => $row->avatar,
+							'email' => $row->email,
+							'phone' => '0912345678'
 						);
 					$this->session->set_userdata('logged_in', $sess_array);
 					redirect($this->input->post('redirect'));  //redirect to the previous page

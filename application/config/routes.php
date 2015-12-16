@@ -55,7 +55,6 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['nha-(:num)'] = 'welcome/sort/$1';
 
-$route['dang-tin'] = 'welcome/create_post';
 require_once( BASEPATH .'database/DB.php' );
 $db =& DB();
 $query = $db->get( 'phong_chuyenmuc' );
@@ -72,6 +71,7 @@ $route['contact'] = 'welcome/contact';
 $route['about'] = 'welcome/about';
 $route['tai-khoan'] = 'dashboard';
 
+$route['dang-tin'] = 'post/create_post';
 $route['loai-(:num)'] = 'post/show_by_category/1/$1/1';
 $route['loai-(:num)-(:num)'] = 'post/show_by_category/$2/$1/1';
 $route['loai-(:num)-moinhat'] = 'post/show_by_category/1/$1/1';
