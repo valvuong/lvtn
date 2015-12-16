@@ -5,35 +5,35 @@
         </div>
         <div class="panel-search">
             <form action="search_by_select" method="">
-                <select class="selectpicker" name="search-category">
+                <select class="btn btn-default" name="search-category">
                     <option value="0">Theo Chuyên Mục</option>
                     <?php $query = $this->mcategory->get_all() ?>
                     <?php foreach($query as $row): ?>
                         <option value="<?=$row['id']?>"><?=$row['ten']?></option>
                     <?php endforeach ?>
                 </select>
-                <select class="selectpicker" name="search-district">
+                <select class="btn btn-default" name="search-district">
                     <option value="0">Theo Quận</option>
                     <?php $query = $this->mdistrict->get_all() ?>
                     <?php foreach($query as $row): ?>
                         <option value="<?=$row['idQ']?>"><?=$row['tenquan']?></option>
                     <?php endforeach ?>
                 </select>
-                <select class="selectpicker" name="search-area">
+                <select class="btn btn-default" name="search-area">
                     <option value="0">Theo Diện Tích</option>
                     <?php $query = $this->db->get(SEARCH_AREA) ?>
                     <?php foreach($query->result_array() as $row): ?>
                         <option value="<?=$row['value']?>"><?=$row['text']?></option>
                     <?php endforeach ?>
                 </select>
-                <select class="selectpicker" name="search-price">
+                <select class="btn btn-default" name="search-price">
                     <option value="0">Theo Giá</option>
                     <?php $query = $this->db->get(SEARCH_PRICE) ?>
                     <?php foreach($query->result_array() as $row): ?>
                         <option value="<?=$row['value']?>"><?=$row['text']?></option>
                     <?php endforeach ?>
                 </select>
-                <select class="selectpicker" name="search-distance">
+                <select class="btn btn-default" name="search-distance">
                     <option value="0">Theo Khoảng cách</option>
                     <option value="0002"><2km</option>
                     <option value="0205">2-5km</option>
@@ -47,3 +47,10 @@
         </div>
     </div>
 </div>
+
+<style type="text/css">
+    select.btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+</style>

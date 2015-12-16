@@ -12,8 +12,10 @@
                         <option value="<?=$row['id']?>"><?=$row['tenloai']?></option>
                     <?php endforeach ?>
                 </select>
+
                 <input type="hidden" id="url_ajax" value="<?php echo base_url().'ajax/get_adCate' ?>">
                 <select class="btn btn-default" name="search-subcategory" id="search-subcategory"></select>
+
                 <select class="btn btn-default" name="search-price">
                     <option value="0">Theo Giá</option>
                     <?php $query = $this->db->get(SEARCH_PRICE) ?>
@@ -21,6 +23,7 @@
                         <option value="<?=$row['value']?>"><?=$row['text']?></option>
                     <?php endforeach ?>
                 </select>
+                
                 <select class="btn btn-default" name="search-status">
                     <option value="0">Theo Tình Trạng</option>
                     <option value="1">Mới</option>
