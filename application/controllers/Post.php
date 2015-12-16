@@ -53,4 +53,35 @@ class Post extends CI_Controller {
         $data['content']['url_sort'] = 'loai-'.$idC.'-';
         $this->load->view(LAYOUT, $data);
     }
+
+    public function register_post() {
+            $info = array(
+                'idBantin'=> $this->input->get_post('idBantin'),
+                'idUser' => $this->session->userdata(LABEL_LOGIN)['id'],
+                'sophong' => $this->input->get_post('register-nums-room'),
+                'songuoi' => $this->input->get_post('register-nums-people'),
+                'ten' => $this->input->get_post('register-name'),
+                'sodienthoai' => $this->input->get_post('register-phone'),
+                'email' => $this->input->get_post('register-email')
+            );
+            $this->mpost->register_post($info);
+    }
+
+    public function update_register_post() {
+        $idBantin =  $this->input->get_post('idBantin');
+        $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
+        $info = array(
+            'sophong' => $this->input->get_post('update-register-nums-room'),
+            'songuoi' => $this->input->get_post('update-register-nums-people'),
+            'ten' => $this->input->get_post('update-register-name'),
+            'sodienthoai' => $this->input->get_post('update-register-phone'),
+            'email' => $this->input->get_post('update-register-email')
+        );
+        $this->mpost->update_register_post($info,$idBantin,$idUser);
+    }
+
+    public function check_register_post() {
+        $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
+        return $this->mpost->check_register_post($idUser);
+    }
 }

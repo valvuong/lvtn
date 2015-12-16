@@ -78,7 +78,6 @@ class Market extends CI_Controller {
             if($this->form_validation->run()) {
                 $info = array(
                     MODEL_MARKET => array(
-                        'idUser' => 45,
                         'tieude' => $this->input->post('ad-title'),
                         'loai' => $this->input->post('ad-category'),
                         'quan' => $this->input->post('ad-district'),

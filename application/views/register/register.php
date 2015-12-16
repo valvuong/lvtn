@@ -52,7 +52,6 @@ $area_error = form_error('area');
 	                    'id' => 'upload-file',
 	                    'name' => 'upload_file[]',
 	                    'accept' => 'image/jpeg, image/gif, image/png, image/jpg',
-	                    'multiple' => false,
 	                    'required' => 'required'
 	                );
 	                echo form_upload($data);

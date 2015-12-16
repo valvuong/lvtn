@@ -132,10 +132,10 @@ if ($display_name == null) {
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Thông Tin Cá Nhân <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="<?php echo site_url(''); ?>">Đổi Mật Khẩu</a>
+                                <a href="<?php echo site_url('dashboard/change_password'); ?>">Đổi Mật Khẩu</a>
                             </li>
                             <li>
-                                <a href="<?php echo site_url(''); ?>">Đổi Ảnh Đại Diện</a>
+                                <a href="<?php echo site_url('dashboard/change_avatar'); ?>">Đổi Ảnh Đại Diện</a>
                             </li>
                         </ul>
                     </li>
@@ -143,7 +143,7 @@ if ($display_name == null) {
                         <a href="<?php echo site_url('dashboard/market'); ?>"><i class="fa fa-fw fa-edit"></i> Chỉnh Sửa Tin Rao Vặt</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('dashboard/market'); ?>"><i class="fa fa-fw fa-edit"></i> Chỉnh Sửa Tin Thuê Trọ</a>
+                        <a href="<?php echo site_url('dashboard/post'); ?>"><i class="fa fa-fw fa-edit"></i> Chỉnh Sửa Tin Thuê Trọ</a>
                     </li>
                 </ul>
             </div>

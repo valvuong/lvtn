@@ -21,6 +21,24 @@ class Dashboard extends CI_Controller {
 		$this->load->view('dashboard/main', $data);
 	}
 
+	public function change_password() {
+		if(!$this->session->userdata(LABEL_LOGIN)) {
+			redirect('dang-nhap','refresh');
+		}
+		$data['view'] = 'dashboard/change_password';
+		$data['content'] = '';
+		$this->load->view('dashboard/main', $data);
+	}
+
+	public function change_avatar() {
+		if(!$this->session->userdata(LABEL_LOGIN)) {
+			redirect('dang-nhap','refresh');
+		}
+		$data['view'] = 'dashboard/change_avatar';
+		$data['content'] = '';
+		$this->load->view('dashboard/main', $data);
+	}
+
 	public function market() {
 		
 	}
