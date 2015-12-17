@@ -18,6 +18,23 @@ class Ajax extends CI_Controller {
         exit(json_encode($result));
     }
 
+    public function check_password() {
+        if ($this->session->userdata(LABEL_LOGIN)) {
+            $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
+            $oldpass = $this->input->post('oldpass');
+            $this->db->select(MODEL_USER.'.password');
+            $this->db->from(MODEL_USER);
+            $this->db->where(MODEL_USER.'.idUser', $idUser);
+            $query = $this->db->get();
+            $result = $query->row_array();
+            $data['result'] = false;
+            if ($oldpass == $result['password']) {
+                $data['result'] = true;
+            }
+            exit(json_encode($data));
+        }
+    }
+
     public function change_password() {
         if ($this->session->userdata(LABEL_LOGIN)) {
             $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
@@ -71,6 +88,7 @@ class Ajax extends CI_Controller {
                     $data = array('avatar'=>$tenhinh);
                     $this->db->where('idUser', $idUser);
                     $this->db->update(MODEL_USER, $data);
+                    $this->session->userdata(LABEL_LOGIN)['avatar'] = $tenhinh;
                 }
             }
             

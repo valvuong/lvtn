@@ -57,9 +57,7 @@
                     </li>
                     <li class="float-right avatar-icon">
                         <a href="<?=site_url('tai-khoan')?>">
-                            <?php if($this->session->userdata(LABEL_LOGIN)): ?>
-                                <img src="<?php echo uploads_url().'user/'.$this->session->userdata(LABEL_LOGIN)['avatar'] ?>">
-                            <?php endif ?>
+                            <img src="<?php echo uploads_url().'user/'.$this->session->userdata(LABEL_LOGIN)['avatar'] ?>">
                         </a>
                     </li>
                 <?php endif; ?>

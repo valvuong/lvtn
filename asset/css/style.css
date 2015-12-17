@@ -765,7 +765,7 @@ header.header .jssora22r.jssora22rdn {
   font-size: 13px;
   color: #828282;
 }
-.comment_form input {
+.comment_form input[type="submit"] {
   background: #00aff0 none repeat scroll 0 0;
   border: medium none;
   color: #fff;
@@ -774,7 +774,7 @@ header.header .jssora22r.jssora22rdn {
   padding: 15px 35px;
   transition: all 0.4s ease 0s;
 }
-.comment_form input:hover {
+.comment_form input[type="submit"]:hover {
   background: #0a97cc;
 }
 .error {

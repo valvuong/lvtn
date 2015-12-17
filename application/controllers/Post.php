@@ -9,12 +9,15 @@ class Post extends CI_Controller {
     }
 
     public function index($id) {
-        $query = $this->db->query('SELECT '.MODEL_POST.'.chuyenmuc FROM '.MODEL_POST.' WHERE '.MODEL_POST.'.id = '.$id);
+        $query = $this->db->query(
+            'SELECT '.MODEL_POST_CATEGORY.'.link AS url FROM '.MODEL_POST.
+            ' LEFT JOIN '.MODEL_POST_CATEGORY.
+            ' ON '.MODEL_POST_CATEGORY.'.id = '.MODEL_POST.'.chuyenmuc'.
+            ' WHERE '.MODEL_POST.'.id = '.$id);
         $result = $query->row_array();
-        $query = $this->db->query('SELECT '.MODEL_POST_CATEGORY.'.link AS url FROM '.MODEL_POST_CATEGORY.' WHERE '.MODEL_POST_CATEGORY.'.id = '.$result['chuyenmuc']);
-        $result = $query->row_array();
+        
         $url = explode("/", $result['url'])[0].'/index/'.$id;
-        redirect($url,'refresh');
+        redirect($url, 'refresh');
     }
 
     public function show_by_district($page=1, $idD) {

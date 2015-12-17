@@ -1,0 +1,118 @@
+.contact_info {
+  background: rgba(0, 0, 0, 0) url("../image/contact_info_bg.jpg") no-repeat;
+  color: #fff;
+  font-family: Open Sans;
+  height: auto;
+  overflow: hidden;
+}
+.contact_text {
+  margin-top: 75px;
+  text-align: center;
+  float: left;
+  width: 50%;
+}
+.contact_text h2 {
+  font-size: 60px;
+  font-weight: 300;
+}
+.contact_text p {
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.contact_text p:before,
+.contact_text p:after {
+  background: #fff none repeat scroll 0 0;
+  content: "";
+  height: 1px;
+  left: 139px;
+  position: absolute;
+  top: 168px;
+  width: 80px;
+}
+.contact_text p:after {
+  left: 375px;
+}
+/* 27.1 Contact Page contact_social_media */
+.contact_social_media {
+  margin-top: 30px;
+  width: 50%;
+  float: left;
+}
+.contact_social_media ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.contact_social_media ul li {
+  margin-bottom: 20px;
+}
+.social_text {
+  font-size: 16px;
+  font-style: italic;
+  margin-left: 10px;
+}
+.contact_icon i {
+  border: 1px solid #fff;
+  font-size: 20px;
+  height: 50px;
+  padding-top: 12px;
+  text-align: center;
+  width: 50px;
+}
+/* 27.2 Contact Page map_comment_area */
+.map_comment_area {
+  margin: 50px 0;
+  padding: 0 10px;
+}
+.contact_us .heading_comments {
+  border-bottom: 1px solid #e5e5e5;
+  color: #3c3c3c;
+  font-family: Open Sans;
+  font-size: 26px;
+  font-weight: 300;
+  padding: 0 0 10px;
+  margin: 0;
+}
+.comment_form {
+  margin: 45px 0;
+  margin-bottom: 0;
+}
+.comment_form input {
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 75%;
+}
+.comment_form input[type="text"] {
+  margin-left: 45px;
+}
+.comment_form input[type="email"] {
+  margin-left: 27px;
+}
+.comment_form label {
+  color: #4c4c4c;
+  display: inline-block;
+  font-family: Open Sans;
+  font-size: 13px;
+  font-weight: 700;
+}
+.comment_form textarea {
+  border: 1px solid #ddd;
+  padding: 15px;
+  width: 100%;
+  font-family: Open Sans;
+  font-size: 13px;
+  color: #828282;
+}
+.comment_form input[type="submit"] {
+  background: #00aff0 none repeat scroll 0 0;
+  border: medium none;
+  color: #fff;
+  font-family: Open Sans;
+  font-size: 13px;
+  padding: 15px 35px;
+  transition: all 0.4s ease 0s;
+}
+.comment_form input[type="submit"]:hover {
+  background: #0a97cc;
+}
