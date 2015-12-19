@@ -13,7 +13,7 @@
                     <div class="panel-body">
                         <ul>
                             <li><label><input type="radio" name="category" value="">Tất cả</label></li>
-                            <?php $query = $this->mcategory->get_all() ?>
+                            <?php $query = $this->mpost_category->get_all() ?>
                             <?php foreach($query as $row): ?>
                                 <li><label><input type="radio" name="category" value="<?=$row['id']?>"
                                 <?php if ($search_category == $row['id']) echo 'checked="checked"';

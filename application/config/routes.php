@@ -27,10 +27,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | There are three reserved routes:
 |
-|	$route['default_controller'] = 'welcome';
+|	$route['default_controller'] = 'post';
 |
 | This route indicates which controller class should be loaded if the
-| URI contains no data. In the above example, the "welcome" class
+| URI contains no data. In the above example, the "post" class
 | would be loaded.
 |
 |	$route['404_override'] = 'errors/page_missing';
@@ -49,28 +49,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'post';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['nha-(:num)'] = 'welcome/sort/$1';
+$route['nha-(:num)'] = 'post/sort/$1';
 
-$route['dang-tin'] = 'welcome/create_post';
+$route['dang-tin'] = 'post/create_post';
 require_once( BASEPATH .'database/DB.php' );
 $db =& DB();
 $query = $db->get( 'phong_chuyenmuc' );
 $result = $query->result_array();
 foreach( $result as $row ) {
-    $route[ 'dang-tin-'.$row['url_name'] ] = $row['link'];
+    $route[ 'dang-tin-'.$row['url_name'] ] = 'post/create_'.explode("/", $row['link'])[0];
 }
 
 $route['dang-ki'] = 'user/register';
 $route['quen-mat-khau'] = 'user/forgot_password';
 $route['dang-nhap'] = 'user/login';
 $route['dang-xuat'] = 'user/logout';
-$route['contact'] = 'welcome/contact';
-$route['about'] = 'welcome/about';
-$route['tai-khoan'] = 'dashboard';
+$route['contact'] = 'post/contact';
+$route['about'] = 'post/about';
+$route['tai-khoan'] = 'user/dashboard';
 
 $route['loai-(:num)'] = 'post/show_by_category/1/$1/1';
 $route['loai-(:num)-(:num)'] = 'post/show_by_category/$2/$1/1';
@@ -85,8 +85,8 @@ $route['loai-(:num)-gia-giam-(:num)'] = 'post/show_by_category/$2/$1/3';
 $route['loai-(:num)-dientich-tang-(:num)'] = 'post/show_by_category/$2/$1/4';
 $route['loai-(:num)-dientich-giam-(:num)'] = 'post/show_by_category/$2/$1/5';
 
-$route['(:num)'] = 'welcome/index/$1';
-$route['tin-(:num)'] = 'post/index/$1';
+$route['(:num)'] = 'post/index/$1';
+$route['tin-(:num)'] = 'post/index_detail/$1';
 $route['filter-(:num)'] = 'filter/filter/$1';
 
 $route['buon-ban'] = 'market/create';

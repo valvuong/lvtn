@@ -32,7 +32,7 @@
                 <li class="drop-down-menu">
                     <a href="javascript:void(0)" class="click-dropdown">Chuyên Mục</a>
                     <ul>
-                        <?php $query = $this->mcategory->get_all() ?>
+                        <?php $query = $this->mpost_category->get_all() ?>
                         <?php foreach ($query as $row): ?>
                             <li>
                                 <a href="<?php echo site_url('loai-'.$row['id']) ?>">
@@ -129,7 +129,7 @@
     // for post-sort
     $this_class_name = $this->router->fetch_class();
     $this_method_name = $this->router->fetch_method();
-    if ($this_class_name != 'welcome' && $this_method_name != 'index') {
+    if ($this_class_name != 'post' && $this_method_name != 'index') {
         $this->input->set_cookie(COOKIE_POST_SORT, 0, 0);
     }
     ?>
@@ -140,10 +140,10 @@ $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
 });
 </script>
-
-
-    <!-- Modal Register Post-->
-    <div id="register-post" class="modal fade" role="dialog">
+<?php if($this->session->userdata(LABEL_LOGIN)) { 
+     if (!$this->mpost->check_reservation_post($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))) { ?>
+    <!-- Modal reservation Post-->
+    <div id="reservation-post" class="modal fade" role="dialog">
       <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -153,32 +153,32 @@ $(document).ready(function(){
             <h4 class="modal-title">Đăng Kí Đặt Trước</h4>
           </div>
           <div class="modal-body">
-            <form id='register-form' action="post/register_post" method="get">
+            <form id='reservation-form' action="post/create_reservation_post" method="get">
                 <div class="form-group">
                     <label>Số Phòng Muốn Đăng Kí</label>
-                    <input type="number" name="register-nums-room" class="form-control" min="0">
+                    <input type="number" name="reservation-nums-room" class="form-control" min="0">
                 </div>
                 <div class="form-group">
                     <label>Số Người Muốn Đăng Kí</label>
-                    <input type="number" name="register-nums-people" class="form-control" min="0">
+                    <input type="number" name="reservation-nums-people" class="form-control" min="0">
                 </div>
                 <div class="form-group">
                     <label>Tên</label>
-                    <input type="text" name="register-name" value='<?=$this->session->userdata(LABEL_LOGIN)['username']?>' class="form-control">
+                    <input type="text" name="reservation-name" value='<?=$this->session->userdata(LABEL_LOGIN)['username']?>' class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Số điện thoại</label>
-                    <input type="text" name="register-phone" value='<?=$this->session->userdata(LABEL_LOGIN)['phone']?>' class="form-control">
+                    <input type="text" name="reservation-phone" value='<?=$this->session->userdata(LABEL_LOGIN)['phone']?>' class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" name="register-email" value='<?=$this->session->userdata(LABEL_LOGIN)['email']?>' class="form-control">
+                    <input type="email" name="reservation-email" value='<?=$this->session->userdata(LABEL_LOGIN)['email']?>' class="form-control">
                 </div>
                 <div class='form-group'>
                     <input type='hidden' name='idBantin' value='<?=$this->uri->segment(3)?>'>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id='submit-register-post' class="btn btn-default" data-dismiss="modal">Đăng Kí</button>
+                    <button type="submit" id='submit-reservation-post' class="btn btn-default" data-dismiss="modal">Đăng Kí</button>
                   </div>
             </form>
           </div>
@@ -186,9 +186,9 @@ $(document).ready(function(){
 
       </div>
     </div>
-
-        <!-- Update Modal Register Post-->
-    <div id="update-register-post" class="modal fade" role="dialog">
+    <?php } else { ?>
+        <!-- Update Modal reservation Post-->
+    <div id="update-reservation-post" class="modal fade" role="dialog">
       <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -198,32 +198,32 @@ $(document).ready(function(){
             <h4 class="modal-title">Sủa Tin Đăng Kí Đặt Trước</h4>
           </div>
           <div class="modal-body">
-            <form id='update-register-form' action="post/update_register_post" method="get">
+            <form id='update-reservation-form' action="post/update_reservaion_post" method="get">
                 <div class="form-group">
                     <label>Số Phòng Muốn Đăng Kí</label>
-                    <input type="number" name="update-register-nums-room" value='<?=$this->mpost->get_register_num($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))['sophong'] ?>' class="form-control" min="0">
+                    <input type="number" name="update-reservation-nums-room" value='<?=$this->mpost->get_reservation_num($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))['sophong'] ?>' class="form-control" min="0">
                 </div>
                 <div class="form-group">
                     <label>Số Người Muốn Đăng Kí</label>
-                    <input type="number" name="update-register-nums-people" value='<?=$this->mpost->get_register_num($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))['songuoi'] ?>' class="form-control" min="0">
+                    <input type="number" name="update-reservation-nums-people" value='<?=$this->mpost->get_reservation_num($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))['songuoi'] ?>' class="form-control" min="0">
                 </div>
                 <div class="form-group">
                     <label>Tên</label>
-                    <input type="text" name="update-register-name" value='<?=$this->session->userdata(LABEL_LOGIN)['username']?>' class="form-control">
+                    <input type="text" name="update-reservation-name" value='<?=$this->session->userdata(LABEL_LOGIN)['username']?>' class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Số điện thoại</label>
-                    <input type="text" name="update-register-phone" value='<?=$this->session->userdata(LABEL_LOGIN)['phone']?>' class="form-control">
+                    <input type="text" name="update-reservation-phone" value='<?=$this->session->userdata(LABEL_LOGIN)['phone']?>' class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" name="update-register-email" value='<?=$this->session->userdata(LABEL_LOGIN)['email']?>' class="form-control">
+                    <input type="email" name="update-reservation-email" value='<?=$this->session->userdata(LABEL_LOGIN)['email']?>' class="form-control">
                 </div>
                 <div class='form-group'>
                     <input type='hidden' name='idBantin' value='<?=$this->uri->segment(3)?>'>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id='submit-update-register-post' class="btn btn-default" data-dismiss="modal">Cập nhật</button>
+                    <button type="submit" id='submit-update-reservation-post' class="btn btn-default" data-dismiss="modal">Cập nhật</button>
                   </div>
             </form>
           </div>
@@ -231,14 +231,14 @@ $(document).ready(function(){
 
       </div>
     </div>
-
+<?php } } ?>
 <script>
 $(document).ready(function(){
-    $('#submit-register-post').click(function(){
+    $('#submit-reservation-post').click(function(){
         $.ajax({
-            url: '<?=base_url()?>' + 'post/register_post', //this is the submit URL
+            url: '<?=base_url()?>' + 'post/create_reservation_post', //this is the submit URL
             type: 'GET', //or POST
-            data: $('#register-form').serialize(),
+            data: $('#reservation-form').serialize(),
             success: function(data){
                  alert('Đăng ký đặt phòng trước thành công');
                  location.reload();
@@ -247,11 +247,11 @@ $(document).ready(function(){
     });
 });
 $(document).ready(function(){
-    $('#submit-update-register-post').click(function(){
+    $('#submit-update-reservation-post').click(function(){
         $.ajax({
-            url: '<?=base_url()?>' + 'post/update_register_post', //this is the submit URL
+            url: '<?=base_url()?>' + 'post/update_reservation_post', //this is the submit URL
             type: 'GET', //or POST
-            data: $('#update-register-form').serialize(),
+            data: $('#update-reservation-form').serialize(),
             success: function(data){
                  alert('Cập nhật thành công');
                  location.reload();

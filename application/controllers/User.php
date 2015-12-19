@@ -8,10 +8,13 @@ class User extends CI_Controller {
         $this->load->database();
         $this->load->helper(array('url','form'));
         $this->load->model(array('mdistrict','muser'));
-		$this->load->library(array('form_validation','user_agent'));
-		$this->load->library('googlemaps');
+		$this->load->library(array('form_validation','user_agent','googlemaps'));
 		$this->form_validation->set_error_delimiters('<div class="error">','</div>'); 
-		
+		if ($this->session->userdata(LABEL_LOGIN)) {
+			$param = $this->session->userdata(LABEL_LOGIN)['id'];
+			$f = $this->muser->get_profile($param);
+			$this->display_name = $f[0]['name'];
+		}
     }
 
     public function index() {
@@ -307,4 +310,105 @@ class User extends CI_Controller {
 		}
 	}
 
+	public function contact() {
+        $data['view'] = 'static_page/contact';
+        $data['content'] = '';
+        $data['left_hidden'] = true;
+        $data['right_hidden'] = true;
+
+        $this->load->library('googlemaps');
+        $config['center'] = '10.772223670808806,106.65842771530151';
+        $config['zoom'] = '15';
+        $this->googlemaps->initialize($config);
+        $marker['position'] = '10.772223670808806,106.65842771530151';
+        $this->googlemaps->add_marker($marker);
+        $data['content']['map'] = $this->googlemaps->create_map();
+
+        $this->load->library('form_validation');
+        $rules = array(
+            array(
+                'field' => 'name',
+                'rules' => 'trim|required'
+            ),
+            array(
+                'field' => 'email',
+                'rules' => 'trim|required'
+            ),
+            array(
+                'field' => 'message',
+                'rules' => 'trim|required'
+            )
+        );
+        $this->form_validation->set_rules($rules);
+
+        if ($this->input->post('contact-submit')) {
+            if($this->form_validation->run()) {
+                $name = $this->input->post('name');
+                $email = $this->input->post('email');
+                $message = $this->input->post('message');
+                $info = array(
+                    'name'      => $name,
+                    'email'     => $email,
+                    'message'   => $message,
+                    'read'      => 0,
+                    'sendemail' => 0
+                );
+                $this->mcontact->save_contact($info);
+            }
+        }
+
+        $this->load->view(LAYOUT, $data);
+    }
+    //////////////////////dashboard///////////////////
+    public function dashboard() {
+		if(!$this->session->userdata(LABEL_LOGIN)) {
+			redirect('dang-nhap','refresh');
+		}
+		$data['view'] = 'dashboard/index';
+		$param = $this->session->userdata(LABEL_LOGIN)['id'];
+		$f = $this->muser->get_profile($param);
+		$data['content']['info'] = $f[0];
+		$data['display_name'] = $this->display_name;
+		$this->load->view('dashboard/main', $data);
+	}
+
+	public function change_password() {
+		if(!$this->session->userdata(LABEL_LOGIN)) {
+			redirect('dang-nhap','refresh');
+		}
+		$data['view'] = 'dashboard/change_password';
+		$data['content'] = '';
+		$data['display_name'] = $this->display_name;
+		$this->load->view('dashboard/main', $data);
+	}
+
+	public function change_avatar() {
+		if(!$this->session->userdata(LABEL_LOGIN)) {
+			redirect('dang-nhap','refresh');
+		}
+		$data['view'] = 'dashboard/change_avatar';
+		$data['content'] = '';
+		$data['display_name'] = $this->display_name;
+		$this->load->view('dashboard/main', $data);
+	}
+
+	public function market() {
+		if(!$this->session->userdata(LABEL_LOGIN)) {
+			redirect('dang-nhap','refresh');
+		}
+		$data['view'] = 'dashboard/change_avatar';
+		$data['content'] = '';
+		$data['display_name'] = $this->display_name;
+		$this->load->view('dashboard/main', $data);
+	}
+
+	public function post() {
+		if(!$this->session->userdata(LABEL_LOGIN)) {
+			redirect('dang-nhap','refresh');
+		}
+		$data['view'] = 'dashboard/change_avatar';
+		$data['content'] = '';
+		$data['display_name'] = $this->display_name;
+		$this->load->view('dashboard/main', $data);
+	}
 }

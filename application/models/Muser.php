@@ -130,4 +130,8 @@ class Muser extends CI_Model {
 		return $query->row();
 	}
 	
+	////////////contact////////////
+	public function save_contact($data) {
+    	$this->db->insert(MODEL_CONTACT, $data);
+    }
 }

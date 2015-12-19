@@ -4,7 +4,7 @@
             <h2 class="panel-title search-title"><span class="glyphicon glyphicon-search"></span> TÌM KIẾM</h2>
         </div>
         <div class="panel-search">
-            <form action="Search_market_by_select" method="">
+            <form action="<?=base_url().'mmarket/search_by_select_market'?>" method="">
                 <select class="btn btn-default" name="search-category" onchange="getSubCate(this.value)">
                     <option value="0">Theo Danh Mục</option>
                     <?php $query = $this->mmarket_category->get_all() ?>
@@ -12,8 +12,10 @@
                         <option value="<?=$row['id']?>"><?=$row['tenloai']?></option>
                     <?php endforeach ?>
                 </select>
+
                 <input type="hidden" id="url_ajax" value="<?php echo base_url().'ajax/get_adCate' ?>">
                 <select class="btn btn-default" name="search-subcategory" id="search-subcategory"></select>
+
                 <select class="btn btn-default" name="search-price">
                     <option value="0">Theo Giá</option>
                     <?php $query = $this->db->get(SEARCH_PRICE) ?>
@@ -21,6 +23,7 @@
                         <option value="<?=$row['value']?>"><?=$row['text']?></option>
                     <?php endforeach ?>
                 </select>
+                
                 <select class="btn btn-default" name="search-status">
                     <option value="0">Theo Tình Trạng</option>
                     <option value="1">Mới</option>

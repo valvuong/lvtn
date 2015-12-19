@@ -1,5 +1,5 @@
 <div class="list-header">
-    <?php if($this->router->fetch_class() == 'welcome'): ?>
+    <?php if($this->router->fetch_class() == 'post'): ?>
         <div class="btn-group sort">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Sắp Xếp Theo <span class="caret"></span>
@@ -12,7 +12,7 @@
               <li><a href="<?php echo site_url('nha-5') ?>">Diện Tích Giảm</a></li>
           </ul>
         </div>
-    <?php elseif ($this->router->fetch_class() == 'post'): ?>
+    <?php elseif ($this->router->fetch_class() == ''): ?>
         <div class="btn-group sort">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Sắp Xếp Theo <span class="caret"></span>
