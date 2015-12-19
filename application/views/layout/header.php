@@ -53,13 +53,13 @@
     </script>
 </head>
 <header class="header">
-    <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden; visibility: hidden;">
+    <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1300px; height: 400px; overflow: hidden; visibility: hidden;">
         <!-- Loading Screen -->
         <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
             <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
             <div style="position:absolute;display:block;background:url('<?php echo image_url() ?>loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
         </div>
-        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden;">
+        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 400px; overflow: hidden;">
             <div data-p="225.00" style="display: none;">
                 <img data-u="image" src="<?php echo image_url() ?>header-bg/header-wall-1.jpg" />
             </div>
@@ -71,7 +71,6 @@
             </div>
             <div data-p="225.00" style="display: none;">
                 <img data-u="image" src="<?php echo image_url() ?>header-bg/header-wall-4.jpg" />
-                <div style="position: absolute; top: 300px; left: 30px; width: 480px; height: 120px; font-size: 30px; color: #ffffff; line-height: 38px;">Build your slider with anything, includes image, content, text, html, photo, picture</div>
             </div>
             <div data-p="225.00" style="display: none;">
                 <img data-u="image" src="<?php echo image_url() ?>header-bg/header-wall-5.jpg" />

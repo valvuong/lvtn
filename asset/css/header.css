@@ -1,0 +1,111 @@
+header.header {
+  margin: 0 auto;
+  /* jssor slider bullet navigator skin 05 css */
+  /*
+  .jssorb05 div           (normal)
+  .jssorb05 div:hover     (normal mouseover)
+  .jssorb05 .av           (active)
+  .jssorb05 .av:hover     (active mouseover)
+  .jssorb05 .dn           (mousedown)
+  */
+  /* jssor slider arrow navigator skin 22 css */
+  /*
+  .jssora22l                  (normal)
+  .jssora22r                  (normal)
+  .jssora22l:hover            (normal mouseover)
+  .jssora22r:hover            (normal mouseover)
+  .jssora22l.jssora22ldn      (mousedown)
+  .jssora22r.jssora22rdn      (mousedown)
+  */
+}
+header.header .head {
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+header.header .head .message {
+  font-family: 'Lucida Console', 'Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono', monospace;
+  color: #f0f0f0;
+  margin: 0;
+  text-align: center;
+  font-style: oblique;
+  font-weight: bold;
+}
+header.header .left {
+  background: #323232 url("../image/slider_icon_l.png") no-repeat scroll 50% 50%;
+  position: absolute;
+  top: 50%;
+  opacity: 0;
+  transform: translateY(-50%);
+  left: 20px;
+}
+header.header .left:hover {
+  opacity: 1 !important;
+}
+header.header .right {
+  background: #323232 url("../image/slider_icon_r.png") no-repeat scroll 50% 50%;
+  position: absolute;
+  top: 50%;
+  opacity: 0;
+  transform: translateY(-50%);
+  right: 20px;
+}
+header.header .right:hover {
+  opacity: 1 !important;
+}
+header.header:hover .left,
+header.header:hover .right {
+  opacity: 0.5;
+}
+header.header .jssorb05 {
+  position: absolute;
+}
+header.header .jssorb05 div,
+header.header .jssorb05 .av {
+  position: absolute;
+  /* size of bullet elment */
+  width: 16px;
+  height: 16px;
+  background: url('../image/b05.png') no-repeat;
+  overflow: hidden;
+  cursor: pointer;
+  background-position: -7px -7px;
+}
+header.header .jssorb05 div:hover,
+header.header .jssorb05 .av:hover {
+  background-position: -37px -7px;
+}
+header.header .jssorb05 .av {
+  background-position: -67px -7px;
+}
+header.header .jssorb05 .dn {
+  background-position: -97px -7px;
+}
+header.header .jssora22l,
+header.header .jssora22r {
+  display: block;
+  position: absolute;
+  /* size of arrow element */
+  width: 40px;
+  height: 58px;
+  cursor: pointer;
+  background: url('../image/a22.png') center center no-repeat;
+  overflow: hidden;
+  background-position: -10px -31px;
+}
+header.header .jssora22l:hover {
+  background-position: -130px -31px;
+}
+header.header .jssora22l.jssora22ldn {
+  background-position: -250px -31px;
+}
+header.header .jssora22r {
+  background-position: -70px -31px;
+}
+header.header .jssora22r:hover {
+  background-position: -190px -31px;
+}
+header.header .jssora22r.jssora22rdn {
+  background-position: -310px -31px;
+}

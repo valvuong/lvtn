@@ -137,4 +137,4 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('first_model' => 'first');
 */
 
-$autoload['model'] = array('mpost','mmarket','muser','mpost_category','mmarket_category');
+$autoload['model'] = array('mpost','mmarket','muser','mpost_category','mmarket_category','mpost_reservation','mdistrict');

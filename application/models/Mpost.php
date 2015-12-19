@@ -116,10 +116,10 @@ class Mpost extends CI_Model {
         $this->db->from($t);
         $this->db->where($t.'.idBantin', $id);
         $query = $this->db->get();
-        $r = $query->result_array();
+        $r = $query->row_array();
         unset($r['id']);
         unset($r['idBantin']);
-        $result[0]['thongtinbosung'] = $r[0];
+        $result[0]['thongtinbosung'] = $r;
 
         $this->db->select('tenhinh');
         $this->db->from(MODEL_POST_UPLOAD);

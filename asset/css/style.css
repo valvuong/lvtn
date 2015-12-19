@@ -566,13 +566,8 @@ header.header {
   .jssora22r.jssora22rdn      (mousedown)
   */
 }
-header.header .logo {
-  height: 390px;
-  float: left;
-}
 header.header .head {
   margin: 0 auto;
-  width: 80%;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
