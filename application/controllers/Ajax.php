@@ -6,7 +6,7 @@ class Ajax extends CI_Controller {
         parent::__construct();
         $this->load->helper(array('url','file'));
         $this->load->database();
-        $this->load->model(array('mward','mmarket_category'));
+        $this->load->model(array('mward','mmarket_category','muser'));
     }
 
     public function get_ward() {
@@ -20,15 +20,10 @@ class Ajax extends CI_Controller {
 
     public function check_password() {
         if ($this->session->userdata(LABEL_LOGIN)) {
-            $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
             $oldpass = $this->input->post('oldpass');
-            $this->db->select(MODEL_USER.'.password');
-            $this->db->from(MODEL_USER);
-            $this->db->where(MODEL_USER.'.idUser', $idUser);
-            $query = $this->db->get();
-            $result = $query->row_array();
+            $is_valid_pass = $this->muser->check_password($oldpass);
             $data['result'] = false;
-            if ($oldpass == $result['password']) {
+            if ($is_valid_pass) {
                 $data['result'] = true;
             }
             exit(json_encode($data));

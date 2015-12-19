@@ -3,15 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         $this->load->helper(array('url','form'));
         $this->load->model(array('mdistrict','mpost','mcontact'));	
     }
 
-	public function index()
-	{
+	public function index() {
         redirect('home','refresh');
 	}
 

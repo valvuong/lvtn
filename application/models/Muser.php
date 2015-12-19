@@ -130,4 +130,16 @@ class Muser extends CI_Model {
 		return $query->row();
 	}
 	
+	public function check_password($pass) {
+		$idUser = $this->session->userdata(LABEL_LOGIN)['id'];
+        $this->db->select(MODEL_USER.'.password');
+        $this->db->from(MODEL_USER);
+        $this->db->where(MODEL_USER.'.idUser', $idUser);
+        $query = $this->db->get();
+        $result = $query->row_array();
+        if ($pass == $result['password']) {
+            return true;
+        }
+        return false;
+	}
 }
