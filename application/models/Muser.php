@@ -142,4 +142,9 @@ class Muser extends CI_Model {
         }
         return false;
 	}
+
+	public function change_info($idUser, $data) {
+		$this->db->where('idUser', $idUser);
+        $this->db->update(MODEL_USER, $data);
+	}
 }

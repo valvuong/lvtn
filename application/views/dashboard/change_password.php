@@ -1,6 +1,6 @@
 <div class="col-lg-6">
 	<div class="old-pass">
-		<input type="hidden" value="<?php echo base_url().'ajax/check_password' ?>" id="url_ajax_oldpass">
+		<input type="hidden" value="<?php echo base_url().'user/check_password' ?>" id="url_ajax_oldpass">
 		<div class="form-group">
 			<label>Mật Khẩu Cũ</label>
 			<input type="password" class="form-control" id="old-pass">
@@ -10,7 +10,7 @@
 		</div>
 	</div>
 	<div class="new-pass">
-		<input type="hidden" value="<?php echo base_url().'ajax/change_password' ?>" id="url_ajax_newpass">
+		<input type="hidden" value="<?php echo base_url().'user/change_password' ?>" id="url_ajax_newpass">
 		<div class="form-group">
 			<label>Mật Khẩu Mới</label>
 			<input type="password" class="form-control" id="new-pass">
@@ -44,12 +44,12 @@
 </style>
 <script type="text/javascript">
 	$(function(){
+		var errorShow = $('.error');
+		var newPassField = $('.new-pass');
+		var oldPassField = $('.old-pass');
 		$('button#confirm-oldpass').click(function(){
 			var url = $('#url_ajax_oldpass').val();
 			var oldpass = $('#old-pass').val();
-			var errorShow = $('.error');
-			var newPassField = $('.new-pass');
-			var oldPassField = $('.old-pass');
 			$.ajax({
 				type: "POST",
 				url: url,
@@ -74,7 +74,6 @@
 			var url = $('#url_ajax_newpass').val();
 			var newpass = $('#new-pass').val();
 			var confirmpass = $('#confirm-pass').val();
-			var errorShow = $('.error');
 			var changeable = true;
 			if (newpass.length < 5) {
 				errorShow.text('Mật Khẩu phải chứa ít nhất 5 kí tự');
@@ -95,6 +94,11 @@
 			        dataType: "json",
 			        success: function(data) {
 			            $('.success-change').show();
+			            setTimeout(function(){
+			            	$('.success-change').hide();
+			            	oldPassField.show();
+							newPassField.hide();
+			            }, 300);
 			        },
 			        error: function() {
 			            alert('error');

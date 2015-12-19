@@ -136,6 +136,28 @@ class User extends CI_Controller {
 		else 
 			return true;
 	}
+
+	public function check_password() {
+        if ($this->input->is_ajax_request()) {
+            $oldpass = $this->input->post('oldpass');
+            $is_valid_pass = $this->muser->check_password($oldpass);
+            $data['result'] = false;
+            if ($is_valid_pass) {
+                $data['result'] = true;
+            }
+            exit(json_encode($data));
+        }
+    }
+
+    public function change_password() {
+        if ($this->input->is_ajax_request()) {
+            $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
+            $newpass = $this->input->post('newpass');
+            $data = array('password'=>$newpass);
+            $this->muser->change_info($idUser, $data);
+            exit(true);
+        }
+    }
 		
 //////////////login////////////////	
 
@@ -307,4 +329,14 @@ class User extends CI_Controller {
 		}
 	}
 
+	public function change_info() {
+        if ($this->session->userdata(LABEL_LOGIN)) {
+            $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
+            $field = $this->input->post('field');
+            $value = $this->input->post('value');
+            $data = array($field=>$value);
+            $this->muser->change_info($idUser, $data);
+            exit(true);
+        }
+    }
 }
