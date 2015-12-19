@@ -5,7 +5,7 @@ class Post extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helper(array('url','form'));
-        $this->load->model(array('mdistrict','mpost'));
+        $this->load->model(array('mpost_reservation'));
     }
 
     public function index_detail($id) {
@@ -70,7 +70,7 @@ class Post extends MY_Controller {
                 'sodienthoai' => $this->input->get_post('reservation-phone'),
                 'email' => $this->input->get_post('reservation-email')
             );
-            $this->mpost->create_reservation_post($info);
+            $this->mpost_reservation->create_reservation_post($info);
     }
 
     public function update_reservation_post() {
@@ -83,12 +83,12 @@ class Post extends MY_Controller {
             'sodienthoai' => $this->input->get_post('update-reservation-phone'),
             'email' => $this->input->get_post('update-reservation-email')
         );
-        $this->mpost->update_reservation_post($info,$idBantin,$idUser);
+        $this->mpost_reservation->update_reservation_post($info,$idBantin,$idUser);
     }
 
     public function check_reservation_post() {
         $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
-        return $this->mpost->check_reservation_post($idUser);
+        return $this->mpost_reservation->check_reservation_post($idUser);
     }
 
     public function search_by_select_post($page=1) {

@@ -187,40 +187,7 @@ class Mpost extends CI_Model {
             }
         }
     }
-    ///////////reservation/////////////////////
-    public function create_reservation_post($info){
-        $this->db->insert('phong_dangky', $info);
-    }
-    public function update_reservation_post($info,$idBantin,$idUser){
-        $this->db->where('idUser',$idUser);
-        $this->db->where('idBantin',$idBantin);
-        $this->db->update('phong_dangky', $info);
-    }
-    public function check_reservation_post($idUser,$idBantin) {
-        $this->db->select('*');
-        $this->db->from('phong_dangky');
-        $this->db->where('idUser',$idUser);
-        $this->db->where('idBantin',$idBantin);
-        $query = $this->db->get();
-        if($query -> num_rows() > 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public function get_reservation_num($idUser,$idBantin){
-        $this->db->select('*');
-        $this->db->from('phong_dangky');
-        $this->db->where('idUser',$idUser);
-        $this->db->where('idBantin',$idBantin);
-        $query = $this->db->get();
-        $result = $query->result_array();
-        return $result['0'];
-    }
+    ///////////search///////////////////////////
 
     public function get_search_room_by_select_rows($category, $district, $area, $price,$distance) {
         if ($area < 10000) {
@@ -273,7 +240,7 @@ class Mpost extends CI_Model {
         $query = $this->db->get();
         return $query->num_rows();
     }
-    ///////////////search///////////////////////
+
     public function get_search_room_by_select_content($category, $district, $area, $price, $distance, $page) {
         if ($area < 10000) {
             $min_area = $area / 100;

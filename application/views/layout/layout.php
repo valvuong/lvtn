@@ -141,7 +141,7 @@ $(document).ready(function(){
 });
 </script>
 <?php if($this->session->userdata(LABEL_LOGIN)) { 
-     if (!$this->mpost->check_reservation_post($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))) { ?>
+     if (!$this->mpost_reservation->check_reservation_post($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))) { ?>
     <!-- Modal reservation Post-->
     <div id="reservation-post" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -201,11 +201,11 @@ $(document).ready(function(){
             <form id='update-reservation-form' action="post/update_reservaion_post" method="get">
                 <div class="form-group">
                     <label>Số Phòng Muốn Đăng Kí</label>
-                    <input type="number" name="update-reservation-nums-room" value='<?=$this->mpost->get_reservation_num($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))['sophong'] ?>' class="form-control" min="0">
+                    <input type="number" name="update-reservation-nums-room" value='<?=$this->mpost_reservation->get_reservation_num($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))['sophong'] ?>' class="form-control" min="0">
                 </div>
                 <div class="form-group">
                     <label>Số Người Muốn Đăng Kí</label>
-                    <input type="number" name="update-reservation-nums-people" value='<?=$this->mpost->get_reservation_num($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))['songuoi'] ?>' class="form-control" min="0">
+                    <input type="number" name="update-reservation-nums-people" value='<?=$this->mpost_reservation->get_reservation_num($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))['songuoi'] ?>' class="form-control" min="0">
                 </div>
                 <div class="form-group">
                     <label>Tên</label>
