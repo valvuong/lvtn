@@ -42,6 +42,9 @@ ul {
   float: left;
   width: 230px;
 }
+#left.post-left {
+  background-color: #DDDDDD;
+}
 #left.ads {
   width: 250px;
 }

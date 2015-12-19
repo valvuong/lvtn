@@ -1,5 +1,7 @@
 <div class="list-header">
-    <?php if($this->router->fetch_class() == 'welcome'): ?>
+    <?php if($this->router->fetch_class() == 'post'): ?>
+      <?php $method = $this->router->fetch_method() ?>
+      <?php if($method == 'get_all'): ?>
         <div class="btn-group sort">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Sắp Xếp Theo <span class="caret"></span>
@@ -12,7 +14,7 @@
               <li><a href="<?php echo site_url('nha-5') ?>">Diện Tích Giảm</a></li>
           </ul>
         </div>
-    <?php elseif ($this->router->fetch_class() == 'post'): ?>
+      <?php else: ?>
         <div class="btn-group sort">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Sắp Xếp Theo <span class="caret"></span>
@@ -25,6 +27,7 @@
               <li><a href="<?php echo site_url($url_sort.'dientich-giam') ?>">Diện Tích Giảm</a></li>
           </ul>
         </div>
+      <?php endif ?>
     <?php endif ?>
 </div>
 
@@ -64,6 +67,9 @@ rel="tooltip" class="post changecolor" href="<?=site_url('tin-'.$row['id'])?>">
             $expried =  floor((strtotime($row['hethan']) - $now)/86400)+1;
             if($expried > 0) echo $expried.' ngày';
             ?>
+        </p>
+        <p>
+          <span class="font-bold">Khoảng Cách Tới ĐH Bách Khoa:</span> <?php echo $row['khoangcach']; ?> km
         </p>
         <p class="font-bold text-center" style="color: #ff5252">
             <?=$row['tenquan']?>

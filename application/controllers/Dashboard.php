@@ -48,7 +48,7 @@ class Dashboard extends CI_Controller {
 		$this->load->view('dashboard/main', $data);
 	}
 
-	public function market() {
+	public function manage_market() {
 		if(!$this->session->userdata(LABEL_LOGIN)) {
 			redirect('dang-nhap','refresh');
 		}
@@ -58,7 +58,7 @@ class Dashboard extends CI_Controller {
 		$this->load->view('dashboard/main', $data);
 	}
 
-	public function post() {
+	public function manage_post() {
 		if(!$this->session->userdata(LABEL_LOGIN)) {
 			redirect('dang-nhap','refresh');
 		}

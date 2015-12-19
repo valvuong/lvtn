@@ -46,37 +46,12 @@ class Mpost extends CI_Model {
         return $result['total'];
     }
 
-    private function get_by_field($id, $field_name, $page) {
-        $this->db->select('*');
-        $this->db->from(MODEL_POST);
-        $this->db->where($field_name, $id);
-        $this->db->where($this->hethan." >=", date('Y-m-d'));
-        $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-
-    public function get_district_rows($idD) {
-        $result = $this->get_field_rows($idD, $this->quan);
-        return $result;
-    }
-
-    public function get_by_district($idD, $page) {
-        $result = $this->get_by_field($idD, $this->quan, $page);
-        return $result;
-    }
-
-    public function get_category_rows($idC) {
-        $result = $this->get_field_rows($idC, $this->chuyenmuc);
-        return $result;
-    }
-
-    public function get_by_category($idC, $page, $sort = 1) {
+    private function get_by_field($id, $field_name, $page, $sort) {
         $this->db->select(MODEL_POST.'.*');
         $this->db->select(MODEL_DISTRICT.'.tenquan');
         $this->db->select(MODEL_POST_UPLOAD.'.tenhinh');
         $this->db->from(MODEL_POST);
-        $this->db->where(MODEL_POST.'.'.$this->chuyenmuc, $idC);
+        $this->db->where(MODEL_POST.'.'.$field_name, $id);
         $this->db->where(MODEL_POST.'.'.$this->hethan.' >=', date('Y-m-d'));
         $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.quan', 'left');
         $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.id', 'left');
@@ -92,6 +67,26 @@ class Mpost extends CI_Model {
         $this->db->order_by(MODEL_POST.'.'.$sorts[$sort][0], $sorts[$sort][1]);
         $query = $this->db->get();
         return $query->result_array();
+    }
+
+    public function get_district_rows($idD) {
+        $result = $this->get_field_rows($idD, $this->quan);
+        return $result;
+    }
+
+    public function get_by_district($idD, $page, $sort=1) {
+        $result = $this->get_by_field($idD, $this->quan, $page, $sort);
+        return $result;
+    }
+
+    public function get_category_rows($idC) {
+        $result = $this->get_field_rows($idC, $this->chuyenmuc);
+        return $result;
+    }
+
+    public function get_by_category($idC, $page, $sort = 1) {
+        $result = $this->get_by_field($idC, $this->chuyenmuc, $page, $sort);
+        return $result;
     }
 
     public function get_one($id) {

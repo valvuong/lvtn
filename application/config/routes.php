@@ -84,8 +84,17 @@ $route['loai-(:num)-gia-tang-(:num)'] = 'post/show_by_category/$2/$1/2';
 $route['loai-(:num)-gia-giam-(:num)'] = 'post/show_by_category/$2/$1/3';
 $route['loai-(:num)-dientich-tang-(:num)'] = 'post/show_by_category/$2/$1/4';
 $route['loai-(:num)-dientich-giam-(:num)'] = 'post/show_by_category/$2/$1/5';
+$query = $db->get( 'quan' );
+$result = $query->result_array();
+foreach( $result as $row ) {
+    $route[ 'nha-tro-'.$row['tenkhac'] ] = 'post/show_by_district/1/'.$row['idQ'];
+}
+foreach( $result as $row ) {
+    $route[ 'nha-tro-'.$row['tenkhac'].'/(:num)' ] = 'post/show_by_district/$1/'.$row['idQ'];
+}
 
-$route['(:num)'] = 'welcome/index/$1';
+$route['home'] = 'post/get_all';
+$route['home/(:num)'] = 'post/get_all/$1';
 $route['tin-(:num)'] = 'post/index/$1';
 $route['filter-(:num)'] = 'filter/filter/$1';
 

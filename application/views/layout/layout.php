@@ -42,7 +42,7 @@
                         <?php endforeach ?>
                     </ul>
                 </li>
-                <li><a href="<?=site_url('tin-vat')?>">Rao Vặt</a></li>
+                <li><a href="<?=site_url('tin-vat')?>">Dụng Cụ Học Tập</a></li>
                 <?php if(!$this->session->userdata(LABEL_LOGIN)): ?>
                     <li class="float-right href-none-after">
                         <a href="<?=site_url('dang-nhap')?>" title="Đăng Nhập"><i class="fa fa-lock"></i></a>
@@ -78,7 +78,7 @@
                 <li class="drop-down-menu float-right">
                     <a href="javascript:void(0)" class="click-dropdown">Đăng Tin</a>
                     <ul>
-                        <li class="href-none-after"><a href="<?=site_url('buon-ban')?>">Rao Vặt</a></li>
+                        <li class="href-none-after"><a href="<?=site_url('buon-ban')?>">Dụng Cụ Học Tập</a></li>
                         <li class="href-none-after"><a href="<?=site_url('dang-tin')?>">Nhà Trọ</a></li>
                     </ul>
                 </li>
@@ -126,7 +126,7 @@
     // for post-sort
     $this_class_name = $this->router->fetch_class();
     $this_method_name = $this->router->fetch_method();
-    if ($this_class_name != 'welcome' && $this_method_name != 'index') {
+    if ($this_class_name != 'post' && $this_method_name != 'get_all') {
         $this->input->set_cookie(COOKIE_POST_SORT, 0, 0);
     }
     ?>

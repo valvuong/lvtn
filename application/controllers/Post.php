@@ -20,12 +20,63 @@ class Post extends CI_Controller {
         redirect($url, 'refresh');
     }
 
-    public function show_by_district($page=1, $idD) {
+    public function get_all($page=1) {
+        if(!$this->session->userdata(LABEL_LOGIN)) {
+            redirect('dang-nhap','refresh');
+        }
+        $class_name = $this->router->fetch_class();
+        $method_name = $this->router->fetch_method();
         $data['view'] = 'home';
-        $data['content']['content'] = $this->mpost->get_by_district($idD, $page);
-        $data['left_hidden'] = true;
+        $data['left_view'] = 'layout/left';
+        $data['left_content'] = '';
         $data['right_view'] = 'layout/right';
         $data['right_content'] = '';
+        switch ($this->input->cookie(COOKIE_POST_SORT)) {
+            case 0:
+            case 1:
+                $sort = 'DESC';
+                $field = 'id';
+                break;
+            case 2:
+                $sort = 'ASC';
+                $field = 'giaphong';
+                break;
+            case 3:
+                $sort = 'DESC';
+                $field = 'giaphong';
+                break;
+            case 4:
+                $sort = 'ASC';
+                $field = 'dientich';
+                break;
+            case 5:
+                $sort = 'DESC';
+                $field = 'dientich';
+                break;
+        }
+        $data['content']['content'] = $this->mpost->get_all($page, $sort, $field);
+        $data['content']['pagination'] = array($class_name, $method_name, $page);
+        $data['content']['items_per_page'] = POSTS_PER_PAGE;
+        $data['content']['num_rows'] = $this->mpost->get_all_rows();
+        $data['content']['url_alias'] = 'home/';
+        $this->load->view(LAYOUT, $data);
+    }
+
+    public function show_by_district($page=1, $idD) {
+        $class_name = $this->router->fetch_class();
+        $method_name = $this->router->fetch_method();
+        $data['view'] = 'home';
+        $data['left_view'] = 'layout/left';
+        $data['left_content'] = '';
+        $data['right_view'] = 'layout/right';
+        $data['right_content'] = '';
+        $data['content']['content'] = $this->mpost->get_by_district($idD, $page);
+        $data['content']['pagination'] = array($class_name, $method_name, $page, $idD);
+        $data['content']['items_per_page'] = POSTS_PER_PAGE;
+        $data['content']['num_rows'] = $this->mpost->get_district_rows($idD);
+        $url_alias = $this->uri->segment(1).'/';
+        $data['content']['url_alias'] = $url_alias;
+        $data['content']['url_sort'] = 'loai-'.$idD.'-';
         $this->load->view(LAYOUT, $data);
     }
     
@@ -33,7 +84,8 @@ class Post extends CI_Controller {
         $class_name = $this->router->fetch_class();
         $method_name = $this->router->fetch_method();
         $data['view'] = 'home';
-        $data['left_hidden'] = true;
+        $data['left_view'] = 'layout/left';
+        $data['left_content'] = '';
         $data['right_view'] = 'layout/right';
         $data['right_content'] = '';
         $data['content']['content'] = $this->mpost->get_by_category($idC, $page, $sort);
