@@ -4,15 +4,14 @@
 <div>
 <?php
 if ($this->session->userdata(LABEL_LOGIN)) {
-        $this->load->model('mpost');
-        if ($this->mpost->check_register_post($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))) {
+        if ($this->mpost_reservation->check_reservation_post($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))) {
         ?>
-            <button type="button" class="btn btn-primary main-center" data-toggle="modal" data-target="#update-register-post">Sửa Đăng Kí</button>
+            <button type="button" class="btn btn-primary main-center" data-toggle="modal" data-target="#update-reservation-post">Sửa Đăng Kí</button>
+            <button type="button" class="btn btn-danger main-center">Hủy Đăng Kí</button>
     <?php
     } else {
     ?>
-    <button type="button" class="btn btn-primary main-center" data-toggle="modal" data-target="#register-post">Đăng Kí Trước</button>
-    <button type="button" class="btn btn-danger main-center">Hủy Đăng Kí</button>
+    <button type="button" class="btn btn-primary main-center" data-toggle="modal" data-target="#reservation-post">Đăng Kí Trước</button>
     <?php
     } 
 }
@@ -58,7 +57,11 @@ if ($this->session->userdata(LABEL_LOGIN)) {
         <div class="clear"></div>
     </fieldset>
 
-    <?php $this->load->view($additional, $content['thongtinbosung']); ?>
+    <?php 
+    if ($content['thongtinbosung'] != null) {
+        $this->load->view($additional, $content['thongtinbosung']);
+    } 
+    ?>
 
     <fieldset>
         <legend style="width: 189px">Thông Tin Liên Hệ</legend>

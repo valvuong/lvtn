@@ -4,7 +4,7 @@
             <h2 class="panel-title search-title"><span class="glyphicon glyphicon-search"></span> TÌM KIẾM</h2>
         </div>
         <div class="panel-search">
-            <form action="Search_market_by_select" method="">
+            <form action="<?=base_url().'mmarket/search_by_select_market'?>" method="">
                 <select class="btn btn-default" name="search-category" onchange="getSubCate(this.value)">
                     <option value="0">Theo Danh Mục</option>
                     <?php $query = $this->mmarket_category->get_all() ?>

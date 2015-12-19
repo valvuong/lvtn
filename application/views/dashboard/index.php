@@ -71,7 +71,7 @@
 </script>
 
 <!-- Page Heading -->
-<input type="hidden" value="<?php echo base_url().'user/change_info' ?>" id="url_ajax">
+<input type="hidden" value="<?php echo base_url().'user/dashboard' ?>" id="url_ajax">
 <div class="row">
     <div class="col-lg-8">
         <div class="panel panel-default">

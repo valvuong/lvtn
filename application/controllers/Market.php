@@ -35,6 +35,7 @@ class Market extends CI_Controller {
         $data['content']['items_per_page'] = ADS_PER_PAGE;
         $data['content']['num_rows'] = $this->mmarket->get_all_rows();
         $data['content']['url_alias'] = 'tin-vat-';
+        $data['content']['url_alias_extend'] = '';
         $data['content']['label_list'] = 'TẤT CẢ TIN RAO VẶT';
         $data['header_message'] = $this->header_message;
         $this->load->view(LAYOUT, $data);
@@ -112,6 +113,7 @@ class Market extends CI_Controller {
         $data['content']['items_per_page'] = ADS_PER_PAGE;
         $data['content']['num_rows'] = $this->mmarket->get_cate_rows($cate_id);
         $data['content']['url_alias'] = $cate_id.'-rao-vat-';
+        $data['content']['url_alias_extend'] = '';
         $query = $this->db->query('SELECT tenloai FROM '.MODEL_MARKET_CATEGORY.' WHERE id = '.$cate_id);
         $result = $query->row_array();
         $data['content']['label_list'] = $result['tenloai'];
@@ -131,6 +133,7 @@ class Market extends CI_Controller {
         $data['content']['items_per_page'] = ADS_PER_PAGE;
         $data['content']['num_rows'] = $this->mmarket->get_subcate_rows($subcate_id);
         $data['content']['url_alias'] = $class_name.'/'.$method_name.'/'.$subcate_id.'/';
+        $data['content']['url_alias_extend'] = '';
 
         $query = $this->db->query(
             'SELECT '.MODEL_MARKET_SUB_CATEGORY.'.tenloai AS tenloaisp, '.MODEL_MARKET_CATEGORY.'.tenloai'.
@@ -140,6 +143,39 @@ class Market extends CI_Controller {
             ' WHERE '.MODEL_MARKET_SUB_CATEGORY.'.id = '.$subcate_id);
         $result = $query->row_array();
         $data['content']['label_list'] = $result['tenloai'].' - '.$result['tenloaisp'];
+        $this->load->view(LAYOUT, $data);
+    }
+    public function search_by_select_market($page=1) {
+        $search_category = $this->input->get_post('search-category');
+        $search_subcategory = $this->input->get_post('search-subcategory');
+        $search_status = $this->input->get_post('search-status');
+        $search_price = $this->input->get_post('search-price');
+
+
+        $result = $this->mmarket->get_search_market_by_select_content(
+                            $search_category,$search_subcategory,$search_status,$search_price,$page);
+        $num_rows = $this->mmarket->get_search_market_by_select_rows(
+                           $search_category,$search_subcategory,$search_status,$search_price);
+
+        if ($result != false) {
+
+        }
+        $class_name = $this->router->fetch_class();
+        $method_name = $this->router->fetch_method();
+        $data['view'] = 'market/list';
+        $data['left_view'] = 'market/left';
+        $data['left_content'] = '';
+        $data['right_view'] = 'market/right';
+        $data['right_content'] = '';
+        $data['content']['content'] = $result;
+        $data['content']['pagination'] = array($class_name, $method_name, $page);
+        $data['content']['items_per_page'] = ADS_PER_PAGE;
+        $data['content']['num_rows'] = $num_rows;
+        $data['content']['url_alias'] = 'Search_by_select/index_market/';
+        $data['content']['url_alias_extend'] = '?search-category='.$search_category.'&search-subcategory='.$search_subcategory.
+        '&search-price='.$search_price.'&search-status='.$search_status;
+        $data['content']['label_list'] = 'TẤT CẢ TIN RAO VẶT';
+        $data['header_message'] = 'CHIA SẺ, BUÔN BÁN, TRAO ĐỔI ĐỒ DÙNG CÁ NHÂN';
         $this->load->view(LAYOUT, $data);
     }
 }

@@ -4,10 +4,10 @@
             <h2 class="panel-title search-title"><span class="glyphicon glyphicon-search"></span> TÌM KIẾM</h2>
         </div>
         <div class="panel-search">
-            <form action="search_by_select" method="">
+            <form action="<?=base_url().'post/search_by_select_post'?>" method="">
                 <select class="btn btn-default" name="search-category">
                     <option value="0">Theo Chuyên Mục</option>
-                    <?php $query = $this->mcategory->get_all() ?>
+                    <?php $query = $this->mpost_category->get_all() ?>
                     <?php foreach($query as $row): ?>
                         <option value="<?=$row['id']?>"><?=$row['ten']?></option>
                     <?php endforeach ?>

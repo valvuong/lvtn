@@ -60,7 +60,7 @@ if ($display_name == null) {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo site_url() ?>"><span class="glyphicon glyphicon-arrow-left"></span> Quay Lại Trang Chủ</a>
+                <a class="navbar-brand" href="<?php echo site_url('home') ?>"><span class="glyphicon glyphicon-arrow-left"></span> Quay Lại Trang Chủ</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -135,21 +135,21 @@ if ($display_name == null) {
                             $method = $this->router->fetch_method();
                             ?>
                             <li class="<?php if($method == 'index') echo 'active' ?>">
-                                <a href="<?php echo site_url('dashboard'); ?>">Thông Tin Tải Khoản</a>
+                                <a href="<?php echo site_url('user/dashboard'); ?>">Thông Tin Tải Khoản</a>
                             </li>
                             <li class="<?php if($method == 'change_password') echo 'active' ?>">
-                                <a href="<?php echo site_url('dashboard/change_password'); ?>">Đổi Mật Khẩu</a>
+                                <a href="<?php echo site_url('user/change_password'); ?>">Đổi Mật Khẩu</a>
                             </li>
                             <li class="<?php if($method == 'change_avatar') echo 'active' ?>">
-                                <a href="<?php echo site_url('dashboard/change_avatar'); ?>">Đổi Ảnh Đại Diện</a>
+                                <a href="<?php echo site_url('user/change_avatar'); ?>">Đổi Ảnh Đại Diện</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('dashboard/market'); ?>"><i class="fa fa-fw fa-edit"></i> Chỉnh Sửa Tin Rao Vặt</a>
+                        <a href="<?php echo site_url('user/market'); ?>"><i class="fa fa-fw fa-edit"></i> Chỉnh Sửa Tin Rao Vặt</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('dashboard/post'); ?>"><i class="fa fa-fw fa-edit"></i> Chỉnh Sửa Tin Thuê Trọ</a>
+                        <a href="<?php echo site_url('user/post'); ?>"><i class="fa fa-fw fa-edit"></i> Chỉnh Sửa Tin Thuê Trọ</a>
                     </li>
                 </ul>
             </div>

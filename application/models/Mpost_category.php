@@ -1,6 +1,6 @@
 <?php
 
-class Mcategory extends CI_Model {
+class Mpost_category extends CI_Model {
 
 	private $id = 'id';
 	private $tenloai = 'tenloai';

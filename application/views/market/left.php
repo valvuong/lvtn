@@ -1,3 +1,4 @@
+
 <div id="left" class="ads">
 	<div class="side-bar"> 
 		<h2><i class="fa fa-align-justify"></i>Loại</h2>

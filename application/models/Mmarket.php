@@ -17,7 +17,7 @@ class Mmarket extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
-
+    ////////////////////////////////
     public function get_cate() {
         $this->db->select('*');
         $this->db->from(MODEL_MARKET_CATEGORY);
@@ -156,6 +156,68 @@ class Mmarket extends CI_Model {
         $this->db->limit(ADS_PER_PAGE, ADS_PER_PAGE*($page-1));
         $this->db->group_by(MODEL_MARKET.'.'.$this->id);
         $this->db->order_by(MODEL_MARKET.'.'.$this->id, 'DESC');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_search_market_by_select_rows($category, $search_subcategory, $status, $price) {
+        if ($price < 100) {
+            $min_price = $price / 10;
+            $max_price = $price % 10;
+        }
+        else if ($price > 100) {
+            $min_price = $price / 100;
+            $max_price = $price % 100;
+        }
+        $this->db->select('*');
+        $this->db->from(MODEL_MARKET);
+        if ($category != 0) {
+            $this->db->where($this->loai, $category);
+        }
+        if ($price != 0) {
+            $this->db->where($this->giaca.' >=', $min_price);
+            $this->db->where($this->giaca.' <=', $max_price);
+        }
+        if ($status != 0) {
+            $this->db->where($this->tinhtrang, $status);
+        }
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function get_search_market_by_select_content($category, $search_subcategory, $status, $price,  $page) {
+        if ($price < 100) {
+            $min_price = $price / 10;
+            $max_price = $price % 10;
+        }
+        else if ($price > 100) {
+            $min_price = $price / 100;
+            $max_price = $price % 100;
+        }
+
+        $this->db->select(MODEL_MARKET.'.'.$this->id);
+        $this->db->select(MODEL_MARKET.'.'.$this->tieude);
+        $this->db->select(MODEL_MARKET.'.'.$this->giaca);
+        $this->db->select(MODEL_MARKET.'.'.$this->ngaydang);
+        $this->db->select(MODEL_MARKET_UPLOAD.'.tenhinh');
+        $this->db->select(MODEL_MARKET_CATEGORY.'.tenloai');
+        $this->db->from(MODEL_MARKET);
+        if ($category != 0) {
+            $this->db->where($this->loai, $category);
+        }
+        if ($price != 0) {
+            $this->db->where($this->giaca.' >=', $min_price);
+            $this->db->where($this->giaca.' <=', $max_price);
+        }
+        if ($status != 0) {
+            $this->db->where($this->tinhtrang, $status);
+        }
+        
+        $this->db->join(MODEL_MARKET_UPLOAD, MODEL_MARKET_UPLOAD.'.idCho = '.MODEL_MARKET.'.'.$this->id, 'left');
+        $this->db->join(MODEL_MARKET_CATEGORY, MODEL_MARKET_CATEGORY.'.id = '.MODEL_MARKET.'.'.$this->loai,'left');
+        $this->db->limit(ADS_PER_PAGE, ADS_PER_PAGE*($page-1));
+        $this->db->group_by(MODEL_MARKET.'.'.$this->id);
+        $this->db->order_by(MODEL_MARKET.'.'.$this->id,'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }

@@ -19,6 +19,7 @@ class Mpost extends CI_Model {
         parent::__construct();
     }
 
+    ////////////////////////////////////////////////////////////////
     public function get_all_rows() {
         $query = $this->db->query('SELECT COUNT(*) as total FROM '.MODEL_POST.' WHERE '.$this->hethan.' >= NOW()');
         $result = $query->row_array();
@@ -115,10 +116,10 @@ class Mpost extends CI_Model {
         $this->db->from($t);
         $this->db->where($t.'.idBantin', $id);
         $query = $this->db->get();
-        $r = $query->result_array()[0];
+        $r = $query->result_array();
         unset($r['id']);
         unset($r['idBantin']);
-        $result[0]['thongtinbosung'] = $r;
+        $result[0]['thongtinbosung'] = $r[0];
 
         $this->db->select('tenhinh');
         $this->db->from(MODEL_POST_UPLOAD);
@@ -181,37 +182,116 @@ class Mpost extends CI_Model {
             }
         }
     }
-    public function register_post($info){
-        $this->db->insert('phong_dangky', $info);
-    }
-    public function update_register_post($info,$idBantin,$idUser){
-        $this->db->where('idUser',$idUser);
-        $this->db->where('idBantin',$idBantin);
-        $this->db->update('phong_dangky', $info);
-    }
-    public function check_register_post($idUser,$idBantin) {
+    ///////////search///////////////////////////
+
+    public function get_search_room_by_select_rows($category, $district, $area, $price,$distance) {
+        if ($area < 10000) {
+            $min_area = $area / 100;
+            $max_area = $area % 100;
+        }
+        else if ($area > 10000) {
+            $min_area = $area / 1000;
+            $max_area = $area % 1000;
+        }
+        if ($price < 100) {
+            $min_price = $price / 10;
+            $max_price = $price % 10;
+        }
+        else if ($price > 100) {
+            $min_price = $price / 100;
+            $max_price = $price % 100;
+        }
+        if ($distance < 1000) {
+            $min_distance = $distance / 100;
+            $max_distance = $distance % 100;
+        }
+        else if ($distance > 1000) {
+            $min_distance = ($distance / 100000)/1000;
+            $max_distance = ($distance % 100000)/1000;
+        }
         $this->db->select('*');
-        $this->db->from('phong_dangky');
-        $this->db->where('idUser',$idUser);
-        $this->db->where('idBantin',$idBantin);
+        $this->db->from(MODEL_POST);
+        if ($category != 0) {
+            $this->db->where($this->chuyenmuc, $category);
+        }
+        if ($area != 0) {
+            $this->db->where($this->dientich.' >=', $min_area);
+            $this->db->where($this->dientich.' <=', $max_area);
+        }
+        if ($price != 0) {
+            $this->db->where($this->giaphong.' >=', $min_price);
+            $this->db->where($this->giaphong.' <=', $max_price);
+        }
+        if ($distance != 0) {
+            if ($distance < 1000) {
+                $this->db->where($this->khoangcach.' >=', $min_distance);
+                $this->db->where($this->khoangcach.' <=', $max_distance);
+            }
+        }    
+        if ($district != 0) {
+            $this->db->where($this->quan, $district);
+        }
+        $this->db->where($this->hethan." >=", date('Y-m-d'));
         $query = $this->db->get();
-        if($query -> num_rows() > 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return $query->num_rows();
     }
 
-    public function get_register_num($idUser,$idBantin){
-        $this->db->select('*');
-        $this->db->from('phong_dangky');
-        $this->db->where('idUser',$idUser);
-        $this->db->where('idBantin',$idBantin);
+    public function get_search_room_by_select_content($category, $district, $area, $price, $distance, $page) {
+        if ($area < 10000) {
+            $min_area = $area / 100;
+            $max_area = $area % 100;
+        }
+        else if ($area > 10000) {
+            $min_area = $area / 1000;
+            $max_area = $area % 1000;
+        }
+        if ($price < 100) {
+            $min_price = $price / 10;
+            $max_price = $price % 10;
+        }
+        else if ($price > 100) {
+            $min_price = $price / 100;
+            $max_price = $price % 100;
+        }
+        if ($distance < 1000) {
+            $min_distance = (int)($distance / 100);
+            $max_distance = $distance % 100;
+        }
+        else if ($distance > 1000) {
+            $min_distance = ($distance / 100000)/1000;
+            $max_distance = ($distance % 100000)/1000;
+        }
+        $this->db->select(MODEL_POST.'.*');
+        $this->db->select(MODEL_DISTRICT.'.tenquan');
+        $this->db->select(MODEL_POST_UPLOAD.'.tenhinh');
+        $this->db->from(MODEL_POST);
+        if ($category != 0) {
+            $this->db->where($this->chuyenmuc, $category);
+        }
+        if ($area != 0) {
+            $this->db->where($this->dientich.' >=', $min_area);
+            $this->db->where($this->dientich.' <=', $max_area);
+        }
+        if ($price != 0) {
+            $this->db->where($this->giaphong.' >=', $min_price);
+            $this->db->where($this->giaphong.' <=', $max_price);
+        }
+        if ($distance != 0) {
+            if ($distance < 1000) {
+                $this->db->where($this->khoangcach.' >=', $min_distance);
+                $this->db->where($this->khoangcach.' <=', $max_distance);
+            }
+        }      
+        if ($district != 0) {
+            $this->db->where($this->quan, $district);
+        }
+        $this->db->where($this->hethan." >=", date('Y-m-d'));
+        $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.quan', 'left');
+        $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.id', 'left');
+        $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
+        $this->db->group_by(MODEL_POST.'.'.$this->id);
+        $this->db->order_by(MODEL_POST.'.'.$this->id, 'DESC');
         $query = $this->db->get();
-        $result = $query->result_array();
-        return $result['0'];
+        return $query->result_array();
     }
 }

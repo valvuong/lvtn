@@ -130,6 +130,7 @@ class Muser extends CI_Model {
 		return $query->row();
 	}
 	
+
 	public function check_password($pass) {
 		$idUser = $this->session->userdata(LABEL_LOGIN)['id'];
         $this->db->select(MODEL_USER.'.password');
@@ -147,4 +148,9 @@ class Muser extends CI_Model {
 		$this->db->where('idUser', $idUser);
         $this->db->update(MODEL_USER, $data);
 	}
+
+	////////////contact////////////
+	public function save_contact($data) {
+    	$this->db->insert(MODEL_CONTACT, $data);
+    }
 }
