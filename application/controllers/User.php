@@ -314,8 +314,8 @@ class User extends CI_Controller {
 			$config['protocol'] = 'smtp';
 			$config['smtp_host'] = 'ssl://smtp.gmail.com';
 			$config['smtp_port'] = 465;
-			$config['smtp_user'] = 'transong.toan@gmail.com';
-			$config['smtp_pass'] = 'Trymybestto1to1to1';
+			$config['smtp_user'] = '';
+			$config['smtp_pass'] = '';
 
 			// Load email library and passing configured values to email library
 			$this->load->library('email', $config);

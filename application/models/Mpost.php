@@ -294,4 +294,10 @@ class Mpost extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    public function get_num_every_district($idD) {
+        $query = $this->db->query('SELECT COUNT(*) as total FROM '.MODEL_POST.' WHERE quan= '.$idD.' AND '.$this->hethan.' >= NOW()');
+        $result = $query->row_array();
+        return $result['total'];
+    }
 }

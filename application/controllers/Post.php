@@ -178,9 +178,10 @@ class Post extends MY_Controller {
         $data['content']['pagination'] = array($class_name, $method_name, $page);
         $data['content']['items_per_page'] = POSTS_PER_PAGE;
         $data['content']['num_rows'] = $num_rows;
-        $data['content']['url_alias'] = 'Search_by_select/index_post/';
+        $data['content']['url_alias'] = 'post/Search_by_select_post/';
         $data['content']['url_alias_extend'] = '?search-category='.$search_category.'&search-district='.$search_district.'&search-area='.$search_area.
         '&search-price='.$search_price.'&search-distance='.$search_distance;
+        $data['content']['url_sort'] = 'loai-';
         $this->load->view(LAYOUT, $data);
     }
 
