@@ -85,35 +85,35 @@ define('LAYOUT','layout/layout');
 define('POSTS_PER_PAGE', 5);
 define('ADS_PER_PAGE', 5);
 
-define('MODEL_DISTRICT', 'quan');
+define('MODEL_DISTRICT', 'district');
 define('MODEL_USER', 'user');
-define('MODEL_WARD', 'phuong');
+define('MODEL_WARD', 'ward');
 
-define('MODEL_POST', 'phong_bantin');
-define('MODEL_POST_CATEGORY', 'phong_chuyenmuc');
-define('MODEL_POST_PRICE', 'phong_chiphi');
-define('MODEL_POST_CONTACT', 'phong_thongtinlienlac');
-define('MODEL_POST_UPLOAD', 'phong_hinh');
+define('MODEL_POST', 'post');
+define('MODEL_POST_CATEGORY', 'post_category');
+define('MODEL_POST_PRICE', 'post_price');
+define('MODEL_POST_CONTACT', 'post_contact');
+define('MODEL_POST_UPLOAD', 'post_image');
 
-define('MODEL_POST_RENTROOM', 'phong_nhatro');
-define('MODEL_POST_JOIN', 'phong_oghep');
-define('MODEL_POST_APARTMENT', 'phong_chungcu');
-define('MODEL_POST_FULL_HOUSE', 'phong_nhanguyencan');
-define('MODEL_POST_BASEMENT', 'phong_tangham');
+define('MODEL_POST_RENTROOM', 'post_room');
+define('MODEL_POST_JOIN', 'post_join');
+define('MODEL_POST_APARTMENT', 'post_apartment');
+define('MODEL_POST_FULL_HOUSE', 'post_full_house');
+define('MODEL_POST_BASEMENT', 'post_basement');
 
-define('MODEL_MARKET', 'raovat');
-define('MODEL_MARKET_UPLOAD', 'raovat_hinh');
-define('MODEL_MARKET_CATEGORY', 'raovat_loai');
-define('MODEL_MARKET_SUB_CATEGORY', 'raovat_loaisp');
+define('MODEL_MARKET', 'equipment');
+define('MODEL_MARKET_UPLOAD', 'equipment_image');
+define('MODEL_MARKET_CATEGORY', 'equipment_category');
+define('MODEL_MARKET_SUB_CATEGORY', 'equipment_subcategory');
 define('ACTION_POST_UPLOAD', 'upload_image');
 define('ACTION_MARKET_UPLOAD', 'upload_image');
 define('MODEL_CATEGORY', MODEL_POST_CATEGORY);
 
-define('SEARCH_AREA', 'timkiem_dientich');
-define('SEARCH_PRICE', 'timkiem_giaphong');
+define('SEARCH_AREA', 'search_area');
+define('SEARCH_PRICE', 'search_price');
 
-define('MODEL_MANAGE_POST', 'quanlytin');
-define('MODEL_MANAGE_MARKET', 'quanlyraovat');
+define('MODEL_MANAGE_POST', 'post_manage');
+define('MODEL_MANAGE_MARKET', 'equipment_manage');
 
 define('MODEL_CONTACT', 'lienhe');
 

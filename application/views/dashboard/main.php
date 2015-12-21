@@ -146,10 +146,13 @@ if ($display_name == null) {
                         </ul>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('user/market'); ?>"><i class="fa fa-fw fa-edit"></i> Chỉnh Sửa Tin Rao Vặt</a>
+                        <a href="<?php echo site_url('user/market'); ?>"><i class="fa fa-fw fa-edit"></i> Quản lý bài đăng chỗ ở</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('user/post'); ?>"><i class="fa fa-fw fa-edit"></i> Chỉnh Sửa Tin Thuê Trọ</a>
+                        <a href="<?php echo site_url('user/post'); ?>"><i class="fa fa-fw fa-edit"></i> Quản lý đăng ký đặt trước</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo site_url('user/post'); ?>"><i class="fa fa-fw fa-edit"></i> Quản lý phương tiện học tập</a>
                     </li>
                 </ul>
             </div>

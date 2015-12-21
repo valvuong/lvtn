@@ -12,7 +12,7 @@ class Mdistrict extends CI_Model {
     public function get_all() {
         $this->db->select('*');
         $this->db->from(MODEL_DISTRICT);
-        $this->db->order_by($this->tenquan, 'DESC');
+        $this->db->order_by($this->idQ, 'ASC');
         $query = $this->db->get();
         return $query->result_array();
     }
