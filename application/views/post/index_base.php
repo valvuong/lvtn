@@ -7,7 +7,7 @@ if ($this->session->userdata(LABEL_LOGIN)) {
         if ($this->mpost_reservation->check_reservation_post($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))) {
         ?>
             <button type="button" class="btn btn-primary main-center" data-toggle="modal" data-target="#update-reservation-post">Sửa Đăng Kí</button>
-            <button type="button" class="btn btn-danger main-center">Hủy Đăng Kí</button>
+            <button type="button" class="btn btn-danger main-center" data-toggle="modal" data-target="#delete-reservation-post">Hủy Đăng Kí</button>
     <?php
     } else {
     ?>

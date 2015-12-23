@@ -149,10 +149,10 @@ if ($display_name == null) {
                         <a href="<?php echo site_url('user/market'); ?>"><i class="fa fa-fw fa-edit"></i> Quản lý bài đăng chỗ ở</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('user/post'); ?>"><i class="fa fa-fw fa-edit"></i> Quản lý đăng ký đặt trước</a>
+                        <a href="<?php echo site_url('dashboard/manage_post_reservation'); ?>"><i class="fa fa-fw fa-edit"></i> Quản lý đăng ký đặt trước</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('user/post'); ?>"><i class="fa fa-fw fa-edit"></i> Quản lý phương tiện học tập</a>
+                        <a href="<?php echo site_url(''); ?>"><i class="fa fa-fw fa-edit"></i> Quản lý phương tiện học tập</a>
                     </li>
                 </ul>
             </div>

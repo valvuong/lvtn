@@ -53,5 +53,17 @@ class Mpost_reservation extends CI_Model {
         $result = $query->result_array();
         return $result['0'];
     }
+    public function delete_reservation_post($idUser,$idBantin){
+        $this->db->where('idUser',$idUser);
+        $this->db->where('idBantin',$idBantin);
+        $this->db->delete('post_reservation');
+    }
+    public function get_all($idUser){
+        $this->db->select('*');
+        $this->db->from('post_reservation');
+        $this->db->where('idUser',$idUser);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
 

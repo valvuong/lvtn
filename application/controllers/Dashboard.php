@@ -8,7 +8,7 @@ class Dashboard extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->helper(array('url','form'));
-		$this->load->model(array('muser'));
+		$this->load->model(array('muser','mpost_reservation'));
 		if ($this->session->userdata(LABEL_LOGIN)) {
 			$param = $this->session->userdata(LABEL_LOGIN)['id'];
 			$f = $this->muser->get_profile($param);
@@ -67,4 +67,14 @@ class Dashboard extends CI_Controller {
 		$data['display_name'] = $this->display_name;
 		$this->load->view('dashboard/main', $data);
 	}
+	public function manage_post_reservation(){
+		if(!$this->session->userdata(LABEL_LOGIN)) {
+			redirect('dang-nhap','refresh');
+		}
+        $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
+        $data['view'] = 'dashboard/manage_post_reservation';
+		$data['content']['content'] = $this->mpost_reservation->get_all($idUser);;
+		$data['display_name'] = $this->display_name;
+		$this->load->view('dashboard/main', $data);
+    }
 }

@@ -148,6 +148,15 @@ class Post extends MY_Controller {
         return $this->mpost_reservation->check_reservation_post($idUser);
     }
 
+    public function delete_reservation_post() {
+        $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
+        $idBantin = $this->input->get_post('idBantin');
+        $this->mpost_reservation->delete_reservation_post($idUser,$idBantin);
+    }
+
+    
+    
+
     public function search_by_select_post($page=1) {
         $search_category = $this->input->get_post('search-category');
         $search_district = $this->input->get_post('search-district');
