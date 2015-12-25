@@ -7,7 +7,7 @@ class Market extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->muser->is_authenticated();
+        $this->muser->not_authenticated();
         $this->load->helper(array('url','form'));
         $this->load->model(array('mdistrict','mmarket','mmarket_category'));
         $this->header_message = "CHIA SẺ, BUÔN BÁN, TRAO ĐỔI ĐỒ DÙNG CÁ NHÂN";

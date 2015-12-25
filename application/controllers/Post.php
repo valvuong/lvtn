@@ -4,7 +4,7 @@ class Post extends MY_Controller {
     
     public function __construct() {
         parent::__construct();
-        $this->muser->is_authenticated();
+        $this->muser->not_authenticated();
         $this->load->helper(array('form'));
         $this->load->model(array('mpost_reservation','mmanage_post'));
     }
