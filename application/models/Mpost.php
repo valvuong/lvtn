@@ -103,14 +103,14 @@ class Mpost extends CI_Model {
         $this->db->join(MODEL_POST_PRICE, MODEL_POST_PRICE.'.idBantin = '.$id, 'left');
         $this->db->join(MODEL_POST_CONTACT, MODEL_POST_CONTACT.'.idBantin = '.$id, 'left');
         $query = $this->db->get();
-        $result = $query->result_array();
+        $result = $query->row_array();
 
         $this->db->select(MODEL_POST_CATEGORY.'.bang_phu');
         $this->db->from(MODEL_POST_CATEGORY);
-        $this->db->where(MODEL_POST_CATEGORY.'.id', $result[0]['chuyenmuc']);
+        $this->db->where(MODEL_POST_CATEGORY.'.id', $result['chuyenmuc']);
         $query = $this->db->get();
-        $r = $query->result_array();
-        $t = $r[0]['bang_phu'];
+        $r = $query->row_array();
+        $t = $r['bang_phu'];
 
         $this->db->select($t.'.*');
         $this->db->from($t);
@@ -119,15 +119,15 @@ class Mpost extends CI_Model {
         $r = $query->row_array();
         unset($r['id']);
         unset($r['idBantin']);
-        $result[0]['thongtinbosung'] = $r;
+        $result['thongtinbosung'] = $r;
 
         $this->db->select('tenhinh');
         $this->db->from(MODEL_POST_UPLOAD);
         $this->db->where('idBantin',$id);
         $query = $this->db->get();
-        $result[0]['tenhinh'] = $query->result_array();
+        $result['tenhinh'] = $query->result_array();
 
-        return $result[0];
+        return $result;
     }
 
     public function create($data) {

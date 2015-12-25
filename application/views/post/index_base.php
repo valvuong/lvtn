@@ -3,8 +3,9 @@
 <h3 class="title"><?php echo mb_strtoupper($content['tieude'],'utf8'); ?></h3>
 <div>
 <?php
-if ($this->session->userdata(LABEL_LOGIN)) {
-        if ($this->mpost_reservation->check_reservation_post($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))) {
+if ($this->muser->is_authenticated()) {
+    $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
+        if ($this->mpost_reservation->check_reservation_post($idUser, $this->uri->segment(3))) {
         ?>
             <button type="button" class="btn btn-primary main-center" data-toggle="modal" data-target="#update-reservation-post">Sửa Đăng Kí</button>
             <button type="button" class="btn btn-danger main-center">Hủy Đăng Kí</button>
@@ -13,7 +14,36 @@ if ($this->session->userdata(LABEL_LOGIN)) {
     ?>
     <button type="button" class="btn btn-primary main-center" data-toggle="modal" data-target="#reservation-post">Đăng Kí Trước</button>
     <?php
-    } 
+    }
+    $idPost = $content['id'];
+    if ($this->mmanage_post->check_owner($idUser, $idPost)) { ?>
+        <div class="table-responsive">
+            <h3 class="text-center">Những Người Đặt Trước Tin Này</h3>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Số Phòng</th>
+                        <th>Số Người</th>
+                        <th>Tên</th>
+                        <th>Số Điện Thoại</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>Vương</td>
+                        <td>09736339843</td>
+                        <td>vuong@gmail.com</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <?php
+    }
 }
 ?>
 </div>

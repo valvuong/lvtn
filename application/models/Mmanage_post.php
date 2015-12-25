@@ -24,4 +24,16 @@ class Mmanage_post extends CI_Model {
 		);
 		$this->db->insert($this->table, $data);
 	}
+
+	public function check_owner($idUser, $idPost) {
+		$t = $this->table;
+		$this->db->select($t.'.*');
+		$this->db->from($t);
+		$this->db->where(array('idUser'=>$idUser, 'idBantin'=>$idPost));
+		$query = $this->db->get();
+		if (!empty($query->row_array())) {
+			return true;
+		}
+		return false;
+	}
 }
