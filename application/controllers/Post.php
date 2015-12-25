@@ -4,8 +4,9 @@ class Post extends MY_Controller {
     
     public function __construct() {
         parent::__construct();
-        $this->load->helper(array('url','form'));
-        $this->load->model(array('mpost_reservation'));
+        $this->muser->is_authenticated();
+        $this->load->helper(array('form'));
+        $this->load->model(array('mpost_reservation','mmanage_post'));
     }
 
     public function index($id) {
@@ -21,9 +22,6 @@ class Post extends MY_Controller {
     }
 
     public function get_all($page=1) {
-        if(!$this->session->userdata(LABEL_LOGIN)) {
-            redirect('dang-nhap','refresh');
-        }
         $class_name = $this->router->fetch_class();
         $method_name = $this->router->fetch_method();
         $data['view'] = 'home';
@@ -231,13 +229,13 @@ class Post extends MY_Controller {
                         'nhavesinh' => $this->input->post('wc')===NULL ? "":"Có Nhà Vệ Riêng",
                         'xebuyt' => $this->input->post('bus'),
                         'bancong' => $this->input->post('balcony')===NULL ? "":"Có Ban Công",
-                        'chodexe' => $this->input->post('parking')===NULL ? 0:"Có Chỗ Để Xe",//$this->input->post('parking-limit'),
-                        'soluong' => $this->input->post('limit'),
+                        'chodexe' => $this->input->post('parking')===NULL ? 0:"Có Chỗ Để Xe",
                         'chicho' => $this->input->post('gender-only')===NULL ? "":$this->input->post('gender-only')
                     )
                 );
                 $info = $main_info + $sub_info;
                 $id = $this->mpost->create($info);
+                $this->insert_manage($id);
                 redirect('tin-'.$id,'refresh');
             }
         }
@@ -297,6 +295,7 @@ class Post extends MY_Controller {
                 );
                 $info = $main_info + $sub_info;
                 $id = $this->mpost->create($info);
+                $this->insert_manage($id);
                 redirect('tin-'.$id,'refresh');
             }
         }
@@ -359,6 +358,7 @@ class Post extends MY_Controller {
                 );
                 $info = $main_info + $sub_info;
                 $id = $this->mpost->create($info);
+                $this->insert_manage($id);
                 redirect('tin-'.$id,'refresh');
             }
         }
@@ -420,6 +420,7 @@ class Post extends MY_Controller {
                 );
                 $info = $main_info + $sub_info;
                 $id = $this->mpost->create($info);
+                $this->insert_manage($id);
                 redirect('tin-'.$id,'refresh');
             }
         }
@@ -481,6 +482,7 @@ class Post extends MY_Controller {
                 );
                 $info = $main_info + $sub_info;
                 $id = $this->mpost->create($info);
+                $this->insert_manage($id);
                 redirect('tin-'.$id,'refresh');
             }
         }
@@ -492,9 +494,6 @@ class Post extends MY_Controller {
     }
 
     public function create_post() {
-        if(!$this->session->userdata(LABEL_LOGIN)) {
-            redirect('dang-nhap','refresh');
-        }
         $data['view'] = 'post/create_post';
         $data['content']['content'] = '';
         $data['left_hidden'] = true;
@@ -507,5 +506,9 @@ class Post extends MY_Controller {
         $this->input->set_cookie(COOKIE_POST_SORT, $value, 0);
         $GLOBALS['post_sort'] = true;
         redirect('home','refresh');
+    }
+
+    public function insert_manage($idPost) {
+        $this->mmanage_post->create($this->session->userdata(LABEL_LOGIN)['id'], $idPost);
     }
 }

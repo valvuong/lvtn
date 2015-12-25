@@ -3,7 +3,7 @@ $(function() {
     menuTask();
     clickDropdown();
     // clickTask();
-    header();
+    // header();
     selectepicker();
 });
 
@@ -16,7 +16,7 @@ function menuTask() {
 
 function header() {
     var navheight = $('nav').height();
-    var bodyWidth = $('.body-content').outerWidth();
+    // var bodyWidth = $('.body-content').outerWidth();
     $('header.header').css({
         "margin-top": navheight+"px",
     });

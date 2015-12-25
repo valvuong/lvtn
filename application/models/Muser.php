@@ -153,4 +153,30 @@ class Muser extends CI_Model {
 	public function save_contact($data) {
     	$this->db->insert(MODEL_CONTACT, $data);
     }
+
+    public function is_authenticated() {
+		if(!$this->session->userdata(LABEL_LOGIN)) {
+			return false;
+		}
+		return true;
+	}
+
+	public function is_admin() {
+		if ($this->session->userdata(LABEL_LOGIN)['role'] != 'ROLE_ADMIN') {
+			return false;
+		}
+		return true;
+	}
+
+	public function not_authenticated() {
+		if(!$this->is_authenticated()) {
+			redirect('dang-nhap','refresh');
+		}
+	}
+
+	public function not_admin() {
+		if (!$this->is_admin()) {
+			redirect('home','refresh');
+		}
+	}
 }

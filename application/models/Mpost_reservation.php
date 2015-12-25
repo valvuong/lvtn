@@ -15,22 +15,25 @@ class Mpost_reservation extends CI_Model {
     private $kinhdo = 'kinhdo';
     private $vido = 'vido';
 
+    private $table;
+
     public function __construct() {
         parent::__construct();
+        $this->table = MODEL_RESERVATION_ROOM;
     }
 
     ///////////reservation/////////////////////
     public function create_reservation_post($info){
-        $this->db->insert('phong_dangky', $info);
+        $this->db->insert($this->table, $info);
     }
     public function update_reservation_post($info,$idBantin,$idUser){
         $this->db->where('idUser',$idUser);
         $this->db->where('idBantin',$idBantin);
-        $this->db->update('phong_dangky', $info);
+        $this->db->update($this->table, $info);
     }
     public function check_reservation_post($idUser,$idBantin) {
         $this->db->select('*');
-        $this->db->from('phong_dangky');
+        $this->db->from($this->table);
         $this->db->where('idUser',$idUser);
         $this->db->where('idBantin',$idBantin);
         $query = $this->db->get();
@@ -46,7 +49,7 @@ class Mpost_reservation extends CI_Model {
 
     public function get_reservation_num($idUser,$idBantin){
         $this->db->select('*');
-        $this->db->from('phong_dangky');
+        $this->db->from($this->table);
         $this->db->where('idUser',$idUser);
         $this->db->where('idBantin',$idBantin);
         $query = $this->db->get();

@@ -55,6 +55,10 @@ if ($this->session->userdata(LABEL_LOGIN)) {
         <div class="clear"></div>
         <p><strong>Địa Chỉ:</strong><span><?=$content['diachi']?></span></p>
         <div class="clear"></div>
+        <p><strong>Số Người Có Thể Ở:</strong><span><?=$content['songuoi']?></span></p>
+        <div class="clear"></div>
+        <p><strong>Số Phòng:</strong><span><?=$content['sophong']?></span></p>
+        <div class="clear"></div>
     </fieldset>
 
     <?php 

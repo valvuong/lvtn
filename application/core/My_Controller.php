@@ -62,6 +62,14 @@ class My_Controller extends CI_Controller {
             array(
                 'field' => 'distant',
                 'rules' => 'required|numeric'
+            ),
+            array(
+                'field' => 'limit-people',
+                'rules' => 'required|is_natural'
+            ),
+            array(
+                'field' => 'limit-room',
+                'rules' => 'required|is_natural'
             )
         );
         return $rules;
@@ -81,7 +89,9 @@ class My_Controller extends CI_Controller {
                 'hethan'     => date('Y-m-d', strtotime($this->input->post('expired_date'))),
                 'kinhdo'     => $this->input->post('lat'),
                 'vido'       => $this->input->post('lng'),
-                'khoangcach' => $this->input->post('distant')
+                'khoangcach' => $this->input->post('distant'),
+                'sophong'    => $this->input->post('limit-room'),
+                'songuoi'    => $this->input->post('limit-people')
             ),
             MODEL_POST_PRICE => array(
                 'tiendien' => $this->input->post('e_price')===NULL ? 0:1,

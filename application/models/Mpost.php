@@ -143,11 +143,7 @@ class Mpost extends CI_Model {
                 $last_id = $this->db->insert_id();
             }
         }
-        $data_mana = array(
-            'idUser' => $this->session->userdata(LABEL_LOGIN)['id'],
-            'idBantin' => $last_id
-        );
-        $this->db->insert(MODEL_MANAGE_POST, $data_mana);
+
         return $last_id;
     }
 
@@ -293,5 +289,16 @@ class Mpost extends CI_Model {
         $this->db->order_by(MODEL_POST.'.'.$this->id, 'DESC');
         $query = $this->db->get();
         return $query->result_array();
+    }
+
+    public function get_by_id($id) {
+        $t = MODEL_POST;
+        $this->db->select($t.'.id');
+        $this->db->select($t.'.tieude');
+        $this->db->from($t);
+        $this->db->where($t.'.id', $id);
+        $this->db->order_by($t.'.id', 'DESC');
+        $query = $this->db->get();
+        return $query->row_array();
     }
 }
