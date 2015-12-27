@@ -128,23 +128,13 @@ if ($display_name == null) {
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Thông Tin Cá Nhân <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <?php
-                            $method = $this->router->fetch_method();
-                            ?>
-                            <li class="<?php if($method == 'index') echo 'active' ?>">
-                                <a href="<?php echo site_url('user/dashboard'); ?>">Thông Tin Tải Khoản</a>
-                            </li>
-                            <li class="<?php if($method == 'change_password') echo 'active' ?>">
-                                <a href="<?php echo site_url('user/change_password'); ?>">Đổi Mật Khẩu</a>
-                            </li>
-                            <li class="<?php if($method == 'change_avatar') echo 'active' ?>">
-                                <a href="<?php echo site_url('user/change_avatar'); ?>">Đổi Ảnh Đại Diện</a>
-                            </li>
-                        </ul>
+                    <?php
+                    $method = $this->router->fetch_method();
+                    ?>
+                    <li class="<?php if($method == 'dashboard') echo 'active' ?>">
+                        <a href="<?php echo site_url('user/dashboard'); ?>"><i class="fa fa-info"></i> Thông Tin Tải Khoản</a>
                     </li>
+<<<<<<< HEAD
                     <li>
                         <a href="<?php echo site_url('user/market'); ?>"><i class="fa fa-fw fa-edit"></i> Quản lý bài đăng chỗ ở</a>
                     </li>
@@ -153,6 +143,19 @@ if ($display_name == null) {
                     </li>
                     <li>
                         <a href="<?php echo site_url(''); ?>"><i class="fa fa-fw fa-edit"></i> Quản lý phương tiện học tập</a>
+=======
+                    <li class="<?php if($method == 'change_password') echo 'active' ?>">
+                        <a href="<?php echo site_url('user/change_password'); ?>"><i class="fa fa-lock"></i> Đổi Mật Khẩu</a>
+                    </li>
+                    <li class="<?php if($method == 'change_avatar') echo 'active' ?>">
+                        <a href="<?php echo site_url('user/change_avatar'); ?>"><i class="fa fa-picture-o"></i> Đổi Ảnh Đại Diện</a>
+                    </li>
+                    <li  class="<?php if($method == 'manage_market') echo 'active' ?>">
+                        <a href="<?php echo site_url('user/manage_market'); ?>"><i class="fa fa-fw fa-pencil"></i> Phương Tiện Học Tập</a>
+                    </li>
+                    <li  class="<?php if($method == 'manage_post') echo 'active' ?>">
+                        <a href="<?php echo site_url('user/manage_post'); ?>"><i class="fa fa-fw fa-home"></i> Tin Nhà Trọ</a>
+>>>>>>> 10bf313b1b5f88e2926f409c3a7d3b66db68cf7a
                     </li>
                 </ul>
             </div>

@@ -49,26 +49,6 @@ $bigger = 'bigger';
     </div>
 
     <div class="<?=$form_group?>">
-        <div class="<?=$stage_1.' '.$text_right ?>">Số Người Có Thể Ở</div>
-        <div class="<?=$stage_2 ?>">
-            <?php
-            $field_name = 'limit';
-            $data = array(
-                'id' => $field_name,
-                'name' => $field_name,
-                'type' => 'number',
-                'class' => $input_class,
-                'value' => set_value($field_name),
-                'style' => 'width: 100px;display: inline-block; padding-left: 30px',
-                'min' => 0
-            );
-            echo form_input($data);
-            ?>
-            Người
-        </div>
-    </div>
-
-    <div class="<?=$form_group?>">
         <div class="<?=$stage_1.' '.$text_right ?>">Chỉ Cho</div>
         <div class="<?=$stage_2 ?>">
             <?php

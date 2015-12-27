@@ -1,6 +1,6 @@
 <div class="form-group">
 	<form action="" method="post">
-		<input type="hidden" value="<?php echo base_url().'ajax/change_avatar' ?>" id="url_ajax">
+		<input type="hidden" value="<?php echo base_url().'user/change_avatar' ?>" id="url_ajax">
 	    <input type="file" name="img" class="file">
 	    <div class="input-group col-xs-12">
 		    <input type="text" class="form-control input-lg" style="opacity: 0">

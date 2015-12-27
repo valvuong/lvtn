@@ -88,7 +88,7 @@ $autoload['drivers'] = array();
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('asset','css','js','image','uploads','bootstrap','cookie');
+$autoload['helper'] = array('asset','css','js','image','uploads','bootstrap','cookie','url');
 
 
 /*
@@ -137,4 +137,4 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('first_model' => 'first');
 */
 
-$autoload['model'] = array('mpost','mmarket','muser','mpost_category','mmarket_category');
+$autoload['model'] = array('mpost','mmarket','muser','mpost_category','mmarket_category','mpost_reservation','mdistrict');

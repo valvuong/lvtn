@@ -15,22 +15,25 @@ class Mpost_reservation extends CI_Model {
     private $kinhdo = 'kinhdo';
     private $vido = 'vido';
 
+    private $table;
+
     public function __construct() {
         parent::__construct();
+        $this->table = MODEL_RESERVATION_ROOM;
     }
 
     ///////////reservation/////////////////////
     public function create_reservation_post($info){
-        $this->db->insert('post_reservation', $info);
+        $this->db->insert($this->table, $info);
     }
     public function update_reservation_post($info,$idBantin,$idUser){
         $this->db->where('idUser',$idUser);
         $this->db->where('idBantin',$idBantin);
-        $this->db->update('post_reservation', $info);
+        $this->db->update($this->table, $info);
     }
     public function check_reservation_post($idUser,$idBantin) {
         $this->db->select('*');
-        $this->db->from('post_reservation');
+        $this->db->from($this->table);
         $this->db->where('idUser',$idUser);
         $this->db->where('idBantin',$idBantin);
         $query = $this->db->get();
@@ -43,10 +46,10 @@ class Mpost_reservation extends CI_Model {
             return false;
         }
     }
-
+//edit reservation
     public function get_reservation_num($idUser,$idBantin){
         $this->db->select('*');
-        $this->db->from('post_reservation');
+        $this->db->from($this->table);
         $this->db->where('idUser',$idUser);
         $this->db->where('idBantin',$idBantin);
         $query = $this->db->get();
@@ -56,12 +59,21 @@ class Mpost_reservation extends CI_Model {
     public function delete_reservation_post($idUser,$idBantin){
         $this->db->where('idUser',$idUser);
         $this->db->where('idBantin',$idBantin);
-        $this->db->delete('post_reservation');
+        $this->db->delete($this->table);
     }
+//manage post reservation
     public function get_all($idUser){
         $this->db->select('*');
-        $this->db->from('post_reservation');
+        $this->db->from($this->table);
         $this->db->where('idUser',$idUser);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+//show all reserve
+    public function show_all($idBantin){
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('idBantin',$idBantin);
         $query = $this->db->get();
         return $query->result_array();
     }

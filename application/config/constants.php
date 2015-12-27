@@ -101,6 +101,9 @@ define('MODEL_POST_APARTMENT', 'post_apartment');
 define('MODEL_POST_FULL_HOUSE', 'post_full_house');
 define('MODEL_POST_BASEMENT', 'post_basement');
 
+
+define('MODEL_RESERVATION_ROOM', 'post_reservation');
+
 define('MODEL_MARKET', 'equipment');
 define('MODEL_MARKET_UPLOAD', 'equipment_image');
 define('MODEL_MARKET_CATEGORY', 'equipment_category');
@@ -115,7 +118,7 @@ define('SEARCH_PRICE', 'search_price');
 define('MODEL_MANAGE_POST', 'post_manage');
 define('MODEL_MANAGE_MARKET', 'equipment_manage');
 
-define('MODEL_CONTACT', 'lienhe');
+define('MODEL_CONTACT', 'contact');
 
 define('COOKIE_POST_SORT', 'post_sort');
 define('COOKIE_MARKET_SORT', 'market_sort');

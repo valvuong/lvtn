@@ -201,6 +201,42 @@ $label_checkbox_primary = 'label-checkbox-primary';
         </div>
 
         <div class="<?=$form_group?>">
+            <?php
+            $field_name = 'limit-people';
+            echo form_label("Số Người Có Thể Ở$required:", $field_name, array('class' => "$label_class $stage_1"));
+            $data = array(
+                'id' => $field_name,
+                'name' => $field_name,
+                'type' => 'number',
+                'class' => $input_class,
+                'value' => set_value($field_name) || 1,
+                'style' => 'width: 100px;display: inline-block; padding-left: 30px',
+                'min' => 1
+            );
+            echo form_input($data);
+            ?>
+            Người
+        </div>
+
+        <div class="<?=$form_group?>">
+            <?php
+            $field_name = 'limit-room';
+            echo form_label("Số Phòng$required:", $field_name, array('class' => "$label_class $stage_1"));
+            $data = array(
+                'id' => $field_name,
+                'name' => $field_name,
+                'type' => 'number',
+                'class' => $input_class,
+                'value' => set_value($field_name) || 1,
+                'style' => 'width: 100px;display: inline-block; padding-left: 30px',
+                'min' => 1
+            );
+            echo form_input($data);
+            ?>
+            Người
+        </div>
+
+        <div class="<?=$form_group?>">
             <?php echo form_label("Hình ảnh$required:", '', array('class' => $label_class)) ?>
 
             <div class="<?=$form_group?> upload-warning" style="display: inline-block;width: 100%">

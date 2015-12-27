@@ -61,15 +61,14 @@ $db =& DB();
 $query = $db->get( MODEL_POST_CATEGORY );
 $result = $query->result_array();
 foreach( $result as $row ) {
-    $route[ 'dang-tin-'.$row['url_name'] ] = 'post/create_'.explode("/", $row['link'])[0];
+    $route[ 'dang-tin-'.$row['url_name'] ] = 'post/create_'.$row['link'];
 }
 
 $route['dang-ki'] = 'user/register';
 $route['quen-mat-khau'] = 'user/forgot_password';
 $route['dang-nhap'] = 'user/login';
 $route['dang-xuat'] = 'user/logout';
-$route['contact'] = 'post/contact';
-$route['about'] = 'post/about';
+$route['contact'] = 'user/contact';
 $route['tai-khoan'] = 'user/dashboard';
 
 $route['dang-tin'] = 'post/create_post';
@@ -89,8 +88,6 @@ $query = $db->get( MODEL_DISTRICT );
 $result = $query->result_array();
 foreach( $result as $row ) {
     $route[ 'nha-tro-'.$row['tenkhac'] ] = 'post/show_by_district/1/'.$row['idQ'];
-}
-foreach( $result as $row ) {
     $route[ 'nha-tro-'.$row['tenkhac'].'/(:num)' ] = 'post/show_by_district/$1/'.$row['idQ'];
 }
 

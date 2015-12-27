@@ -7,7 +7,7 @@ class User extends CI_Controller {
         parent::__construct();
         $this->load->database();
         $this->load->helper(array('url','form'));
-        $this->load->model(array('mdistrict','muser'));
+        $this->load->model(array('mdistrict'));
 		$this->load->library(array('form_validation','user_agent','googlemaps'));
 		$this->form_validation->set_error_delimiters('<div class="error">','</div>'); 
 		if ($this->session->userdata(LABEL_LOGIN)) {
@@ -91,7 +91,7 @@ class User extends CI_Controller {
 	                	'register' => array(
 	                        'username' => $this->input->post('register-username'),
 							'email'    => $this->input->post('register-email'),
-	                        'password' => $this->input->post('register-password'),
+	                        'password' => md5($this->input->post('register-password')),
 							'role'	   => 'ROLE_USER'
 						),
 						'avatar'   => $_FILES,
@@ -142,7 +142,7 @@ class User extends CI_Controller {
 
 	public function check_password() {
         if ($this->input->is_ajax_request()) {
-            $oldpass = $this->input->post('oldpass');
+            $oldpass = md5($this->input->post('oldpass'));
             $is_valid_pass = $this->muser->check_password($oldpass);
             $data['result'] = false;
             if ($is_valid_pass) {
@@ -153,12 +153,10 @@ class User extends CI_Controller {
     }
 
     public function change_password() {
-    	if (!$this->session->userdata(LABEL_LOGIN)) {
-    		redirect('dang-nhap','refresh');
-    	}
+    	$this->muser->not_authenticated();
         if ($this->input->is_ajax_request()) {
             $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
-            $newpass = $this->input->post('newpass');
+            $newpass = md5($this->input->post('newpass'));
             $data = array('password'=>$newpass);
             $this->muser->change_info($idUser, $data);
             exit(true);
@@ -182,7 +180,11 @@ class User extends CI_Controller {
 			$data['content']['login_fail']= false;
 			$data['left_hidden'] = true;
 			$data['right_hidden'] = true;
-			$data['redirect'] = $_SERVER['HTTP_REFERER'];	//get the previous page	
+			if ($_SERVER['HTTP_REFERER'] == base_url().'dang-xuat') {
+				$data['redirect'] = '';
+			} else {
+				$data['redirect'] = $_SERVER['HTTP_REFERER'];
+			}	//get the previous page	
 			$this->load->view(LAYOUT, $data);
 		}
 		else redirect('','refresh');	
@@ -199,7 +201,7 @@ class User extends CI_Controller {
 			if($this->input->post('submit')) {
 				$info = array(
 						'username' => $this->input->post('login-username'),
-						'password' => $this->input->post('login-password')
+						'password' => md5($this->input->post('login-password'))
 					);
 				$result = $this->muser->check_login($info);
 				if($result) {
@@ -230,7 +232,7 @@ class User extends CI_Controller {
 	function logout(){
 		$this->session->unset_userdata('logged_in');
 		$this->session->sess_destroy();
-		redirect('', 'refresh');
+		redirect('dang-nhap', 'refresh');
 	}
 	
 	function update_profile($id)
@@ -394,9 +396,7 @@ class User extends CI_Controller {
     }
     //////////////////////dashboard///////////////////
     public function dashboard() {
-		if(!$this->session->userdata(LABEL_LOGIN)) {
-			redirect('dang-nhap','refresh');
-		}
+		$this->muser->not_authenticated();
 		if ($this->input->is_ajax_request()) {
 			$idUser = $this->session->userdata(LABEL_LOGIN)['id'];
             $field = $this->input->post('field');
@@ -415,13 +415,11 @@ class User extends CI_Controller {
 	}
 
 	public function change_avatar() {
-		if(!$this->session->userdata(LABEL_LOGIN)) {
-			redirect('dang-nhap','refresh');
-		}
+		$this->muser->not_authenticated();
 		if ($this->input->is_ajax_request()) {
             $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
             $avatar_name = $this->session->userdata(LABEL_LOGIN)['avatar'];
-            unlink('asset/uploads/user/'.$avatar);
+            unlink('asset/uploads/user/'.$avatar_name);
             $config['upload_path'] = 'asset/uploads/user';
             $config['allowed_types'] = 'gif|jpg|jpeg|png';
             $config['max_size'] = '1024';
@@ -445,9 +443,10 @@ class User extends CI_Controller {
                     $extension = end($fname);
                     $tenhinh = $file_name.'.'.$extension;
                     $data = array('avatar'=>$tenhinh);
-                    $this->db->where('idUser', $idUser);
-                    $this->db->update(MODEL_USER, $data);
-                    $this->session->userdata(LABEL_LOGIN)['avatar'] = $tenhinh;
+                    $this->muser->change_info($idUser, $data);
+                    $user_session = $this->session->userdata(LABEL_LOGIN);
+                    $user_session['avatar'] = $tenhinh;
+                    $this->session->set_userdata(LABEL_LOGIN, $user_session );
                 }
             }
             
@@ -461,20 +460,34 @@ class User extends CI_Controller {
 	}
 
 	public function manage_market() {
-		if(!$this->session->userdata(LABEL_LOGIN)) {
-			redirect('dang-nhap','refresh');
-		}
-		$data['view'] = 'dashboard/change_avatar';
-		$data['content'] = '';
+		$this->muser->not_authenticated();
+		$this->load->model(array('mmarket'));
+		$data['view'] = 'dashboard/manage_market';
+		$idUser = $this->session->userdata(LABEL_LOGIN)['id'];
+		$data['content'] = $this->mmarket->get_all(1);
 		$data['display_name'] = $this->display_name;
 		$this->load->view('dashboard/main', $data);
 	}
 
 	public function manage_post() {
-		if(!$this->session->userdata(LABEL_LOGIN)) {
-			redirect('dang-nhap','refresh');
+		$this->muser->not_authenticated();
+		$this->load->model(array('mpost', 'mmanage_post'));
+		$data['view'] = 'dashboard/manage_post';
+		$idUser = $this->session->userdata(LABEL_LOGIN)['id'];
+		$idPosts = $this->mmanage_post->get_post_by_user($idUser);
+		$posts = array();
+		foreach ($idPosts as $row) {
+			$posts[] = $this->mpost->get_by_id($row['idBantin']);
 		}
-		$data['view'] = 'dashboard/change_avatar';
+		$data['content'] = $posts;
+		$data['display_name'] = $this->display_name;
+		$this->load->view('dashboard/main', $data);
+	}
+
+	public function manage_user() {
+		$this->muser->not_authenticated();
+		$this->muser->not_admin();
+		$data['view'] = 'dashboard/manage_user';
 		$data['content'] = '';
 		$data['display_name'] = $this->display_name;
 		$this->load->view('dashboard/main', $data);

@@ -103,31 +103,39 @@ class Mpost extends CI_Model {
         $this->db->join(MODEL_POST_PRICE, MODEL_POST_PRICE.'.idBantin = '.$id, 'left');
         $this->db->join(MODEL_POST_CONTACT, MODEL_POST_CONTACT.'.idBantin = '.$id, 'left');
         $query = $this->db->get();
-        $result = $query->result_array();
+        $result = $query->row_array();
 
         $this->db->select(MODEL_POST_CATEGORY.'.bang_phu');
         $this->db->from(MODEL_POST_CATEGORY);
-        $this->db->where(MODEL_POST_CATEGORY.'.id', $result[0]['chuyenmuc']);
+        $this->db->where(MODEL_POST_CATEGORY.'.id', $result['chuyenmuc']);
         $query = $this->db->get();
-        $r = $query->result_array();
-        $t = $r[0]['bang_phu'];
+        $r = $query->row_array();
+        $t = $r['bang_phu'];
 
         $this->db->select($t.'.*');
         $this->db->from($t);
         $this->db->where($t.'.idBantin', $id);
         $query = $this->db->get();
-        $r = $query->result_array();
+        $r = $query->row_array();
         unset($r['id']);
         unset($r['idBantin']);
-        $result[0]['thongtinbosung'] = $r[0];
+        $result['thongtinbosung'] = $r;
 
         $this->db->select('tenhinh');
         $this->db->from(MODEL_POST_UPLOAD);
         $this->db->where('idBantin',$id);
         $query = $this->db->get();
-        $result[0]['tenhinh'] = $query->result_array();
+        $result['tenhinh'] = $query->result_array();
 
-        return $result[0];
+        $this->db->select(MODEL_RESERVATION_ROOM.'.*');
+        $this->db->from(MODEL_RESERVATION_ROOM);
+        $this->db->where(MODEL_RESERVATION_ROOM.'.idBantin',$id);
+        $query = $this->db->get();
+        $re = $query->result_array();
+        $result['reservation'] = $re;
+
+
+        return $result;
     }
 
     public function create($data) {
@@ -143,11 +151,7 @@ class Mpost extends CI_Model {
                 $last_id = $this->db->insert_id();
             }
         }
-        $data_mana = array(
-            'idUser' => $this->session->userdata(LABEL_LOGIN)['id'],
-            'idBantin' => $last_id
-        );
-        $this->db->insert(MODEL_MANAGE_POST, $data_mana);
+
         return $last_id;
     }
 
@@ -295,9 +299,20 @@ class Mpost extends CI_Model {
         return $query->result_array();
     }
 
+
     public function get_num_every_district($idD) {
         $query = $this->db->query('SELECT COUNT(*) as total FROM '.MODEL_POST.' WHERE quan= '.$idD.' AND '.$this->hethan.' >= NOW()');
         $result = $query->row_array();
         return $result['total'];
+    }
+    public function get_by_id($id) {
+        $t = MODEL_POST;
+        $this->db->select($t.'.id');
+        $this->db->select($t.'.tieude');
+        $this->db->from($t);
+        $this->db->where($t.'.id', $id);
+        $this->db->order_by($t.'.id', 'DESC');
+        $query = $this->db->get();
+        return $query->row_array();
     }
 }
