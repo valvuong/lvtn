@@ -457,20 +457,38 @@ class User extends CI_Controller {
 
 	public function manage_market() {
 		$this->muser->not_authenticated();
-		$this->load->model(array('mmarket'));
+		$this->load->model(array('mmanage_market'));
 		$data['view'] = 'dashboard/manage_market';
 		$idUser = $this->session->userdata(LABEL_LOGIN)['id'];
-		$data['content'] = $this->mmarket->get_all(1);
+		$idMarkets = array_reverse($this->mmanage_market->get_market_by_user($idUser));
+		$markets = array();
+		foreach ($idMarkets as $row) {
+			$markets[] = $this->mmarket->get_by_id($row['idRaovat']);
+		}
+		$data['content'] = $markets;
 		$data['display_name'] = $this->display_name;
 		$this->load->view('dashboard/main', $data);
 	}
 
+	public function delete_market() {
+		$this->muser->not_authenticated();
+		if ($this->input->is_ajax_request()) {
+			$this->load->model(array('mmanage_market'));
+			$idMarket = $this->input->post('idMarket');
+			$idUser = $this->session->userdata(LABEL_LOGIN)['id'];
+			if ($this->mmanage_market->check_owner($idUser, $idMarket)) {
+				$this->mmarket->delete_market($idMarket);
+				exit(true);
+			}
+		}
+	}
+
 	public function manage_post() {
 		$this->muser->not_authenticated();
-		$this->load->model(array('mpost', 'mmanage_post'));
+		$this->load->model(array('mmanage_post'));
 		$data['view'] = 'dashboard/manage_post';
 		$idUser = $this->session->userdata(LABEL_LOGIN)['id'];
-		$idPosts = $this->mmanage_post->get_post_by_user($idUser);
+		$idPosts = array_reverse($this->mmanage_post->get_post_by_user($idUser));
 		$posts = array();
 		foreach ($idPosts as $row) {
 			$posts[] = $this->mpost->get_by_id($row['idBantin']);
@@ -480,12 +498,34 @@ class User extends CI_Controller {
 		$this->load->view('dashboard/main', $data);
 	}
 
-	public function manage_user() {
+	public function delete_post() {
 		$this->muser->not_authenticated();
+		if ($this->input->is_ajax_request()) {
+			$this->load->model(array('mmanage_post'));
+			$idPost = $this->input->post('idPost');
+			$idUser = $this->session->userdata(LABEL_LOGIN)['id'];
+			if ($this->mmanage_post->check_owner($idUser, $idPost)) {
+				$this->mpost->delete_post($idPost);
+				exit(true);
+			}
+		}
+	}
+
+	public function manage_user() {
 		$this->muser->not_admin();
 		$data['view'] = 'dashboard/manage_user';
-		$data['content'] = '';
+		$data['content'] = $this->muser->get_all();
 		$data['display_name'] = $this->display_name;
 		$this->load->view('dashboard/main', $data);
+	}
+
+	public function delete_user() {
+		if ($this->muser->is_admin()) {
+			if ($this->input->is_ajax_request()) {
+				$idUser = $this->input->post('idUser');
+				$this->muser->delete_user($idUser);
+				exit(true);
+			}
+		}
 	}
 }

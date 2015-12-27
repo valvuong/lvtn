@@ -9,7 +9,7 @@ class Market extends CI_Controller {
         parent::__construct();
         $this->muser->not_authenticated();
         $this->load->helper(array('url','form'));
-        $this->load->model(array('mdistrict','mmarket','mmarket_category'));
+        $this->load->model(array('mdistrict','mmarket','mmarket_category','mmanage_market'));
         $this->header_message = "CHIA SẺ, BUÔN BÁN, TRAO ĐỔI ĐỒ DÙNG CÁ NHÂN";
     }
 
@@ -92,10 +92,16 @@ class Market extends CI_Controller {
                     $info[ACTION_MARKET_UPLOAD] = $_FILES;
                 }
                 $id = $this->mmarket->create($info);
+                $this->insert_manage($id);
                redirect($id.'-tin-vat','refresh');
             }
         }
         $this->load->view(LAYOUT, $data);
+    }
+
+    public function insert_manage($id) {
+        $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
+        $this->mmanage_market->create($idUser, $id);
     }
 
     public function get_by_category($page = 1, $cate_id) {
@@ -112,8 +118,7 @@ class Market extends CI_Controller {
         $data['content']['num_rows'] = $this->mmarket->get_cate_rows($cate_id);
         $data['content']['url_alias'] = $cate_id.'-rao-vat-';
         $data['content']['url_alias_extend'] = '';
-        $query = $this->db->query('SELECT tenloai FROM '.MODEL_MARKET_CATEGORY.' WHERE id = '.$cate_id);
-        $result = $query->row_array();
+        $result = $this->mmarket_category->get_one($cate_id);
         $data['content']['label_list'] = $result['tenloai'];
         $this->load->view(LAYOUT, $data);
     }

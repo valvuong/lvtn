@@ -2,10 +2,10 @@
 
     <div class="footer-left">
 
-        <h3>Company<span>logo</span></h3>
+        <h3>Đại Học<span> Bách Khoa</span></h3>
 
         <p class="footer-links">
-            <a href="<?=site_url('')?>"><i class="fa fa-home"></i></a>
+            <a href="<?=site_url('home')?>"><i class="fa fa-home"></i></a>
             ·
             <a href="<?=site_url('contact')?>">Liên Hệ</a>
         </p>
@@ -17,12 +17,12 @@
 
         <div>
             <i class="fa fa-map-marker"></i>
-            <p><span>268 Lý Thường Kiệt</span> Hồ Chí Minh, Việt Nam</p>
+            <p><span>268 Lý Thường Kiệt, P.14, Q.10</span> Hồ Chí Minh, Việt Nam</p>
         </div>
 
         <div>
             <i class="fa fa-phone"></i>
-            <p>+1 555 123456</p>
+            <p>+84 555 123456</p>
         </div>
 
         <div>

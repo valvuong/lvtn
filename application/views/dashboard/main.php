@@ -146,6 +146,9 @@ if ($display_name == null) {
                     <li  class="<?php if($method == 'manage_post') echo 'active' ?>">
                         <a href="<?php echo site_url('user/manage_post'); ?>"><i class="fa fa-fw fa-home"></i> Tin Nhà Trọ</a>
                     </li>
+                    <li  class="<?php if($method == 'manage_user') echo 'active' ?>">
+                        <a href="<?php echo site_url('user/manage_user'); ?>"><i class="fa fa-fw fa-user"></i> Thành Viên</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

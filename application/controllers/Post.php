@@ -10,14 +10,10 @@ class Post extends MY_Controller {
     }
 
     public function index($id) {
-        $query = $this->db->query(
-            'SELECT '.MODEL_POST_CATEGORY.'.link AS url FROM '.MODEL_POST.
-            ' LEFT JOIN '.MODEL_POST_CATEGORY.
-            ' ON '.MODEL_POST_CATEGORY.'.id = '.MODEL_POST.'.chuyenmuc'.
-            ' WHERE '.MODEL_POST.'.id = '.$id);
-        $result = $query->row_array();
+        $idCate = $this->mpost->get_category($id);
+        $result = $this->mpost_category->get_one($idCate);
         
-        $url = 'post/index_'.$result['url'].'/'.$id;
+        $url = 'post/index_'.$result['link'].'/'.$id;
         redirect($url, 'refresh');
     }
 
