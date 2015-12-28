@@ -46,6 +46,42 @@ class Mpost_reservation extends CI_Model {
             return false;
         }
     }
+    public function check_reservation_freeroom($idBantin) {
+        $room = 0;
+        $this->db->select('sophong');
+        $this->db->from($this->table);
+        $this->db->where('idBantin',$idBantin);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        foreach ($result as $key => $value) {
+            $room += intval($value['sophong']);
+        }
+        return $room;
+    }
+    public function check_reservation_freepeople($idBantin) {
+        $people = 0;
+        $this->db->select('songuoi');
+        $this->db->from($this->table);
+        $this->db->where('idBantin',$idBantin);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        foreach ($result as $key => $value) {
+            $people += intval($value['songuoi']);
+        }
+        return $people;
+    }
+    public function check_reservation_free($idBantin) {
+        $this->db->select('songuoi');
+        $this->db->select('sophong');
+        $this->db->from(MODEL_POST);
+        $this->db->where('id',$idBantin);
+        $query = $this->db->get();
+        $result = $query->row_array();
+        if ($result['songuoi'] > $this->check_reservation_freepeople($idBantin) && $result['sophong'] > $this->check_reservation_freeroom($idBantin)) {
+            return true;
+        }
+        else return false;
+    }
 //edit reservation
     public function get_reservation_num($idUser,$idBantin){
         $this->db->select('*');

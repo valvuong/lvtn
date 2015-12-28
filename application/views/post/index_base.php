@@ -9,8 +9,12 @@ if ($this->muser->is_authenticated()) {
         ?>
             <button type="button" class="btn btn-primary main-center" data-toggle="modal" data-target="#update-reservation-post">Sửa Đăng Kí</button>
             <button type="button" class="btn btn-danger main-center" data-toggle="modal" data-target="#delete-reservation-post">Hủy Đăng Kí</button>
-    <?php
-    } else {
+        <?php
+        } else if (!$this->mpost_reservation->check_reservation_free($this->uri->segment(3))) {
+        ?>
+        <button type="button" disabled class="btn btn-primary main-center" data-toggle="modal" data-target="#reservation-post">Không Thể Đăng Kí Trước</button>
+        <?php 
+        } else {
     ?>
     <button type="button" class="btn btn-primary main-center" data-toggle="modal" data-target="#reservation-post">Đăng Kí Trước</button>
     <?php

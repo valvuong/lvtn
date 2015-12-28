@@ -14,15 +14,20 @@
             <form id='reservation-form' action="post/create_reservation_post" method="get">
                 <div class="form-group">
                     <label>Số Phòng Muốn Đăng Kí: 
-                        Tât cả: <span style='color:red'>5</span>
-                        Còn trống: <span style='color:red'>3</span></label>
-                    <input type="number" name="reservation-nums-room" class="form-control" min="0">
+                        Tât cả: <span style='color:red'><?=$content['sophong']?></span>
+                        Còn trống: <span style='color:red'>
+                        <?=$content['sophong'] - intval($this->mpost_reservation->check_reservation_freeroom($this->uri->segment(3))) ?>
+                        </span></label>
+                    <input type="number" name="reservation-nums-room" class="form-control" min="0" max=
+                    "<?=$content['sophong'] - intval($this->mpost_reservation->check_reservation_freeroom($this->uri->segment(3))) ?>">
                 </div>
                 <div class="form-group">
                     <label>Số Người Muốn Đăng Kí:
-                        Tất cả: <span style='color:red'>5</span>
-                        Có thể đăng ký: <span style='color:red'>3</span> </label>
-                    <input type="number" name="reservation-nums-people" class="form-control" min="0">
+                        Tất cả: <span style='color:red'><?=$content['songuoi']?></span>
+                        Có thể đăng ký: <span style='color:red'>
+                            <?=$content['songuoi']- intval($this->mpost_reservation->check_reservation_freepeople($this->uri->segment(3))) ?>
+                    </span> </label>
+                    <input type="number" name="reservation-nums-people" class="form-control" min="0" max="<?=$content['songuoi']- intval($this->mpost_reservation->check_reservation_freepeople($this->uri->segment(3))) ?>">
                 </div>
                 <div class="form-group">
                     <label>Tên</label>

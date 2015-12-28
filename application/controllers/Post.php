@@ -140,12 +140,15 @@ class Post extends MY_Controller {
         );
         $this->mpost_reservation->update_reservation_post($info,$idBantin,$idUser);
     }
-
+// check if this user reserves or not
     public function check_reservation_post() {
         $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
         return $this->mpost_reservation->check_reservation_post($idUser);
     }
-
+    public function check_reservation_free(){
+        $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
+        return $this->mpost_reservation->check_reservation_free($idUser);
+    }
     public function delete_reservation_post() {
         $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
         $idBantin = $this->input->get_post('idBantin');

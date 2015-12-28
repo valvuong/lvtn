@@ -138,6 +138,6 @@ $(document).ready(function(){
 });
 </script>
 <?php if($view == 'post/index_base')
-    $this->load->view('post/reservation'); ?>
+    $this->load->view('post/reservation',$content); ?>
 </body>
 </html>

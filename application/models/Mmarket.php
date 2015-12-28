@@ -160,7 +160,7 @@ class Mmarket extends CI_Model {
         return $query->result_array();
     }
 
-    public function get_search_market_by_select_rows($category, $search_subcategory, $status, $price) {
+    public function get_search_rows($category, $search_subcategory, $status, $price) {
         if ($price < 100) {
             $min_price = $price / 10;
             $max_price = $price % 10;
@@ -185,7 +185,7 @@ class Mmarket extends CI_Model {
         return $query->num_rows();
     }
 
-    public function get_search_market_by_select_content($category, $search_subcategory, $status, $price,  $page) {
+    public function get_search_content($category, $search_subcategory, $status, $price,  $page) {
         if ($price < 100) {
             $min_price = $price / 10;
             $max_price = $price % 10;

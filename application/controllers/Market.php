@@ -143,16 +143,16 @@ class Market extends CI_Controller {
         $data['content']['label_list'] = $result['tenloai'].' - '.$result['tenloaisp'];
         $this->load->view(LAYOUT, $data);
     }
-    public function search_by_select_market($page=1) {
+    public function search_by_select($page=1) {
         $search_category = $this->input->get_post('search-category');
         $search_subcategory = $this->input->get_post('search-subcategory');
         $search_status = $this->input->get_post('search-status');
         $search_price = $this->input->get_post('search-price');
 
 
-        $result = $this->mmarket->get_search_market_by_select_content(
+        $result = $this->mmarket->get_search_content(
                             $search_category,$search_subcategory,$search_status,$search_price,$page);
-        $num_rows = $this->mmarket->get_search_market_by_select_rows(
+        $num_rows = $this->mmarket->get_search_rows(
                            $search_category,$search_subcategory,$search_status,$search_price);
 
         if ($result != false) {
@@ -169,7 +169,7 @@ class Market extends CI_Controller {
         $data['content']['pagination'] = array($class_name, $method_name, $page);
         $data['content']['items_per_page'] = ADS_PER_PAGE;
         $data['content']['num_rows'] = $num_rows;
-        $data['content']['url_alias'] = 'Search_by_select/index_market/';
+        $data['content']['url_alias'] = 'market/Search_by_select/';
         $data['content']['url_alias_extend'] = '?search-category='.$search_category.'&search-subcategory='.$search_subcategory.
         '&search-price='.$search_price.'&search-status='.$search_status;
         $data['content']['label_list'] = 'TẤT CẢ TIN RAO VẶT';
