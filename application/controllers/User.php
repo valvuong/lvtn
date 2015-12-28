@@ -410,7 +410,7 @@ class User extends CI_Controller {
 			$f = $this->muser->get_profile($param);
 			$data['content']['info'] = $f[0];
 			$data['display_name'] = $this->display_name;
-			$this->load->view('dashboard/main', $data);
+			$this->load->view(DASHBOARD, $data);
 		}
 	}
 
@@ -455,7 +455,7 @@ class User extends CI_Controller {
         	$data['view'] = 'dashboard/change_avatar';
 			$data['content'] = '';
 			$data['display_name'] = $this->display_name;
-			$this->load->view('dashboard/main', $data);
+			$this->load->view(DASHBOARD, $data);
         }
 	}
 
@@ -471,7 +471,7 @@ class User extends CI_Controller {
 		}
 		$data['content'] = $markets;
 		$data['display_name'] = $this->display_name;
-		$this->load->view('dashboard/main', $data);
+		$this->load->view(DASHBOARD, $data);
 	}
 
 	public function delete_market() {
@@ -481,6 +481,10 @@ class User extends CI_Controller {
 			$idMarket = $this->input->post('idMarket');
 			$idUser = $this->session->userdata(LABEL_LOGIN)['id'];
 			if ($this->mmanage_market->check_owner($idUser, $idMarket)) {
+				$images = $this->mmarket->get_images($idMarket);
+				foreach ($images as $img) {
+					unlink('asset/uploads/market/'.$img['tenhinh']);
+				}
 				$this->mmarket->delete_market($idMarket);
 				exit(true);
 			}
@@ -499,7 +503,7 @@ class User extends CI_Controller {
 		}
 		$data['content'] = $posts;
 		$data['display_name'] = $this->display_name;
-		$this->load->view('dashboard/main', $data);
+		$this->load->view(DASHBOARD, $data);
 	}
 
 	public function delete_post() {
@@ -509,6 +513,10 @@ class User extends CI_Controller {
 			$idPost = $this->input->post('idPost');
 			$idUser = $this->session->userdata(LABEL_LOGIN)['id'];
 			if ($this->mmanage_post->check_owner($idUser, $idPost)) {
+				$images = $this->mpost->get_images($idPost);
+				foreach ($images as $img) {
+					unlink('asset/uploads/post/'.$img['tenhinh']);
+				}
 				$this->mpost->delete_post($idPost);
 				exit(true);
 			}
@@ -524,12 +532,13 @@ class User extends CI_Controller {
 		$data['display_name'] = $this->display_name;
 		$this->load->view('dashboard/main', $data);
     }
+
 	public function manage_user() {
 		$this->muser->not_admin();
 		$data['view'] = 'dashboard/manage_user';
 		$data['content'] = $this->muser->get_all();
 		$data['display_name'] = $this->display_name;
-		$this->load->view('dashboard/main', $data);
+		$this->load->view(DASHBOARD, $data);
 	}
 
 	public function delete_user() {
@@ -541,4 +550,20 @@ class User extends CI_Controller {
 			}
 		}
 	}
+/*
+	public function manage_reservation() {
+		$this->muser->not_authenticated();
+		$data['view'] = 'dashboard/manage_reservation';
+		$this->load->modeL(array('mpost_reservation'));
+		$idUser = $this->session->userdata(LABEL_LOGIN)['id'];
+		$idPosts = $this->mpost_reservation->get_posts_by_user($idUser);
+		$posts = array();
+		foreach ($idPosts as $row) {
+			$posts[] = $this->mpost->get_by_id($row['idBantin']);
+		}
+		$data['content'] = $posts;
+		$data['display_name'] = $this->display_name;
+		$this->load->view(DASHBOARD, $data);
+	}
+*/
 }

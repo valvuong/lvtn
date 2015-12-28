@@ -54,21 +54,23 @@ $gender = array('Nam', 'Nữ');
 	});
 	function delete_user() {
 		$('.delete').click(function(){
-			var idUser = $(this).attr('id');
-			var url = '<?=base_url()?>user/delete_user';
-			$.ajax({
-				url: url,
-				type: "POST",
-				data: {idUser: idUser},
-				dataType: "json",
-				success: function(data) {
-					console.log('remove successfully');
-					$('#row_'+idUser).remove();
-				},
-				error: function() {
-					alert('error');
-				}
-			});
+			if (window.confirm("Bạn Muốn Xóa Thành Viên Này?")) {
+				var idUser = $(this).attr('id');
+				var url = '<?=base_url()?>user/delete_user';
+				$.ajax({
+					url: url,
+					type: "POST",
+					data: {idUser: idUser},
+					dataType: "json",
+					success: function(data) {
+						console.log('remove successfully');
+						$('#row_'+idUser).remove();
+					},
+					error: function() {
+						alert('error');
+					}
+				});
+			}
 		});
 	}
 </script>

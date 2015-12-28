@@ -92,6 +92,7 @@ class Mpost_reservation extends CI_Model {
         $result = $query->result_array();
         return $result['0'];
     }
+
     public function delete_reservation_post($idUser,$idBantin){
         $this->db->where('idUser',$idUser);
         $this->db->where('idBantin',$idBantin);
@@ -114,6 +115,15 @@ class Mpost_reservation extends CI_Model {
         $this->db->select('*');
         $this->db->from($this->table);
         $this->db->where('idBantin',$idBantin);
+    }
+
+    public function get_posts_by_user($idUser) {
+        $t = $this->table;
+        $this->db->select($t.'.idBantin');
+        $this->db->from($t);
+        $this->db->where($t.'.idUser', $idUser);
+        $this->db->order_by($t.'.id', 'DESC');
+
         $query = $this->db->get();
         return $query->result_array();
     }

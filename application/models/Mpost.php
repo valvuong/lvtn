@@ -121,19 +121,8 @@ class Mpost extends CI_Model {
         unset($r['idBantin']);
         $result['thongtinbosung'] = $r;
 
-        $this->db->select('tenhinh');
-        $this->db->from(MODEL_POST_UPLOAD);
-        $this->db->where('idBantin',$id);
-        $query = $this->db->get();
-        $result['tenhinh'] = $query->result_array();
-
-        $this->db->select(MODEL_RESERVATION_ROOM.'.*');
-        $this->db->from(MODEL_RESERVATION_ROOM);
-        $this->db->where(MODEL_RESERVATION_ROOM.'.idBantin',$id);
-        $query = $this->db->get();
-        $re = $query->result_array();
-        $result['reservation'] = $re;
-
+        $result['reservation'] = $this->get_reservation($id);
+        $result['tenhinh'] = $this->get_images($id);
         return $result;
     }
 
@@ -348,5 +337,22 @@ class Mpost extends CI_Model {
 
     public function delete_post($id) {
         $this->db->delete(MODEL_POST, array('id' => $id)); 
+    }
+
+    public function get_images($id) {
+        $t = MODEL_POST_UPLOAD;
+        $this->db->select($t.'.tenhinh');
+        $this->db->from($t);
+        $this->db->where($t.'.idBantin', $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_reservation($id) {
+        $this->db->select(MODEL_RESERVATION_ROOM.'.*');
+        $this->db->from(MODEL_RESERVATION_ROOM);
+        $this->db->where(MODEL_RESERVATION_ROOM.'.idBantin',$id);
+        $query = $this->db->get();
+        return $query->result_array();
     }
 }
