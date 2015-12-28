@@ -10,8 +10,8 @@ $required = '<span style="color: red">*</span>';
 $stage_1 = 'stage-1';
 $stage_2 = 'stage-2';
 ?>
-<h2 class="dt">ĐĂNG TIN RAO VẶT</h2>
-<?php echo form_open_multipart('market/create', array('id'=>'market-form')) ?>
+<h2 class="dt">ĐĂNG TIN PHƯƠNG TIỆN HỌC TẬP</h2>
+<?php echo form_open_multipart(site_url('buon-ban'), array('id'=>'market-form')) ?>
     <div class="<?=$form_group?>">
         <?php
         $field_name = 'ad-title';

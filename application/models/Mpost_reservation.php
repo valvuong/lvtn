@@ -99,11 +99,15 @@ class Mpost_reservation extends CI_Model {
     }
 //manage post reservation
     public function get_all($idUser){
-        $this->db->select('*');
+        $this->db->select(MODEL_RESERVATION_ROOM.'.*');
+        $this->db->select(MODEL_POST.'.tieude');
         $this->db->from($this->table);
         $this->db->where('idUser',$idUser);
+        $this->db->join(MODEL_POST, MODEL_POST.'.id = '.MODEL_RESERVATION_ROOM.'.idBantin', 'left');
+        $this->db->group_by(MODEL_RESERVATION_ROOM.'.idBantin');
         $query = $this->db->get();
-        return $query->result_array();
+        $result = $query->result_array();
+        return $result;
     }
 //show all reserve
     public function show_all($idBantin){

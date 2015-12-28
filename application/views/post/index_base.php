@@ -3,6 +3,7 @@
 <h3 class="title"><?php echo mb_strtoupper($content['tieude'],'utf8'); ?></h3>
 <div>
 <?php
+$idPost = $content['id'];
 if ($this->muser->is_authenticated()) {
     $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
         if ($this->mpost_reservation->check_reservation_post($idUser, $this->uri->segment(3))) {
@@ -19,7 +20,6 @@ if ($this->muser->is_authenticated()) {
     <button type="button" class="btn btn-primary main-center" data-toggle="modal" data-target="#reservation-post">Đăng Kí Trước</button>
     <?php
     }
-    $idPost = $content['id'];
     if ($this->mmanage_post->check_owner($idUser, $idPost)) { ?>
         <div class="table-responsive">
             <h3 class="text-center">Những Người Đặt Trước Tin Này</h3>
@@ -158,16 +158,14 @@ if ($this->muser->is_authenticated()) {
 <div class="paging">
     <?php
     // for PREVIOUS post
-    $query = $this->db->query('SELECT id FROM '.MODEL_POST.' WHERE id < '.$content['id'].' AND hethan >= NOW() ORDER BY id DESC LIMIT 1');
-    $result = $query->row_array();
+    $result = $this->mpost->get_previous_post($idPost);
     if($result != null) {
         ?>
         <a href="<?php echo site_url('tin-'.$result['id']) ?>"><span aria-hidden="true">←</span>Tin Trước</a>
         <?php
     }
     // for NEXT post
-    $query = $this->db->query('SELECT id FROM '.MODEL_POST.' WHERE id > '.$content['id'].' AND hethan >= NOW() ORDER BY id ASC LIMIT 1');
-    $result = $query->row_array();
+    $result = $this->mpost->get_next_post($idPost);
     if($result != null) {
         ?>
         <a class="float-right" href="<?php echo site_url('tin-'.$result['id']) ?>">Tin Kế Tiếp<span aria-hidden="true">→</span></a>

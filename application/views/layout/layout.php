@@ -25,6 +25,7 @@
 <body class="container">
     <a href="#" id="gotop" class="fbtn"><span class="x-icon glyphicon glyphicon-chevron-up"></span></a>
 
+    <?php if($this->muser->is_authenticated()): ?>
     <nav>
         <div class="cssmenu">
             <ul>
@@ -61,20 +62,6 @@
                         </a>
                     </li>
                 <?php endif; ?>
-                <!-- <li class="float-right task href-none-after">
-                    <a href="javascript:void(0)" class="click-dropdown"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-                    <ul>
-                        <li><a href="<?=site_url('buon-ban')?>">Rao Vặt</a></li>
-                        <li><a href="<?=site_url('dang-tin')?>">Đăng Tin</a></li>
-                        <?php if(!$this->session->userdata(LABEL_LOGIN)): ?>
-                            <li><a href="<?=site_url('dang-ki')?>">Đăng Kí</a></li>
-                            <li><a href="<?=site_url('dang-nhap')?>">Đăng Nhập</a></li>
-                        <?php else: ?>
-                            <li><a href="<?=site_url('dang-xuat')?>">Đăng Xuất</a></li>
-                            <li><a href="<?=site_url('tai-khoan')?>">Tài Khoản</a></li>
-                        <?php endif; ?>
-                    </ul>
-                </li> -->
                 <li class="drop-down-menu float-right">
                     <a href="javascript:void(0)" class="click-dropdown">Đăng Tin</a>
                     <ul>
@@ -91,6 +78,7 @@
             </ul>
         </div>
     </nav>
+    <?php endif ?>
 
     <?php $this->load->view('layout/header'); ?>
 
@@ -137,7 +125,10 @@ $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
 });
 </script>
-<?php if($view == 'post/index_base')
-    $this->load->view('post/reservation',$content); ?>
+
+<?php if($view == 'post/index_base') {
+    $this->load->view('post/reservation',$content); 
+    }
+?>
 </body>
 </html>

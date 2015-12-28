@@ -17,31 +17,39 @@
 			</thead>
 			<tbody>
 				<?php foreach ($content as $k => $v): ?>
-					<tr>
+					<tr id="row_<?=$v['id']?>">
 						<td class="text-center"><?=$k+1?></td>
-						<td><?php echo $v['tieude'] ?></td>
+						<td><a href="<?=site_url($v['id'].'-tin-vat')?>"><?php echo $v['tieude'] ?></a></td>
 						<td class="text-center"><button><i class="fa fa-wrench"></i></button></td>
-						<td class="text-center"><button class="del" id="<?=$v['id']?>"><i class="fa fa-times"></i></button></td>
+						<td class="text-center"><button class="delete" id="<?=$v['id']?>"><i class="fa fa-times"></i></button></td>
 					</tr>
 				<?php endforeach ?>
 			</tbody>
 		</table>
 	</div>
-	<button class="btn btn-primary load-more">Tải Thêm</button>
 </div>
 
 <script type="text/javascript">
-	function loadMore() {
-		$('.load-more').click(function(){
-			var url = '';
+	$(function(){
+		delete_market();
+	})
+	function delete_market() {
+		$('.delete').click(function(){
+			var url = '<?=base_url()?>user/delete_market';
+			var idMarket = $(this).attr('id');
 			$.ajax({
-
+				type: "POST",
+				url: url,
+				data: {idMarket: idMarket},
+				dataType: "json",
+				success: function(data){
+					console.log('delete successfully');
+					$('#row_'+idMarket).remove();
+				},
+				error: function(){
+					alert('error');
+				}
 			});
-		});
-	}
-	function del() {
-		$('button.del').click(function(){
-
 		});
 	}
 </script>

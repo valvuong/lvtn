@@ -134,16 +134,6 @@ if ($display_name == null) {
                     <li class="<?php if($method == 'dashboard') echo 'active' ?>">
                         <a href="<?php echo site_url('user/dashboard'); ?>"><i class="fa fa-info"></i> Thông Tin Tải Khoản</a>
                     </li>
-<<<<<<< HEAD
-                    <li>
-                        <a href="<?php echo site_url('user/market'); ?>"><i class="fa fa-fw fa-edit"></i> Quản lý bài đăng chỗ ở</a>
-                    </li>
-                    <li>
-                        <a href="<?php echo site_url('dashboard/manage_post_reservation'); ?>"><i class="fa fa-fw fa-edit"></i> Quản lý đăng ký đặt trước</a>
-                    </li>
-                    <li>
-                        <a href="<?php echo site_url(''); ?>"><i class="fa fa-fw fa-edit"></i> Quản lý phương tiện học tập</a>
-=======
                     <li class="<?php if($method == 'change_password') echo 'active' ?>">
                         <a href="<?php echo site_url('user/change_password'); ?>"><i class="fa fa-lock"></i> Đổi Mật Khẩu</a>
                     </li>
@@ -155,7 +145,12 @@ if ($display_name == null) {
                     </li>
                     <li  class="<?php if($method == 'manage_post') echo 'active' ?>">
                         <a href="<?php echo site_url('user/manage_post'); ?>"><i class="fa fa-fw fa-home"></i> Tin Nhà Trọ</a>
->>>>>>> 10bf313b1b5f88e2926f409c3a7d3b66db68cf7a
+                    </li>
+                    <li  class="<?php if($method == 'manage_reservation') echo 'active' ?>">
+                        <a href="<?php echo site_url('user/manage_reservation'); ?>"><i class="fa fa-fw fa-home"></i> Đặt Chỗ Trước</a>
+                    </li>
+                    <li  class="<?php if($method == 'manage_user') echo 'active' ?>">
+                        <a href="<?php echo site_url('user/manage_user'); ?>"><i class="fa fa-fw fa-user"></i> Thành Viên</a>
                     </li>
                 </ul>
             </div>

@@ -175,8 +175,21 @@ class Muser extends CI_Model {
 	}
 
 	public function not_admin() {
+		$this->not_authenticated();
 		if (!$this->is_admin()) {
 			redirect('home','refresh');
 		}
+	}
+
+	public function get_all() {
+		$t = MODEL_USER;
+		$this->db->select('*');
+		$this->db->from($t);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+	public function delete_user($id) {
+		$this->db->delete(MODEL_USER, array('idUser' => $id)); 
 	}
 }

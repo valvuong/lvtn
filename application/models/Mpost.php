@@ -90,6 +90,14 @@ class Mpost extends CI_Model {
         return $result;
     }
 
+    public function get_one_by_subtable($subtable, $id) {
+        $this->db->select($subtable.'.*');
+        $this->db->from($subtable);
+        $this->db->where($subtable.'.idBantin', $id);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
     public function get_one($id) {
         $this->db->select('*');
         $this->db->select(MODEL_DISTRICT.'.tenquan');
@@ -105,18 +113,10 @@ class Mpost extends CI_Model {
         $query = $this->db->get();
         $result = $query->row_array();
 
-        $this->db->select(MODEL_POST_CATEGORY.'.bang_phu');
-        $this->db->from(MODEL_POST_CATEGORY);
-        $this->db->where(MODEL_POST_CATEGORY.'.id', $result['chuyenmuc']);
-        $query = $this->db->get();
-        $r = $query->row_array();
+        $r = $this->mpost_category->get_subtable($result['chuyenmuc']);
         $t = $r['bang_phu'];
 
-        $this->db->select($t.'.*');
-        $this->db->from($t);
-        $this->db->where($t.'.idBantin', $id);
-        $query = $this->db->get();
-        $r = $query->row_array();
+        $r = $this->get_one_by_subtable($t, $id);
         unset($r['id']);
         unset($r['idBantin']);
         $result['thongtinbosung'] = $r;
@@ -133,7 +133,6 @@ class Mpost extends CI_Model {
         $query = $this->db->get();
         $re = $query->result_array();
         $result['reservation'] = $re;
-
 
         return $result;
     }
@@ -311,8 +310,43 @@ class Mpost extends CI_Model {
         $this->db->select($t.'.tieude');
         $this->db->from($t);
         $this->db->where($t.'.id', $id);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function get_previous_post($id) {
+        $t = MODEL_POST;
+        $this->db->select($t.'.id');
+        $this->db->from($t);
+        $this->db->where(array('id <' => $id, 'hethan >=' => date('Y-m-d')));
+        $this->db->limit(1);
         $this->db->order_by($t.'.id', 'DESC');
         $query = $this->db->get();
         return $query->row_array();
+    }
+
+    public function get_next_post($id) {
+        $t = MODEL_POST;
+        $this->db->select($t.'.id');
+        $this->db->from($t);
+        $this->db->where(array('id >' => $id, 'hethan >=' => date('Y-m-d')));
+        $this->db->limit(1);
+        $this->db->order_by($t.'.id', 'ASC');
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function get_category($id) {
+        $t = MODEL_POST;
+        $this->db->select($t.'.chuyenmuc');
+        $this->db->from($t);
+        $this->db->where($t.'.id', $id);
+        $query = $this->db->get();
+        $result = $query->row_array();
+        return $result['chuyenmuc'];
+    }
+
+    public function delete_post($id) {
+        $this->db->delete(MODEL_POST, array('id' => $id)); 
     }
 }

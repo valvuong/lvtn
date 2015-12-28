@@ -21,7 +21,7 @@ $status = array(0=>'Mới', 1=>'Đã Sử Dụng');
             <strong>Loại:</strong>
             <span>
                 <a href="<?php echo site_url('rao-vat-'.$content['loai']) ?>"><?=$content['tenloai']?></a>,
-                <a href="<?php echo site_url('') ?>"><?=$content['tenloaisp']?></a>
+                <a href="<?php echo site_url('market/get_by_subcategory/'.$content['loaisp']) ?>"><?=$content['tenloaisp']?></a>
             </span>
         </p>
         <div class="clear"></div>

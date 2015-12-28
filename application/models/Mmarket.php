@@ -34,14 +34,14 @@ class Mmarket extends CI_Model {
         $this->db->join(MODEL_MARKET_CATEGORY, MODEL_MARKET_CATEGORY.'.id = '.MODEL_MARKET.'.'.$this->loai, 'left');
         $this->db->where(MODEL_MARKET.'.'.$this->id, $id);
         $query = $this->db->get();
-        $result = $query->result_array();
+        $result = $query->row_array();
 
         $this->db->select('tenhinh');
         $this->db->from(MODEL_MARKET_UPLOAD);
         $this->db->where('idCho', $id);
         $query = $this->db->get();
-        $result[0]['tenhinh'] = $query->result_array();
-        return $result[0];
+        $result['tenhinh'] = $query->result_array();
+        return $result;
     }
 
     public function create($data) {
@@ -220,5 +220,19 @@ class Mmarket extends CI_Model {
         $this->db->order_by(MODEL_MARKET.'.'.$this->id,'DESC');
         $query = $this->db->get();
         return $query->result_array();
+    }
+
+    public function get_by_id($id) {
+        $t = MODEL_MARKET;
+        $this->db->select($t.'.id');
+        $this->db->select($t.'.tieude');
+        $this->db->from($t);
+        $this->db->where($t.'.id', $id);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function delete_market($id) {
+        $this->db->delete(MODEL_MARKET, array('id' => $id)); 
     }
 }
