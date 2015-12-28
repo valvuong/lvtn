@@ -91,7 +91,7 @@ class User extends CI_Controller {
 	                	'register' => array(
 	                        'username' => $this->input->post('register-username'),
 							'email'    => $this->input->post('register-email'),
-	                        'password' => $this->input->post('register-password'),
+	                        'password' => md5($this->input->post('register-password')),
 							'role'	   => 'ROLE_USER'
 						),
 						'avatar'   => $_FILES,
@@ -142,7 +142,7 @@ class User extends CI_Controller {
 
 	public function check_password() {
         if ($this->input->is_ajax_request()) {
-            $oldpass = $this->input->post('oldpass');
+            $oldpass = md5($this->input->post('oldpass'));
             $is_valid_pass = $this->muser->check_password($oldpass);
             $data['result'] = false;
             if ($is_valid_pass) {
@@ -156,7 +156,7 @@ class User extends CI_Controller {
     	$this->muser->not_authenticated();
         if ($this->input->is_ajax_request()) {
             $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
-            $newpass = $this->input->post('newpass');
+            $newpass = md5($this->input->post('newpass'));
             $data = array('password'=>$newpass);
             $this->muser->change_info($idUser, $data);
             exit(true);
@@ -180,7 +180,11 @@ class User extends CI_Controller {
 			$data['content']['login_fail']= false;
 			$data['left_hidden'] = true;
 			$data['right_hidden'] = true;
-			$data['redirect'] = $_SERVER['HTTP_REFERER'];	//get the previous page	
+			if ($_SERVER['HTTP_REFERER'] == base_url().'dang-xuat') {
+				$data['redirect'] = '';
+			} else {
+				$data['redirect'] = $_SERVER['HTTP_REFERER'];
+			}	//get the previous page	
 			$this->load->view(LAYOUT, $data);
 		}
 		else redirect('','refresh');	
@@ -197,7 +201,7 @@ class User extends CI_Controller {
 			if($this->input->post('submit')) {
 				$info = array(
 						'username' => $this->input->post('login-username'),
-						'password' => $this->input->post('login-password')
+						'password' => md5($this->input->post('login-password'))
 					);
 				$result = $this->muser->check_login($info);
 				if($result) {
@@ -312,8 +316,8 @@ class User extends CI_Controller {
 			$config['protocol'] = 'smtp';
 			$config['smtp_host'] = 'ssl://smtp.gmail.com';
 			$config['smtp_port'] = 465;
-			$config['smtp_user'] = 'transong.toan@gmail.com';
-			$config['smtp_pass'] = 'Trymybestto1to1to1';
+			$config['smtp_user'] = '';
+			$config['smtp_pass'] = '';
 
 			// Load email library and passing configured values to email library
 			$this->load->library('email', $config);
@@ -539,7 +543,7 @@ class User extends CI_Controller {
 
 	public function manage_reservation() {
 		$this->muser->not_authenticated();
-		$data['view'] = 'dashboard/manage_reservation';
+		$data['view'] = 'dashboard/manage_post_reservation';
 		$this->load->modeL(array('mpost_reservation'));
 		$idUser = $this->session->userdata(LABEL_LOGIN)['id'];
 		$idPosts = $this->mpost_reservation->get_posts_by_user($idUser);

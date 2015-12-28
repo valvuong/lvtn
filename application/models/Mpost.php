@@ -122,6 +122,14 @@ class Mpost extends CI_Model {
         $result['thongtinbosung'] = $r;
 
         $result['tenhinh'] = $this->get_images($id);
+
+        $this->db->select(MODEL_RESERVATION_ROOM.'.*');
+        $this->db->from(MODEL_RESERVATION_ROOM);
+        $this->db->where(MODEL_RESERVATION_ROOM.'.idBantin',$id);
+        $query = $this->db->get();
+        $re = $query->result_array();
+        $result['reservation'] = $re;
+
         return $result;
     }
 
@@ -286,6 +294,12 @@ class Mpost extends CI_Model {
         return $query->result_array();
     }
 
+
+    public function get_num_every_district($idD) {
+        $query = $this->db->query('SELECT COUNT(*) as total FROM '.MODEL_POST.' WHERE quan= '.$idD.' AND '.$this->hethan.' >= NOW()');
+        $result = $query->row_array();
+        return $result['total'];
+    }
     public function get_by_id($id) {
         $t = MODEL_POST;
         $this->db->select($t.'.id');

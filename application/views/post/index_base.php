@@ -9,9 +9,13 @@ if ($this->muser->is_authenticated()) {
         if ($this->mpost_reservation->check_reservation_post($idUser, $this->uri->segment(3))) {
         ?>
             <button type="button" class="btn btn-primary main-center" data-toggle="modal" data-target="#update-reservation-post">Sửa Đăng Kí</button>
-            <button type="button" class="btn btn-danger main-center">Hủy Đăng Kí</button>
-    <?php
-    } else {
+            <button type="button" class="btn btn-danger main-center" data-toggle="modal" data-target="#delete-reservation-post">Hủy Đăng Kí</button>
+        <?php
+        } else if (!$this->mpost_reservation->check_reservation_free($this->uri->segment(3))) {
+        ?>
+        <button type="button" disabled class="btn btn-primary main-center" data-toggle="modal" data-target="#reservation-post">Không Thể Đăng Kí Trước</button>
+        <?php 
+        } else {
     ?>
     <button type="button" class="btn btn-primary main-center" data-toggle="modal" data-target="#reservation-post">Đăng Kí Trước</button>
     <?php
@@ -31,14 +35,16 @@ if ($this->muser->is_authenticated()) {
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach ($content['reservation'] as $k => $v): ?>
                     <tr>
-                        <td>1</td>
-                        <td>4</td>
-                        <td>5</td>
-                        <td>Vương</td>
-                        <td>09736339843</td>
-                        <td>vuong@gmail.com</td>
+                        <td><?=$k+1?></td>
+                        <td><?php echo $v['sophong'] ?></td>
+                        <td><?php echo $v['songuoi'] ?></td>
+                        <td><?php echo $v['ten'] ?></td>
+                        <td><?php echo $v['sodienthoai'] ?></td>
+                        <td><?php echo $v['email'] ?></td>
                     </tr>
+                <?php endforeach ?>
                 </tbody>
             </table>
         </div>

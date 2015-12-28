@@ -136,11 +136,28 @@ class Post extends MY_Controller {
         );
         $this->mpost_reservation->update_reservation_post($info,$idBantin,$idUser);
     }
-
+// check if this user reserves or not
     public function check_reservation_post() {
         $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
         return $this->mpost_reservation->check_reservation_post($idUser);
     }
+    public function check_reservation_free(){
+        $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
+        return $this->mpost_reservation->check_reservation_free($idUser);
+    }
+    public function delete_reservation_post() {
+        $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
+        $idBantin = $this->input->get_post('idBantin');
+        $this->mpost_reservation->delete_reservation_post($idUser,$idBantin);
+    }
+//
+    public function show_all_reservation_post() {
+        $idBantin = $this->input->get_post('idBantin');
+        return $this->mpost_reservation->show_all($idBantin);
+    }
+
+    
+    
 
     public function search_by_select_post($page=1) {
         $search_category = $this->input->get_post('search-category');
@@ -172,9 +189,10 @@ class Post extends MY_Controller {
         $data['content']['pagination'] = array($class_name, $method_name, $page);
         $data['content']['items_per_page'] = POSTS_PER_PAGE;
         $data['content']['num_rows'] = $num_rows;
-        $data['content']['url_alias'] = 'Search_by_select/index_post/';
+        $data['content']['url_alias'] = 'post/Search_by_select_post/';
         $data['content']['url_alias_extend'] = '?search-category='.$search_category.'&search-district='.$search_district.'&search-area='.$search_area.
         '&search-price='.$search_price.'&search-distance='.$search_distance;
+        $data['content']['url_sort'] = 'loai-';
         $this->load->view(LAYOUT, $data);
     }
 

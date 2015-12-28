@@ -102,6 +102,7 @@ define('MODEL_POST_APARTMENT', 'post_apartment');
 define('MODEL_POST_FULL_HOUSE', 'post_full_house');
 define('MODEL_POST_BASEMENT', 'post_basement');
 
+
 define('MODEL_RESERVATION_ROOM', 'post_reservation');
 
 define('MODEL_MARKET', 'equipment');
