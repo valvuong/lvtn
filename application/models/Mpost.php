@@ -121,12 +121,7 @@ class Mpost extends CI_Model {
         unset($r['idBantin']);
         $result['thongtinbosung'] = $r;
 
-        $this->db->select('tenhinh');
-        $this->db->from(MODEL_POST_UPLOAD);
-        $this->db->where('idBantin',$id);
-        $query = $this->db->get();
-        $result['tenhinh'] = $query->result_array();
-
+        $result['tenhinh'] = $this->get_images($id);
         return $result;
     }
 
@@ -335,5 +330,14 @@ class Mpost extends CI_Model {
 
     public function delete_post($id) {
         $this->db->delete(MODEL_POST, array('id' => $id)); 
+    }
+
+    public function get_images($id) {
+        $t = MODEL_POST_UPLOAD;
+        $this->db->select($t.'.tenhinh');
+        $this->db->from($t);
+        $this->db->where($t.'.idBantin', $id);
+        $query = $this->db->get();
+        return $query->result_array();
     }
 }

@@ -35,21 +35,23 @@
 	})
 	function delete_market() {
 		$('.delete').click(function(){
-			var url = '<?=base_url()?>user/delete_market';
-			var idMarket = $(this).attr('id');
-			$.ajax({
-				type: "POST",
-				url: url,
-				data: {idMarket: idMarket},
-				dataType: "json",
-				success: function(data){
-					console.log('delete successfully');
-					$('#row_'+idMarket).remove();
-				},
-				error: function(){
-					alert('error');
-				}
-			});
+			if (window.confirm("Bạn Có Chắc Muốn Xóa Bài Này?")) {
+				var url = '<?=base_url()?>user/delete_market';
+				var idMarket = $(this).attr('id');
+				$.ajax({
+					type: "POST",
+					url: url,
+					data: {idMarket: idMarket},
+					dataType: "json",
+					success: function(data){
+						console.log('delete successfully');
+						$('#row_'+idMarket).remove();
+					},
+					error: function(){
+						alert('error');
+					}
+				});
+			}
 		});
 	}
 </script>

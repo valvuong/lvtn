@@ -36,11 +36,7 @@ class Mmarket extends CI_Model {
         $query = $this->db->get();
         $result = $query->row_array();
 
-        $this->db->select('tenhinh');
-        $this->db->from(MODEL_MARKET_UPLOAD);
-        $this->db->where('idCho', $id);
-        $query = $this->db->get();
-        $result['tenhinh'] = $query->result_array();
+        $result['tenhinh'] = $this->get_images($id);
         return $result;
     }
 
@@ -234,5 +230,14 @@ class Mmarket extends CI_Model {
 
     public function delete_market($id) {
         $this->db->delete(MODEL_MARKET, array('id' => $id)); 
+    }
+
+    public function get_images($id) {
+        $t = MODEL_MARKET_UPLOAD;
+        $this->db->select($t.'.tenhinh');
+        $this->db->from($t);
+        $this->db->where($t.'.idCho', $id);
+        $query = $this->db->get();
+        return $query->result_array();
     }
 }

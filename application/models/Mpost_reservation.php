@@ -56,5 +56,15 @@ class Mpost_reservation extends CI_Model {
         $result = $query->result_array();
         return $result['0'];
     }
+
+    public function get_posts_by_user($idUser) {
+        $t = $this->table;
+        $this->db->select($t.'.idBantin');
+        $this->db->from($t);
+        $this->db->where($t.'.idUser', $idUser);
+        $this->db->order_by($t.'.id', 'DESC');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
 
