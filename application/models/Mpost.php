@@ -14,6 +14,7 @@ class Mpost extends CI_Model {
     private $hethan = 'hethan';
     private $kinhdo = 'kinhdo';
     private $vido = 'vido';
+    private $khoangcach = 'khoangcach';
 
     public function __construct() {
         parent::__construct();
@@ -123,7 +124,7 @@ class Mpost extends CI_Model {
 
         $result['reservation'] = $this->get_reservation($id);
         $result['tenhinh'] = $this->get_images($id);
-        
+
         return $result;
     }
 

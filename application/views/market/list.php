@@ -1,6 +1,9 @@
 <div class="list-header market-header">
     <h4 style="text-align: center;color: #fff;margin: 0;font-size: 20px"><?php echo $label_list ?></h4>
 </div>
+<?php
+$status = array('Mới', 'Đã Sử Dụng');
+?>
 <?php foreach($content as $row): ?>
     <a class="post ads" href="<?=site_url($row['id'].'-tin-vat')?>">
         <div class="thumbnail">
@@ -29,6 +32,10 @@
             <p>
                 <span class="font-bold">Loại:</span>
                 <span><?php echo $row['tenloai']; ?></span>
+            </p>
+            <p>
+                <span class="font-bold">Tình Trạng:</span>
+                <span><?php echo $status[$row['tinhtrang']]; ?></span>
             </p>
         </div>
         <div class="clear-row"></div>

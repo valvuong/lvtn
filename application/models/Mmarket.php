@@ -91,11 +91,12 @@ class Mmarket extends CI_Model {
         return $result['total'];
     }
 
-    public function get_all($page = 1) {
+    public function show_what($page) {
         $this->db->select(MODEL_MARKET.'.'.$this->id);
         $this->db->select(MODEL_MARKET.'.'.$this->tieude);
         $this->db->select(MODEL_MARKET.'.'.$this->giaca);
         $this->db->select(MODEL_MARKET.'.'.$this->ngaydang);
+        $this->db->select(MODEL_MARKET.'.'.$this->tinhtrang);
         $this->db->select(MODEL_MARKET_UPLOAD.'.tenhinh');
         $this->db->select(MODEL_MARKET_CATEGORY.'.tenloai');
         $this->db->from(MODEL_MARKET);
@@ -104,6 +105,11 @@ class Mmarket extends CI_Model {
         $this->db->limit(ADS_PER_PAGE, ADS_PER_PAGE*($page-1));
         $this->db->group_by(MODEL_MARKET.'.'.$this->id);
         $this->db->order_by(MODEL_MARKET.'.'.$this->id,'DESC');
+    }
+
+    public function get_all($page = 1) {
+        $this->show_what($page);
+        
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -115,19 +121,10 @@ class Mmarket extends CI_Model {
     }
 
     public function get_by_category($page = 1, $cate_id) {
-        $this->db->select(MODEL_MARKET.'.'.$this->id);
-        $this->db->select(MODEL_MARKET.'.'.$this->tieude);
-        $this->db->select(MODEL_MARKET.'.'.$this->giaca);
-        $this->db->select(MODEL_MARKET.'.'.$this->ngaydang);
-        $this->db->select(MODEL_MARKET_UPLOAD.'.tenhinh');
-        $this->db->select(MODEL_MARKET_CATEGORY.'.tenloai');
-        $this->db->from(MODEL_MARKET);
-        $this->db->join(MODEL_MARKET_UPLOAD, MODEL_MARKET_UPLOAD.'.idCho = '.MODEL_MARKET.'.'.$this->id, 'left');
-        $this->db->join(MODEL_MARKET_CATEGORY, MODEL_MARKET_CATEGORY.'.id = '.MODEL_MARKET.'.'.$this->loai,'left');
+        $this->show_what($page);
+        
         $this->db->where(MODEL_MARKET.'.'.$this->loai, $cate_id);
-        $this->db->limit(ADS_PER_PAGE, ADS_PER_PAGE*($page-1));
-        $this->db->group_by(MODEL_MARKET.'.'.$this->id);
-        $this->db->order_by(MODEL_MARKET.'.'.$this->id,'DESC');
+        
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -139,19 +136,10 @@ class Mmarket extends CI_Model {
     }
 
     public function get_by_subcategory($page = 1, $subcate_id) {
-        $this->db->select(MODEL_MARKET.'.'.$this->id);
-        $this->db->select(MODEL_MARKET.'.'.$this->tieude);
-        $this->db->select(MODEL_MARKET.'.'.$this->giaca);
-        $this->db->select(MODEL_MARKET.'.'.$this->ngaydang);
-        $this->db->select(MODEL_MARKET_UPLOAD.'.tenhinh');
-        $this->db->select(MODEL_MARKET_CATEGORY.'.tenloai');
-        $this->db->from(MODEL_MARKET);
-        $this->db->join(MODEL_MARKET_UPLOAD, MODEL_MARKET_UPLOAD.'.idCho = '.MODEL_MARKET.'.'.$this->id, 'left');
-        $this->db->join(MODEL_MARKET_CATEGORY, MODEL_MARKET_CATEGORY.'.id = '.MODEL_MARKET.'.'.$this->loai,'left');
+        $this->show_what($page);
+
         $this->db->where(MODEL_MARKET.'.'.$this->loaisp, $subcate_id);
-        $this->db->limit(ADS_PER_PAGE, ADS_PER_PAGE*($page-1));
-        $this->db->group_by(MODEL_MARKET.'.'.$this->id);
-        $this->db->order_by(MODEL_MARKET.'.'.$this->id, 'DESC');
+        
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -191,10 +179,7 @@ class Mmarket extends CI_Model {
             $max_price = $price % 100;
         }
 
-        $this->db->select(MODEL_MARKET.'.'.$this->id);
-        $this->db->select(MODEL_MARKET.'.'.$this->tieude);
-        $this->db->select(MODEL_MARKET.'.'.$this->giaca);
-        $this->db->select(MODEL_MARKET.'.'.$this->ngaydang);
+        $this->show_what();
         $this->db->select(MODEL_MARKET_UPLOAD.'.tenhinh');
         $this->db->select(MODEL_MARKET_CATEGORY.'.tenloai');
         $this->db->from(MODEL_MARKET);
