@@ -121,15 +121,9 @@ class Mpost extends CI_Model {
         unset($r['idBantin']);
         $result['thongtinbosung'] = $r;
 
+        $result['reservation'] = $this->get_reservation($id);
         $result['tenhinh'] = $this->get_images($id);
-
-        $this->db->select(MODEL_RESERVATION_ROOM.'.*');
-        $this->db->from(MODEL_RESERVATION_ROOM);
-        $this->db->where(MODEL_RESERVATION_ROOM.'.idBantin',$id);
-        $query = $this->db->get();
-        $re = $query->result_array();
-        $result['reservation'] = $re;
-
+        
         return $result;
     }
 
@@ -351,6 +345,14 @@ class Mpost extends CI_Model {
         $this->db->select($t.'.tenhinh');
         $this->db->from($t);
         $this->db->where($t.'.idBantin', $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_reservation($id) {
+        $this->db->select(MODEL_RESERVATION_ROOM.'.*');
+        $this->db->from(MODEL_RESERVATION_ROOM);
+        $this->db->where(MODEL_RESERVATION_ROOM.'.idBantin',$id);
         $query = $this->db->get();
         return $query->result_array();
     }

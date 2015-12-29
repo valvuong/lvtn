@@ -1,4 +1,4 @@
-<?php if($this->session->userdata(LABEL_LOGIN)) { 
+<?php if($this->muser->is_authenticated()) { 
      if (!$this->mpost_reservation->check_reservation_post($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))) { ?>
     <!-- Modal reservation Post-->
     <div id="reservation-post" class="modal fade" role="dialog">
@@ -67,12 +67,21 @@
           <div class="modal-body">
             <form id='update-reservation-form' action="post/update_reservaion_post" method="get">
                 <div class="form-group">
-                    <label>Số Phòng Muốn Đăng Kí</label>
-                    <input type="number" name="update-reservation-nums-room" value='<?=$this->mpost_reservation->get_reservation_num($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))['sophong'] ?>' class="form-control" min="0">
+                    <label>Số Phòng Muốn Đăng Kí:
+                         Tât cả: <span style='color:red'><?=$content['sophong']?></span>
+                        Còn trống: <span style='color:red'>
+                        <?=$content['sophong'] - intval($this->mpost_reservation->check_reservation_freeroom($this->uri->segment(3))) ?>
+                        </span></label>
+                    <input type="number" name="update-reservation-nums-room" value='<?=$this->mpost_reservation->get_reservation_num($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))['sophong'] ?>' class="form-control" min="0" max=
+                    "<?=$content['sophong'] - intval($this->mpost_reservation->check_reservation_freeroom($this->uri->segment(3))) ?>">
                 </div>
                 <div class="form-group">
-                    <label>Số Người Muốn Đăng Kí</label>
-                    <input type="number" name="update-reservation-nums-people" value='<?=$this->mpost_reservation->get_reservation_num($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))['songuoi'] ?>' class="form-control" min="0">
+                    <label>Số Người Muốn Đăng Kí:
+                        Tất cả: <span style='color:red'><?=$content['songuoi']?></span>
+                        Có thể đăng ký: <span style='color:red'>
+                            <?=$content['songuoi']- intval($this->mpost_reservation->check_reservation_freepeople($this->uri->segment(3))) ?>
+                    </span> </label>
+                    <input type="number" name="update-reservation-nums-people" value='<?=$this->mpost_reservation->get_reservation_num($this->session->userdata(LABEL_LOGIN)['id'], $this->uri->segment(3))['songuoi'] ?>' class="form-control" min="0" max="<?=$content['songuoi']- intval($this->mpost_reservation->check_reservation_freepeople($this->uri->segment(3))) ?>">
                 </div>
                 <div class="form-group">
                     <label>Tên</label>

@@ -136,7 +136,6 @@ if ($display_name == null) {
                     <li class="<?php if($method == 'dashboard') echo 'active' ?>">
                         <a href="<?php echo site_url('user/dashboard'); ?>"><i class="fa fa-info"></i> Thông Tin Tải Khoản</a>
                     </li>
-
                     <li class="<?php if($method == 'change_password') echo 'active' ?>">
                         <a href="<?php echo site_url('user/change_password'); ?>"><i class="fa fa-lock"></i> Đổi Mật Khẩu</a>
                     </li>
@@ -148,7 +147,6 @@ if ($display_name == null) {
                     </li>
                     <li  class="<?php if($method == 'manage_post') echo 'active' ?>">
                         <a href="<?php echo site_url('user/manage_post'); ?>"><i class="fa fa-fw fa-home"></i> Tin Nhà Trọ</a>
-
                     </li>
                     <li  class="<?php if($method == 'manage_reservation') echo 'active' ?>">
                         <a href="<?php echo site_url('user/manage_reservation'); ?>"><i class="fa fa-fw fa-home"></i> Đăng Ký Đặt Trước</a>

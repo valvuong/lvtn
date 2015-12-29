@@ -93,17 +93,6 @@ class Mpost_reservation extends CI_Model {
         return $result['0'];
     }
 
-
-    public function get_posts_by_user($idUser) {
-        $t = $this->table;
-        $this->db->select($t.'.idBantin');
-        $this->db->from($t);
-        $this->db->where($t.'.idUser', $idUser);
-        $this->db->order_by($t.'.id', 'DESC');
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-
     public function delete_reservation_post($idUser,$idBantin){
         $this->db->where('idUser',$idUser);
         $this->db->where('idBantin',$idBantin);
@@ -126,6 +115,23 @@ class Mpost_reservation extends CI_Model {
         $this->db->select('*');
         $this->db->from($this->table);
         $this->db->where('idBantin',$idBantin);
+    }
+
+    public function get_posts_by_user($idUser) {
+        $t = $this->table;
+        $this->db->select($t.'.idBantin');
+        $this->db->from($t);
+        $this->db->where($t.'.idUser', $idUser);
+        $this->db->order_by($t.'.id', 'DESC');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_users_by_post($idPost) {
+        $t = $this->table;
+        $this->db->select($t.'.idUser');
+        $this->db->from($t);
+        $this->db->where($t.'.idBantin', $idPost);
         $query = $this->db->get();
         return $query->result_array();
     }

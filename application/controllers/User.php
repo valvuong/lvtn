@@ -523,6 +523,16 @@ class User extends CI_Controller {
 		}
 	}
 
+	public function manage_reservation(){
+		$this->muser->not_authenticated();
+		$this->load->model(array('mpost_reservation'));
+        $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
+        $data['view'] = 'dashboard/manage_reservation';
+		$data['content'] = $this->mpost_reservation->get_all($idUser);;
+		$data['display_name'] = $this->display_name;
+		$this->load->view(DASHBOARD, $data);
+    }
+
 	public function manage_user() {
 		$this->muser->not_admin();
 		$data['view'] = 'dashboard/manage_user';
@@ -540,7 +550,7 @@ class User extends CI_Controller {
 			}
 		}
 	}
-
+/*
 	public function manage_reservation() {
 		$this->muser->not_authenticated();
 		$data['view'] = 'dashboard/manage_post_reservation';
@@ -555,4 +565,5 @@ class User extends CI_Controller {
 		$data['display_name'] = $this->display_name;
 		$this->load->view(DASHBOARD, $data);
 	}
+*/
 }
