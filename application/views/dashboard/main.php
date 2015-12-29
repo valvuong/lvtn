@@ -60,7 +60,9 @@ if ($display_name == null) {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo site_url('home') ?>"><span class="glyphicon glyphicon-arrow-left"></span> Quay Lại Trang Chủ</a>
+                <a class="navbar-brand" href="<?php echo site_url('nha-0') ?>">
+                    <span class="glyphicon glyphicon-arrow-left"></span> Quay Lại Trang Chủ
+                </a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -146,7 +148,8 @@ if ($display_name == null) {
                     <li  class="<?php if($method == 'manage_post') echo 'active' ?>">
                         <a href="<?php echo site_url('user/manage_post'); ?>"><i class="fa fa-fw fa-home"></i> Tin Nhà Trọ</a>
                     </li>
-                        <a href="<?php echo site_url('user/manage_reservation'); ?>"><i class="fa fa-fw fa-home"></i> Tin Đặt Trước</a>
+                    <li  class="<?php if($method == 'manage_reservation') echo 'active' ?>">
+                        <a href="<?php echo site_url('user/manage_reservation'); ?>"><i class="fa fa-fw fa-home"></i> Đăng Ký Đặt Trước</a>
                     </li>
                     <?php if($this->muser->is_admin()): ?>
                     <li  class="<?php if($method == 'manage_user') echo 'active' ?>">

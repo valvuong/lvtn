@@ -124,6 +124,7 @@ class Mpost extends CI_Model {
 
         $result['reservation'] = $this->get_reservation($id);
         $result['tenhinh'] = $this->get_images($id);
+
         return $result;
     }
 
