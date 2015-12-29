@@ -528,7 +528,7 @@ class User extends CI_Controller {
 		$this->load->model(array('mpost_reservation'));
         $idUser = $this->session->userdata(LABEL_LOGIN)['id'];
         $data['view'] = 'dashboard/manage_reservation';
-		$data['content'] = $this->mpost_reservation->get_all($idUser);;
+		$data['content'] = $this->mpost_reservation->get_all($idUser);
 		$data['display_name'] = $this->display_name;
 		$this->load->view('dashboard/main', $data);
     }

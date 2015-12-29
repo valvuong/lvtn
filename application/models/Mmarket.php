@@ -174,7 +174,7 @@ class Mmarket extends CI_Model {
             $this->db->where($this->giaca.' >=', $min_price);
             $this->db->where($this->giaca.' <=', $max_price);
         }
-        if ($status != 0) {
+        if ($status != -1) {
             $this->db->where($this->tinhtrang, $status);
         }
         $query = $this->db->get();
@@ -205,7 +205,7 @@ class Mmarket extends CI_Model {
             $this->db->where($this->giaca.' >=', $min_price);
             $this->db->where($this->giaca.' <=', $max_price);
         }
-        if ($status != 0) {
+        if ($status != -1) {
             $this->db->where($this->tinhtrang, $status);
         }
         
