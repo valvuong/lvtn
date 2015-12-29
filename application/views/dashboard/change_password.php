@@ -95,6 +95,7 @@
 			        success: function(data) {
 			            $('.success-change').show();
 			            setTimeout(function(){
+			            	errorShow.hide();
 			            	$('.success-change').hide();
 			            	oldPassField.show();
 							newPassField.hide();
