@@ -536,7 +536,7 @@ class User extends CI_Controller {
 
 	public function manage_user() {
 		$this->muser->not_admin();
-		$data['view'] = 'dashboard/manage_user';
+		$data['view'] = 'dashboard/admin/manage_user';
 		$data['content'] = $this->muser->get_all();
 		$data['display_name'] = $this->display_name;
 		$this->load->view(DASHBOARD, $data);
