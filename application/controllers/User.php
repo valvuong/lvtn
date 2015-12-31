@@ -214,7 +214,8 @@ class User extends CI_Controller {
 							'id' => $row->idUser,
 							'avatar' => $row->avatar,
 							'email' => $row->email,
-							'phone' => '0912345678'
+							'phone' => '0912345678',
+							'locked' => $row->locked
 						);
 					$this->session->set_userdata('logged_in', $sess_array);
 					redirect($this->input->post('redirect'));  //redirect to the previous page
@@ -546,6 +547,26 @@ class User extends CI_Controller {
 			if ($this->input->is_ajax_request()) {
 				$idUser = $this->input->post('idUser');
 				$this->muser->delete_user($idUser);
+				exit(true);
+			}
+		}
+	}
+
+	public function lock_user() {
+		if ($this->muser->is_admin()) {
+			if ($this->input->is_ajax_request()) {
+				$idUser = $this->input->post('idUser');
+				$this->muser->change_info($idUser, array('locked'=>1));
+				exit(true);
+			}
+		}
+	}
+
+	public function unlock_user() {
+		if ($this->muser->is_admin()) {
+			if ($this->input->is_ajax_request()) {
+				$idUser = $this->input->post('idUser');
+				$this->muser->change_info($idUser, array('locked'=>0));
 				exit(true);
 			}
 		}

@@ -13,10 +13,7 @@
     <link href="<?php echo bootstrap_url()?>css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="<?php echo asset_url()?>dashboard/css/sb-admin.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <!-- <link href="css/plugins/morris.css" rel="stylesheet"> -->
+    <link href="<?php echo dashboard_url()?>css/sb-admin.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="<?php echo asset_url()?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -36,10 +33,6 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php echo bootstrap_url()?>js/bootstrap.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <!-- <script src="js/plugins/morris/raphael.min.js"></script> -->
-    <!-- <script src="js/plugins/morris/morris.min.js"></script> -->
-    <!-- <script src="js/plugins/morris/morris-data.js"></script> -->
 </head>
 
 <body>
@@ -133,28 +126,38 @@ if ($display_name == null) {
                     <?php
                     $method = $this->router->fetch_method();
                     ?>
-                    <li class="<?php if($method == 'dashboard') echo 'active' ?>">
-                        <a href="<?php echo site_url('user/dashboard'); ?>"><i class="fa fa-info"></i> Thông Tin Tải Khoản</a>
-                    </li>
-                    <li class="<?php if($method == 'change_password') echo 'active' ?>">
-                        <a href="<?php echo site_url('user/change_password'); ?>"><i class="fa fa-lock"></i> Đổi Mật Khẩu</a>
-                    </li>
-                    <li class="<?php if($method == 'change_avatar') echo 'active' ?>">
-                        <a href="<?php echo site_url('user/change_avatar'); ?>"><i class="fa fa-picture-o"></i> Đổi Ảnh Đại Diện</a>
-                    </li>
-                    <li  class="<?php if($method == 'manage_market') echo 'active' ?>">
-                        <a href="<?php echo site_url('user/manage_market'); ?>"><i class="fa fa-fw fa-pencil"></i> Phương Tiện Học Tập</a>
-                    </li>
-                    <li  class="<?php if($method == 'manage_post') echo 'active' ?>">
-                        <a href="<?php echo site_url('user/manage_post'); ?>"><i class="fa fa-fw fa-home"></i> Tin Nhà Trọ</a>
-                    </li>
-                    <li  class="<?php if($method == 'manage_reservation') echo 'active' ?>">
-                        <a href="<?php echo site_url('user/manage_reservation'); ?>"><i class="fa fa-fw fa-home"></i> Đăng Ký Đặt Trước</a>
-                    </li>
                     <?php if($this->muser->is_admin()): ?>
-                    <li  class="<?php if($method == 'manage_user') echo 'active' ?>">
-                        <a href="<?php echo site_url('user/manage_user'); ?>"><i class="fa fa-fw fa-user"></i> Thành Viên</a>
-                    </li>
+                        <li  class="<?php if($method == 'manage_user') echo 'active' ?>">
+                            <a href="<?php echo site_url('user/manage_user'); ?>"><i class="fa fa-fw fa-user"></i> Thành Viên</a>
+                        </li>
+                        <li  class="<?php if($method == 'manage_post_all') echo 'active' ?>">
+                            <a href="<?php echo site_url('user/manage_post_all'); ?>"><i class="fa fa-fw fa-user"></i> Tất Cả Tin Phòng trọ</a>
+                        </li>
+                        <li  class="<?php if($method == 'manage_market_all') echo 'active' ?>">
+                            <a href="<?php echo site_url('user/manage_market_all'); ?>"><i class="fa fa-fw fa-user"></i> Tất Cả Phương Tiện Học Tập</a>
+                        </li>
+                        <li  class="<?php if($method == 'manage_contact') echo 'active' ?>">
+                            <a href="<?php echo site_url('user/manage_contact'); ?>"><i class="fa fa-fw fa-user"></i> Tin Mới</a>
+                        </li>
+                    <?php else: ?>
+                        <li class="<?php if($method == 'dashboard') echo 'active' ?>">
+                            <a href="<?php echo site_url('user/dashboard'); ?>"><i class="fa fa-info"></i> Thông Tin Tải Khoản</a>
+                        </li>
+                        <li class="<?php if($method == 'change_password') echo 'active' ?>">
+                            <a href="<?php echo site_url('user/change_password'); ?>"><i class="fa fa-lock"></i> Đổi Mật Khẩu</a>
+                        </li>
+                        <li class="<?php if($method == 'change_avatar') echo 'active' ?>">
+                            <a href="<?php echo site_url('user/change_avatar'); ?>"><i class="fa fa-picture-o"></i> Đổi Ảnh Đại Diện</a>
+                        </li>
+                        <li  class="<?php if($method == 'manage_market') echo 'active' ?>">
+                            <a href="<?php echo site_url('user/manage_market'); ?>"><i class="fa fa-fw fa-pencil"></i> Phương Tiện Học Tập</a>
+                        </li>
+                        <li  class="<?php if($method == 'manage_post') echo 'active' ?>">
+                            <a href="<?php echo site_url('user/manage_post'); ?>"><i class="fa fa-fw fa-home"></i> Tin Nhà Trọ</a>
+                        </li>
+                        <li  class="<?php if($method == 'manage_reservation') echo 'active' ?>">
+                            <a href="<?php echo site_url('user/manage_reservation'); ?>"><i class="fa fa-fw fa-home"></i> Đăng Ký Đặt Trước</a>
+                        </li>
                     <?php endif ?>
                 </ul>
             </div>

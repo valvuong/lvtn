@@ -7,8 +7,10 @@
             <ul>
                 <?php $query = $this->mdistrict->get_all() ?>
                 <?php foreach($query as $row): ?>
-                    <li><a href="<?php echo site_url('nha-tro-'.$row['tenkhac']) ?>"><?=$row['tenquan']?>[
-                    <?php echo $this->mpost->get_num_every_district($row['idQ']) ?> ]</a></li>
+                    <li>
+                        <a href="<?php echo site_url('nha-tro-'.$row['tenkhac']) ?>"><?=$row['tenquan']?></a>
+                        <span class="text-danger">[ <?php echo $this->mpost->get_num_every_district($row['idQ']) ?> ]</span>
+                    </li>
                 <?php endforeach ?>
             </ul>
         </div>

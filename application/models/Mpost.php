@@ -27,7 +27,7 @@ class Mpost extends CI_Model {
         return $result['total'];
     }
 
-    public function get_all($page = 1, $sort, $field) {
+    public function get_all($page, $sort, $field) {
         $this->db->select(MODEL_POST.'.*');
         $this->db->select(MODEL_DISTRICT.'.tenquan');
         $this->db->select(MODEL_POST_UPLOAD.'.tenhinh');

@@ -215,6 +215,7 @@ class Post extends MY_Controller {
     }
 
     public function create_rent_room() {
+        $this->muser->if_locked();
         $data['view'] = 'post/base_form';
         $data['content']['content'] = '';
         $class_name = $this->router->fetch_class();
@@ -273,6 +274,7 @@ class Post extends MY_Controller {
     }
 
     public function create_join() {
+        $this->muser->if_locked();
         $data['view'] = 'post/base_form';
         $data['content']['content'] = '';
         $class_name = $this->router->fetch_class();
@@ -338,6 +340,7 @@ class Post extends MY_Controller {
     }
 
     public function create_apartment() {
+        $this->muser->if_locked();
         $data['view'] = 'post/base_form';
         $data['content']['content'] = '';
         $class_name = $this->router->fetch_class();
@@ -401,6 +404,7 @@ class Post extends MY_Controller {
     }
 
     public function create_basement() {
+        $this->muser->if_locked();
         $data['view'] = 'post/base_form';
         $data['content']['content'] = '';
         $class_name = $this->router->fetch_class();
@@ -463,6 +467,7 @@ class Post extends MY_Controller {
     }
 
     public function create_full_house() {
+        $this->muser->if_locked();
         $data['view'] = 'post/base_form';
         $data['content']['content'] = '';
         $class_name = $this->router->fetch_class();
@@ -508,6 +513,7 @@ class Post extends MY_Controller {
     }
 
     public function create_post() {
+        $this->muser->if_locked();
         $data['view'] = 'post/create_post';
         $data['content']['content'] = '';
         $data['left_hidden'] = true;

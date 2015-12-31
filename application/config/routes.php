@@ -53,6 +53,7 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['bi-khoa'] = 'welcome/user_locked_page';
 $route['nha-(:num)'] = 'post/sort/$1';
 
 $route['dang-tin'] = 'post/create_post';

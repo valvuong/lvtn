@@ -181,6 +181,19 @@ class Muser extends CI_Model {
 		}
 	}
 
+	public function is_locked() {
+		if ($this->session->userdata(LABEL_LOGIN)['locked'] == 1) {
+			return true;
+		}
+		return false;
+	}
+
+	public function if_locked() {
+		if ($this->is_locked()) {
+			redirect('bi-khoa','refresh');
+		}
+	}
+
 	public function get_all() {
 		$t = MODEL_USER;
 		$this->db->select('*');
