@@ -233,7 +233,7 @@ $label_checkbox_primary = 'label-checkbox-primary';
             );
             echo form_input($data);
             ?>
-            Người
+            Phòng
         </div>
 
         <div class="<?=$form_group?>">

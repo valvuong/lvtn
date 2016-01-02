@@ -43,6 +43,7 @@ class Market extends CI_Controller {
     }
 
     public function create() {
+        $this->muser->if_locked();
         $data['view'] = 'market/create';
         $data['content']['content'] = '';
         $data['left_hidden'] = true;
