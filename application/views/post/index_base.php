@@ -99,8 +99,6 @@ if ($this->muser->is_authenticated()) {
         <div class="clear"></div>
         <p><strong>Cách Đại Học Bách Khoa:</strong><span><?=$content['khoangcach']?> km</span></p>
         <div class="clear"></div>
-        <p><strong>Địa Chỉ:</strong><span><?=$content['diachi']?></span></p>
-        <div class="clear"></div>
         <p><strong>Số Người Có Thể Ở:</strong><span><?=$content['songuoi']?></span></p>
         <div class="clear"></div>
         <p><strong>Số Phòng:</strong><span><?=$content['sophong']?></span></p>
@@ -115,6 +113,8 @@ if ($this->muser->is_authenticated()) {
 
     <fieldset>
         <legend style="width: 189px">Thông Tin Liên Hệ</legend>
+        <p><strong>Địa Chỉ:</strong><span><?=$content['diachi']?></span></p>
+        <div class="clear"></div>
         <p><strong>Tên Người Liên Hệ:</strong><span><?=$content['hoten']?></span></p>
         <div class="clear"></div>
         <p><strong>Số Điện Thoại:</strong><span><?=$content['sodienthoai']?></span></p>

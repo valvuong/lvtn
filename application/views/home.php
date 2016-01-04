@@ -12,6 +12,8 @@
               <li><a href="<?php echo site_url('nha-3') ?>">Giá Giảm</a></li>
               <li><a href="<?php echo site_url('nha-4') ?>">Diện Tích Tăng</a></li>
               <li><a href="<?php echo site_url('nha-5') ?>">Diện Tích Giảm</a></li>
+              <li><a href="<?php echo site_url('nha-6') ?>">Khoảng Cách Tăng</a></li>
+              <li><a href="<?php echo site_url('nha-7') ?>">Khoảng Cách Giảm</a></li>
           </ul>
         </div>
       <?php else: ?>
@@ -25,6 +27,8 @@
               <li><a href="<?php echo site_url($url_sort.'gia-giam') ?>">Giá Giảm Dần</a></li>
               <li><a href="<?php echo site_url($url_sort.'dientich-tang') ?>">Diện Tích Tăng</a></li>
               <li><a href="<?php echo site_url($url_sort.'dientich-giam') ?>">Diện Tích Giảm</a></li>
+              <li><a href="<?php echo site_url($url_sort.'khoangcach-tang') ?>">Khoảng Cách Tăng</a></li>
+              <li><a href="<?php echo site_url($url_sort.'khoangcach-giam') ?>">Khoảng Cách Giảm</a></li>
           </ul>
         </div>
       <?php endif ?>

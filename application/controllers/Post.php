@@ -47,6 +47,14 @@ class Post extends MY_Controller {
                 $sort = 'DESC';
                 $field = 'dientich';
                 break;
+            case 6:
+                $sort = 'ASC';
+                $field = 'khoangcach';
+                break;
+            case 7:
+                $sort = 'DESC';
+                $field = 'khoangcach';
+                break;
         }
         $data['content']['content'] = $this->mpost->get_all($page, $sort, $field);
         $data['content']['pagination'] = array($class_name, $method_name, $page);
@@ -103,6 +111,12 @@ class Post extends MY_Controller {
                 break;
             case 5:
                 $url_alias = 'loai-'.$idC.'-dientich-giam-';
+                break;
+            case 6:
+                $url_alias = 'loai-'.$idC.'-khoangcach-tang-';
+                break;
+            case 7:
+                $url_alias = 'loai-'.$idC.'-khoangcach-giam-';
                 break;
         }
         $data['content']['url_alias'] = $url_alias;
@@ -428,7 +442,7 @@ class Post extends MY_Controller {
                     MODEL_POST_BASEMENT => array(
                         'anninh' => $this->input->post('security'),
                         'giogiac' => $this->input->post('time-off'),
-                        'nhavesinh' => $this->input->post('rest-room'),
+                        'nhavesinh' => $this->input->post('rest-room')===NULL?0:1,
                         'amthap' => $this->input->post('amthap')===NULL ? 0:1,
                         'tiennghi' => $this->input->post('other-services'),
                         'xebuyt' => $this->input->post('bus'),
