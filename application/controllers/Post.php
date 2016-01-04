@@ -65,7 +65,7 @@ class Post extends MY_Controller {
         $this->load->view(LAYOUT, $data);
     }
 
-    public function show_by_district($page=1, $idD) {
+    public function show_by_district($page=1, $idD, $sort = 1) {
         $class_name = $this->router->fetch_class();
         $method_name = $this->router->fetch_method();
         $data['view'] = 'home';
@@ -73,13 +73,16 @@ class Post extends MY_Controller {
         $data['left_content'] = '';
         $data['right_view'] = 'layout/right';
         $data['right_content'] = '';
-        $data['content']['content'] = $this->mpost->get_by_district($idD, $page);
+        $data['content']['content'] = $this->mpost->get_by_district($idD, $page, $sort);
         $data['content']['pagination'] = array($class_name, $method_name, $page, $idD);
         $data['content']['items_per_page'] = POSTS_PER_PAGE;
         $data['content']['num_rows'] = $this->mpost->get_district_rows($idD);
-        $url_alias = $this->uri->segment(1).'/';
-        $data['content']['url_alias'] = $url_alias;
-        $data['content']['url_sort'] = 'loai-'.$idD.'-';
+        $url_alias = $this->uri->segment(1);
+        if ($this->uri->segment(2) != NULL) {
+            $url_alias .= '/'.$this->uri->segment(2);
+        }
+        $data['content']['url_alias'] = $url_alias.'/';
+        $data['content']['url_sort'] = $this->uri->segment(1);
         $data['content']['url_alias_extend'] = '';
         $this->load->view(LAYOUT, $data);
     }
