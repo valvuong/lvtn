@@ -11,9 +11,6 @@ $input_class = 'form-control';
 $label_class = 'form-label';
 $stage_1 = 'stage-1';
 $stage_2 = 'stage-2';
-$title_error = form_error('title');
-$email_error = form_error('email');
-$area_error = form_error('area');
 $text_right = 'text-right';
 $float_left = 'float-left';
 $normal_label = 'normal-label';
@@ -21,7 +18,7 @@ $checkbox_class = 'checkbox-primary';
 $label_checkbox_primary = 'label-checkbox-primary';
 ?>
 <h2 class="dt">ĐĂNG TIN PHÒNG TRỌ</h2>
-<?php echo form_open_multipart($action, array('id'=>'post-form')) ?>
+<?php echo form_open_multipart(site_url($this->uri->segment(1)), array('id'=>'post-form')) ?>
     <?php echo form_input(array('type' => 'hidden', 'id' => 'url_ajax', 'name' => 'url_ajax', 'value' => base_url().'ajax/get_ward')) ?>
 
     <fieldset>

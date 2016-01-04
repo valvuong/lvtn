@@ -8,7 +8,7 @@
                 <?php $query = $this->mdistrict->get_all() ?>
                 <?php foreach($query as $row): ?>
                     <li>
-                        <a href="<?php echo site_url('nha-tro-'.$row['tenkhac']) ?>"><?=$row['tenquan']?></a>
+                        <a href="<?php echo site_url('nha-tro-'.$row['tenkhac']) ?>"><?php $name = $row['tenquan']; if(strlen($name) > 9) echo substr($name, 7); else echo $name; ?></a>
                         <span class="text-danger">[ <?php echo $this->mpost->get_num_every_district($row['idQ']) ?> ]</span>
                     </li>
                 <?php endforeach ?>

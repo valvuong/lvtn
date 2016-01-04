@@ -60,58 +60,6 @@ if ($display_name == null) {
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu message-dropdown">
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong><?php echo $display_name ?></strong></h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-footer">
-                            <a href="#">Read All New Messages</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $display_name ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
@@ -135,7 +83,17 @@ if ($display_name == null) {
                     <li class="<?php if($method == 'change_avatar') echo 'active' ?>">
                         <a href="<?php echo site_url('user/change_avatar'); ?>"><i class="fa fa-picture-o"></i> Đổi Ảnh Đại Diện</a>
                     </li>
+                    <li  class="<?php if($method == 'manage_market') echo 'active' ?>">
+                        <a href="<?php echo site_url('user/manage_market'); ?>"><i class="fa fa-fw fa-pencil"></i> Phương Tiện Học Tập</a>
+                    </li>
+                    <li  class="<?php if($method == 'manage_post') echo 'active' ?>">
+                        <a href="<?php echo site_url('user/manage_post'); ?>"><i class="fa fa-fw fa-home"></i> Tin Nhà Trọ</a>
+                    </li>
+                    <li  class="<?php if($method == 'manage_reservation') echo 'active' ?>">
+                        <a href="<?php echo site_url('user/manage_reservation'); ?>"><i class="fa fa-fw fa-home"></i> Đăng Ký Đặt Trước</a>
+                    </li>
                     <?php if($this->muser->is_admin()): ?>
+                        <li class="active"><h4 class="text-primary">Dành Cho Quản Trị Viên</h4></li>
                         <li  class="<?php if($method == 'manage_user') echo 'active' ?>">
                             <a href="<?php echo site_url('user/manage_user'); ?>"><i class="fa fa-fw fa-user"></i> Thành Viên</a>
                         </li>
@@ -147,16 +105,6 @@ if ($display_name == null) {
                         </li>
                         <li  class="<?php if($method == 'manage_contact') echo 'active' ?>">
                             <a href="<?php echo site_url('user/manage_contact'); ?>"><i class="fa fa-fw fa-envelope"></i> Tin Mới</a>
-                        </li>
-                    <?php else: ?>
-                        <li  class="<?php if($method == 'manage_market') echo 'active' ?>">
-                            <a href="<?php echo site_url('user/manage_market'); ?>"><i class="fa fa-fw fa-pencil"></i> Phương Tiện Học Tập</a>
-                        </li>
-                        <li  class="<?php if($method == 'manage_post') echo 'active' ?>">
-                            <a href="<?php echo site_url('user/manage_post'); ?>"><i class="fa fa-fw fa-home"></i> Tin Nhà Trọ</a>
-                        </li>
-                        <li  class="<?php if($method == 'manage_reservation') echo 'active' ?>">
-                            <a href="<?php echo site_url('user/manage_reservation'); ?>"><i class="fa fa-fw fa-home"></i> Đăng Ký Đặt Trước</a>
                         </li>
                     <?php endif ?>
                 </ul>

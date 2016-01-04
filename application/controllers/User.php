@@ -571,6 +571,14 @@ class User extends CI_Controller {
 			}
 		}
 	}
+
+	public function manage_contact() {
+		$this->muser->not_admin();
+		$data['view'] = 'dashboard/admin/manage_contact';
+		$data['content'] = $this->mcontact->get_all();;
+		$data['display_name'] = $this->display_name;
+		$this->load->view(DASHBOARD, $data);
+	}
 /*
 	public function manage_reservation() {
 		$this->muser->not_authenticated();

@@ -64,7 +64,9 @@ class Mpost extends CI_Model {
             2 => array($this->giaphong, 'ASC'),
             3 => array($this->giaphong, 'DESC'),
             4 => array($this->dientich, 'ASC'),
-            5 => array($this->dientich, 'DESC')
+            5 => array($this->dientich, 'DESC'),
+            6 => array($this->khoangcach, 'ASC'),
+            7 => array($this->khoangcach, 'DESC')
         );
         $this->db->order_by(MODEL_POST.'.'.$sorts[$sort][0], $sorts[$sort][1]);
         $query = $this->db->get();

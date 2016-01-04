@@ -65,26 +65,31 @@ foreach( $result as $row ) {
     $route[ 'dang-tin-'.$row['url_name'] ] = 'post/create_'.$row['link'];
 }
 
-$route['dang-ki'] = 'user/register';
+$route['dang-ki']       = 'user/register';
 $route['quen-mat-khau'] = 'user/forgot_password';
-$route['dang-nhap'] = 'user/login';
-$route['dang-xuat'] = 'user/logout';
-$route['contact'] = 'user/contact';
-$route['tai-khoan'] = 'user/dashboard';
+$route['dang-nhap']     = 'user/login';
+$route['dang-xuat']     = 'user/logout';
+$route['contact']       = 'user/contact';
+$route['tai-khoan']     = 'user/dashboard';
 
 $route['dang-tin'] = 'post/create_post';
-$route['loai-(:num)'] = 'post/show_by_category/1/$1/1';
-$route['loai-(:num)-(:num)'] = 'post/show_by_category/$2/$1/1';
-$route['loai-(:num)-moinhat'] = 'post/show_by_category/1/$1/1';
-$route['loai-(:num)-gia-tang'] = 'post/show_by_category/1/$1/2';
-$route['loai-(:num)-gia-giam'] = 'post/show_by_category/1/$1/3';
-$route['loai-(:num)-dientich-tang'] = 'post/show_by_category/1/$1/4';
-$route['loai-(:num)-dientich-giam'] = 'post/show_by_category/1/$1/5';
-$route['loai-(:num)-moinhat-(:num)'] = 'post/show_by_category/$2/$1/1';
-$route['loai-(:num)-gia-tang-(:num)'] = 'post/show_by_category/$2/$1/2';
-$route['loai-(:num)-gia-giam-(:num)'] = 'post/show_by_category/$2/$1/3';
-$route['loai-(:num)-dientich-tang-(:num)'] = 'post/show_by_category/$2/$1/4';
-$route['loai-(:num)-dientich-giam-(:num)'] = 'post/show_by_category/$2/$1/5';
+$route['loai-(:num)']                        = 'post/show_by_category/1/$1/1';
+$route['loai-(:num)-(:num)']                 = 'post/show_by_category/$2/$1/1';
+$route['loai-(:num)-moinhat']                = 'post/show_by_category/1/$1/1';
+$route['loai-(:num)-gia-tang']               = 'post/show_by_category/1/$1/2';
+$route['loai-(:num)-gia-giam']               = 'post/show_by_category/1/$1/3';
+$route['loai-(:num)-dientich-tang']          = 'post/show_by_category/1/$1/4';
+$route['loai-(:num)-dientich-giam']          = 'post/show_by_category/1/$1/5';
+$route['loai-(:num)-khoangcach-tang'] = 'post/show_by_category/1/$1/6';
+$route['loai-(:num)-khoangcach-giam'] = 'post/show_by_category/1/$1/7';
+$route['loai-(:num)-moinhat-(:num)']         = 'post/show_by_category/$2/$1/1';
+$route['loai-(:num)-gia-tang-(:num)']        = 'post/show_by_category/$2/$1/2';
+$route['loai-(:num)-gia-giam-(:num)']        = 'post/show_by_category/$2/$1/3';
+$route['loai-(:num)-dientich-tang-(:num)']   = 'post/show_by_category/$2/$1/4';
+$route['loai-(:num)-dientich-giam-(:num)']   = 'post/show_by_category/$2/$1/5';
+$route['loai-(:num)-khoangcach-tang-(:num)'] = 'post/show_by_category/$2/$1/6';
+$route['loai-(:num)-khoangcach-giam-(:num)'] = 'post/show_by_category/$2/$1/7';
+
 $query = $db->get( MODEL_DISTRICT );
 $result = $query->result_array();
 foreach( $result as $row ) {
@@ -98,9 +103,9 @@ $route['tin-(:num)'] = 'post/index/$1';
 $route['(:num)'] = 'post/index/$1';
 $route['filter-(:num)'] = 'filter/filter/$1';
 
-$route['buon-ban'] = 'market/create';
-$route['tin-vat'] = 'market/get_all';
-$route['tin-vat-(:num)'] = 'market/get_all/$1';
-$route['(:num)-tin-vat'] = 'market/index/$1';
-$route['rao-vat-(:num)'] = 'market/get_by_category/1/$1';
+$route['buon-ban']              = 'market/create';
+$route['tin-vat']               = 'market/get_all';
+$route['tin-vat-(:num)']        = 'market/get_all/$1';
+$route['(:num)-tin-vat']        = 'market/index/$1';
+$route['rao-vat-(:num)']        = 'market/get_by_category/1/$1';
 $route['(:num)-rao-vat-(:num)'] = 'market/get_by_category/$2/$1';
