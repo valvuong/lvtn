@@ -179,7 +179,11 @@ class Mmarket extends CI_Model {
             $max_price = $price % 100;
         }
 
-        $this->show_what();
+        $this->db->select(MODEL_MARKET.'.'.$this->id);
+        $this->db->select(MODEL_MARKET.'.'.$this->tieude);
+        $this->db->select(MODEL_MARKET.'.'.$this->giaca);
+        $this->db->select(MODEL_MARKET.'.'.$this->ngaydang);
+        $this->db->select(MODEL_MARKET.'.'.$this->tinhtrang);
         $this->db->select(MODEL_MARKET_UPLOAD.'.tenhinh');
         $this->db->select(MODEL_MARKET_CATEGORY.'.tenloai');
         $this->db->from(MODEL_MARKET);

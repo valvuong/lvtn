@@ -77,12 +77,14 @@ class Post extends MY_Controller {
         $data['content']['pagination'] = array($class_name, $method_name, $page, $idD);
         $data['content']['items_per_page'] = POSTS_PER_PAGE;
         $data['content']['num_rows'] = $this->mpost->get_district_rows($idD);
-        $url_alias = $this->uri->segment(1);
-        if ($this->uri->segment(2) != NULL) {
-            $url_alias .= '/'.$this->uri->segment(2);
+        $segment_1 = $this->uri->segment(1);
+        $segment_2 = $this->uri->segment(2);
+        $url_alias = $segment_1;
+        if ($segment_2 != NULL && !is_numeric($segment_2)) {
+            $url_alias .= '/'.$segment_2;
         }
         $data['content']['url_alias'] = $url_alias.'/';
-        $data['content']['url_sort'] = $this->uri->segment(1);
+        $data['content']['url_sort'] = $segment_1;
         $data['content']['url_alias_extend'] = '';
         $this->load->view(LAYOUT, $data);
     }

@@ -32,7 +32,7 @@ class Mpost extends CI_Model {
         $this->db->select(MODEL_DISTRICT.'.tenquan');
         $this->db->select(MODEL_POST_UPLOAD.'.tenhinh');
         $this->db->from(MODEL_POST);
-        $this->db->where($this->hethan." >=", date('Y-m-d'));
+        $this->db->where(MODEL_POST.'.'.$this->hethan.' >=', date('Y-m-d'));
         $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.'.$this->quan, 'left');
         $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.'.$this->id, 'left');
         $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
@@ -55,8 +55,8 @@ class Mpost extends CI_Model {
         $this->db->from(MODEL_POST);
         $this->db->where(MODEL_POST.'.'.$field_name, $id);
         $this->db->where(MODEL_POST.'.'.$this->hethan.' >=', date('Y-m-d'));
-        $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.quan', 'left');
-        $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.id', 'left');
+        $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.'.$this->quan, 'left');
+        $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.'.$this->id, 'left');
         $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
         $this->db->group_by(MODEL_POST.'.'.$this->id);
         $sorts = array(
