@@ -13,7 +13,6 @@
 					<th>Người Gửi</th>
 					<th>Email</th>
 					<th>Nội Dung</th>
-					<th>Đã Đọc</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -23,7 +22,6 @@
 						<td class="text-center"><?php echo $v['name'] ?></td>
 						<td class="text-center"><?php echo $v['email'] ?></td>
 						<td><?php echo $v['message'] ?></td>
-						<td class="text-center"><?php echo $v['read'] ?></td>
 					</tr>
 				<?php endforeach ?>
 			</tbody>

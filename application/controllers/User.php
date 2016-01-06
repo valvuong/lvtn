@@ -513,14 +513,13 @@ class User extends CI_Controller {
 			$this->load->model(array('mmanage_post'));
 			$idPost = $this->input->post('idPost');
 			$idUser = $this->session->userdata(LABEL_LOGIN)['id'];
-			if ($this->mmanage_post->check_owner($idUser, $idPost)) {
-				$images = $this->mpost->get_images($idPost);
-				foreach ($images as $img) {
-					unlink('asset/uploads/post/'.$img['tenhinh']);
-				}
-				$this->mpost->delete_post($idPost);
-				exit(true);
+			
+			$images = $this->mpost->get_images($idPost);
+			foreach ($images as $img) {
+				unlink('asset/uploads/post/'.$img['tenhinh']);
 			}
+			$this->mpost->delete_post($idPost);
+			exit(true);
 		}
 	}
 
@@ -579,20 +578,20 @@ class User extends CI_Controller {
 		$data['display_name'] = $this->display_name;
 		$this->load->view(DASHBOARD, $data);
 	}
-/*
-	public function manage_reservation() {
-		$this->muser->not_authenticated();
-		$data['view'] = 'dashboard/manage_post_reservation';
-		$this->load->modeL(array('mpost_reservation'));
-		$idUser = $this->session->userdata(LABEL_LOGIN)['id'];
-		$idPosts = $this->mpost_reservation->get_posts_by_user($idUser);
-		$posts = array();
-		foreach ($idPosts as $row) {
-			$posts[] = $this->mpost->get_by_id($row['idBantin']);
-		}
-		$data['content'] = $posts;
+
+	public function manage_post_all() {
+		$this->muser->not_admin();
+		$data['view'] = 'dashboard/admin/manage_post_all';
+		$data['content'] = $this->mpost->get_all();;
 		$data['display_name'] = $this->display_name;
 		$this->load->view(DASHBOARD, $data);
 	}
-*/
+
+	public function manage_market_all() {
+		$this->muser->not_admin();
+		$data['view'] = 'dashboard/admin/manage_market_all';
+		$data['content'] = $this->mmarket->get_all();;
+		$data['display_name'] = $this->display_name;
+		$this->load->view(DASHBOARD, $data);
+	}
 }

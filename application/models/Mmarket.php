@@ -25,6 +25,24 @@ class Mmarket extends CI_Model {
         return $query->result_array();
     }
 
+    public function getall() {
+        $this->db->select(MODEL_MARKET.'.'.$this->id);
+        $this->db->select(MODEL_MARKET.'.'.$this->tieude);
+        $this->db->select(MODEL_MARKET.'.'.$this->giaca);
+        $this->db->select(MODEL_MARKET.'.'.$this->ngaydang);
+        $this->db->select(MODEL_MARKET.'.'.$this->tinhtrang);
+        $this->db->select(MODEL_MARKET_UPLOAD.'.tenhinh');
+        $this->db->select(MODEL_MARKET_CATEGORY.'.tenloai');
+        $this->db->from(MODEL_MARKET);
+        $this->db->join(MODEL_MARKET_UPLOAD, MODEL_MARKET_UPLOAD.'.idCho = '.MODEL_MARKET.'.'.$this->id, 'left');
+        $this->db->join(MODEL_MARKET_CATEGORY, MODEL_MARKET_CATEGORY.'.id = '.MODEL_MARKET.'.'.$this->loai,'left');
+        $this->db->group_by(MODEL_MARKET.'.'.$this->id);
+        $this->db->order_by(MODEL_MARKET.'.'.$this->id,'DESC');
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function get_one($id) {
         $this->db->select(MODEL_MARKET.'.*');
         $this->db->select(MODEL_MARKET_SUB_CATEGORY.'.tenloai AS tenloaisp');
@@ -91,7 +109,7 @@ class Mmarket extends CI_Model {
         return $result['total'];
     }
 
-    public function show_what($page) {
+    public function show_what($page = null) {
         $this->db->select(MODEL_MARKET.'.'.$this->id);
         $this->db->select(MODEL_MARKET.'.'.$this->tieude);
         $this->db->select(MODEL_MARKET.'.'.$this->giaca);
@@ -102,13 +120,19 @@ class Mmarket extends CI_Model {
         $this->db->from(MODEL_MARKET);
         $this->db->join(MODEL_MARKET_UPLOAD, MODEL_MARKET_UPLOAD.'.idCho = '.MODEL_MARKET.'.'.$this->id, 'left');
         $this->db->join(MODEL_MARKET_CATEGORY, MODEL_MARKET_CATEGORY.'.id = '.MODEL_MARKET.'.'.$this->loai,'left');
-        $this->db->limit(ADS_PER_PAGE, ADS_PER_PAGE*($page-1));
+        if ($page != null) {
+            $this->db->limit(ADS_PER_PAGE, ADS_PER_PAGE*($page-1));
+        }
         $this->db->group_by(MODEL_MARKET.'.'.$this->id);
         $this->db->order_by(MODEL_MARKET.'.'.$this->id,'DESC');
     }
 
-    public function get_all($page = 1) {
-        $this->show_what($page);
+    public function get_all($page = null) {
+        if ($page != null) {
+            $this->show_what($page);
+        } else {
+            $this->show_what();
+        }
         
         $query = $this->db->get();
         return $query->result_array();

@@ -90,7 +90,7 @@ if ($display_name == null) {
                         <a href="<?php echo site_url('user/manage_post'); ?>"><i class="fa fa-fw fa-home"></i> Tin Nhà Trọ</a>
                     </li>
                     <li  class="<?php if($method == 'manage_reservation') echo 'active' ?>">
-                        <a href="<?php echo site_url('user/manage_reservation'); ?>"><i class="fa fa-fw fa-home"></i> Đăng Ký Đặt Trước</a>
+                        <a href="<?php echo site_url('user/manage_reservation'); ?>"><i class="fa fa-fw fa-home"></i> Đã Đăng Ký Đặt Trước</a>
                     </li>
                     <?php if($this->muser->is_admin()): ?>
                         <li class="active"><h4 class="text-primary">Dành Cho Quản Trị Viên</h4></li>

@@ -27,17 +27,26 @@ class Mpost extends CI_Model {
         return $result['total'];
     }
 
-    public function get_all($page, $sort, $field) {
+
+    public function get_all($page = null, $sort = null, $field = null) {
         $this->db->select(MODEL_POST.'.*');
         $this->db->select(MODEL_DISTRICT.'.tenquan');
         $this->db->select(MODEL_POST_UPLOAD.'.tenhinh');
         $this->db->from(MODEL_POST);
-        $this->db->where(MODEL_POST.'.'.$this->hethan.' >=', date('Y-m-d'));
+        if ($page != null && $sort != null && $field != null) {
+            $this->db->where(MODEL_POST.'.'.$this->hethan.' >=', date('Y-m-d'));
+        }
         $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.'.$this->quan, 'left');
         $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.'.$this->id, 'left');
-        $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
+        if ($page != null) {
+            $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
+        }
         $this->db->group_by(MODEL_POST.'.'.$this->id);
-        $this->db->order_by(MODEL_POST.'.'.$field, $sort);
+        if ($field != null && $sort != null) {
+            $this->db->order_by(MODEL_POST.'.'.$field, $sort);
+        } else {
+            $this->db->order_by(MODEL_POST.'.'.$this->id, 'DESC');
+        }
         $query = $this->db->get();
         return $query->result_array();
     }
