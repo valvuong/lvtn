@@ -1,6 +1,16 @@
 <link rel="stylesheet" type="text/css" href="<?php echo css_url() ?>post-article.css">
 
 <h3 class="title"><?php echo mb_strtoupper($content['tieude'],'utf8'); ?></h3>
+<!---facebook api -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!---end facebook api -->
 <div>
 <?php
 $idPost = $content['id'];
@@ -154,7 +164,10 @@ if ($this->muser->is_authenticated()) {
         <div><?php echo $map['html'];?></div>
     </fielset>
 </div>
-
+<!--facebook-->
+<div class="fb-like" data-href="https://google.com" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+<div class="fb-comments" data-href="http://google.com" data-numposts="5"></div>
+<!--facebook-->
 <div class="paging">
     <?php
     // for PREVIOUS post

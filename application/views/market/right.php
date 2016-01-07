@@ -25,9 +25,9 @@
                 </select>
                 
                 <select class="btn btn-default" name="search-status">
-                    <option value="0">Theo Tình Trạng</option>
-                    <option value="1">Mới</option>
-                    <option value="2">Đã Sử Dụng</option>
+                    <option value="-1">Theo Tình Trạng</option>
+                    <option value="0">Mới</option>
+                    <option value="1">Đã Sử Dụng</option>
                 </select>
                 <div class="text-center"><input type="submit" class="btn btn-default" value="Tìm Kiếm"></div>
             </form>

@@ -181,7 +181,7 @@ class Mmarket extends CI_Model {
             $this->db->where($this->giaca.' >=', $min_price);
             $this->db->where($this->giaca.' <=', $max_price);
         }
-        if ($status != 0) {
+        if ($status != -1) {
             $this->db->where($this->tinhtrang, $status);
         }
         $query = $this->db->get();
@@ -198,6 +198,7 @@ class Mmarket extends CI_Model {
             $max_price = $price % 100;
         }
 
+        //$this->show_what($page);
         $this->db->select(MODEL_MARKET.'.'.$this->id);
         $this->db->select(MODEL_MARKET.'.'.$this->tieude);
         $this->db->select(MODEL_MARKET.'.'.$this->giaca);
@@ -213,11 +214,11 @@ class Mmarket extends CI_Model {
             $this->db->where($this->giaca.' >=', $min_price);
             $this->db->where($this->giaca.' <=', $max_price);
         }
-        if ($status != 0) {
+        if ($status != -1) {
             $this->db->where($this->tinhtrang, $status);
         }
         
-        $this->db->join(MODEL_MARKET_UPLOAD, MODEL_MARKET_UPLOAD.'.idCho = '.MODEL_MARKET.'.'.$this->id, 'left');
+       $this->db->join(MODEL_MARKET_UPLOAD, MODEL_MARKET_UPLOAD.'.idCho = '.MODEL_MARKET.'.'.$this->id, 'left');
         $this->db->join(MODEL_MARKET_CATEGORY, MODEL_MARKET_CATEGORY.'.id = '.MODEL_MARKET.'.'.$this->loai,'left');
         $this->db->limit(ADS_PER_PAGE, ADS_PER_PAGE*($page-1));
         $this->db->group_by(MODEL_MARKET.'.'.$this->id);
