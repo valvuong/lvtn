@@ -27,17 +27,26 @@ class Mpost extends CI_Model {
         return $result['total'];
     }
 
-    public function get_all($page, $sort, $field) {
+
+    public function get_all($page = null, $sort = null, $field = null) {
         $this->db->select(MODEL_POST.'.*');
         $this->db->select(MODEL_DISTRICT.'.tenquan');
         $this->db->select(MODEL_POST_UPLOAD.'.tenhinh');
         $this->db->from(MODEL_POST);
-        $this->db->where($this->hethan." >=", date('Y-m-d'));
+        if ($page != null && $sort != null && $field != null) {
+            $this->db->where(MODEL_POST.'.'.$this->hethan.' >=', date('Y-m-d'));
+        }
         $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.'.$this->quan, 'left');
         $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.'.$this->id, 'left');
-        $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
+        if ($page != null) {
+            $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
+        }
         $this->db->group_by(MODEL_POST.'.'.$this->id);
-        $this->db->order_by(MODEL_POST.'.'.$field, $sort);
+        if ($field != null && $sort != null) {
+            $this->db->order_by(MODEL_POST.'.'.$field, $sort);
+        } else {
+            $this->db->order_by(MODEL_POST.'.'.$this->id, 'DESC');
+        }
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -55,8 +64,8 @@ class Mpost extends CI_Model {
         $this->db->from(MODEL_POST);
         $this->db->where(MODEL_POST.'.'.$field_name, $id);
         $this->db->where(MODEL_POST.'.'.$this->hethan.' >=', date('Y-m-d'));
-        $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.quan', 'left');
-        $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.id', 'left');
+        $this->db->join(MODEL_DISTRICT, MODEL_DISTRICT.'.idQ = '.MODEL_POST.'.'.$this->quan, 'left');
+        $this->db->join(MODEL_POST_UPLOAD, MODEL_POST_UPLOAD.'.idBantin = '.MODEL_POST.'.'.$this->id, 'left');
         $this->db->limit(POSTS_PER_PAGE, POSTS_PER_PAGE*($page-1));
         $this->db->group_by(MODEL_POST.'.'.$this->id);
         $sorts = array(
@@ -288,7 +297,42 @@ class Mpost extends CI_Model {
         $this->db->group_by(MODEL_POST.'.'.$this->id);
         $this->db->order_by(MODEL_POST.'.'.$this->id, 'DESC');
         $query = $this->db->get();
-        return $query->result_array();
+        $result['result'] = $query->result_array();
+
+        $this->db->select('tenquan');
+        $this->db->from(MODEL_DISTRICT);
+        $this->db->where('idQ', $district);
+        $query = $this->db->get();
+        $d = $query->row_array();
+        $result['search_district'] = $d['tenquan'];
+
+        $this->db->select('ten');
+        $this->db->from(MODEL_POST_CATEGORY);
+        $this->db->where('id', $category);
+        $query = $this->db->get();
+        $d = $query->row_array();
+        $result['search_category'] = $d['ten'];
+
+        $this->db->select('text');
+        $this->db->from(SEARCH_AREA);
+        $this->db->where('value', $area);
+        $query = $this->db->get();
+        $d = $query->row_array();
+        $result['search_area'] = $d['text'];
+
+        $this->db->select('text');
+        $this->db->from(SEARCH_PRICE);
+        $this->db->where('value', $price);
+        $query = $this->db->get();
+        $d = $query->row_array();
+        $result['search_price'] = $d['text'];
+
+        if ($distance == '0002') $result['search_distance'] = '<2km';
+
+        else if ($distance == '0205') $result['search_distance'] = '2-5km';
+        else if ($distance == '0599') $result['search_distance'] = '>5km';
+        else $result['search_distance'] = '';
+        return $result;
     }
 
 

@@ -11,7 +11,6 @@
 				<tr>
 					<th>STT</th>
 					<th>Tiêu Đề</th>
-					<th>Chỉnh Sửa</th>
 					<th>Xóa</th>
 				</tr>
 			</thead>
@@ -20,7 +19,6 @@
 					<tr id="row_<?=$v['id']?>">
 						<td class="text-center"><?=$k+1?></td>
 						<td><a href="<?=site_url($v['id'].'-tin-vat')?>"><?php echo $v['tieude'] ?></a></td>
-						<td class="text-center"><button><i class="fa fa-wrench"></i></button></td>
 						<td class="text-center"><button class="delete" id="<?=$v['id']?>"><i class="fa fa-times"></i></button></td>
 					</tr>
 				<?php endforeach ?>

@@ -1,5 +1,30 @@
 <head>
-	<script type="text/javascript" src="<?php echo dashboard_url() ?>js/manage-post.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			delete_post();
+		});
+		function delete_post() {
+			$('.delete').click(function(){
+				if (window.confirm("Bạn Có Chắc Muốn Xóa Bài Này?")) {
+					var url = '<?=base_url()?>user/delete_post';
+					var idPost = $(this).attr('id');
+					$.ajax({
+						type: "POST",
+						url: url,
+						data: {idPost: idPost},
+						dataType: "json",
+						success: function(data){
+							console.log('delete successfully');
+							$('#row_'+idPost).remove();
+						},
+						error: function(){
+							alert('error');
+						}
+					});
+				}
+			});
+		}
+	</script>
 </head>
 
 <style type="text/css">

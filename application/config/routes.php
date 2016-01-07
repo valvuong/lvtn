@@ -80,8 +80,8 @@ $route['loai-(:num)-gia-tang']               = 'post/show_by_category/1/$1/2';
 $route['loai-(:num)-gia-giam']               = 'post/show_by_category/1/$1/3';
 $route['loai-(:num)-dientich-tang']          = 'post/show_by_category/1/$1/4';
 $route['loai-(:num)-dientich-giam']          = 'post/show_by_category/1/$1/5';
-$route['loai-(:num)-khoangcach-tang'] = 'post/show_by_category/1/$1/6';
-$route['loai-(:num)-khoangcach-giam'] = 'post/show_by_category/1/$1/7';
+$route['loai-(:num)-khoangcach-tang']        = 'post/show_by_category/1/$1/6';
+$route['loai-(:num)-khoangcach-giam']        = 'post/show_by_category/1/$1/7';
 $route['loai-(:num)-moinhat-(:num)']         = 'post/show_by_category/$2/$1/1';
 $route['loai-(:num)-gia-tang-(:num)']        = 'post/show_by_category/$2/$1/2';
 $route['loai-(:num)-gia-giam-(:num)']        = 'post/show_by_category/$2/$1/3';
@@ -93,8 +93,20 @@ $route['loai-(:num)-khoangcach-giam-(:num)'] = 'post/show_by_category/$2/$1/7';
 $query = $db->get( MODEL_DISTRICT );
 $result = $query->result_array();
 foreach( $result as $row ) {
-    $route[ 'nha-tro-'.$row['tenkhac'] ] = 'post/show_by_district/1/'.$row['idQ'];
-    $route[ 'nha-tro-'.$row['tenkhac'].'/(:num)' ] = 'post/show_by_district/$1/'.$row['idQ'];
+    $route[ 'nha-tro-'.$row['tenkhac'] ]                  = 'post/show_by_district/1/'.$row['idQ'].'/1';
+    $route[ 'nha-tro-'.$row['tenkhac'].'/giatang']        = 'post/show_by_district/1/'.$row['idQ'].'/2';
+    $route[ 'nha-tro-'.$row['tenkhac'].'/giagiam']        = 'post/show_by_district/1/'.$row['idQ'].'/3';
+    $route[ 'nha-tro-'.$row['tenkhac'].'/dientichtang']   = 'post/show_by_district/1/'.$row['idQ'].'/4';
+    $route[ 'nha-tro-'.$row['tenkhac'].'/dientichgiam']   = 'post/show_by_district/1/'.$row['idQ'].'/5';
+    $route[ 'nha-tro-'.$row['tenkhac'].'/khoangcachtang'] = 'post/show_by_district/1/'.$row['idQ'].'/6';
+    $route[ 'nha-tro-'.$row['tenkhac'].'/khoangcachgiam'] = 'post/show_by_district/1/'.$row['idQ'].'/7';
+    $route[ 'nha-tro-'.$row['tenkhac'].'/(:num)' ]        = 'post/show_by_district/$1/'.$row['idQ'].'/1';
+    $route[ 'nha-tro-'.$row['tenkhac'].'/giatang/(:num)']        = 'post/show_by_district/$1/'.$row['idQ'].'/2';
+    $route[ 'nha-tro-'.$row['tenkhac'].'/giagiam/(:num)']        = 'post/show_by_district/$1/'.$row['idQ'].'/3';
+    $route[ 'nha-tro-'.$row['tenkhac'].'/dientichtang/(:num)']   = 'post/show_by_district/$1/'.$row['idQ'].'/4';
+    $route[ 'nha-tro-'.$row['tenkhac'].'/dientichgiam/(:num)']   = 'post/show_by_district/$1/'.$row['idQ'].'/5';
+    $route[ 'nha-tro-'.$row['tenkhac'].'/khoangcachtang/(:num)'] = 'post/show_by_district/$1/'.$row['idQ'].'/6';
+    $route[ 'nha-tro-'.$row['tenkhac'].'/khoangcachgiam/(:num)'] = 'post/show_by_district/$1/'.$row['idQ'].'/7';
 }
 
 $route['home'] = 'post/get_all';

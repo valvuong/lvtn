@@ -65,7 +65,7 @@ class Post extends MY_Controller {
         $this->load->view(LAYOUT, $data);
     }
 
-    public function show_by_district($page=1, $idD) {
+    public function show_by_district($page=1, $idD, $sort = 1) {
         $class_name = $this->router->fetch_class();
         $method_name = $this->router->fetch_method();
         $data['view'] = 'home';
@@ -73,13 +73,18 @@ class Post extends MY_Controller {
         $data['left_content'] = '';
         $data['right_view'] = 'layout/right';
         $data['right_content'] = '';
-        $data['content']['content'] = $this->mpost->get_by_district($idD, $page);
+        $data['content']['content'] = $this->mpost->get_by_district($idD, $page, $sort);
         $data['content']['pagination'] = array($class_name, $method_name, $page, $idD);
         $data['content']['items_per_page'] = POSTS_PER_PAGE;
         $data['content']['num_rows'] = $this->mpost->get_district_rows($idD);
-        $url_alias = $this->uri->segment(1).'/';
-        $data['content']['url_alias'] = $url_alias;
-        $data['content']['url_sort'] = 'loai-'.$idD.'-';
+        $segment_1 = $this->uri->segment(1);
+        $segment_2 = $this->uri->segment(2);
+        $url_alias = $segment_1;
+        if ($segment_2 != NULL && !is_numeric($segment_2)) {
+            $url_alias .= '/'.$segment_2;
+        }
+        $data['content']['url_alias'] = $url_alias.'/';
+        $data['content']['url_sort'] = $segment_1;
         $data['content']['url_alias_extend'] = '';
         $this->load->view(LAYOUT, $data);
     }
@@ -192,14 +197,16 @@ class Post extends MY_Controller {
         $class_name = $this->router->fetch_class();
         $method_name = $this->router->fetch_method();
         $data['view'] = 'home';
-        $data['content']['content'] = $result;
+        $data['content']['content'] = $result['result'];
         $data['left_view'] = 'layout/left';
-        $data['left_content']['search_category'] = $search_category;
-        $data['left_content']['search_district'] = $search_district;
-        $data['left_content']['search_area'] = $search_area;
-        $data['left_content']['search_price'] = $search_price;
+        $data['content']['search_category'] = $result['search_category'];
+        $data['content']['search_district'] = $result['search_district'];
+        $data['content']['search_area'] = $result['search_area'];
+        $data['content']['search_price'] = $result['search_price'];
+        $data['content']['search_distance'] = $result['search_distance'];
         $data['right_view'] = 'layout/right';
         $data['right_content']['content'] = '';
+        $data['left_content']['content'] = '';
         $data['content']['pagination'] = array($class_name, $method_name, $page);
         $data['content']['items_per_page'] = POSTS_PER_PAGE;
         $data['content']['num_rows'] = $num_rows;
