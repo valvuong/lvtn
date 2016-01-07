@@ -165,11 +165,11 @@ class Mmarket extends CI_Model {
 
     public function get_search_rows($category, $subcategory, $status, $price) {
         if ($price < 100) {
-            $min_price = $price / 10;
+            $min_price = (int)($price / 10);
             $max_price = $price % 10;
         }
         else if ($price > 100) {
-            $min_price = $price / 100;
+            $min_price = (int)($price / 100);
             $max_price = $price % 100;
         }
         $this->db->select('*');
@@ -193,11 +193,11 @@ class Mmarket extends CI_Model {
 
     public function get_search_content($category, $subcategory, $status, $price,  $page) {
         if ($price < 100) {
-            $min_price = $price / 10;
+            $min_price = (int)($price / 10);
             $max_price = $price % 10;
         }
         else if ($price > 100) {
-            $min_price = $price / 100;
+            $min_price = (int)($price / 100);
             $max_price = $price % 100;
         }
 
@@ -224,12 +224,14 @@ class Mmarket extends CI_Model {
             $this->db->where($this->tinhtrang, $status);
         }
         
-       $this->db->join(MODEL_MARKET_UPLOAD, MODEL_MARKET_UPLOAD.'.idCho = '.MODEL_MARKET.'.'.$this->id, 'left');
+        $this->db->join(MODEL_MARKET_UPLOAD, MODEL_MARKET_UPLOAD.'.idCho = '.MODEL_MARKET.'.'.$this->id, 'left');
         $this->db->join(MODEL_MARKET_CATEGORY, MODEL_MARKET_CATEGORY.'.id = '.MODEL_MARKET.'.'.$this->loai,'left');
         $this->db->limit(ADS_PER_PAGE, ADS_PER_PAGE*($page-1));
         $this->db->group_by(MODEL_MARKET.'.'.$this->id);
         $this->db->order_by(MODEL_MARKET.'.'.$this->id,'DESC');
         $query = $this->db->get();
+        var_dump($min_price);
+        var_dump($max_price);
         return $query->result_array();
     }
 

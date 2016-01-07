@@ -191,23 +191,23 @@ class Mpost extends CI_Model {
 
     public function get_search_room_by_select_rows($category, $district, $area, $price,$distance) {
         if ($area < 10000) {
-            $min_area = $area / 100;
+            $min_area = (int)($area / 100);
             $max_area = $area % 100;
         }
         else if ($area > 10000) {
-            $min_area = $area / 1000;
+            $min_area = (int)($area / 1000);
             $max_area = $area % 1000;
         }
         if ($price < 100) {
-            $min_price = $price / 10;
+            $min_price = (int)($price / 10);
             $max_price = $price % 10;
         }
         else if ($price > 100) {
-            $min_price = $price / 100;
+            $min_price = (int)($price / 100);
             $max_price = $price % 100;
         }
         if ($distance < 1000) {
-            $min_distance = $distance / 100;
+            $min_distance = (int)($distance / 100);
             $max_distance = $distance % 100;
         }
         else if ($distance > 1000) {
@@ -243,19 +243,19 @@ class Mpost extends CI_Model {
 
     public function get_search_room_by_select_content($category, $district, $area, $price, $distance, $page) {
         if ($area < 10000) {
-            $min_area = $area / 100;
+            $min_area = (int)($area / 100);
             $max_area = $area % 100;
         }
         else if ($area > 10000) {
-            $min_area = $area / 1000;
+            $min_area = (int)($area / 1000);
             $max_area = $area % 1000;
         }
         if ($price < 100) {
-            $min_price = $price / 10;
+            $min_price = (int)($price / 10);
             $max_price = $price % 10;
         }
         else if ($price > 100) {
-            $min_price = $price / 100;
+            $min_price = (int)($price / 100);
             $max_price = $price % 100;
         }
         if ($distance < 1000) {
