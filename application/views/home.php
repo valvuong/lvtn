@@ -40,6 +40,11 @@
     </div>
 </div>
 
+<?php if($method == 'search_by_select_post'): ?>
+  <div>
+    Kết quả tìm kiếm: <?php echo $search_category .','. $search_district .','. $search_area .','. $search_price .','. $search_distance ?>
+  </div>
+<?php endif ?>
 <?php foreach($content as $row): ?>
 <a data-toggle="tooltip" data-placement="right" 
 data-html="true" title='<b><?=$row['tenquan']?></b><br /> <b><span style="color:#0087c7;"><?=$row['tieude']?></span></b><br />Nội dung: <?=$row['noidung']?><br />' 

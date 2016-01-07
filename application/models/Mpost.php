@@ -297,7 +297,42 @@ class Mpost extends CI_Model {
         $this->db->group_by(MODEL_POST.'.'.$this->id);
         $this->db->order_by(MODEL_POST.'.'.$this->id, 'DESC');
         $query = $this->db->get();
-        return $query->result_array();
+        $result['result'] = $query->result_array();
+
+        $this->db->select('tenquan');
+        $this->db->from(MODEL_DISTRICT);
+        $this->db->where('idQ', $district);
+        $query = $this->db->get();
+        $d = $query->row_array();
+        $result['search_district'] = $d['tenquan'];
+
+        $this->db->select('ten');
+        $this->db->from(MODEL_POST_CATEGORY);
+        $this->db->where('id', $category);
+        $query = $this->db->get();
+        $d = $query->row_array();
+        $result['search_category'] = $d['ten'];
+
+        $this->db->select('text');
+        $this->db->from(SEARCH_AREA);
+        $this->db->where('value', $area);
+        $query = $this->db->get();
+        $d = $query->row_array();
+        $result['search_area'] = $d['text'];
+
+        $this->db->select('text');
+        $this->db->from(SEARCH_PRICE);
+        $this->db->where('value', $price);
+        $query = $this->db->get();
+        $d = $query->row_array();
+        $result['search_price'] = $d['text'];
+
+        if ($distance == '0002') $result['search_distance'] = '<2km';
+
+        else if ($distance == '0205') $result['search_distance'] = '2-5km';
+        else if ($distance == '0599') $result['search_distance'] = '>5km';
+        else $result['search_distance'] = '';
+        return $result;
     }
 
 
